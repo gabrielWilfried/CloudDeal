@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
             $table->string('post');
-            $table->boolval('status');
+            $table->boolean('status');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('annonce_id')->constrained();
             $table->timestamps();

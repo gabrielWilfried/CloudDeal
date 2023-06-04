@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->long('price');
+            $table->double('price');
             $table->string('description');
             $table->morphs('file');
-            $table->foreignId('town_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('town_id');
+            $table->foreignId('user_id');
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
