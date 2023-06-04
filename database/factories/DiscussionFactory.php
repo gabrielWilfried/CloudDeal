@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Annonce;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +20,12 @@ class DiscussionFactory extends Factory
     public function definition(): array
     {
         return [
+            'post' => $this->faker->sentence,
+            'status' => $this->faker->boolean,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'annonce_id' => Annonce::inRandomOrder()->first()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
             //
         ];
     }

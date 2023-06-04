@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('period');
             $table->integer('status')->default(1);
             $table->date('Begin_date')->nullable();
-            $table->date('End-date')->nullable();
+            $table->date('End_date')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('annonce_id')->constrained();
             $table->timestamps();

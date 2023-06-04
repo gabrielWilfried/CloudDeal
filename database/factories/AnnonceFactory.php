@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Town;
+use App\Models\Category;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +21,16 @@ class AnnonceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'morphable_id' => random_int(1, 9),
-            'morphable_type' => User::class,
+            'name' => $this->faker->sentence,
+            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'description' => $this->faker->paragraph,
+            'file_type' => null,
+            'file_id' => null,
+            'town_id' => Town::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
