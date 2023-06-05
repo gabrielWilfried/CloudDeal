@@ -120,6 +120,7 @@ return [
             'reset' => [
                 'notification' => 'App\Notifications\ResetPasswordNotification',
             ],
+
         ],
     ],
 
