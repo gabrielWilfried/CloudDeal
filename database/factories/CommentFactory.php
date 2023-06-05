@@ -21,7 +21,6 @@ class CommentFactory extends Factory
     {
         return [
             'content' => $this->faker->text,
-            'creation_date' => $this->faker->date,
             'user_id' => User::inRandomOrder()->first()->id,
             'annonce_id' => Annonce::inRandomOrder()->first()->id,
             'created_at' => now(),

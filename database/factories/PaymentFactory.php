@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Annonce;
+use App\Models\Enums\PaymentStatusEnum;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,13 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
+            'annonce_id' => Annonce::inRandomOrder()->first()->id,
+            'amount' => $this->faker->randomFloat(),
+            'status' => PaymentStatusEnum::PENDING,
+            'created_at' => now(),
+            'updated_at' => now(),
             //
         ];
     }
 }
+

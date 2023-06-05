@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Enums\SexeEnum;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,16 +20,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->firstName,
-            'surname' => $this->faker->lastName,
+            'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('password'), 
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
-            'sex' => $this->faker->randomElement(['male', 'female']),
-            'pseudo' => $this->faker->userName,
-            'user_role' => false,
+            'sex' => SexeEnum::random(),
+            'is_admin' => false,
             'location' => null,
             'remember_token' => Str::random(10),
             'created_at' => now(),

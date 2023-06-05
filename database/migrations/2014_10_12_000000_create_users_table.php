@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Helpers;
 use App\Models\Enums\SexeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
