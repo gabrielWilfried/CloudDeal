@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Enums\SexeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,16 +15,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('surname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('sex');
-            $table->string('pseudo');
-            $table->boolean('user_role')->default(false);
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->enum('sex', enum_to_string_array(SexeEnum::cases()))->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->json('location')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,9 +14,4 @@ class Annonce extends Model
     protected $hidden = ['file_id', 'file_type'];
 
     protected $with = ['file'];
-
-    public function file(): MorphTo
-    {
-        return $this->morphTo('file');
-    }
 }
