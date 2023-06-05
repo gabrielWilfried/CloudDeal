@@ -11,12 +11,12 @@ class Annonce extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected $hidden = ['morphable_id', 'morphable_type'];
+    protected $hidden = ['file_id', 'file_type'];
 
-    protected $with = ['morphable'];
+    protected $with = ['file'];
 
-    public function morphable(): MorphTo
+    public function file(): MorphTo
     {
-        return $this->morphTo('morphable');
+        return $this->morphTo('file');
     }
 }

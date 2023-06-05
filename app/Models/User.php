@@ -21,8 +21,14 @@ class User extends Authenticatable implements CanResetPassword
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
+        'phone',
+        'address',
+        'sex',
+        'pseudo',
+        'location',
     ];
 
     /**
@@ -43,6 +49,7 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'location' => 'json',
     ];
     public function setPasswordAttribute($value)
     {

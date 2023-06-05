@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\User;
+use App\Models\Annonce;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Discussion>
+ */
+class DiscussionFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'post' => $this->faker->sentence,
+            'status' => $this->faker->boolean,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'annonce_id' => Annonce::inRandomOrder()->first()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+            //
+        ];
+    }
+}

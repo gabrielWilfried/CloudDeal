@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('annonces', function (Blueprint $table) {
+        Schema::create('signals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->double('price');
-            $table->string('description');
-            $table->morphs('file');
-            $table->foreignId('town_id');
-            $table->foreignId('user_id');
-            $table->foreignId('category_id');
+            $table->integer('count');
+            $table->foreignId('annonce_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('annonces');
+        Schema::dropIfExists('signals');
     }
 };
