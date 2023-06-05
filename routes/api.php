@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'store']);
+    Route::post('/password/forgot', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.forgot');
+
 });
 
 Route::middleware('auth:sanctum')->group(function () {
