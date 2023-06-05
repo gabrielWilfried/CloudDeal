@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Region;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +19,10 @@ class TownFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => $this->faker->city,
+            'region_id' => Region::inRandomOrder()->first()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
             //
         ];
     }
