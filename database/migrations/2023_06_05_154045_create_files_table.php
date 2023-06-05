@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('signals', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->integer('count');
-            $table->foreignId('annonce_id')->constrained();
+            $table->morphs('target');
+            $table->string('path');
+            $table->string('file_name')->nullable();
+            $table->enum('type', ['PROFILE_PROFIL', 'PROFILE_ANNONCE', 'FILE']);
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('signals');
+        Schema::dropIfExists('files');
     }
 };

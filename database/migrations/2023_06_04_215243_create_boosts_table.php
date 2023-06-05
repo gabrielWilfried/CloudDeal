@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('discussions', function (Blueprint $table) {
+        Schema::create('boosts', function (Blueprint $table) {
             $table->id();
-            $table->string('post');
-            $table->boolean('status');
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedDouble('price')->comment('price for boosting');
+            $table->date('start_at');
+            $table->date('end_at');
+            $table->unsignedInteger('score')->comment('the number of level to add to annonce');
             $table->foreignId('annonce_id')->constrained();
             $table->timestamps();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('discussions');
+        Schema::dropIfExists('boosts');
     }
 };

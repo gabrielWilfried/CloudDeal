@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Annonce;
+use App\Models\Enums\PaymentStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
-            $table->date('creation_date');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('annonce_id')->constrained();
+            $table->foreignIdFor(Annonce::class)->constrained();
+            $table->unsignedDouble('amount');
+            $table->enum('status', enum_to_string_array(PaymentStatusEnum::cases()))->default(PaymentStatusEnum::PENDING->value);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('payments');
     }
 };
