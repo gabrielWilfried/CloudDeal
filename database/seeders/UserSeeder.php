@@ -31,6 +31,10 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'sex' => SexeEnum::Male->value,
 
+            'is_admin' => true,
+            'location' => null
+        ]);
+
         User::create([
             'name' => "Lidelle",
             'email' => "vanelladzikang1@gmail.com",
