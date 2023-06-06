@@ -20,16 +20,15 @@ class BoostFactory extends Factory
     public function definition(): array
     {
         return [
-            'price' => $this->faker->randomFloat(2, 10, 100),
-            'period' => $this->faker->randomElement(['7 days', '14 days', '30 days']),
-            'status' => 1,
-            'Begin_date' => $this->faker->date(),
-            'End_date' => $this->faker->date(),
-            'user_id' => User::inRandomOrder()->first()->id,
+            'price' => $this->faker->randomFloat(),
+            'start_at' => $this->faker->date,
+            'end_at' => $this->faker->date,
+            'score' => $this->faker->numberBetween(1, 10),
+            //'user_id' => User::inRandomOrder()->first()->id,
             'annonce_id' => Annonce::inRandomOrder()->first()->id,
             'created_at' => now(),
             'updated_at' => now(),
             //
-        ];
+        ]; 
     }
 }

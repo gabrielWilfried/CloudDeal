@@ -18,6 +18,7 @@ class RegionFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'description' => $this->faker->paragraph,
             'created_at' => now(),
             'updated_at' => now(),
             //
