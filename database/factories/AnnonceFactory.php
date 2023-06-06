@@ -22,13 +22,13 @@ class AnnonceFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence,
-            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'price' => $this->faker->randomFloat(),
             'description' => $this->faker->paragraph,
-            'file_type' => null,
-            'file_id' => null,
+            'level' => $this->faker->numberBetween(1, 10),
             'town_id' => Town::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id,
+            'deleted_at' => null,
             'created_at' => now(),
             'updated_at' => now(),
         ];

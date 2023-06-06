@@ -23,5 +23,15 @@ class UserSeeder extends Seeder
             'is_admin' => true,
             'location' => null
         ]);
+
+        User::create([
+            'name' => "Lidelle",
+            'email' => "vanelladzikang1@gmail.com",
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'sex' => SexeEnum::Femele->value,
+            'is_admin' => true,
+            'location' => null
+        ]);
     }
 }
