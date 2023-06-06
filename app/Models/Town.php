@@ -9,6 +9,6 @@ class Town extends Model
 {
     use HasFactory;
     protected $guarded = [
-        'name',
+        'name', 'description'
     ];
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Authenticate\AnnonceController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
+use App\Http\Controllers\API\VilleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,14 @@ Route::prefix('guest')->group(function () {
         Route::delete('/{id}', [AnnonceGuestController::class, 'delete']);
     });
 });
+
+
+
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/town', [VilleController::class, 'index'])->name('api.Town.index');
+    Route::post('/town', [VilleController::class, 'store'])->name('api.Town.store');
+    Route::get('/towns/{id}', [VilleController::class, 'show'])->name('api.Town.show');
+    Route::put('/town/{id}', [VilleController::class, 'update'])->name('api.Town.update');
+    Route::delete('/town/{id}', [VilleController::class, 'destroy'])->name('api.Town.destroy');
+});
+

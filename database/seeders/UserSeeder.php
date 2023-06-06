@@ -25,11 +25,19 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
+            'name' => "Sagesse",
+            'email' => "sikounmosagesse@gmail.com",
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+            'sex' => SexeEnum::Male->value,
+
+        User::create([
             'name' => "Lidelle",
             'email' => "vanelladzikang1@gmail.com",
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'sex' => SexeEnum::Femele->value,
+
             'is_admin' => true,
             'location' => null
         ]);
