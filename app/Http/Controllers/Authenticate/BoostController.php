@@ -58,4 +58,3 @@ class BoostController extends Controller
     }
 }
     //
-
