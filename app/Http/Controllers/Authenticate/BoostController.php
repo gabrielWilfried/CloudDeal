@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Authenticate;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class BoostController extends Controller
 {
@@ -45,12 +47,11 @@ class BoostController extends Controller
             'annonce_id' => $request->annonce_id,
         ]);
 
-        // Increment the level of the associated annonce
+        
         $annonce->level += $score;
         $annonce->save();
 
-        // You can also handle file uploads associated with the boost here
-
+        
         return response()->json(['message' => 'Boost created successfully', 'boost' => $boost], 201);
     }
 }
