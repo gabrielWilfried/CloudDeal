@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Authenticate;
 
 use Illuminate\Http\Request;
+use App\Models\Annonce;
+use App\Models\Boost;
 use Carbon\Carbon;
 
 
