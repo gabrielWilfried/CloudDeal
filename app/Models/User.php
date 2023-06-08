@@ -54,4 +54,8 @@ class User extends Authenticatable
         'password' => 'hashed',
         'location' => 'array',
     ];
+    public function discussions()
+    {
+        return $this->hasMany(Discussion::class);
+    }
 }

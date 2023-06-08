@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\File;
 
+use App\Models\Signal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -20,6 +21,10 @@ class Annonce extends Model
     public function file()
     {
         return $this->belongsTo(File::class);
+    }
+    public function signals()
+    {
+        return $this->hasMany(Signal::class);
     }
 
 }

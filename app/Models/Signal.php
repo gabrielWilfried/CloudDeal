@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Annonce;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,4 +12,8 @@ class Signal extends Model
     protected $guarded = [];
 
     protected $casts = ['reasons' => 'array'];
+    public function annonces()
+    {
+        return $this->hasMany(Annonce::class);
+    }
 }
