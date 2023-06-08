@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Town extends Model
 {
@@ -18,20 +20,12 @@ class Town extends Model
     ];
 
 
-     // relation MorphMany between towns and files
-     public function files():MorphMany
-     {
-        return $this->morphMany(File::class, 'target');
-     }
-
-     //relation one to many between towns and annonces
-    public function annonces():HasMany
+    public function annonces(): HasMany
     {
         return $this->hasMany(Annonce::class);
     }
 
-    //relation one to many(inverse) between towns and regions
-    public function regions():BelongsTo
+    public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
     }
