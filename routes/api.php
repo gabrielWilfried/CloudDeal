@@ -55,6 +55,10 @@ Route::prefix('guest')->group(function () {
         Route::get('/{id}', [AnnonceGuestController::class, 'view']);
         Route::put('/{id}', [AnnonceGuestController::class, 'update']);
         Route::delete('/{id}', [AnnonceGuestController::class, 'delete']);
+        Route::get('/{id}/handle-reports', [AnnonceGuestController::class, 'handleSignals'])->name('api.annonces.handleReports');
+        Route::post('/{id}/report', [AnnonceGuestController::class, 'signalAnnonce'])->name('api.annonces.report');
+
+
     });
 });
 

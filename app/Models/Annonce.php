@@ -83,9 +83,6 @@ class Annonce extends Model
     {
         return $this->belongsTo(Town::class);
     }
-    public function signals()
-    {
-        return $this->hasMany(Signal::class);
-    }
+
 
 }
