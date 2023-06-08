@@ -23,16 +23,53 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'surname',
         'email',
+        'email_verified_at',
         'password',
         'phone',
         'address',
         'sex',
-        'pseudo',
+        'is_admin',
         'location',
         'is_admin'
     ];
+
+
+    //Relationships with users
+
+    //relation one to many between users and annonces
+    public function annonces():HasMany
+    {
+        return $this->hasMany(Annonce::class);
+    }
+
+     //relation one to many between users and boosts
+     //public function boosts():HasMany
+     //{
+         //return $this->hasMany(Boost::class);
+     //}
+
+      //relation one to many between users and comments
+    public function comments():HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+     //relation one to many between users and discussions
+     public function discussions():HasMany
+     {
+         return $this->hasMany(Discussion::class);
+     }
+
+
+     // relation MorphMany between users and files
+     public function files():MorphMany
+     {
+        return $this->morphMany(related: 'App\Http\Models\File', name: 'target');
+     }
+
+
+
 
     /**
      * The attributes that should be hidden for serialization.

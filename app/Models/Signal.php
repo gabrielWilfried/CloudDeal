@@ -12,8 +12,4 @@ class Signal extends Model
     protected $guarded = [];
 
     protected $casts = ['reasons' => 'array'];
-    public function annonces()
-    {
-        return $this->hasMany(Annonce::class);
-    }
 }
