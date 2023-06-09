@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Authenticate\AnnonceController;
+use App\Http\Controllers\Authenticate\BoostController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
 use App\Http\Controllers\Authenticate\RegionController;
 use App\Http\Controllers\Authenticate\VilleController;
@@ -45,6 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [VilleController::class, 'store']);
         Route::put('/{town}', [VilleController::class, 'update']);
         Route::delete('/{town}', [VilleController::class, 'delete']);
+    });
+
+    Route::prefix('boost')->group(function () {
+        Route::post('/{annonce}', [BoostController::class, 'store']);
     });
 });
 
