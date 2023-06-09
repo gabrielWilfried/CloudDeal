@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Storage;
 
 class FileUploadService
 {
+
+    /*
+    * @var $file : file to upload
+    * @var $object : instance eloquent object to attache file
+    * @var $filePath : path to save file
+    */
     public static function upload(UploadedFile $file, Model $object,  PathFileEnum $filePath = PathFileEnum::DEFAULT_PATH)
     {
         $path = Storage::putFile('public/' . $filePath->value, $file);

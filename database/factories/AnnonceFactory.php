@@ -24,6 +24,7 @@ class AnnonceFactory extends Factory
             'name' => $this->faker->sentence,
             'price' => $this->faker->randomFloat(),
             'description' => $this->faker->paragraph,
+            'level' => 1000000000,
             'town_id' => Town::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedDouble('price');
             $table->text('description');
-            $table->unsignedInteger('level')->default(1);
+            $table->unsignedBigInteger('level')->default(1);
             $table->boolean('is_blocked')->default(false);
             $table->foreignId('town_id')->constrained();
             $table->foreignId('user_id')->constrained();
