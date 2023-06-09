@@ -10,8 +10,10 @@ class AnnonceGuestController extends Controller
 {
     public function listAnnonces(Request $request)
     {
+
         $limit = $request->get('limit', 3);
-        $annonces = Annonce::paginate($limit);
+
+        $annonces = Annonce::where('is_published', true)->paginate($limit);
         return response()->json($annonces, 200);
     }
 
