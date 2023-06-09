@@ -33,9 +33,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceController::class, 'index']);
         Route::post('/', [AnnonceController::class, 'store']);
-        Route::get('/{id}', [AnnonceController::class, 'view']);
-        Route::put('/{id}', [AnnonceController::class, 'update']);
-        Route::delete('/{id}', [AnnonceController::class, 'delete']);
+        Route::get('/{annonce}', [AnnonceController::class, 'view']);
+        Route::put('/{annonce}', [AnnonceController::class, 'update']);
+        Route::delete('/{annonce}', [AnnonceController::class, 'delete']);
     });
 
     Route::prefix('region')->group(function () {
@@ -57,8 +57,8 @@ Route::middleware('auth:sanctum')->group(function () {
 //route for guest mode
 Route::prefix('guest')->group(function () {
     Route::prefix('annonce')->group(function () {
-        Route::get('/', [AnnonceGuestController::class, 'index']);
-        Route::get('/{id}', [AnnonceGuestController::class, 'view']);
+        Route::get('/', [AnnonceGuestController::class, 'listAnnonces']);
+        Route::get('/{annonce}', [AnnonceGuestController::class, 'detailsAnnonce']);
     });
     Route::get('region/', [RegionGuestController::class, 'listRegions']);
     Route::get('town/', [VilleGuestController::class, 'listVilles']);

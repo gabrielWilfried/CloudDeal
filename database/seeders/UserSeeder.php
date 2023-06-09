@@ -34,10 +34,6 @@ class UserSeeder extends Seeder
             'location' => null
         ]);
 
-            'is_admin' => true,
-            'location' => null
-        ]);
-
         User::create([
             'name' => "Lidelle",
             'email' => "vanelladzikang1@gmail.com",
