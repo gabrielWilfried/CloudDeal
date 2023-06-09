@@ -15,7 +15,7 @@ class Annonce extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected $hidden = ['file_id', 'file_type'];
+    protected $hidden = ['file_id', 'file_type', 'level'];
 
     protected $fillable = [
         'name',

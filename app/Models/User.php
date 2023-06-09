@@ -78,7 +78,6 @@ class User extends Authenticatable
     {
         $file = File::where('target_id', $this->id)->where('target_type', User::class)->first();
         $file->path = str_replace('public', 'storage', $file->path);
-
         return $file;
     }
 }
