@@ -12,12 +12,16 @@ class AnnonceGuestController extends Controller
     {
 
         $limit = $request->get('limit', 3);
-
-        $annonces = Annonce::where('is_published', true)->paginate($limit);
+        $annonces = Annonce::where('is_blocked', false)->paginate($limit);
         return response()->json($annonces, 200);
     }
 
-    public function detailsAnnonce()
+    public function detailsAnnonce(Request $request, $id)
     {
+        $annonce = Annonce::find($id);
+        if (!$annonce) {
+            return response()->json(abort(404));
+        }
+        return response()->json($annonce);
     }
 }
