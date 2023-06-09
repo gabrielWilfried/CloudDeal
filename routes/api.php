@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Authenticate\AnnonceController;
 use App\Http\Controllers\Authenticate\BoostController;
+use App\Http\Controllers\Authenticate\DiscussionController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
 use App\Http\Controllers\Authenticate\RegionController;
 use App\Http\Controllers\Authenticate\VilleController;
@@ -28,6 +29,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('boost/{annonce}', [BoostController::class, 'store']);
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceController::class, 'index']);
         Route::post('/', [AnnonceController::class, 'store']);
@@ -47,9 +49,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{town}', [VilleController::class, 'update']);
         Route::delete('/{town}', [VilleController::class, 'delete']);
     });
-
-    Route::prefix('boost')->group(function () {
-        Route::post('/{annonce}', [BoostController::class, 'store']);
+    Route::prefix('/discussion')->group(function () {
+        Route::post('/{annonce}', [DiscussionController::class, 'store']);
     });
 });
 
