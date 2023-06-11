@@ -39,23 +39,33 @@
 
         public function update(Request $request, $id)
         {
-            $request->validate([
-                'nom' => 'required|string|max:255',
-                'description' => 'required|text|size:1000'
-            ]);
+            $user = User::find($user_id);
+            $is_admin = $user->is_admin;
+            if($is_admin == true){
+                $request->validate([
+                    'nom' => 'required|string|max:255',
+                    'description' => 'required|text|size:1000'
+                ]);
 
-            $town = Town::findOrFail($id);
-            $town->update($request->all());
+                $town = Town::findOrFail($id);
+                $town->update($request->all());
 
-            return response()->json($town);
+                return response()->json($town);
+            }
+            return response()->json(['message' => 'Pas de droit pour cette action']);
         }
 
         public function destroy($id)
         {
-            $town = Town::findOrFail($id);
-            $town->delete();
+            $user = User::find($user_id);
+            $is_admin = $user->is_admin;
+            if ($is_admin == true){
+                $town = Town::findOrFail($id);
+                $town->delete();
 
-            return response()->json(['message' => 'Ville deleted']);
+                return response()->json(['message' => 'Ville deleted']);
+            }
+             return response()->json(['message' => 'Pas de droit pour cette action']);
         }
 
 }

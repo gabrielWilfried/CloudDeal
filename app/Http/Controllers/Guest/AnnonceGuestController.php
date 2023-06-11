@@ -59,7 +59,7 @@ class AnnonceGuestController extends Controller
         // Vérifier si le nombre de signalements dépasse le seuil
         $signalThreshold = 15; // Seuil de signalements
         if ($signalCount >= $signalThreshold) {
-            // Bloquer la publication de l'signal
+            // Bloquer la publication de l'annonce
             $annonce->is_published = false;
             $annonce->save();
 

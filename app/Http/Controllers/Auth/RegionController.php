@@ -2,10 +2,14 @@
     namespace App\Http\Controllers\CRUD;
 
     use App\Models\Region;
+    use App\Models\User;
     use Illuminate\Http\Request;
 
     class RegionController extends Controller
     {
+
+
+
 
 
         public function index()
@@ -32,31 +36,38 @@
             return response()->json($region);
         }
 
-        public function __construct()
-        {
-            $this->middleware('auth');
-            $this->middleware('is_admin')->only(['update', 'destroy']);
-        }
+
 
         public function update(Request $request, $id)
         {
-            $request->validate([
-                'nom' => 'required|string|max:255',
-                'description' => 'required|text|size:1000'
-            ]);
+            $user = User::find($user_id);
+            $is_admin = $user->is_admin;
+            if($is_admin==true){
 
-            $region = Region::findOrFail($id);
-            $region->update($request->all());
+                $request->validate([
+                    'nom' => 'required|string|max:255',
+                    'description' => 'required|text|size:1000'
+                ]);
 
-            return response()->json($region);
+                $region = Region::findOrFail($id);
+                $region->update($request->all());
+
+                return response()->json($region);
+            }
+            return response()->json(['message' => 'Pas de droit pour cette action']);
         }
 
         public function destroy($id)
         {
-            $region = Region::findOrFail($id);
-            $region->delete();
+            $user = User::find($user_id);
+            $is_admin = $user->is_admin;
+            if($is_admin==true){
+                $region = Region::findOrFail($id);
+                $region->delete();
 
-            return response()->json(['message' => 'Ville deleted']);
+                return response()->json(['message' => 'Ville deleted']);
+            }
+            return response()->json(['message' => 'Pas de droit pour cette action']);
         }
 
 }
