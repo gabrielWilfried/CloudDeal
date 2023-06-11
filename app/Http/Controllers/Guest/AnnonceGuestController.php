@@ -8,17 +8,14 @@ use Illuminate\Http\Request;
 
 class AnnonceGuestController extends Controller
 {
-    // Cette methode renvois toutes les signal qui ne
-    public function index(Request $request)
+    public function listAnnonces(Request $request)
     {
-
-         $limit = $request->get('limit', 3);
-
-         $annonces = Annonce::where('is_published', true)->paginate($limit);
-        return response()->json($annonces, 200);
+        $limit = $request->get('limit', 15);
+        $annonces = Annonce::where('is_blocked', false)->paginate($limit);
+        return response()->json($annonces);
     }
 
-    public function store()
+    public function detailsAnnonce(Annonce  $annonce)
     {
     }
 
@@ -59,7 +56,7 @@ class AnnonceGuestController extends Controller
         // Vérifier si le nombre de signalements dépasse le seuil
         $signalThreshold = 15; // Seuil de signalements
         if ($signalCount >= $signalThreshold) {
-            // Bloquer la publication de l'annonce
+            // Bloquer la publication de l'signal
             $annonce->is_published = false;
             $annonce->save();
 

@@ -4,25 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Region extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
+    protected $appends = ['files'];
+
     protected $fillable = ['name', 'description'];
 
-    // Relationships with regions
-
-    //relation one to many between regions and town
-    public function towns():HasMany
+    public function towns(): HasMany
     {
         return $this->hasMany(Town::class);
     }
 
-     // relation MorphMany between regions and files
-     public function files():MorphMany
-     {
-        return $this->morphMany(related: 'App\Http\Models\File', name: 'target');
-     }
+    public function getFilesAttribute()
+    {
+        $files = File::where('target_id', $this->id)->where('target_type', Region::class)->get();
+        $files->map(function ($file) {
+            $file->path = str_replace('public', 'storage', $file->path);
+        });
+
+        return $files;
+    }
 }

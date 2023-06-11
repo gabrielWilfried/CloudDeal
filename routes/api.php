@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Authenticate\AnnonceController;
+use App\Http\Controllers\Authenticate\BoostController;
+use App\Http\Controllers\Authenticate\DiscussionController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
-use App\Http\Controllers\Auth\TownController;
-use App\Http\Controllers\Auth\RegionController;
+use App\Http\Controllers\Authenticate\RegionController;
+use App\Http\Controllers\Authenticate\VilleController;
+use App\Http\Controllers\Guest\RegionGuestController;
+use App\Http\Controllers\Guest\VilleGuestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,49 +23,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/auth')->group(function () {
+Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'store']);
-
-
-    Route::get('/regions', [RegionController::class, 'index']);
-    Route::post('/regions', [RegionController::class, 'store']);
-    Route::get('/regions/{region}', [RegionController::class, 'show']);
-    Route::put('/regions/{region}', [RegionController::class, 'update']);
-    Route::delete('/regions/{region}', [RegionController::class, 'destroy']);
-
-
-
-    Route::get('/towns', [TownController::class, 'index']);
-    Route::post('/towns', [TownController::class, 'store']);
-    Route::get('/towns/{town}', [TownController::class, 'show']);
-    Route::put('/towns/{town}', [TownController::class, 'update']);
-    Route::delete('/towns/{town}', [TownController::class, 'destroy']);
-
-    Route::post('/discussions', [DiscussionController::class, 'create']);
-
-
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('boost/{annonce}', [BoostController::class, 'store']);
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceController::class, 'index']);
+        Route::post('/', [AnnonceController::class, 'store']);
+        Route::get('/{annonce}', [AnnonceController::class, 'view']);
+        Route::put('/{annonce}', [AnnonceController::class, 'update']);
+        Route::delete('/{annonce}', [AnnonceController::class, 'delete']);
+    });
+
+    Route::prefix('region')->group(function () {
+        Route::post('/', [RegionController::class, 'store']);
+        Route::put('/{region}', [RegionController::class, 'update']);
+        Route::delete('/{region}', [RegionController::class, 'delete']);
+    });
+
+    Route::prefix('town')->group(function () {
+        Route::post('/', [VilleController::class, 'store']);
+        Route::put('/{town}', [VilleController::class, 'update']);
+        Route::delete('/{town}', [VilleController::class, 'delete']);
+    });
+    Route::prefix('/discussion')->group(function () {
+        Route::post('/{annonce}', [DiscussionController::class, 'store']);
     });
 });
 
+//route for guest mode
 Route::prefix('guest')->group(function () {
     Route::prefix('annonce')->group(function () {
-        Route::get('/', [AnnonceGuestController::class, 'index']);
-        Route::post('/', [AnnonceGuestController::class, 'store']);
-        Route::get('/{id}', [AnnonceGuestController::class, 'view']);
-        Route::put('/{id}', [AnnonceGuestController::class, 'update']);
-        Route::delete('/{id}', [AnnonceGuestController::class, 'delete']);
-        Route::get('/{id}/handle-reports', [AnnonceGuestController::class, 'handleSignals']);
-        Route::post('/{id}/report', [AnnonceGuestController::class, 'signalAnnonce']);
-
-
+        Route::get('/', [AnnonceGuestController::class, 'listAnnonces']);
+        Route::get('/{annonce}', [AnnonceGuestController::class, 'detailsAnnonce']);
     });
+    Route::get('region/', [RegionGuestController::class, 'listRegions']);
+    Route::get('town/', [VilleGuestController::class, 'listVilles']);
 });
-
-
-

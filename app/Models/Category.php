@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -12,17 +13,8 @@ class Category extends Model
 
     protected $fillable = ['name', 'description'];
 
-    // Relationships with categories
-
-    //relation one to many between categories and annonces
-    public function annonces():HasMany
+    public function annonces(): HasMany
     {
         return $this->hasMany(Annonce::class);
     }
-
-     // relation MorphMany between categories and files
-     public function files():MorphMany
-     {
-        return $this->morphMany(related: 'App\Http\Models\File', name: 'target');
-     }
 }

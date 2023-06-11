@@ -23,16 +23,16 @@ class UserFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => bcrypt('password'), 
+            'password' => bcrypt('password'),
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
-            'sex' => SexeEnum::random(),
+            'sex' => enum_to_string_array(SexeEnum::cases())[rand(0, 1)],
             'is_admin' => false,
             'location' => null,
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
-            
+
         ];
     }
 

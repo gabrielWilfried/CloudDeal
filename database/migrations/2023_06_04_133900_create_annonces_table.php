@@ -16,13 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedDouble('price');
             $table->text('description');
-            $table->unsignedInteger('level')->default(1);
+            $table->unsignedBigInteger('level')->default(1);
+            $table->boolean('is_blocked')->default(false);
             $table->foreignId('town_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->softDeletes();
-            // ce champ nous permettra de bloquer une annonce lorsqu'elle aura atteinte le seuil de signalement
-            $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
     }

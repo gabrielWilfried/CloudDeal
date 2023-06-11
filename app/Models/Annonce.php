@@ -7,16 +7,16 @@ use App\Models\File;
 use App\Models\Signal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Annonce extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    protected $hidden = ['file_id', 'file_type'];
-
-    protected $with = ['file'];
+    protected $hidden = ['file_id', 'file_type', 'level'];
 
     protected $fillable = [
         'name',
@@ -28,61 +28,51 @@ class Annonce extends Model
         'category_id'
     ];
 
-    // Relationships with annonces
+    protected $happend = ['files'];
 
-    //relation one to many between annonces and signals
-    public function payments():HasOne
+    public function payment(): BelongsTo
     {
-        return $this->hasOne(Payment::class);
+        return $this->belongsTo(Payment::class);
     }
 
-    //relation one to many between annonces and signals
-    public function signals():HasMany
+    public function signals(): HasMany
     {
         return $this->hasMany(Signal::class);
     }
 
-    //relation one to many between annonces and comments
-    public function comments():HasMany
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    //relation one to many between annonces and boosts
-     public function boosts():HasMany
-     {
-         return $this->hasMany(Boost::class);
-     }
-
-     //relation one to many between annonces and discussions
-     public function discussions():HasMany
-     {
-        return $this->hasMany(Discussion::class);
-     }
-
-    //relation MorphMany between annonces and files
-    public function files():MorphMany
+    public function boosts(): HasMany
     {
-       return $this->morphMany(related: 'App\Http\Models\File', name: 'target');
+        return $this->hasMany(Boost::class);
     }
 
-     //relation one to many(inverse) between annonces and users
-     public function user():BelongsTo
-     {
-         return $this->belongsTo(User::class);
-     }
+    public function discussions(): HasMany
+    {
+        return $this->hasMany(Discussion::class);
+    }
 
-    //relation one to many(inverse) between annonces and categories
-    public function categories():BelongsTo
+    public function getFilesAttribute()
+    {
+        $files = File::where('target_id', $this->id)->where('target_type', Annonce::class)->get();
+        return $files;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    //relation one to many(inverse) between annonces and towns
-    public function towns():BelongsTo
+    public function town(): BelongsTo
     {
         return $this->belongsTo(Town::class);
     }
-
-
 }

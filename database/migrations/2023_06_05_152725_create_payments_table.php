@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->foreignIdFor(Annonce::class)->constrained();
             $table->unsignedDouble('amount');
             $table->enum('status', enum_to_string_array(PaymentStatusEnum::cases()))->default(PaymentStatusEnum::PENDING->value);

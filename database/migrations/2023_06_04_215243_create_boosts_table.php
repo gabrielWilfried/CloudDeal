@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedDouble('price')->comment('price for boosting');
             $table->date('start_at');
             $table->date('end_at');
-            $table->unsignedInteger('score')->comment('the number of level to add to annonce');
+            $table->boolean('is_finish')->default(false);
+            $table->unsignedBigInteger('score')->comment('the number of level to add to annonce');
             $table->foreignId('annonce_id')->constrained();
             $table->timestamps();
         });
