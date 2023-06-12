@@ -10,8 +10,19 @@ use Illuminate\Support\Str;
 
 class DiscussionController extends Controller
 {
-    public function index(Request $request)
+    public function ListDiscussion(Request $request, $id)
     {
+        $annonce = Annonce::findOrFail($id);
+        if ($annonce->user_id == auth()->user_id)
+        {
+            $discussions = $annonce->discussions()->get();
+            return response()->json($discussions, 200);
+        }
+        else
+        {
+            $discussions = $annonce->discussions()->where('user_id', auth()->user_id)->get();
+            return response()->json($discussions, 200);
+        }
     }
 
     public function store(Request $request, Annonce $annonce)
@@ -41,6 +52,7 @@ class DiscussionController extends Controller
         $discussion->load('messages');
         return response()->json($discussion, 200);
     }
+
 
     public function delete()
     {

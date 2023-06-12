@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::prefix('/discussion')->group(function () {
         Route::post('/{annonce}', [DiscussionController::class, 'store']);
+        Route::get('/{id}', [DiscussionController::class, 'ListDiscussion']);
     });
 });
 
