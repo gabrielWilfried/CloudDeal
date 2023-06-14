@@ -14,18 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('authentication.admin-home');
 });
-
-// Route for showing the forgot password form
-Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-
-// Route for submitting the forgot password form
-Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
-// Route for showing the reset password form
-Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-
-// Route for submitting the reset password form
-Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-
