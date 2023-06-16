@@ -12,14 +12,14 @@
                     <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
                             class="fa fa-angle-down"></i></a>
                     <ul class="dropdown_style">
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li><a href="{{ route('auth.login') }}">Login</a></li>
+                        <li><a href="{{ route('auth.register') }}">Register</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                         <li><a href="wishlist.html">wishlist</a></li>
                     </ul>
                 </li>
-                <li><a href="register.html"> Login/Register </a></li>
+                <li><a href="{{ route('auth.register') }}"> Login/Register </a></li>
                 <li>
                     <a href="javascript:void(0);"> USD <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown_style right">

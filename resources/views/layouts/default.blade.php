@@ -33,14 +33,18 @@
 
     <header class="header-area">
         <div class="header-top bg-2">
-            @include('includes.hearder-top')
+            @include('includes.header-top')
         </div>
         <div class="header-bottom">
-            @include('includes.hearder-bottom')
+            @include('includes.header-bottom')
         </div>
     </header>
 
     @yield('content')
+
+    <section class="social-newsletter-section">
+        @include('pages.landing-page.socials')
+    </section>
 
     <div class="footer-area">
 
@@ -53,7 +57,7 @@
         </div>
 
     </div>
-    
+
     @yield('script')
 
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>

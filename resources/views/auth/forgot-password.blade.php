@@ -1,5 +1,4 @@
 @extends("auth.default")
-
 @section("auth-pages")
 <div class="account-area ptb-100">
     <div class="container">
@@ -8,14 +7,7 @@
                 <div class="account-form form-style">
                     <p>User Name or Email Address *</p>
                     <input type="email">
-                    <p>Password *</p>
-                    <input type="Password">
-                    <p>Confirm Password *</p>
-                    <input type="Password">
-                    <button>Register</button>
-                    <div class="text-center">
-                        <a href="{{ route('auth.login') }}">Or Login</a>
-                    </div>
+                    <button>SUBMIT</button>
                 </div>
             </div>
         </div>

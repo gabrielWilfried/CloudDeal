@@ -15,17 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.home');
+})->name('home');
+
+Route::prefix('auth')->group(function () {
+    Route::get('/login', function(){
+        return view("auth.login", ['name' => 'Login']);
+    })->name("auth.login");
+    Route::get('/register', function(){
+        return view("auth.register", ['name' => 'Register']);
+    })->name("auth.register");
+    Route::get('/forgot-password', function(){
+        return view("auth.forgot-password", ['name' => 'Forgot-password']);
+    })->name("auth.forgot-password");
+    Route::get('/reset-password', function(){
+        return view("auth.reset-password", ['name' => 'Reset-password']);
+    })->name("auth.reset-password");
 });
-
-// Route for showing the forgot password form
-Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-
-// Route for submitting the forgot password form
-Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
-// Route for showing the reset password form
-Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-
-// Route for submitting the reset password form
-Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-

@@ -1,4 +1,5 @@
 @extends('layouts.default')
+
 @section('content')
     <div class="slider-area">
         @include('pages.landing-page.slider')
@@ -27,9 +28,6 @@
         @include('pages.landing-page.testimonial')
     </div>
 
-    <section class="social-newsletter-section">
-        @include('pages.landing-page.socials')
-    </section>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1">
         @include('pages.landing-page.modal')
     </div>
