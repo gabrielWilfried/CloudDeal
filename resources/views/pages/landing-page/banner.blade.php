@@ -4,7 +4,7 @@
             <div class="banner-wrap">
                 <p>Neture Oil Collection</p>
                 <h2>upto<span>50%</span> Off</h2>
-                <a href="shop.html">Shop Now</a>
+                <a href="shop.html">Deal Now</a>
             </div>
         </div>
     </div>

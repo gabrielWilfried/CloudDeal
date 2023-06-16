@@ -8,42 +8,28 @@
                 <ul class="d-flex">
                     <li class="active">
                         <a href="javascript:void(0);">Home <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown_style">
-                            <li><a href="index.html">Home Main</a></li>
-                            <li><a href="index2.html">Home Two</a></li>
-                            <li><a href="index3.html">Home Three</a></li>
-                        </ul>
                     </li>
-                    <li><a href="about.html">About</a></li>
+
                     <li>
-                        <a href="javascript:void(0);">Shop <i class="fa fa-angle-down"></i></a>
+                        <a href="javascript:void(0);">Dashboard <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <li><a href="shop.html">Shop Page</a></li>
-                            <li><a href="shop-sidebar.html">Shop Sidebar</a></li>
-                            <li><a href="single-product.html">Product Details</a></li>
-                            <li><a href="cart.html">Shopping cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown_style">
-                            <li><a href="about.html">About Page</a></li>
-                            <li><a href="single-product.html">Product Details</a></li>
-                            <li><a href="cart.html">Shopping cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
+                            <li><a href="{{ route('dashboard.sidebar') }}">Dashboard Sidebar</a></li>
+                            <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
+                            <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
+                            <li><a href="{{ route('payment') }}">Payment</a></li>
+                            <li><a href="{{  route('wishlist') }}">Wishlist</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <li><a href="blog.html">blog Page</a></li>
-                            <li><a href="blog-details.html">blog Details</a></li>
+                            <li><a href="{{ route('blog') }}">blog Page</a></li>
+                            <li><a href="{{ route('blog-details') }}">blog Details</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>

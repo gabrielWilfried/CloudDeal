@@ -1,6 +1,8 @@
-@extends('auth.default')
+@extends('layouts.default')
 
-@section('auth-pages')
+@section('content')
+    @include('includes.breadcumb')
+
     <div class="account-area ptb-100">
         <div class="container">
             <div class="row">

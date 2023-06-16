@@ -1,3 +1,24 @@
+<style>
+   .publish{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .publish a{
+        text-align: center;
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+        background-color: #ef4836;
+        border:1px solid #ef4836;
+        color:white;
+        padding: 5px 10px;
+    }
+    .publish a:hover{
+        background-color: inherit;
+        color: #ef4836;
+    }
+</style>
 <div class="fluid-container">
     <div class="row">
         <div class="col-md-6 col-12">
@@ -14,21 +35,15 @@
                     <ul class="dropdown_style">
                         <li><a href="{{ route('auth.login') }}">Login</a></li>
                         <li><a href="{{ route('auth.register') }}">Register</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="wishlist.html">wishlist</a></li>
+                        <li><a href="">Profile</a></li>
+                        <li><a href="{{ route('wishlist') }}">wishlist</a></li>
+                        <li><a href="">logout</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('auth.register') }}"> Login/Register </a></li>
-                <li>
-                    <a href="javascript:void(0);"> USD <i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown_style right">
-                        <li><a href="javascript:void(0);">GBP</a></li>
-                        <li><a href="javascript:void(0);">AUD </a></li>
-                        <li><a href="javascript:void(0);">CAD </a></li>
-                        <li><a href="javascript:void(0);">CHF </a></li>
-                    </ul>
-                </li>
+                <div class="publish">
+                    <a id="publish-button" href="">Publish</a>
+                </div>
             </ul>
         </div>
     </div>
