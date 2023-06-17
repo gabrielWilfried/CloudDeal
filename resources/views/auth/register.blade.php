@@ -15,6 +15,14 @@
                         <input type="Password">
                         <p>Confirm Password *</p>
                         <input type="Password">
+                        <div class="socials">
+                            <div class="left">
+                                @include("includes.google-auth")
+                            </div>
+                            <div class="right">
+                                @include("includes.facebook-auth")
+                            </div>
+                        </div>
                         <button>Register</button>
                         <div class="text-center">
                             <a href="{{ route('auth.login') }}">Or Login</a>

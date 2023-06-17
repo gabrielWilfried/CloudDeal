@@ -13,6 +13,7 @@
         border:1px solid #ef4836;
         color:white;
         padding: 5px 10px;
+        border-radius: 15%
     }
     .publish a:hover{
         background-color: inherit;

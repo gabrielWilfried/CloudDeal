@@ -21,6 +21,14 @@
                                 <a href="{{ route('auth.forgot-password') }}">Forget Your Password?</a>
                             </div>
                         </div>
+                        <div class="socials">
+                            <div class="left">
+                                @include("includes.google-auth")
+                            </div>
+                            <div class="right">
+                                @include("includes.facebook-auth")
+                            </div>
+                        </div>
                         <button>SIGN IN</button>
                         <div class="text-center">
                             <a href="{{ route('auth.register') }}">Or Creat an Account</a>
