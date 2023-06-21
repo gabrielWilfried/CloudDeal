@@ -1376,9 +1376,7 @@ header-area start
     display: block;
     width: 100%;
 }
-{
-   width:58%;
-}
+
 .test-title h2{
     font-size: 48px;
     font-weight: 500;
@@ -2640,17 +2638,12 @@ shop single style here
 .remove i:hover {
     color: #f00;
 }
-
-.cartcupon-wrap ul {
-    margin-bottom: 20px;
-}
-
-.cartcupon-wrap ul li {
-    margin-right: 15px;
-}
-
-.cartcupon-wrap ul li:last-child {
-    margin-right: 0;
+.cartcupon-wrap{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   width: 100%;
 }
 
 .cartcupon-wrap ul li a, .cartcupon-wrap ul li button {
@@ -2689,9 +2682,7 @@ shop single style here
 .cupon-wrap button {
     width: 150px;
     height: 45px;
-    position: absolute;
-    right: 0;
-    top: 0;
+
     background: #ef4836;
     color: #fff;
     text-transform: uppercase;

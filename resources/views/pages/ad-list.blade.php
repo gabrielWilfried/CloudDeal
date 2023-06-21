@@ -53,14 +53,9 @@
                             </tbody>
                         </table>
                         <div class="row mt-60">
-                            <div class="col-xl-4 col-lg-5 col-md-6 ">
-                                <div class="cartcupon-wrap">
-                                    <ul class="d-flex">
-                                        <li>
-                                            <button>Update Cart</button>
-                                        </li>
-                                        <li><a href="shop.html">Continue Shopping</a></li>
-                                    </ul>
+                            <div class="col-xl-10 col-lg-10 col-md-10 ">
+                                <div class="cartcupon-wrap text-right">
+
                                     <h3>Publish</h3>
                                     <p>Wish to publish a new product?</p>
                                     <div class="cupon-wrap">
@@ -69,16 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6">
-                                <div class="cart-total text-right">
-                                    <h3>Cart Totals</h3>
-                                    <ul>
-                                        <li><span class="pull-left">Subtotal </span>$380.00</li>
-                                        <li><span class="pull-left"> Total </span> $380.00</li>
-                                    </ul>
-                                    <a href="checkout.html">Proceed to Checkout</a>
-                                </div>
-                            </div>
+
                         </div>
                     </form>
                 </div>
