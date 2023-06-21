@@ -37,8 +37,8 @@
                         <li><a href="{{ route('auth.login') }}">Login</a></li>
                         <li><a href="{{ route('auth.register') }}">Register</a></li>
                         <li><a href="">Profile</a></li>
-                        <li><a href="{{ route('wishlist') }}">wishlist</a></li>
-                        <li><a href="">logout</a></li>
+                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                        <li><a href="">Logout</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('auth.register') }}"> Login/Register </a></li>

@@ -15,7 +15,7 @@
                                     <th class="product">Product</th>
                                     <th class="ptice">Price</th>
                                     <th class="quantity">Quantity</th>
-                                    <th class="total">Total</th>
+
                                     <th class="remove">Remove</th>
                                 </tr>
                             </thead>
@@ -27,7 +27,7 @@
                                     <td class="quantity cart-plus-minus">
                                         <input type="text" value="1" />
                                     </td>
-                                    <td class="total">$139.00</td>
+
                                     <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
                                 <tr>
@@ -37,7 +37,7 @@
                                     <td class="quantity cart-plus-minus">
                                         <input type="text" value="1" />
                                     </td>
-                                    <td class="total">$684.47</td>
+
                                     <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
                                 <tr>
@@ -47,7 +47,7 @@
                                     <td class="quantity cart-plus-minus">
                                         <input type="text" value="1" />
                                     </td>
-                                    <td class="total">$145.80</td>
+
                                     <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
                             </tbody>
@@ -61,11 +61,11 @@
                                         </li>
                                         <li><a href="shop.html">Continue Shopping</a></li>
                                     </ul>
-                                    <h3>Cupon</h3>
-                                    <p>Enter Your Cupon Code if You Have One</p>
+                                    <h3>Publish</h3>
+                                    <p>Wish to publish a new product?</p>
                                     <div class="cupon-wrap">
-                                        <input type="text" placeholder="Cupon Code">
-                                        <button>Apply Cupon</button>
+
+                                        <button>Publish</button>
                                     </div>
                                 </div>
                             </div>
