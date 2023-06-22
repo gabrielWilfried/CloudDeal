@@ -25,7 +25,6 @@
 .google-btn .google-icon-wrapper {
     position: absolute;
     margin-top: 1px;
-
     width: 40px;
     height: 40px;
     border-radius: 2px;
@@ -55,6 +54,22 @@
 .google-btn:active {
     background: #1669f2;
 }
-.error{
-    color: red;
+
+@media screen and (max-width: 450px) {
+    .google-btn .btn-text {
+       visibility: hidden;
+    }
+    .google-btn .google-icon-wrapper {
+        width: 40px;
+    }
+    .google-btn {
+        width: 45px;
+
+    }
+    .google-btn .google-icon {
+        position: absolute;
+        margin:6px 8px 0px 4px;
+        width: 30px;
+        height: 30px;
+    }
 }

@@ -16,7 +16,7 @@
                             <p>Email Address *</p>
                             <input type="email" name="email">
                             <p>Password *</p>
-                            <input type="Password" name="password">
+                            <input type="password" name="password">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input id="password" type="checkbox">

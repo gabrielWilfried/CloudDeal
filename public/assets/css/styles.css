@@ -84,6 +84,7 @@ h6 {
 input:focus,
 select:focus {
     outline: none;
+    border: 1px solid #ef4836;
 }
 
 input,
@@ -3406,3 +3407,6 @@ ol {
     padding-bottom: 0;
 }
 /*mobal-subscribe*/
+.error{
+    color: red;
+}

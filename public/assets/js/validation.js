@@ -22,5 +22,21 @@
         submitHandler:function(form){
             form.submit()
         }
+    });
+    $("form[name='forgot-password']").validate({
+        rules:{
+            email: {
+                required: true,
+                email:true
+            },
+        },
+        messages:{
+            email:{
+                required:"Please provide an email"
+            }
+        },
+        submitHandler:function(form){
+            form.submit()
+        }
     })
 })(jQuery)
