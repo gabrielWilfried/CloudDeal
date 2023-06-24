@@ -11,16 +11,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
-                    <form method="POST" name="login" action="">
+                    <form method="GET" name="login" action="">
                         <div class="account-form form-style">
                             <p>Email Address *</p>
                             <input type="email" name="email">
+                            <label  class="form-error"></label>
                             <p>Password *</p>
                             <input type="password" name="password">
+                            <label class="form-error"></label>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input id="password" type="checkbox">
-                                    <label for="password">Save Password</label>
+                                    <label id="save-password" for="password">Save Password</label>
                                 </div>
                                 <div class="col-lg-6 text-right">
                                     <a href="{{ route('auth.forgot-password') }}">Forget Your Password?</a>

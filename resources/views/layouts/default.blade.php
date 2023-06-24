@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mystyle.css') }}">
 
     @yield('style')
 
@@ -57,7 +58,7 @@
 
     </div>
 
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
@@ -71,7 +72,7 @@
     <script src="{{ asset('assets/js/mailchimp.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    
+
     @yield('script')
 </body>
 

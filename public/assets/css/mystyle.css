@@ -73,3 +73,18 @@
         height: 30px;
     }
 }
+input.error{
+    border-color: red;
+}
+input:focus{
+     border-color: #ef4836;
+}
+.form-style label:not(#save-password){
+    color: red;
+
+}
+.form-style .form-error{
+    height: 10px;
+    margin-bottom: 15px;
+    display: none;
+}

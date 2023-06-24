@@ -11,8 +11,10 @@
                     <div class="account-form form-style">
                         <p>New Password *</p>
                         <input type="Password">
+                        <label class="form-error"></label>
                         <p>Confirm Password *</p>
                         <input type="Password">
+                        <label class="form-error"></label>
                         <button>SUBMIT</button>
                     </div>
                 </div>

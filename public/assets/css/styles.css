@@ -84,7 +84,6 @@ h6 {
 input:focus,
 select:focus {
     outline: none;
-    border: 1px solid #ef4836;
 }
 
 input,
@@ -2876,7 +2875,7 @@ checkout style here
     margin-bottom: 15px;
 }
 
-.form-style label {
+.form-style #save-password {
     line-height: 18px;
     margin-bottom: 0;
     cursor: pointer;
@@ -3407,6 +3406,3 @@ ol {
     padding-bottom: 0;
 }
 /*mobal-subscribe*/
-.error{
-    color: red;
-}

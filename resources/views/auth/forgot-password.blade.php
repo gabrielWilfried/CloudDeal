@@ -4,19 +4,21 @@
     @include('includes.breadcumb')
 
     <div class="account-area ptb-100">
-        <form name='forgot-password'>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+                    <form method="get" name='forgot-password'>
                         <div class="account-form form-style">
-                            <p>User Name or Email Address *</p>
+                            <p>Email Address *</p>
                             <input name="email" type="email">
+                            <label class="form-error"></label>
                             <button>SUBMIT</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 @endsection
 @section('script')
