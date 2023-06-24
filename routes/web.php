@@ -30,6 +30,9 @@ Route::prefix('auth')->group(function () {
     Route::get('/reset-password', function(){
         return view("auth.reset-password", ['name' => 'Reset-password', 'head' => 'Account']);
     })->name("auth.reset-password");
+    Route::get('/verify-email', function(){
+        return view("auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
+    })->name("auth.verify-email");
 });
 
 Route::prefix('dashboard')->group(function(){

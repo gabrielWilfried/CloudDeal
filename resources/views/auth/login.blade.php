@@ -1,12 +1,6 @@
-@extends('layouts.default')
+@extends('auth.default-auth')
 
-@section('style')
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" >
-@endsection
-
-@section('content')
-    @include('includes.breadcumb')
-
+@section('auth')
     <div class="account-area ptb-100">
         <div class="container">
             <div class="row">
@@ -50,7 +44,4 @@
 
 @endsection
 
-@section("script")
-    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-    <script src="{{asset('assets/js/validation.js')}}"></script>
-@endsection
+
