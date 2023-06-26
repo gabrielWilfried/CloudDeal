@@ -227,7 +227,9 @@
     border: 1px solid #999;
     border-left: none;
     border-radius: 3px;
-    background-color: #ef4836;
+    background: transparent;
+    background-color: rgba(245, 53, 53, 0.6);
+
     cursor: pointer;
     color: white;
     position: relative;
