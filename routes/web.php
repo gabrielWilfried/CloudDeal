@@ -73,3 +73,6 @@ Route::get('/blog', function () {
 Route::get('/blog-details', function () {
     return view('pages.blog-details',  ['name' => 'Blog details',  'head' => 'Blog details']);
 })->name('blog-details');
+Route::get('/chat', function () {
+    return view('pages.chat',  ['name' => 'Chat',  'head' => 'Chat']);
+})->name('chat');

@@ -15,7 +15,7 @@
                                     <th class="product">Product</th>
                                     <th class="ptice">Price</th>
                                     <th class="stock">Stock Stutus </th>
-                                    <th class="addcart">Add to Cart</th>
+                                    <th class="addcart">Contact seller</th>
                                     <th class="remove">Remove</th>
                                 </tr>
                             </thead>
@@ -25,7 +25,7 @@
                                     <td class="product"><a href="single-product.html">Coconut Oil</a></td>
                                     <td class="ptice">$139.00</td>
                                     <td class="stock">In Stock</td>
-                                    <td class="addcart"><a href="cart.html">Add to Cart</a></td>
+                                    <td class="addcart"><a href="{{ route('chat') }}">Contact seller</a></td>
                                     <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
                                 <tr>
@@ -33,7 +33,7 @@
                                     <td class="product"><a href="single-product.html">Pure Nature Honey</a></td>
                                     <td class="ptice">$684.47</td>
                                     <td class="stock"><span>Out Stock</span></td>
-                                    <td class="addcart"><a href="cart.html">Add to Cart</a></td>
+                                    <td class="addcart"><a href="{{ route('chat') }}">Contact seller</a></td>
                                     <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
                                 <tr>
@@ -41,7 +41,7 @@
                                     <td class="product"><a href="single-product.html">Olive Oil</a></td>
                                     <td class="ptice">$145.80</td>
                                     <td class="stock">In Stock</td>
-                                    <td class="addcart"><a href="cart.html">Add to Cart</a></td>
+                                    <td class="addcart"><a href="{{ route('chat') }}">Contact seller</a></td>
                                     <td class="remove"><i class="fa fa-times"></i></td>
                                 </tr>
                             </tbody>

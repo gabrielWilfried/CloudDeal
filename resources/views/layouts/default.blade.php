@@ -39,7 +39,9 @@
             @include('includes.header-bottom')
         </div>
     </header>
-
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1">
+        @include('includes.modal')
+    </div>
     @yield('content')
 
     <section class="social-newsletter-section">
@@ -74,7 +76,7 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
 
     @yield('script')
-    
+
 </body>
 
 </html>

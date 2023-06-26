@@ -5,7 +5,7 @@
         </button>
         <div class="modal-body d-flex">
             <div class="product-single-img w-50">
-                <img src="assets/images/product/product-details.jpg" alt="">
+                <img src="{{asset('assets/images/product/product-details.jpg')}}" alt="">
             </div>
             <div class="product-single-content w-50">
                 <h3>Pure Nature Hohey</h3>
@@ -25,7 +25,7 @@
                     <li class="quantity cart-plus-minus">
                         <input type="text" value="1" />
                     </li>
-                    <li><a href="cart.html">Add to Cart</a></li>
+                    <li><a href="{{ route('chat') }}">Contact Seller</a></li>
                 </ul>
                 <ul class="cetagory">
                     <li>Categories:</li>

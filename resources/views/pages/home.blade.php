@@ -28,7 +28,5 @@
         @include('pages.landing-page.testimonial')
     </div>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1">
-        @include('pages.landing-page.modal')
-    </div>
+
 @endsection

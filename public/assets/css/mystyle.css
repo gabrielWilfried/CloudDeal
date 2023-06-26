@@ -87,3 +87,6 @@ input:focus{
 .iti{
   width: 100%;
 }
+input[type="checkbox"], input[type="radio"]{
+    accent-color: #ef4836;
+}

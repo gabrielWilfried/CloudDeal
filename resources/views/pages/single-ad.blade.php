@@ -72,7 +72,7 @@
                             <li class="quantity cart-plus-minus">
                                 <input type="text" value="1" />
                             </li>
-                            <li><a href="cart.html">Contact seller</a></li>
+                            <li><a href="{{ route('chat') }}">Contact seller</a></li>
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>
