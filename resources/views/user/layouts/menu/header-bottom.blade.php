@@ -17,8 +17,7 @@
                     <li>
                         <a href="javascript:void(0);">Dashboard <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
-                            <li><a href="{{ route('dashboard.sidebar') }}">Dashboard Sidebar</a></li>
+                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
                             <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
                             <li><a href="{{ route('payment') }}">Payment</a></li>
@@ -139,7 +138,6 @@
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Dashboard </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
-                            <li><a href="{{ route('dashboard.sidebar') }}">Dashboard Sidebar</a></li>
                             <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
                             <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
                             <li><a href="{{ route('payment') }}">Payment</a></li>

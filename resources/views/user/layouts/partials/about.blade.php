@@ -1,8 +1,8 @@
-@extends('layouts.default')
+@extends('user.layouts.layout')
 
 @section('content')
 
-    @include("includes.breadcumb")
+    @include('user.includes.breadcumb')
     <div class="about-area ptb-100">
         <div class="container">
             <div class="row">

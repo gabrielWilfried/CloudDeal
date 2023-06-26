@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        
-        return view('pages.home');
+
+        return view('user.home');
     }
 
     public function store(Request $request)

@@ -28,34 +28,34 @@
     </div>
 
     <div class="search-area flex-style">
-        @include('includes.search')
+        @include('user.includes.search')
     </div>
 
     <header class="header-area">
         <div class="header-top bg-2">
-            @include('menu.header-top')
+            @include('user.layouts.menu.header-top')
         </div>
         <div class="header-bottom">
-            @include('menu.header-bottom')
+            @include('user.layouts.menu.header-bottom')
         </div>
     </header>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1">
-        @include('includes.modal')
+        @include('user.includes.modal')
     </div>
     @yield('content')
 
     <section class="social-newsletter-section">
-        @include('pages.landing-page.socials')
+        @include('user.includes.landing-page.socials')
     </section>
 
     <div class="footer-area">
 
         <div class="footer-top">
-            @include('includes.footer-top')
+            @include('user.layouts.footer.footer-top')
         </div>
 
         <div class="footer-bottom">
-            @include('includes.footer-bottom')
+            @include('user.layouts.footer.footer-top')
         </div>
 
     </div>
