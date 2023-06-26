@@ -14,11 +14,13 @@ use App\Http\Controllers\Guest\HomeController;
 |
 */
 
+
 Route::get('/admin', function () {
     return view('admin.authentication.admin-home');
 });
 
 Route::get('/', [HomeController::class, "index"])->name('home');
+
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', function(){
