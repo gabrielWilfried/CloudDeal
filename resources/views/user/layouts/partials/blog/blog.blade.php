@@ -1,7 +1,7 @@
-@extends("layouts.default")
+@extends('user.layouts.layout')
 
 @section("content")
-    @include("includes.breadcumb")
+    @include('user.includes.breadcumb')
 
     <div class="blog-area">
         <div class="container">

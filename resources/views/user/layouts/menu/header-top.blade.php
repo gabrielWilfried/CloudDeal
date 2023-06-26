@@ -13,7 +13,7 @@
         border:1px solid #ef4836;
         color:white;
         padding: 5px 10px;
-        border-radius: 15%
+        border-radius: 5px;
     }
     .publish a:hover{
         background-color: inherit;
@@ -41,7 +41,7 @@
                         <li><a href="">Logout</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('auth.register') }}"> Login/Register </a></li>
+                <li><a href="{{ route('auth.login') }}"> Login/Register </a></li>
                 <div class="publish">
                     <a id="publish-button" href="">Publish</a>
                 </div>

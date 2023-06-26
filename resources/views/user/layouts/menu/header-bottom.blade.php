@@ -1,7 +1,11 @@
 <div class="fluid-container">
     <div class="row">
         <div class="col-lg-3 col-md-7 col-sm-6 col-6">
-            @include('includes.logo')
+            <div class="logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{asset ('assets/images/logo.png' )}}" alt="">
+                </a>
+            </div>
         </div>
         <div class="col-lg-7 d-none d-lg-block">
             <nav class="mainmenu">
@@ -13,8 +17,7 @@
                     <li>
                         <a href="javascript:void(0);">Dashboard <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
-                            <li><a href="{{ route('dashboard.sidebar') }}">Dashboard Sidebar</a></li>
+                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
                             <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
                             <li><a href="{{ route('payment') }}">Payment</a></li>
@@ -135,7 +138,6 @@
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Dashboard </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
-                            <li><a href="{{ route('dashboard.sidebar') }}">Dashboard Sidebar</a></li>
                             <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
                             <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
                             <li><a href="{{ route('payment') }}">Payment</a></li>

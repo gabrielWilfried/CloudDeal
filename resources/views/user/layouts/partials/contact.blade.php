@@ -1,10 +1,10 @@
-@extends('layouts.default')
+@extends('user.layouts.layout')
 
 @section('content')
 
-    @include("includes.breadcumb")
+    @include('user.includes.breadcumb')
 
-    @include("includes.google-map")
+    @include('user.includes.google-map')
 
     <div class="contact-area ptb-100">
         <div class="container">

@@ -1,8 +1,8 @@
-@extends('layouts.default')
+@extends('user.layouts.layout')
 
 @section('content')
 
-    @include("includes.breadcumb")
+    @include('user.includes.breadcumb')
 
     <div class="single-product-area ptb-100">
         <div class="container">
@@ -395,5 +395,5 @@
         </div>
     </div>
 
-    @include("includes.featured-ad-area")
+    @include('user.includes.featured-ad-area')
 @endsection

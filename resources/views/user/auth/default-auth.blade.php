@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('user.layouts.layout')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" >
@@ -6,7 +6,7 @@
 
 
 @section('content')
-    @include('includes.breadcumb')
+    @include('user.includes.breadcumb')
     @yield("auth")
 @endsection
 
