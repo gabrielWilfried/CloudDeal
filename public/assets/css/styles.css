@@ -2869,6 +2869,17 @@ checkout style here
     position: relative;
     top: 3px;
     cursor: pointer;
+    accent-color: #ef4836;
+}
+
+.form-style input[type=radio] {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+    accent-color: #ef4836;
 }
 
 .create-account p {

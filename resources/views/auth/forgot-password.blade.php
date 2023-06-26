@@ -11,7 +11,6 @@
                         <div class="account-form form-style">
                             <p>Email Address *</p>
                             <input name="email" type="email">
-                            <label class="form-error"></label>
                             <button>SUBMIT</button>
                         </div>
                     </form>

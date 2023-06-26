@@ -9,10 +9,8 @@
                     <div class="account-form form-style">
                         <p>New Password *</p>
                         <input name="password" id="password" type="Password">
-                        <label class="form-error"></label>
                         <p>Confirm Password *</p>
                         <input name="confirm" type="Password">
-                        <label class="form-error"></label>
                         <button type="submit">SUBMIT</button>
                     </div>
                    </form>

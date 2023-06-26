@@ -9,10 +9,8 @@
                         <div class="account-form form-style">
                             <p>Email Address *</p>
                             <input type="email" name="email">
-                            <label  class="form-error"></label>
                             <p>Password *</p>
                             <input type="password" name="password">
-                            <label class="form-error"></label>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <input id="password" type="checkbox">
