@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:200);
-
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
 .socials{
     display: flex;
     width: 100%;
@@ -83,4 +83,7 @@ input:focus{
 .form-style label:not(#save-password){
     color: red;
 }
-
+.intl-tel-input,
+.iti{
+  width: 100%;
+}

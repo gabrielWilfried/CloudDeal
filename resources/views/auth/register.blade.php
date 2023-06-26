@@ -1,5 +1,12 @@
 @extends('auth.default-auth')
 
+@section("style")
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+@endsection
+
 @section('auth')
 
     <div class="account-area ptb-100">
@@ -30,7 +37,7 @@
                             <P>Pseudo *</P>
                             <input type="text" name="pseudo">
                             <P>Phone </P>
-                            <input type="tel" name="phone">
+                            <input type="tel" id="phone" name="phone">
                             <P>Address </P>
                             <input type="text" name="address">
                             <div class="socials">
@@ -51,4 +58,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section("script")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input);
+      </script>
 @endsection
