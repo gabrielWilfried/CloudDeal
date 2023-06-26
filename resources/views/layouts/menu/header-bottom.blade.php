@@ -1,7 +1,11 @@
 <div class="fluid-container">
     <div class="row">
         <div class="col-lg-3 col-md-7 col-sm-6 col-6">
-            @include('includes.logo')
+            <div class="logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{asset ('assets/images/logo.png' )}}" alt="">
+                </a>
+            </div>
         </div>
         <div class="col-lg-7 d-none d-lg-block">
             <nav class="mainmenu">

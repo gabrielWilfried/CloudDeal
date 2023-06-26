@@ -24,7 +24,7 @@
 
 <body>
     <div class="preloader-wrap">
-        @include('includes.spinner')
+        <div class="spinner"></div>
     </div>
 
     <div class="search-area flex-style">
@@ -33,10 +33,10 @@
 
     <header class="header-area">
         <div class="header-top bg-2">
-            @include('includes.header-top')
+            @include('menu.header-top')
         </div>
         <div class="header-bottom">
-            @include('includes.header-bottom')
+            @include('menu.header-bottom')
         </div>
     </header>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1">

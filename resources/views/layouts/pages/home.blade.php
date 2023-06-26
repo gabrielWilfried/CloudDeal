@@ -9,10 +9,6 @@
         @include('pages.landing-page.features')
     </div>
 
-    <div class="count-down-area count-down-area-sub">
-        @include('pages.landing-page.countdown')
-    </div>
-
     <div class="product-area product-area-2">
         @include('pages.landing-page.products')
     </div>
