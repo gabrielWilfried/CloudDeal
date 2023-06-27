@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\NewsLetterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +16,13 @@ use App\Http\Controllers\Guest\HomeController;
 |
 */
 
+
 Route::get('/admin', function () {
     return view('admin.authentication.admin-home');
 });
 
 Route::get('/', [HomeController::class, "index"])->name('home');
+Route::post('/', [NewsLetterController::class, "store"])->name('home');;
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', function(){

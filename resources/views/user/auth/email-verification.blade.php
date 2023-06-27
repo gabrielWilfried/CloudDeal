@@ -1,4 +1,4 @@
-@extends('auth.default-auth')
+@extends('user.auth.default-auth')
 
 @section('auth')
     <div class="account-area ptb-100">
