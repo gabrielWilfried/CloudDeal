@@ -1,34 +1,63 @@
 @extends('user.layouts.layout')
 
 @section('content')
-
     @include('user.includes.breadcumb')
     <div class="about-area ptb-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="about-wrap text-center">
-                        <h3>Welcome Our Store! </h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi hic amet repellendus assumenda
-                            voluptatem iste. In exercitationem aliquam eligendi sint quidem natus eum aliquid laboriosam id
-                            adipisci excepturi voluptas, eaque, doloribus corporis ducimus ut suscipit alias ad! Quidem vel
-                            sint quasi fugit officiis aliquam, provident suscipit veritatis sunt amet! Rem maxime amet quo
-                            laudantium deleniti quia ipsum delectus, nesciunt dignissimos debitis incidunt sed nisi earum
-                            cumque assumenda, voluptatibus, laborum harum perspiciatis ut magnam sunt. Facere, recusandae
-                            impedit. Nisi iste, officiis?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nesciunt alias, commodi
-                            mollitia inventore sequi ea eveniet repellat ut eius, et architecto reiciendis sapiente, quas
-                            pariatur, soluta quod fugit id quae excepturi doloribus corporis eligendi cumque ipsum!
-                            Praesentium cum maxime unde ad repudiandae sed quisquam, numquam iusto, odio voluptatem facere.
-                            Saepe, ipsam deleniti, aliquid sequi nihil nisi dolores obcaecati odit eaque repellendus
-                            voluptas, minima velit. Quibusdam eos, laboriosam doloremque ut.</p>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam doloremque
-                            optio accusantium, hic mollitia, quas ex molestiae, explicabo ratione est maiores dignissimos
-                            blanditiis quo aut sint id rerum ea laudantium placeat veniam maxime reiciendis. Deserunt rerum,
-                            quibusdam, repellendus mollitia deleniti itaque! Porro delectus quod, rem veniam nesciunt
-                            expedita distinctio officia optio minus officiis qui voluptatem nostrum explicabo quasi rerum
-                            quos repellat inventore quaerat fugit ad cum excepturi harum itaque. Harum, molestias odit
-                            dolores quos velit voluptatem dolor architecto corrupti vero.</p>
+                        <h3>CLOUDEAL DESCRIPTION! </h3>
+
+                        <p>Bienvenue sur CloudDeal, la plateforme en ligne qui facilite l'échange d'articles et de produits
+                            entre
+                            utilisateurs passionnés comme vous. Notre mission est
+                            de créer une communauté dynamique où chacun peut partager, échanger et découvrir des trésors
+                            inattendus.Chez CloudDeal, nous croyons fermement à l'idée que les biens que vous possédez
+                            peuvent trouver
+                            une nouvelle vie
+                            entre les mains de quelqu'un d'autre. Que vous souhaitiez échanger des vêtements, des appareils
+                            électroniques, ou tout autre article, notre plateforme intuitive vous permet de connecter
+                            avec d'autres membres partageant les mêmes intérêts
+                            <br>
+                        </p>
+                        <p>
+                            Nous avons conçu CloudDeal pour rendre l'échange simple, sécurisé et agréable. Notre système de
+                            vérification des utilisateurs et notre processus de validation des produits assurent une
+                            expérience de confiance. Vous pouvez naviguer à travers les annonces, interagir avec d'autres
+                            membres, et conclure des échanges en toute sérénité. Chez CloudDeal, votre satisfaction est
+                            notre priorité. Notre équipe de support dévouée est là pour répondre à vos questions, résoudre
+                            les éventuels problèmes et vous assurer une expérience fluide et agréable tout au long de votre
+                            parcours sur notre plateforme.
+                            <br>
+                            Nous sommes ravis de vous accueillir dans notre communauté d'échangeurs enthousiastes. Rejoignez
+                            CloudDeal dès maintenant et découvrez un monde d'opportunités où vous pouvez donner, recevoir et
+                            faire des échanges passionnants. Ensemble, nous pouvons donner une nouvelle vie aux objets
+                        </p>
+
+                        <h3>OUR TEAM </h3>
+
+                        <div class="row">
+                            @for ($i = 0; $i < 11; $i++)
+                                @if ($i % 4 === 0 && $i != 0)
+                        </div>
+                        <div class="row">
+                            @endif
+                            <div class="col-md-3 p-2">
+                                <div class="card  p-1">
+                                    <img src="{{ $images[$i] }}" class="card-img-top" alt="...">
+                                    <div class="card-body ">
+                                        <a class="card-text  d-block "
+                                            href="mailto:{{ $emails[$i] }}">{{ $emails[$i] }}</a>
+                                        <a class="card-text  d-block "
+                                            href="https:wa.me/237{{ $telephones[$i] }}">{{ $telephones[$i] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endfor
+                        </div>
+
+
                     </div>
                 </div>
             </div>
