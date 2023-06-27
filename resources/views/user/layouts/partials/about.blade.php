@@ -17,13 +17,13 @@
                             peuvent trouver
                             une nouvelle vie
                             entre les mains de quelqu'un d'autre. Que vous souhaitiez échanger des vêtements, des appareils
-                            électroniques, ou tout autre article, notre plateforme intuitive vous permet de connecter
+                            électroniques, ou tout autre article, notre plateforme intuitive vous permet d'être connecté
                             avec d'autres membres partageant les mêmes intérêts
                             <br>
                         </p>
                         <p>
                             Nous avons conçu CloudDeal pour rendre l'échange simple, sécurisé et agréable. Notre système de
-                            vérification des utilisateurs et notre processus de validation des produits assurent une
+                            vérification des utilisateurs et notre processus de validation des annonces assurent une
                             expérience de confiance. Vous pouvez naviguer à travers les annonces, interagir avec d'autres
                             membres, et conclure des échanges en toute sérénité. Chez CloudDeal, votre satisfaction est
                             notre priorité. Notre équipe de support dévouée est là pour répondre à vos questions, résoudre

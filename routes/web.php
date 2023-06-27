@@ -59,7 +59,7 @@ Route::get('/contact', function () {
 Route::get('/about', function () {
 
     $emails =["geniekamaha@gmail.com","kuetemariane544@gmail.com","gabrielwilfried0808@gmail.com","vanelladzikang1@gmail.com","sikounmosagesse@gmail.com","tegonguefolefackf@gmail.com","jordannjingang@gmail.com","inestsof@gmail.com","Pighageovanni@gmail.com","stetiemndam@gmail.com","dorine.magni2002@gmail.com"];
-    $images =["admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg","admin-assets/images/avatar/375x200/1.jpg"];
+    $images =["assets/images/Apropos/genie.png","assets/images/Apropos/mariane.png","assets/images/Apropos/gaby.png","assets/images/Apropos/vane.png","assets/images/Apropos/sagesse.png","assets/images/Apropos/fideline.png","assets/images/Apropos/jordan.png","assets/images/Apropos/ines.png","assets/images/Apropos/geovanni.png","assets/images/Apropos/samira.png","assets/images/Apropos/dorine.png"];
     $telephones =["691586487","654476973","652249235","681916790","676757299","672044430","674707344","650969784","691299191","652085204","697003060"];
     return view('user.layouts.partials.about',  ['name' => 'About',  'head' => 'About Us'], compact("emails","images","telephones"));
 })->name('about');
