@@ -1,4 +1,4 @@
-@extends('authentication.layouts.layout-admin')
+@extends('admin.authentication.layouts.layout-admin')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('admin-assets/components/chartist-js-develop/chartist.css') }}">
