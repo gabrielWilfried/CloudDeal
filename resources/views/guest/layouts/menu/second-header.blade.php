@@ -14,31 +14,21 @@
                         <a href="{{ route('home') }}">Home</i></a>
                     </li>
                     <li>
+                        <a href="javascript:void(0);">Best ads <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown_style">
+                            <li><a href="{{ route('dashboard') }}">Ads</a></li>
+                            <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
                             @foreach ($allCategories as $all)
                                 <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
                             @endforeach
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">Best Ads <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown_style">
-                            <li><a href="{{ route('dashboard') }}">Ads</a></li>
-                            <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
-                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ route('about') }}">About</a></li>
-                    <li>
-                        <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown_style">
-                            <li><a href="{{ route('blog') }}">blog Page</a></li>
-                            <li><a href="{{ route('blog-details') }}">blog Details</a></li>
-                        </ul>
-                    </li>
-
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                     <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
                 </ul>
@@ -66,19 +56,19 @@
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Home</a>
                     </li>
                     <li class="sidemenu-items">
-                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Best Ads </a>
+                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Best ads </a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('dashboard') }}">Ads</a></li>
                             <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
                             <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                         </ul>
                     </li>
-
                     <li class="sidemenu-items">
-                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Blog</a>
+                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Categories</a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('blog') }}">blog Page</a></li>
-                            <li><a href="{{ route('blog-details') }}">blog Details</a></li>
+                            @foreach ($allCategories as $all)
+                                <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li><a href="{{ route('about') }}">About</a></li>

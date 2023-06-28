@@ -85,5 +85,5 @@
     </div>
     </div>
 
-    @include('user.includes.featured-ad-area')
+    @include('guest.includes.best-ad')
 @endsection

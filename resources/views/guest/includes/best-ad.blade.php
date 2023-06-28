@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-left">
-                    <h2>best Products</h2>
+                    <h2>Best Products</h2>
                 </div>
             </div>
         </div>

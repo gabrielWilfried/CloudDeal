@@ -1,10 +1,10 @@
-@extends('user.layouts.layout')
+@extends('guest.layouts.layout')
 
 @section('content')
 
-    @include('user.includes.breadcumb')
+    @include('guest.includes.navbanner')
 
-    @include('user.includes.google-map')
+    @include('guest.includes.google-map')
 
     <div class="contact-area ptb-100">
         <div class="container">

@@ -1,7 +1,7 @@
-@extends('user.layouts.layout')
+@extends('guest.layouts.layout')
 
 @section('content')
-    @include('user.includes.breadcumb')
+    @include('guest.includes.navbanner')
     <div class="about-area ptb-100">
         <div class="container">
             <div class="row">

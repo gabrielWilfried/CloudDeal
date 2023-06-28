@@ -1,4 +1,4 @@
-@extends('user.layouts.layout')
+@extends('guest.layouts.layout')
 
 @section('style')
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    @include('user.includes.breadcumb')
+    @include('guest.includes.navbanner')
     <div class="container">
         <div class="row clearfix">
             <div class="col-lg-12">
