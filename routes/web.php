@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
+use App\Http\Controllers\Guest\NewsLetterController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,7 @@ Route::get('/admin', function () {
 
 
 Route::get('/', [HomeController::class, "index"])->name('home');
+Route::post('/', [NewsLetterController::class, "store"])->name('home');;
 
 
 Route::prefix('auth')->group(function () {

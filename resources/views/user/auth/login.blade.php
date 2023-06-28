@@ -1,4 +1,4 @@
-@extends('auth.default-auth')
+@extends('user.auth.default-auth')
 
 @section('auth')
     <div class="account-area ptb-100">
@@ -22,10 +22,10 @@
                             </div>
                             <div class="socials">
                                 <div class="left">
-                                    @include('includes.google-auth')
+                                    @include('user.includes.google-auth')
                                 </div>
                                 <div class="right">
-                                    @include('includes.facebook-auth')
+                                    @include('user.includes.facebook-auth')
                                 </div>
                             </div>
                             <button type="submit">SIGN IN</button>

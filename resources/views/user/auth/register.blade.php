@@ -1,4 +1,4 @@
-@extends('auth.default-auth')
+@extends('user.auth.default-auth')
 
 @section("style")
     <link
@@ -42,10 +42,10 @@
                             <input type="text" name="address">
                             <div class="socials">
                                 <div class="left">
-                                    @include("includes.google-auth")
+                                    @include('user.includes.google-auth')
                                 </div>
                                 <div class="right">
-                                    @include("includes.facebook-auth")
+                                    @include('user.includes.facebook-auth')
                                 </div>
                             </div>
                             <button>Register</button>

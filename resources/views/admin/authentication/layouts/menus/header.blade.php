@@ -35,12 +35,12 @@
                     </div>
                 </li>
                 <!-- Messages -->
-                @include('authentication.layouts.menus.pop-up.message')
+                @include('admin.authentication.layouts.menus.pop-up.message')
                 <!-- Notifications -->
-                @include('authentication.layouts.menus.pop-up.notification')
+                @include('admin.authentication.layouts.menus.pop-up.notification')
 
                 <!-- User Account-->
-                @include('authentication.layouts.menus.pop-up.profile')
+                @include('admin.authentication.layouts.menus.pop-up.profile')
 
 
                 <!-- Control Sidebar Toggle Button -->
