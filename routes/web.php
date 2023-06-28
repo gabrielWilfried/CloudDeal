@@ -6,6 +6,7 @@ use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\NewsLetterController;
 
 
+use App\Http\Controllers\Guest\AboutGuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('dashboard')->group(function () {
-
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
     })->name('dashboard');
@@ -63,9 +63,7 @@ Route::get('/contact', function () {
     return view('user.layouts.partials.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
 })->name('contact');
 
-Route::get('/about', function () {
-    return view('user.layouts.partials.about',  ['name' => 'About',  'head' => 'About Us']);
-})->name('about');
+Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 
 Route::get('/payment', function () {
     return view('user.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
