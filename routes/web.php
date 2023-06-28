@@ -24,6 +24,7 @@ Route::get('/admin', function () {
 Route::get('/', [HomeController::class, "index"])->name('home');
 Route::post('/', [NewsLetterController::class, "store"])->name('home');;
 
+
 Route::prefix('auth')->group(function () {
     Route::get('/login', function(){
         return view("user.auth.login", ['name' => 'Login', 'head' => 'Account']);
