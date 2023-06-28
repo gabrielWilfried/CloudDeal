@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
+
 use App\Models\Annonce;
 use App\Models\Boost;
 use App\Models\Category;
@@ -14,14 +15,19 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-       
-        $boost = Boost::all()->sortBy('score', SORT_REGULAR, true)->take(5)->pluck('annonce_id');
-        $ads = Annonce::all()->where('is_blocked', false)->whereIn('id', $boost);
+
+        $boost = Boost::orderBy('score', 'DESC')->take(5)->pluck('annonce_id');
+        $ads = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
         $categories = Category::inRandomOrder()->take(5)->get();
-        $allAds = Annonce::all()->where('is_blocked', false)->sortBy('level', SORT_REGULAR, true);
+        $allAds = Annonce::where('is_blocked', false)->orderBy('level', 'DESC')->paginate(8);
         //dd($allAds);
         return view('user.home', compact('ads', 'categories', 'allAds'));
     }
 
-
+    public function paginatedAds(Request $request)
+    {
+        $perpage = $request->get('per_page', 8);
+        $allAds = Annonce::where('is_blocked', false)->orderBy('level', 'DESC')->paginate($perpage);
+        return response()->json($allAds);
+    }
 }

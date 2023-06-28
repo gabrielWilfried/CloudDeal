@@ -9,3 +9,11 @@ if (!function_exists('enum_to_string_array')) {
         );
     }
 }
+
+
+if (!function_exists('toMoney')) {
+    function toMoney($amount)
+    {
+        return number_format($amount, 2) . ' XAF';
+    }
+}

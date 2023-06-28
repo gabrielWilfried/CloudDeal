@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="section-title">
                 <h2>Our Latest Product</h2>
-                <img src="{{asset('assets/images/section-title.png')}}" alt="">
+                <img src="{{ asset('assets/images/section-title.png') }}" alt="">
             </div>
         </div>
     </div>
@@ -16,7 +16,9 @@
                         <img src="assets/images/product/15.jpg" alt="">
                         <div class="product-icon flex-style">
                             <ul>
-                                <li><li><a href="{{ route('dashboard.singe-ad',  ['id' => $ad->id]) }}"><i class="fa fa-eye"></i></a></li>
+                                <li>
+                                <li><a href="{{ route('dashboard.singe-ad', ['id' => $ad->id]) }}"><i
+                                            class="fa fa-eye"></i></a></li>
                                 <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
 
                             </ul>
@@ -25,7 +27,7 @@
                     <div class="product-content">
                         <h3><a href="single-product.html">{{ $ad->name }}</a></h3>
                         <p class="pull-left">
-                            {{ $ad->price }}
+                            {{ toMoney($ad->price) }}
                         </p>
                     </div>
                 </div>
