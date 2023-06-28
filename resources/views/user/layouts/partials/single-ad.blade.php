@@ -53,9 +53,9 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-single-content">
-                        <h3>Nature Honey</h3>
+                        <h3>{{ $ad->name }}</h3>
                         <div class="rating-wrap fix">
-                            <span class="pull-left">$219.56</span>
+                            <span class="pull-left">{{ $ad->price }}</span>
                             <ul class="rating pull-right">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
@@ -65,9 +65,7 @@
                                 <li>(05 Customar Review)</li>
                             </ul>
                         </div>
-                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-                            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot
-                            foresee the pain and trouble that are bound to ensue; and equal blame belongs</p>
+                        <p>{{ $ad->describtion }}</p>
                         <ul class="input-style">
                             <li class="quantity cart-plus-minus">
                                 <input type="text" value="1" />

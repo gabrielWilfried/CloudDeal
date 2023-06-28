@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guest\AnnonceGuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\NewsLetterController;
@@ -46,9 +47,7 @@ Route::prefix('dashboard')->group(function(){
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
     })->name('dashboard');
-    Route::get('/ad-detail', function () {
-        return view('user.layouts.partials.single-ad',  ['name' => 'Ad Detail',  'head' => 'Dashboard']);
-    })->name('dashboard.singe-ad');
+    Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
     Route::get('/ad-list', function () {
         return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
     })->name('dashboard.ad-list');

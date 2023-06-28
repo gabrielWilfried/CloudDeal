@@ -8,16 +8,12 @@ use Illuminate\Http\Request;
 
 class AnnonceGuestController extends Controller
 {
-    public function listAnnonces(Request $request)
-    {
-        $limit = $request->get('limit', 15);
-        $annonces = Annonce::where('is_blocked', false)->paginate($limit);
-        return response()->json($annonces);
-    }
 
-    public function detailsAnnonce(Annonce  $annonce)
+    public function showAd($id)
     {
-        $annonce->load('comments', 'category', 'town');
-        return response()->json($annonce);
+        $name = "Ad Detail";
+        $head = "Dashboard";
+        $ad = Annonce::findorfail($id);
+        return view('user.layouts.partials.single-ad',  compact('name', 'head', 'ad'));
     }
 }
