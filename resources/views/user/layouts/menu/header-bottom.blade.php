@@ -16,9 +16,9 @@
                     <li>
                         <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <<<<<<< HEAD @foreach ($allCategories as $all)
+                            @foreach ($allCategories as $all)
                                 <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
-                                @endforeach
+                            @endforeach
 
                         </ul>
                     </li>
@@ -28,13 +28,6 @@
                             <li><a href="{{ route('dashboard') }}">Ads</a></li>
                             <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
                             <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                            =======
-                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
-                            <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
-                            <li><a href="{{ route('payment') }}">Payment</a></li>
-                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                            >>>>>>> d8b9f5d5b27735db32614c7aca0acb8f1899e0d0
                         </ul>
                     </li>
                     <li><a href="{{ route('about') }}">About</a></li>
