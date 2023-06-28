@@ -23,24 +23,24 @@ Route::get('/', [HomeController::class, "index"])->name('home');
 
 
 Route::prefix('auth')->group(function () {
-    Route::get('/login', function(){
+    Route::get('/login', function () {
         return view("user.auth.login", ['name' => 'Login', 'head' => 'Account']);
     })->name("auth.login");
-    Route::get('/register', function(){
+    Route::get('/register', function () {
         return view("user.auth.register", ['name' => 'Register', 'head' => 'Account']);
     })->name("auth.register");
-    Route::get('/forgot-password', function(){
+    Route::get('/forgot-password', function () {
         return view("user.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
     })->name("auth.forgot-password");
-    Route::get('/reset-password', function(){
+    Route::get('/reset-password', function () {
         return view("user.auth.reset-password", ['name' => 'Reset-password', 'head' => 'Account']);
     })->name("auth.reset-password");
-    Route::get('/verify-email', function(){
+    Route::get('/verify-email', function () {
         return view("user.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
     })->name("auth.verify-email");
 });
 
-Route::prefix('dashboard')->group(function(){
+Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
     })->name('dashboard');
@@ -58,10 +58,12 @@ Route::get('/contact', function () {
 
 Route::get('/about', function () {
 
-    $emails =["geniekamaha@gmail.com","kuetemariane544@gmail.com","gabrielwilfried0808@gmail.com","vanelladzikang1@gmail.com","sikounmosagesse@gmail.com","tegonguefolefackf@gmail.com","jordannjingang@gmail.com","inestsof@gmail.com","Pighageovanni@gmail.com","stetiemndam@gmail.com","dorine.magni2002@gmail.com"];
-    $images =["assets/images/Apropos/genie.png","assets/images/Apropos/mariane.png","assets/images/Apropos/gaby.png","assets/images/Apropos/vane.png","assets/images/Apropos/sagesse.png","assets/images/Apropos/fideline.png","assets/images/Apropos/jordan.png","assets/images/Apropos/ines.png","assets/images/Apropos/geovanni.png","assets/images/Apropos/samira.png","assets/images/Apropos/dorine.png"];
-    $telephones =["691586487","654476973","652249235","681916790","676757299","672044430","674707344","650969784","691299191","652085204","697003060"];
-    return view('user.layouts.partials.about',  ['name' => 'About',  'head' => 'About Us'], compact("emails","images","telephones"));
+    $emails = ["geniekamaha@gmail.com", "kuetemariane@gmail.com", "gabrielwilfried@gmail.com", "vanelladzikang@gmail.com", "sikoumosages@gmail.com", "tegonguefolefk@gmail.com", "jordanjingang@gmail.com", "inestsof@gmail.com", "Pighageovanni@gmail.com", "stetiemndam@gmail.com", "dorine.magni@gmail.com"];
+    $images = ["assets/images/Apropos/genie.png", "assets/images/Apropos/mariane.png", "assets/images/Apropos/gaby.png", "assets/images/Apropos/vane.png", "assets/images/Apropos/sagesse.png", "assets/images/Apropos/fideline.png", "assets/images/Apropos/jordan.png", "assets/images/Apropos/ines.png", "assets/images/Apropos/geovanni.png", "assets/images/Apropos/samira.png", "assets/images/Apropos/dorine.png"];
+    $telephones = ["691586487", "654476973", "652249235", "681916790", "676757299", "672044430", "674707344", "650969784", "691299191", "652085204", "697003060"];
+    $noms = ["Genie", "Mariane", "Gabriel", "Lidelle", "Sagesse", "Fideline", "Jordan", "Ines", "Geovanni", "Samiratou", "Dorine"];
+
+    return view('user.layouts.partials.about',  ['name' => 'About',  'head' => 'About Us'], compact("emails", "images", "telephones", "noms"));
 })->name('about');
 
 Route::get('/payment', function () {
