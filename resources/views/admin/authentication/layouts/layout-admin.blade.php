@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>App tilte</title>
+    <title>Cloud Deal</title>
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap-daterangepicker/daterangepicker.css') }}">
@@ -21,15 +21,15 @@
 
     <div class="wrapper">
 
-        @include('authentication.layouts.menus.header')
-        @include('authentication.layouts.menus.aside')
+        @include('admin.authentication.layouts.menus.header')
+        @include('admin.authentication.layouts.menus.aside')
 
         <div class="content-wrapper">
             @yield('body')
         </div>
 
 
-        @include('authentication.layouts.menus.footer')
+        @include('admin.authentication.layouts.menus.footer')
 
     </div>
 
