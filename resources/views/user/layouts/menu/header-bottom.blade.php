@@ -11,15 +11,22 @@
             <nav class="mainmenu">
                 <ul class="d-flex">
                     <li class="active">
-                        <a href="javascript:void(0);">Home <i class="fa fa-angle-down"></i></a>
+                        <a href="{{ route('home') }}">Home</i></a>
                     </li>
-
                     <li>
-                        <a href="javascript:void(0);">Best Products <i class="fa fa-angle-down"></i></a>
+                        <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <li><a href="{{ route('dashboard') }}">Products</a></li>
-                            <li><a href="{{ route('dashboard.singe-ad') }}">Product Details</a></li>
-                            <li><a href="{{route('dashboard.ad-list')}}">My Products</a></li>
+                            @foreach ($allCategories as $all)
+                                <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
+                            @endforeach
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">Best Ads <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown_style">
+                            <li><a href="{{ route('dashboard') }}">Ads</a></li>
+                            <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
                             <li><a href="{{  route('wishlist') }}">Wishlist</a></li>
                         </ul>
                     </li>
@@ -59,12 +66,10 @@
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Home</a>
                     </li>
                     <li class="sidemenu-items">
-                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Dashboard </a>
+                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Best Ads </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
-                            <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
+                            <li><a href="{{ route('dashboard') }}">Ads</a></li>
                             <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
-                            <li><a href="{{ route('payment') }}">Payment</a></li>
                             <li><a href="{{  route('wishlist') }}">Wishlist</a></li>
                         </ul>
                     </li>

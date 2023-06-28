@@ -16,8 +16,8 @@
                         <img src="assets/images/product/1.jpg" alt="">
                         <div class="product-icon flex-style">
                             <ul>
-                                <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                <li><li><a href="{{ route('dashboard.singe-ad',  ['id' => $ad->id]) }}"><i class="fa fa-eye"></i></a></li>
+                                <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
                             </ul>
                         </div>
                     </div>
