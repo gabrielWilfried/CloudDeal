@@ -20,4 +20,11 @@ class AnnonceGuestController extends Controller
         $annonce->load('comments', 'category', 'town');
         return response()->json($annonce);
     }
+    public function BestAnnonce()
+    {
+        $annonces = Annonce::orderBy('level', 'desc')->take(4)->get();
+
+        return view('user.layouts.partials.single-ad', compact('annonces'));
+        # code...
+    }
 }

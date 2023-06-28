@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\AnnonceGuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,12 @@ use App\Http\Controllers\Guest\HomeController;
 |
 */
 
+Route::get('/ad-detail', [AnnonceGuestController::class, 'BestAnnonce'])->name('dashboard.singe-ad');
 
 Route::get('/admin', function () {
     return view('admin.authentication.admin-home');
 });
+
 
 Route::get('/', [HomeController::class, "index"])->name('home');
 
@@ -41,12 +44,13 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('dashboard')->group(function(){
+    Route::get('/ad-detail', [AnnonceGuestController::class, 'BestAnnonce'])->name('dashboard.singe-ad');
+
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
     })->name('dashboard');
-    Route::get('/ad-detail', function () {
-        return view('user.layouts.partials.single-ad',  ['name' => 'Ad Detail',  'head' => 'Dashboard']);
-    })->name('dashboard.singe-ad');
+
+
     Route::get('/ad-list', function () {
         return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
     })->name('dashboard.ad-list');
