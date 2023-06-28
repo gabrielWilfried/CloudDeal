@@ -22,6 +22,7 @@ class AnnonceFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence,
+            'image' => $this->faker->sentence,
             'price' => $this->faker->randomFloat(),
             'description' => $this->faker->paragraph,
             'level' => 1000000000,

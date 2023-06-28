@@ -19,6 +19,7 @@ class Annonce extends Model
     protected $hidden = ['file_id', 'file_type', 'level'];
 
     protected $fillable = [
+        'image',
         'name',
         'price',
         'description',
