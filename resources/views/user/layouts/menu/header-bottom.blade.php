@@ -11,7 +11,7 @@
             <nav class="mainmenu">
                 <ul class="d-flex">
                     <li class="active">
-                        <a href="javascript:void(0);">Home</i></a>
+                        <a href="{{ route('home') }}">Home</i></a>
                     </li>
                     <li>
                         <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>

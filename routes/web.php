@@ -48,7 +48,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('dashboard')->group(function(){
-    Route::get('/ad-detail', [AnnonceGuestController::class, 'BestAnnonce'])->name('dashboard.singe-ad');
 
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);

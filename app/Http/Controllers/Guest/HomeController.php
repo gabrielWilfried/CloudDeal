@@ -20,7 +20,7 @@ class HomeController extends Controller
         $categories = Category::inRandomOrder()->take(5)->get();
         $allAds = Annonce::all()->where('is_blocked', false)->sortBy('level', SORT_REGULAR, true);
         //dd($allAds);
-        return view('user.home', compact('ads', 'categories', 'allAds', 'allCategories'));
+        return view('user.home', compact('ads', 'categories', 'allAds'));
     }
 
 
