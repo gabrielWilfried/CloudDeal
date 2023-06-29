@@ -28,7 +28,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $happend = ['files'];
+    protected $appends = ['files'];
 
     public function payment(): BelongsTo
     {

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\AnnonceGuestController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,12 @@ Route::get('/admin', function () {
 });
 
 Route::get('/', [HomeController::class, "index"])->name('home');
+
+
+
+
+
+
 
 
 Route::prefix('auth')->group(function () {
@@ -41,15 +49,15 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('dashboard')->group(function(){
-    Route::get('/', function () {
-        return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
-    })->name('dashboard');
     Route::get('/ad-detail', function () {
         return view('user.layouts.partials.single-ad',  ['name' => 'Ad Detail',  'head' => 'Dashboard']);
     })->name('dashboard.singe-ad');
     Route::get('/ad-list', function () {
         return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
     })->name('dashboard.ad-list');
+    Route::get('/', [AnnonceGuestController::class, "index"])->name('dashboard');
+    Route::get('/{annonce_name}', [AnnonceGuestController::class, "getAnnouncesByName"])->name('dashboard.search');
+
 });
 
 Route::get('/contact', function () {
@@ -78,3 +86,4 @@ Route::get('/blog-details', function () {
 Route::get('/chat', function () {
     return view('user.layouts.partials.chat',  ['name' => 'Chat',  'head' => 'Chat']);
 })->name('chat');
+

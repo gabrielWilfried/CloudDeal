@@ -21,7 +21,7 @@ class AnnonceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence,
+            'name' => $this->faker->name(),
             'price' => $this->faker->randomFloat(),
             'description' => $this->faker->paragraph,
             'level' => 1000000000,
