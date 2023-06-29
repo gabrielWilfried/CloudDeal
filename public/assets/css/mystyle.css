@@ -1,0 +1,92 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:200);
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+.socials{
+    display: flex;
+    width: 100%;
+}
+.socials .left, .socials .right{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+
+}
+
+.google-btn {
+    width: 72%;
+    height: 42px;
+    background-color: #4285f4;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.google-btn .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.google-btn .google-icon {
+    position: absolute;
+    margin:6px 8px 0px 4px;
+    width: 30px;
+    height: 30px;
+}
+
+.google-btn .btn-text {
+    float: right;
+    margin: 11px 11px 0 0;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+}
+
+.google-btn:hover {
+    box-shadow: 0 0 6px #4285f4;
+}
+
+.google-btn:active {
+    background: #1669f2;
+}
+
+@media screen and (max-width: 450px) {
+    .google-btn .btn-text {
+       visibility: hidden;
+    }
+    .google-btn .google-icon-wrapper {
+        width: 40px;
+    }
+    .google-btn {
+        width: 45px;
+
+    }
+    .google-btn .google-icon {
+        position: absolute;
+        margin:6px 8px 0px 4px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+input.error{
+    border-color: red;
+}
+input:focus{
+     border-color: #ef4836;
+}
+.form-style label:not(#save-password){
+    color: red;
+}
+.intl-tel-input,
+.iti{
+  width: 100%;
+}
+input[type="checkbox"], input[type="radio"]{
+    accent-color: #ef4836;
+}
