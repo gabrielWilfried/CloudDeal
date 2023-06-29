@@ -12,8 +12,8 @@
             <div class="col-lg-12">
                 <div class="card chat-app">
                     <div id="plist" class="people-list">
-                        <div class="input-group" x-data="{ discussions: [], searchTerm: '' } " x-init="chatComponent()" >
-                            <input type="text" x-model="" class="form-control" placeholder="Search...">
+                        <div class="input-group" x-data="{ discussions: [], searchQuery: '' } " x-init="chatComponent()" >
+                            <input type="text" x-model="searchQuery" class="form-control" placeholder="Search...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
@@ -78,7 +78,7 @@
                             }
 
                         </script>
-                         <script>
+                         {{-- <script>
                             window.onload = function () {
                                 Alpine.data('filteredDiscussions', function() {
                                     return this.discussions.filter(discussion => {
@@ -86,7 +86,7 @@
                                     });
                                 });
                             }
-                        </script>
+                        </script> --}}
                     </div>
                     <div class="chat">
                         <div class="chat-header clearfix">
