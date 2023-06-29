@@ -43,7 +43,7 @@
                                     fetchDiscussions() {
                                     // Appel AJAX pour récupérer les discussions
                                     var userId = 2;
-                                    fetch(`/chat/` + userId)
+                                    fetch(`/chat/${Id}`)
                                         .then(response => response.json())
                                         .then(data => {
                                         this.discussions = data;
@@ -75,6 +75,7 @@
                                     // });
                                     // }
                                 };
+                                console.log(discussions);
                             }
 
                         </script>
