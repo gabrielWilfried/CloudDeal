@@ -23,7 +23,6 @@ class ContactController extends Controller
             'subject' => 'required',
             'msg' => 'required',
         ]);
-        dd($validatedData);
 
         Contact::create($validatedData);
 
