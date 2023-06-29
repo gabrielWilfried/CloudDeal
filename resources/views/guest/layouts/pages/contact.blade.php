@@ -12,7 +12,7 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
-                        <form action="/hello" method="post" id="cf">
+                        <form action="{{ route('contact.store') }}" method="post" id="cf">
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <input type="text" placeholder="Name" id="fname" name="fname">
