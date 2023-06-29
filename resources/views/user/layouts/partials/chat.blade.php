@@ -12,14 +12,14 @@
             <div class="col-lg-12">
                 <div class="card chat-app">
                     <div id="plist" class="people-list">
-                        <div class="input-group" x-data="{ discussions: [] }" x-init="console.log("discussions")" >
+                        <div class="input-group" x-data="{ discussions: [] }" x-init="fetchDiscussions()" >
                             <input type="text" x-model="" class="form-control" placeholder="Search...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
                         <ul class="list-unstyled chat-list mt-2 mb-0">
-                            <template x-for="discussion in filteredDiscussions" :key="discussion.id">
+                            <template x-for="discussion in discussions" :key="discussion.id">
                                 <li class="clearfix" x-on:click="openDiscussion === discussion.id ? openDiscussion = null : openDiscussion = discussion.id">
                                   <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                   <div class="about">
@@ -40,7 +40,7 @@
                                     discussions: [], // Les discussions récupérées depuis le backend
                                     searchQuery: '', // La valeur de recherche de l'utilisateur
 
-                                    fetchDiscussions(userId) {
+                                    fetchDiscussions() {
                                     // Appel AJAX pour récupérer les discussions
                                     fetch(`/chat/${userId}`)
                                         .then(response => response.json())
