@@ -65,17 +65,6 @@ Route::prefix('auth')->group(function () {
     })->name("auth.verify-email");
 });
 
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
-    })->name('dashboard');
-    Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
-
-    Route::get('/ad-list', function () {
-        return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
-    })->name('dashboard.ad-list');
-});
-
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 

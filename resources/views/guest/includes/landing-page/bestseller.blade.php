@@ -9,7 +9,7 @@
     </div>
 
     <ul class="row">
-        @foreach ($ads as $ad)
+        @forelse ($ads as $ad)
             <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div class="product-wrap">
                     <div class="product-img">
@@ -31,6 +31,8 @@
                     </div>
                 </div>
             </li>
-        @endforeach
+        @empty
+            <p class="text-center">No best seller</p>
+        @endforelse
     </ul>
 </div>

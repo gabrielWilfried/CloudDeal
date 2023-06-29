@@ -31,7 +31,7 @@
                             <div class="product-icon flex-style">
                                 <ul>
                                     <li>
-                                    <li><a href="@{{ route('dashboard.singe-ad', ['id' => ad.id]) }}"><i
+                                    <li><a ><i
                                                 class="fa fa-eye"></i></a></li>
                                     <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
                                 </ul>
@@ -46,7 +46,7 @@
                 </li>
             </template>
         </template>
-        <li class="col-12 text-center">
+        <li  class="col-12 text-center" style="cursor: pointer">
             <a class="loadmore-btn" x-on:click="loadAds">Load More</a>
         </li>
     </ul>
