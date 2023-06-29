@@ -4,6 +4,7 @@ use App\Http\Controllers\Guest\AnnonceGuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\NewsLetterController;
+use App\Http\Controllers\Guest\ContactController;
 
 
 use App\Http\Controllers\Guest\AboutGuestController;
@@ -59,9 +60,14 @@ Route::prefix('dashboard')->group(function () {
     })->name('dashboard.ad-list');
 });
 
-Route::get('/contact', function () {
-    return view('user.layouts.partials.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
-})->name('contact');
+// Route::get('/contact', function () {
+//     return view('user.layouts.partials.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+// })->name('contact');
+
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 
