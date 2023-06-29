@@ -12,7 +12,7 @@
             <div class="col-lg-12">
                 <div class="card chat-app">
                     <div id="plist" class="people-list">
-                        <div class="input-group" x-data="{ discussions: @json($discussions) }" x-init="console.log("discussions")" >
+                        <div class="input-group" x-data="{ discussions: [] }" x-init="console.log("discussions")" >
                             <input type="text" x-model="" class="form-control" placeholder="Search...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
@@ -34,7 +34,7 @@
                                 </li>
                             </template>
                         </ul>
-                        {{-- <script>
+                        <script>
                             function chatComponent() {
                                 return {
                                     discussions: [], // Les discussions récupérées depuis le backend
@@ -76,7 +76,7 @@
                                 };
                             }
 
-                        </script> --}}
+                        </script>
                          <script>
                             window.onload = function () {
                                 Alpine.data('filteredDiscussions', function() {
