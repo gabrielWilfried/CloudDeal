@@ -11,6 +11,5 @@
 @endsection
 
 @section("script")
-    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
     <script src="{{asset('assets/js/validation.js')}}"></script>
 @endsection

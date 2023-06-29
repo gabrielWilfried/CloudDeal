@@ -17,12 +17,8 @@
         @include('user.includes.landing-page.banner')
     </div>
 
-    <div class="product-area">
+    <div class="product-area" id="products">
         @include('user.includes.landing-page.published-products')
     </div>
-    <div class="testmonial-area testmonial-area2 bg-img-2 black-opacity">
-        @include('user.includes.landing-page.testimonial')
-    </div>
-
 
 @endsection

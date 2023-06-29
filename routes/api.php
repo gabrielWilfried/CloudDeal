@@ -31,6 +31,9 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('boost/{annonce}', [BoostController::class, 'store']);
+
+    Route::post('commentaires/{annonce}', [CommentaireController::class, 'store']);
+
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceController::class, 'index']);
         Route::post('/', [AnnonceController::class, 'store']);

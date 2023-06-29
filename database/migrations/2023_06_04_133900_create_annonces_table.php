@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
             $table->string('name');
             $table->unsignedDouble('price');
             $table->text('description');

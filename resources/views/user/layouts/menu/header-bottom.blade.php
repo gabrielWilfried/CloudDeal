@@ -3,27 +3,34 @@
         <div class="col-lg-3 col-md-7 col-sm-6 col-6">
             <div class="logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{asset ('assets/images/logo.png' )}}" alt="">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="">
                 </a>
             </div>
         </div>
-        <div class="col-lg-7 d-none d-lg-block">
+        <div class="col-lg-9 d-none d-lg-block">
             <nav class="mainmenu">
                 <ul class="d-flex">
                     <li class="active">
-                        <a href="javascript:void(0);">Home <i class="fa fa-angle-down"></i></a>
+                        <a href="{{ route('home') }}">Home</i></a>
                     </li>
-
                     <li>
-                        <a href="javascript:void(0);">Dashboard <i class="fa fa-angle-down"></i></a>
+                        <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
-                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
-                            <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
-                            <li><a href="{{ route('payment') }}">Payment</a></li>
-                            <li><a href="{{  route('wishlist') }}">Wishlist</a></li>
+                            @foreach ($allCategories as $all)
+                                <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
+                            @endforeach
+
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);">Best Ads <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown_style">
+                            <li><a href="{{ route('dashboard') }}">Ads</a></li>
+                            <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
+                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('about') }}">About</a></li>
                     <li>
                         <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
@@ -31,89 +38,13 @@
                             <li><a href="{{ route('blog-details') }}">blog Details</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('about') }}">About</a></li>
+
                     <li><a href="{{ route('contact') }}">Contact</a></li>
+                    <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
                 </ul>
             </nav>
         </div>
-        <div class="col-md-4 col-lg-2 col-sm-5 col-4">
-            <ul class="search-cart-wrapper d-flex">
-                <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
-                <li>
-                    <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>2</span></a>
-                    <ul class="cart-wrap dropdown_style">
-                        <li class="cart-items">
-                            <div class="cart-img">
-                                <img src="assets/images/cart/1.jpg" alt="">
-                            </div>
-                            <div class="cart-content">
-                                <a href="cart.html">Pure Nature Product</a>
-                                <span>QTY : 1</span>
-                                <p>$35.00</p>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </li>
-                        <li class="cart-items">
-                            <div class="cart-img">
-                                <img src="assets/images/cart/3.jpg" alt="">
-                            </div>
-                            <div class="cart-content">
-                                <a href="cart.html">Pure Nature Product</a>
-                                <span>QTY : 1</span>
-                                <p>$35.00</p>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </li>
-                        <li>Subtotol: <span class="pull-right">$70.00</span></li>
-                        <li>
-                            <button>Check Out</button>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>3</span></a>
-                    <ul class="cart-wrap dropdown_style">
-                        <li class="cart-items">
-                            <div class="cart-img">
-                                <img src="assets/images/cart/1.jpg" alt="">
-                            </div>
-                            <div class="cart-content">
-                                <a href="cart.html">Pure Nature Product</a>
-                                <span>QTY : 1</span>
-                                <p>$35.00</p>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </li>
-                        <li class="cart-items">
-                            <div class="cart-img">
-                                <img src="assets/images/cart/3.jpg" alt="">
-                            </div>
-                            <div class="cart-content">
-                                <a href="cart.html">Pure Nature Product</a>
-                                <span>QTY : 1</span>
-                                <p>$35.00</p>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </li>
-                        <li class="cart-items">
-                            <div class="cart-img">
-                                <img src="assets/images/cart/2.jpg" alt="">
-                            </div>
-                            <div class="cart-content">
-                                <a href="cart.html">Pure Nature Product</a>
-                                <span>QTY : 1</span>
-                                <p>$35.00</p>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </li>
-                        <li>Subtotol: <span class="pull-right">$70.00</span></li>
-                        <li>
-                            <button>Check Out</button>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+
         <div class="col-md-1 col-sm-1 col-2 d-block d-lg-none">
             <div class="responsive-menu-tigger">
                 <a href="javascript:void(0);">
@@ -135,13 +66,11 @@
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Home</a>
                     </li>
                     <li class="sidemenu-items">
-                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Dashboard </a>
+                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Best Ads </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('dashboard') }}">Dashboard Page</a></li>
-                            <li><a href="{{ route('dashboard.singe-ad') }}">Ad Details</a></li>
-                            <li><a href="{{route('dashboard.ad-list')}}">My ads</a></li>
-                            <li><a href="{{ route('payment') }}">Payment</a></li>
-                            <li><a href="{{  route('wishlist') }}">Wishlist</a></li>
+                            <li><a href="{{ route('dashboard') }}">Ads</a></li>
+                            <li><a href="{{ route('dashboard.ad-list') }}">My ads</a></li>
+                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                         </ul>
                     </li>
 

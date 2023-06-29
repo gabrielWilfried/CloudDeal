@@ -29,6 +29,6 @@
         </div>
 
         <!-- sidebar menu-->
-        @include('authentication.layouts.menus.menu')
+        @include('admin.authentication.layouts.menus.menu')
     </section>
 </aside>
