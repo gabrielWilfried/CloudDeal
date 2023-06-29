@@ -3,6 +3,46 @@
 @section('content')
     @include('guest.includes.navbanner')
 
+    <script>
+
+        window.addEventListener('alpine:init', () => {
+            Alpine.data('annonceList', (maxPrice) => ({
+                searchText: '',
+                priceFilter: '',
+                minPrice: 0,
+                maxPrice: maxPrice,
+                sortBy: '',
+                currentCategories: [],
+                search(){
+
+                },
+                sort(){
+
+                },
+                filterByCategories(){
+
+                },
+                filterByPrice(){
+
+                },
+                filter(){
+                    const checkboxValue = document.getElementById('{{$category->name }}').checked;
+                    fetch('/').then(response => {
+                        method: "POST",
+                        body: JSON.stringify({ sortBy: checkboxValue }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                        console.log(response);
+                    }).catch(error => concole.log(error));
+                }
+
+            }));
+        });
+
+    </script>
+
     <div class="product-area ptb-100 product-sidebar-area">
         <div class="container">
             <div class="row revarce-wrap">
@@ -10,24 +50,24 @@
                     <aside class="sidebar-area">
                         <div class="widget widget_search">
                             <h4 class="widget-title">Search Product</h4>
-                            <form action="#" class="searchform">
-                                <input type="text" name="s" placeholder="Search Product...">
+                            <form action="{{route('dashboard') }}" class="searchform" method="get" >
+                                <input type="text" x-model="searchText" name="search_text" placeholder="Search Product...">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                         <div class="product-filter">
                             <h4 class="widget-title">Filter by Price</h4>
                             <div class="filter-price">
-                                <form action="#">
+                                <form action="#" method="get">
                                     <div id="slider-range"></div>
                                     <div class="row">
                                         <div class="col-7">
                                             <p>Price :
-                                                <input type="text" id="amount">
+                                                <input type="text" id="amount" >
                                             </p>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <button>filter</button>
+                                            {{-- <button type="submit" x-onclick>filter</button> --}}
                                         </div>
                                     </div>
                                 </form>
@@ -36,12 +76,9 @@
                         <div class="widget widget_categories">
                             <h4 class="widget-title">Categories</h4>
                             <ul>
-                                <li><a href="#">Coconut Oil</a></li>
-                                <li><a href="#">Honey</a></li>
-                                <li><a href="#">Olive Oil</a></li>
-                                <li><a href="#">Nut Oil</a></li>
-                                <li><a href="#">Mustard Oil</a></li>
-                                <li><a href="#">Sunrise Oil</a></li>
+                                    @foreach ($categories as $category)
+                                    <li><label for="{{$category->name }}">{{$category->name }}</label><input type="checkbox" id="{{$category->name }}" name="category" value="{{ $category->name }}" ></li>
+                                    @endforeach
                             </ul>
                         </div>
                         <div class="widget widget_recent_entries">
@@ -83,19 +120,9 @@
                         <div class="col-sm-4 col-12">
                             <select name="stor" class="select-style">
                                 <option disabled selected>Sort by Defalt</option>
-                                <option>Australia</option>
-                                <option>Brazil</option>
-                                <option>Cambodia</option>
-                                <option>Dominica</option>
-                                <option>France</option>
-                                <option>Guyana</option>
-                                <option>Hong Kong</option>
-                                <option>Ireland</option>
-                                <option>Japan</option>
-                                <option>Malaysia</option>
-                                <option>Nepal</option>
-                                <option>Oman</option>
-                                <option>Peru</option>
+                                @foreach ($towns as $town)
+                                    <option>{{ $town->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class=" col-sm-5 col-12">
@@ -112,279 +139,32 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="tab-content">
                         <div class="tab-pane active" id="grid">
                             <ul class="row">
-                                <li class="col-lg-4 col-sm-6 col-12">
+                                @foreach ($annonces as $annonce)
+                                <li class="col-lg-4 col-sm-6 col-12" x-show="filteredAnnonces.length > 0 " x-for="annonce in filteredAnnonces">
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
                                             <img src="{{ asset('assets/images/product/1.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
+                                                    <li><a href="{{ route('dashboard.singe-ad') }}"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
 
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
+                                            <h3><a href="single-product.html">{{ $annonce->name }}</a></h3>
+                                            <p class="pull-left">{{ $annonce->price }}
                                             </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/2.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/5.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/7.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/9.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/6.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/14.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/16.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-lg-4 col-sm-6 col-12">
-                                    <div class="product-wrap">
-                                        <div class="product-img">
-                                            <span>New</span>
-                                            <img src="{{ asset('assets/images/product/18.jpg') }}" alt="">
-                                            <div class="product-icon flex-style">
-                                                <ul>
-                                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                            href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                            <p class="pull-left">$125
-                                                <del>$156</del>
-                                            </p>
-                                            <ul class="pull-right d-flex">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                             <div class="row">
                                 <div class="col-12">
@@ -404,6 +184,7 @@
                         </div>
                         <div class="tab-pane product-list" id="list">
                             <ul class="row">
+                                @foreach ($annonces as $annonce)
                                 <li class="col-12">
                                     <div class="product-wrap">
                                         <div class="row">
@@ -414,11 +195,8 @@
                                                         alt="">
                                                     <div class="product-icon flex-style">
                                                         <ul>
-                                                            <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i
-                                                                        class="fa fa-heart"></i></a>
+                                                            <li><a href="{{ route('dashboard.singe-ad') }}"><i class="fa fa-eye"></i></a></li>
+                                                            <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
                                                             </li>
 
                                                         </ul>
@@ -428,63 +206,11 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="product-content">
                                                     <div class="product-text fix">
-                                                        <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                                        <span class="pull-left">$351.56</span>
-                                                        <ul class="pull-right d-flex">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star-half-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                                        has roots in a piece of classical Latin literature from 45 BC, </p>
-                                                    <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
-                                                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-12">
-                                    <div class="product-wrap">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <div class="product-img">
-                                                    <span>New</span>
-                                                    <img src="{{ asset('assets/images/product/20.jpg') }}"
-                                                        alt="">
-                                                    <div class="product-icon flex-style">
-                                                        <ul>
-                                                            <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i
-                                                                        class="fa fa-heart"></i></a>
-                                                            </li>
+                                                        <h3><a href="single-product.html">{{ $annonce->name }}</a></h3>
+                                                        <span class="pull-left">{{ $annonce->price }}</span>
 
-                                                        </ul>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="product-content">
-                                                    <div class="product-text fix">
-                                                        <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                                        <span class="pull-left">$351.56</span>
-                                                        <ul class="pull-right d-flex">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star-half-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                                        has roots in a piece of classical Latin literature from 45 BC, </p>
+                                                    <p>{{ $annonce->description }}</p>
                                                     <ul class="cart-btn">
                                                         <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
                                                         <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
@@ -494,96 +220,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="col-12">
-                                    <div class="product-wrap">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <div class="product-img">
-                                                    <span>New</span>
-                                                    <img src="{{ asset('assets/images/product/21.jpg') }}"
-                                                        alt="">
-                                                    <div class="product-icon flex-style">
-                                                        <ul>
-                                                            <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i
-                                                                        class="fa fa-heart"></i></a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="product-content">
-                                                    <div class="product-text fix">
-                                                        <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                                        <span class="pull-left">$351.56</span>
-                                                        <ul class="pull-right d-flex">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star-half-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                                        has roots in a piece of classical Latin literature from 45 BC, </p>
-                                                    <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
-                                                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-12">
-                                    <div class="product-wrap">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <div class="product-img">
-                                                    <span>New</span>
-                                                    <img src="{{ asset('assets/images/product/22.jpg') }}"
-                                                        alt="">
-                                                    <div class="product-icon flex-style">
-                                                        <ul>
-                                                            <li><a data-toggle="modal" data-target="#exampleModalCenter"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i
-                                                                        class="fa fa-heart"></i></a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="product-content">
-                                                    <div class="product-text fix">
-                                                        <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                                                        <span class="pull-left">$351.56</span>
-                                                        <ul class="pull-right d-flex">
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star-half-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                                        has roots in a piece of classical Latin literature from 45 BC, </p>
-                                                    <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
-                                                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                             <div class="row">
                                 <div class="col-12">
@@ -606,4 +243,5 @@
             </div>
         </div>
     </div>
+
 @endsection
