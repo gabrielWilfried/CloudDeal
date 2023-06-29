@@ -34,7 +34,7 @@
                                 </li>
                             </template>
                         </ul>
-                        <script>
+                        <script {{-- src="{{ asset('assets/custom/js/chat') }}" --}}>
                             function chatComponent() {
                                 return {
                                     discussions: [], // Les discussions récupérées depuis le backend

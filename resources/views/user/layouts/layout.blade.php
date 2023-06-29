@@ -74,6 +74,7 @@
     <script src="{{ asset('assets/js/mailchimp.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/chat') }}"></script>
 
     @yield('script')
 
