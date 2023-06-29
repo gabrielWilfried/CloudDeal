@@ -12,7 +12,7 @@
             <div class="col-lg-12">
                 <div class="card chat-app">
                     <div id="plist" class="people-list">
-                        <div class="input-group" x-data="{ discussions: [] }" x-init="fetchDiscussions()" >
+                        <div class="input-group" x-data="{ discussions: [], searchTerm: '' } " x-init="chatComponent()" >
                             <input type="text" x-model="" class="form-control" placeholder="Search...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
@@ -42,7 +42,8 @@
 
                                     fetchDiscussions() {
                                     // Appel AJAX pour récupérer les discussions
-                                    fetch(`/chat/${userId}`)
+                                    var userId = 2;
+                                    fetch(`/chat/` + userId)
                                         .then(response => response.json())
                                         .then(data => {
                                         this.discussions = data;
@@ -65,14 +66,14 @@
                                     }
                                     },
 
-                                    sortDiscussionsByLatestMessage() {
-                                    // Trier les discussions par le message le plus récent
-                                    this.discussions.sort((a, b) => {
-                                        const lastMessageA = a.messages[a.messages.length - 1];
-                                        const lastMessageB = b.messages[b.messages.length - 1];
-                                        return new Date(lastMessageB.created_at) - new Date(lastMessageA.created_at);
-                                    });
-                                    }
+                                    // sortDiscussionsByLatestMessage() {
+                                    // // Trier les discussions par le message le plus récent
+                                    // this.discussions.sort((a, b) => {
+                                    //     const lastMessageA = a.messages[a.messages.length - 1];
+                                    //     const lastMessageB = b.messages[b.messages.length - 1];
+                                    //     return new Date(lastMessageB.created_at) - new Date(lastMessageA.created_at);
+                                    // });
+                                    // }
                                 };
                             }
 
