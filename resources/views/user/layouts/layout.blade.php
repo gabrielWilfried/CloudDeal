@@ -56,7 +56,7 @@
         </div>
 
         <div class="footer-bottom">
-            @include('user.layouts.footer.footer-top')
+            @include('user.layouts.footer.footer-bottom')
         </div>
 
     </div>

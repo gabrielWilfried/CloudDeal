@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Enums\SexeEnum;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -20,14 +18,16 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->firstName,
+            'surname' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
-            'sex' => enum_to_string_array(SexeEnum::cases())[rand(0, 1)],
-            'is_admin' => false,
+            'sex' => $this->faker->randomElement(['male', 'female']),
+            'pseudo' => $this->faker->userName,
+            'user_role' => false,
             'location' => null,
             'remember_token' => Str::random(10),
             'created_at' => now(),
@@ -35,6 +35,7 @@ class UserFactory extends Factory
 
         ];
     }
+
 
     /**
      * Indicate that the model's email address should be unverified.

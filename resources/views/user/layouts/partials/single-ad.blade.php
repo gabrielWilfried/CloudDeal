@@ -1,7 +1,6 @@
 @extends('user.layouts.layout')
 
 @section('content')
-
     @include('user.includes.breadcumb')
 
     <div class="single-product-area ptb-100">
@@ -11,58 +10,57 @@
                     <div class="product-single-img">
                         <div class="product-active owl-carousel">
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/1.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/1.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/2.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/2.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/3.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/3.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/4.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/4.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/5.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/5.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/6.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/6.jpg') }}" alt="">
                             </div>
                         </div>
                         <div class="product-thumbnil-active  owl-carousel">
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/1.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/1.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/2.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/2.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/3.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/3.jpg') }}" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/4.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/4.jpg') }}" alt="">
                             </div>
                             <div class="item">
                                 <img src="assets/images/product/product-details/5.jpg" alt="">
                             </div>
                             <div class="item">
-                                <img src="{{asset('assets/images/product/product-details/6.jpg')}}" alt="">
+                                <img src="{{ asset('assets/images/product/product-details/6.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="product-single-content">
-                        <h3></h3>
-                        <div class="rating-wrap fix">
-                            <span class="pull-left">$219.56</span>
 
+
+                        <h3>{{ $ad->name }}</h3>
+                        <div class="rating-wrap fix">
+                            <span class="pull-left">{{ toMoney($ad->price) }}</span>
                         </div>
-                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-                            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot
-                            foresee the pain and trouble that are bound to ensue; and equal blame belongs</p>
+                        <p>{{ $ad->description }}</p>
                         <ul class="input-style">
-                          
+
                             <li><a href="{{ route('chat') }}">Contact seller</a></li>
                         </ul>
                         <ul class="cetagory">
@@ -70,7 +68,7 @@
                             <li><a href="#">Honey,</a></li>
                             <li><a href="#">Olive</a></li>
                         </ul>
-                        
+
                         <ul class="socil-icon">
                             <li>Share :</li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -82,9 +80,9 @@
                     </div>
                 </div>
             </div>
-            
-            </div>
+
         </div>
+    </div>
     </div>
 
     @include('user.includes.featured-ad-area')
