@@ -11,83 +11,55 @@
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card chat-app">
-                    <div id="plist" class="people-list">
-                        <div class="input-group" x-data="{ discussions: [], searchQuery: '' } " x-init="chatComponent()" >
+                    <div id="plist" class="people-list" x-data="chatComponent" x-init="fetchDiscussions()">
+                        <div class="input-group">
                             <input type="text" x-model="searchQuery" class="form-control" placeholder="Search...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
                         <ul class="list-unstyled chat-list mt-2 mb-0">
-                            <template x-for="discussion in discussions" :key="discussion.id">
-                                <li class="clearfix" x-on:click="openDiscussion === discussion.id ? openDiscussion = null : openDiscussion = discussion.id">
-                                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                  <div class="about">
+                            {{-- <template x-for="discussion in discussions" :key="discussion.id">
+                            <li class="clearfix"
+                                x-on:click="openDiscussion === discussion.id ? openDiscussion = null : openDiscussion = discussion.id">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                <div class="about">
                                     <div class="name">
-                                      <h3 x-text="discussion.slug"></h3>
+                                        <h3 x-text="discussion.slug"></h3>
 
                                     </div>
                                     <div class="status">
-                                      <span>Online</span>
+                                        <span>Online</span>
                                     </div>
-                                  </div>
-                                </li>
-                            </template>
+                                </div>
+                            </li>
+                            </template> --}}
+
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">
+                                        <h3 x-text="discussion.slug"></h3>
+
+                                    </div>
+                                    <div class="status">
+                                        <span>Online</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">
+                                        <h3 x-text="discussion.slug"></h3>
+
+                                    </div>
+                                    <div class="status">
+                                        <span>Online</span>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-                        <script {{-- src="{{ asset('assets/custom/js/chat') }}" --}}>
-                            function chatComponent() {
-                                return {
-                                    discussions: [], // Les discussions récupérées depuis le backend
-                                    searchQuery: '', // La valeur de recherche de l'utilisateur
-
-                                    fetchDiscussions() {
-                                    // Appel AJAX pour récupérer les discussions
-                                    var userId = 2;
-                                    fetch(`/chat/${Id}`)
-                                        .then(response => response.json())
-                                        .then(data => {
-                                        this.discussions = data;
-                                        })
-                                        .catch(error => {
-                                        console.error(error);
-                                        });
-                                    },
-
-                                    get filteredDiscussions() {
-                                    // Filtrer les discussions en fonction de la recherche de l'utilisateur
-                                    if (this.searchQuery.trim() === '') {
-                                        return this.discussions;
-                                    } else {
-                                        const searchTerm = this.searchQuery.toLowerCase();
-                                        return this.discussions.filter(discussion => {
-                                        // Comparer la valeur de recherche avec les discussions
-                                        return discussion.slug.toLowerCase().includes(searchTerm);
-                                        });
-                                    }
-                                    },
-
-                                    // sortDiscussionsByLatestMessage() {
-                                    // // Trier les discussions par le message le plus récent
-                                    // this.discussions.sort((a, b) => {
-                                    //     const lastMessageA = a.messages[a.messages.length - 1];
-                                    //     const lastMessageB = b.messages[b.messages.length - 1];
-                                    //     return new Date(lastMessageB.created_at) - new Date(lastMessageA.created_at);
-                                    // });
-                                    // }
-                                };
-                                console.log(discussions);
-                            }
-
-                        </script>
-                         {{-- <script>
-                            window.onload = function () {
-                                Alpine.data('filteredDiscussions', function() {
-                                    return this.discussions.filter(discussion => {
-                                        return discussion.slug.toLowerCase().includes(this.search.toLowerCase());
-                                    });
-                                });
-                            }
-                        </script> --}}
                     </div>
                     <div class="chat">
                         <div class="chat-header clearfix">
@@ -118,17 +90,18 @@
                         @isset($discussion)
                             <div class="chat-history">
                                 <ul class="m-b-0">
-                                        @foreach($discussion->messages as $message)
-                                            <li class="clearfix">
-                                                <div class="message-data {{ $message->user_id === 2 ? 'text-right' : '' }}">
-                                                    <span class="message-data-time">{{ $message->created_at->format('h:i A, M d') }}</span>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                                </div>
-                                                <div class="message {{ $message->user_id === 2 ? 'my-message' : 'other-message' }}">
-                                                    {{ $message->content }}
-                                                </div>
-                                            </li>
-                                        @endforeach
+                                    @foreach ($discussion->messages as $message)
+                                        <li class="clearfix">
+                                            <div class="message-data {{ $message->user_id === 2 ? 'text-right' : '' }}">
+                                                <span
+                                                    class="message-data-time">{{ $message->created_at->format('h:i A, M d') }}</span>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                            </div>
+                                            <div class="message {{ $message->user_id === 2 ? 'my-message' : 'other-message' }}">
+                                                {{ $message->content }}
+                                            </div>
+                                        </li>
+                                    @endforeach
 
                                 </ul>
                             </div>
@@ -149,9 +122,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2"></script>
-    <script>
-        Alpine.start();
-    </script>
-
 @endsection

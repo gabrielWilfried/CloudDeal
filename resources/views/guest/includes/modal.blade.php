@@ -5,7 +5,7 @@
         </button>
         <div class="modal-body d-flex">
             <div class="product-single-img w-50">
-                <img src="{{asset('assets/images/product/product-details.jpg')}}" alt="">
+                <img src="{{ asset('assets/images/product/product-details.jpg') }}" alt="">
             </div>
             <div class="product-single-content w-50">
                 <h3>Pure Nature Hohey</h3>
@@ -20,12 +20,14 @@
                         <li>(05 Customar Review)</li>
                     </ul>
                 </div>
-                <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire denounce with righteous indignation</p>
+                <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+                    demoralized by the charms of pleasure of the moment, so blinded by desire denounce with righteous
+                    indignation</p>
                 <ul class="input-style">
                     <li class="quantity cart-plus-minus">
                         <input type="text" value="1" />
                     </li>
-                    <li><a href="{{ route('chat',['id'=>2]) }}">Contact Seller</a></li>
+                    <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
                 </ul>
                 <ul class="cetagory">
                     <li>Categories:</li>

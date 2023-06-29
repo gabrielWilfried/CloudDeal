@@ -61,7 +61,7 @@
                         <p>{{ $ad->description }}</p>
                         <ul class="input-style">
 
-                            <li><a href="{{ route('chat') }}">Contact seller</a></li>
+                            <li><a href="{{ route('chat.index') }}">Contact seller</a></li>
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>

@@ -1,7 +1,6 @@
 @extends('guest.layouts.layout')
 
 @section('content')
-
     @include('guest.includes.navbanner')
 
     <div class="product-area ptb-100 product-sidebar-area">
@@ -50,7 +49,7 @@
                             <ul>
                                 <li>
                                     <div class="post-img">
-                                        <img src="{{asset('assets/images/post/1.jpg a')}}" alt="">
+                                        <img src="{{ asset('assets/images/post/1.jpg a') }}" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="shop.html">Mustard Oil</a>
@@ -59,7 +58,7 @@
                                 </li>
                                 <li>
                                     <div class="post-img">
-                                        <img src="{{asset('assets/images/post/2.jpg" a')}}" alt="">
+                                        <img src="{{ asset('assets/images/post/2.jpg" a') }}" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="shop.html">Mustard Oil</a>
@@ -68,7 +67,7 @@
                                 </li>
                                 <li>
                                     <div class="post-img">
-                                        <img src="{{asset('assets/images/post/3.jpg" a')}}" alt="">
+                                        <img src="{{ asset('assets/images/post/3.jpg" a') }}" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="shop.html">Mustard Oil</a>
@@ -120,12 +119,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/1.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/1.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -149,12 +149,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/2.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/2.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -178,12 +179,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/5.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/5.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -207,12 +209,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/7.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/7.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -236,12 +239,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/9.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/9.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -265,12 +269,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/6.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/6.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -294,12 +299,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/14.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/14.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -323,12 +329,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/16.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/16.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -352,12 +359,13 @@
                                     <div class="product-wrap">
                                         <div class="product-img">
                                             <span>New</span>
-                                            <img src="{{asset('assets/images/product/18.jpg')}}" alt="">
+                                            <img src="{{ asset('assets/images/product/18.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -402,13 +410,15 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="product-img">
                                                     <span>New</span>
-                                                    <img src="{{asset('assets/images/product/19.jpg')}}" alt="">
+                                                    <img src="{{ asset('assets/images/product/19.jpg') }}"
+                                                        alt="">
                                                     <div class="product-icon flex-style">
                                                         <ul>
                                                             <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                                     href="javascript:void(0);"><i
                                                                         class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                            <li><a href="{{ route('wishlist') }}"><i
+                                                                        class="fa fa-heart"></i></a>
                                                             </li>
 
                                                         </ul>
@@ -431,7 +441,7 @@
                                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
                                                         has roots in a piece of classical Latin literature from 45 BC, </p>
                                                     <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat') }}">Contact Seller</a></li>
+                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
                                                         <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                     </ul>
                                                 </div>
@@ -445,13 +455,15 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="product-img">
                                                     <span>New</span>
-                                                    <img src="{{asset('assets/images/product/20.jpg')}}" alt="">
+                                                    <img src="{{ asset('assets/images/product/20.jpg') }}"
+                                                        alt="">
                                                     <div class="product-icon flex-style">
                                                         <ul>
                                                             <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                                     href="javascript:void(0);"><i
                                                                         class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                            <li><a href="{{ route('wishlist') }}"><i
+                                                                        class="fa fa-heart"></i></a>
                                                             </li>
 
                                                         </ul>
@@ -474,7 +486,7 @@
                                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
                                                         has roots in a piece of classical Latin literature from 45 BC, </p>
                                                     <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat') }}">Contact Seller</a></li>
+                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
                                                         <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                     </ul>
                                                 </div>
@@ -488,13 +500,15 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="product-img">
                                                     <span>New</span>
-                                                    <img src="{{asset('assets/images/product/21.jpg')}}" alt="">
+                                                    <img src="{{ asset('assets/images/product/21.jpg') }}"
+                                                        alt="">
                                                     <div class="product-icon flex-style">
                                                         <ul>
                                                             <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                                     href="javascript:void(0);"><i
                                                                         class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                            <li><a href="{{ route('wishlist') }}"><i
+                                                                        class="fa fa-heart"></i></a>
                                                             </li>
 
                                                         </ul>
@@ -517,7 +531,7 @@
                                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
                                                         has roots in a piece of classical Latin literature from 45 BC, </p>
                                                     <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat') }}">Contact Seller</a></li>
+                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
                                                         <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                     </ul>
                                                 </div>
@@ -531,13 +545,15 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="product-img">
                                                     <span>New</span>
-                                                    <img src="{{asset('assets/images/product/22.jpg')}}" alt="">
+                                                    <img src="{{ asset('assets/images/product/22.jpg') }}"
+                                                        alt="">
                                                     <div class="product-icon flex-style">
                                                         <ul>
                                                             <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                                     href="javascript:void(0);"><i
                                                                         class="fa fa-eye"></i></a></li>
-                                                            <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i></a>
+                                                            <li><a href="{{ route('wishlist') }}"><i
+                                                                        class="fa fa-heart"></i></a>
                                                             </li>
 
                                                         </ul>
@@ -560,7 +576,7 @@
                                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
                                                         has roots in a piece of classical Latin literature from 45 BC, </p>
                                                     <ul class="cart-btn">
-                                                        <li><a href="{{ route('chat') }}">Contact Seller</a></li>
+                                                        <li><a href="{{ route('chat.index') }}">Contact Seller</a></li>
                                                         <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                     </ul>
                                                 </div>

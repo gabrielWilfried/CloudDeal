@@ -11,34 +11,21 @@ use Illuminate\Support\Str;
 class DiscussionController extends Controller
 {
 
-    public function ListDiscussion(Request $request, $id)
+
+    public function index(Request $request, Annonce $annonce)
     {
-        $annonce = Annonce::findOrFail($id);
-        $userId =2;
-        if ($annonce->user_id == $userId)
-        {
-            $discussions = $annonce->discussions()
-            ->leftJoin('messages', 'discussions.id', '=', 'messages.discussion_id')
-            ->orderByDesc('messages.created_at')
-            ->get();
+        return view('guest.layouts.pages.chat');
+    }
 
-            return view('user.layouts.partials.chat', compact('discussion'));
-        }
-        else
-        {
-            $discussions = $annonce->discussions()
-            ->where('user_id', $userId)
-            ->leftJoin('messages', 'discussions.id', '=', 'messages.discussion_id')
-            ->orderByDesc('messages.created_at')
-            ->get();
-            return response()->json($discussions, 200);
-        }
-
+    public function ListDiscussion(Request $request, Annonce $annonce)
+    {
+        $discussions = $annonce->discussions()->with('messages')->paginate(5);
+        return response()->json($discussions);
     }
 
     public function store(Request $request, Annonce $annonce)
     {
-        $userId =2;
+        $userId = 2;
         do {
             $slug = Str::slug($annonce->name);
         } while (Discussion::where('slug', $slug)->first());
@@ -58,8 +45,8 @@ class DiscussionController extends Controller
 
     public function view(Discussion $discussion)
     {
-        $userId =2;
-        if ($discussion->annonce->user_id != $userId && $discussion->user_id != $userId )
+        $userId = 2;
+        if ($discussion->annonce->user_id != $userId && $discussion->user_id != $userId)
             abort(403);
 
         $discussion->load('messages');

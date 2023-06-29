@@ -84,10 +84,6 @@ Route::get('/payment', function () {
     return view('guest.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
 })->name('payment');
 
-Route::get('/chat', function () {
-    return view('guest.layouts.partials.chat',  ['name' => 'Chat',  'head' => 'Chat']);
-})->name('chat');
-
 
 Route::get('/wishlist', function () {
     return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
@@ -100,16 +96,16 @@ Route::get('/blog', function () {
 Route::get('/blog-details', function () {
     return view('user.layouts.partials.blog.blog-details',  ['name' => 'Blog details',  'head' => 'Blog details']);
 })->name('blog-details');
-Route::get('/chat/2', function () {
-    return view('user.layouts.partials.chat');
-})->name('chat');
 
+Route::name('chat.')->prefix('chat')->group(function () {
+    Route::get('/', [DiscussionController::class, 'index'])->name('index');
+    Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
+});
 
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/chat/{id}', [DiscussionController::class, 'ListDiscussion']);
 Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
 Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
 //Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
