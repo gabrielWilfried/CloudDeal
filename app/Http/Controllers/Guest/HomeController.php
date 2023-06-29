@@ -21,7 +21,7 @@ class HomeController extends Controller
         $categories = Category::inRandomOrder()->take(5)->get();
         $allAds = Annonce::where('is_blocked', false)->orderBy('level', 'DESC')->paginate(8);
         //dd($allAds);
-        return view('user.home', compact('ads', 'categories', 'allAds'));
+        return view('guest.home', compact('ads', 'categories', 'allAds'));
     }
 
     public function paginatedAds(Request $request)

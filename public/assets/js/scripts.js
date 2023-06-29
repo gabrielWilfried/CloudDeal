@@ -414,7 +414,7 @@
                     $('.cf-msg').fadeIn().html('<div class="alert alert-success"><strong>Success!</strong> Email has been sent successfully.</div>');
                     setTimeout(function() {
                         $('.cf-msg').fadeOut('slow');
-                    }, 4000);
+                    }, 10000);
                 }
             });
         } else {

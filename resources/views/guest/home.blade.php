@@ -14,7 +14,7 @@
     </div>
 
     <div class="banner-area bg-img-8">
-        @include('user.includes.landing-page.banner')
+        @include('guest.includes.landing-page.banner')
     </div>
 
     <div class="product-area" id="products">

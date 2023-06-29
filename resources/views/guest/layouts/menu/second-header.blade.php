@@ -35,7 +35,7 @@
             </nav>
         </div>
 
-        <div class="col-md-1 col-sm-1 col-2 d-block d-lg-none">
+        <div class="col-md-1 col-sm-3 col-7 d-block d-lg-none" style="position: absolute; right: 0">
             <div class="responsive-menu-tigger">
                 <a href="javascript:void(0);">
                     <span class="first"></span>
@@ -53,7 +53,7 @@
             <div class="col-12 d-block d-lg-none">
                 <ul class="metismenu">
                     <li class="sidemenu-items">
-                        <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Home</a>
+                        <a aria-expanded="false" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="sidemenu-items">
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Best ads </a>
