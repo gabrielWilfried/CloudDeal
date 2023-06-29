@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Authenticate\DiscussionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,17 @@ Route::get('/blog', function () {
 Route::get('/blog-details', function () {
     return view('user.layouts.partials.blog.blog-details',  ['name' => 'Blog details',  'head' => 'Blog details']);
 })->name('blog-details');
-Route::get('/chat', function () {
-    return view('user.layouts.partials.chat',  ['name' => 'Chat',  'head' => 'Chat']);
-})->name('chat');
+//Route::get('/chat', function () {return view('user.layouts.partials.chat',  ['name' => 'Chat',  'head' => 'Chat']);})->name('chat');
+
+
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/chat/{id}', [DiscussionController::class, 'ListDiscussion'])->name('chat');
+Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
+Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
+//Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
+//Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
+
+Route::post('/message',[MessageController::class, 'store'])->name('messages.store');

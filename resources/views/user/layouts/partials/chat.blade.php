@@ -12,56 +12,80 @@
             <div class="col-lg-12">
                 <div class="card chat-app">
                     <div id="plist" class="people-list">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search...">
+                        <div class="input-group" x-data="{ discussions: @json($discussions) }" x-init="console.log("discussions")" >
+                            <input type="text" x-model="" class="form-control" placeholder="Search...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
                         <ul class="list-unstyled chat-list mt-2 mb-0">
-                            <li class="clearfix">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Vincent Porter</div>
-                                    <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>
-                                </div>
-                            </li>
-                            <li class="clearfix active">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Aiden Chavez</div>
-                                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Mike Thomas</div>
-                                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Christian Kelly</div>
-                                    <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Monica Ward</div>
-                                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                                <div class="about">
-                                    <div class="name">Dean Henry</div>
-                                    <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                                </div>
-                            </li>
+                            <template x-for="discussion in filteredDiscussions" :key="discussion.id">
+                                <li class="clearfix" x-on:click="openDiscussion === discussion.id ? openDiscussion = null : openDiscussion = discussion.id">
+                                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                  <div class="about">
+                                    <div class="name">
+                                      <h3 x-text="discussion.slug"></h3>
+
+                                    </div>
+                                    <div class="status">
+                                      <span>Online</span>
+                                    </div>
+                                  </div>
+                                </li>
+                            </template>
                         </ul>
+                        {{-- <script>
+                            function chatComponent() {
+                                return {
+                                    discussions: [], // Les discussions récupérées depuis le backend
+                                    searchQuery: '', // La valeur de recherche de l'utilisateur
+
+                                    fetchDiscussions(userId) {
+                                    // Appel AJAX pour récupérer les discussions
+                                    fetch(`/chat/${userId}`)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                        this.discussions = data;
+                                        })
+                                        .catch(error => {
+                                        console.error(error);
+                                        });
+                                    },
+
+                                    get filteredDiscussions() {
+                                    // Filtrer les discussions en fonction de la recherche de l'utilisateur
+                                    if (this.searchQuery.trim() === '') {
+                                        return this.discussions;
+                                    } else {
+                                        const searchTerm = this.searchQuery.toLowerCase();
+                                        return this.discussions.filter(discussion => {
+                                        // Comparer la valeur de recherche avec les discussions
+                                        return discussion.slug.toLowerCase().includes(searchTerm);
+                                        });
+                                    }
+                                    },
+
+                                    sortDiscussionsByLatestMessage() {
+                                    // Trier les discussions par le message le plus récent
+                                    this.discussions.sort((a, b) => {
+                                        const lastMessageA = a.messages[a.messages.length - 1];
+                                        const lastMessageB = b.messages[b.messages.length - 1];
+                                        return new Date(lastMessageB.created_at) - new Date(lastMessageA.created_at);
+                                    });
+                                    }
+                                };
+                            }
+
+                        </script> --}}
+                         <script>
+                            window.onload = function () {
+                                Alpine.data('filteredDiscussions', function() {
+                                    return this.discussions.filter(discussion => {
+                                        return discussion.slug.toLowerCase().includes(this.search.toLowerCase());
+                                    });
+                                });
+                            }
+                        </script>
                     </div>
                     <div class="chat">
                         <div class="chat-header clearfix">
@@ -71,8 +95,10 @@
                                         <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                                     </a>
                                     <div class="chat-about">
-                                        <h6 class="m-b-0">Aiden Chavez</h6>
-                                        <small>Last seen: 2 hours ago</small>
+                                        <h6 class="m-b-0" x-text="discussion.slug"></h6>
+                                        <small>
+                                            {{-- JE dois gérer le status avec alpinejs --}}
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 hidden-sm text-right">
@@ -87,42 +113,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="chat-history">
-                            <ul class="m-b-0">
-                                <li class="clearfix">
-                                    <div class="message-data text-right">
-                                        <span class="message-data-time">10:10 AM, Today</span>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                    </div>
-                                    <div class="message other-message float-right"> Hi Aiden, how are you? How is the
-                                        project coming along? </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:12 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Are we meeting today?</div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:15 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Project has been already finished and I have results to
-                                        show you.</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="chat-message clearfix">
-                            <div class="input-group mb-0">
-                                <input type="text" placeholder="Enter text here...">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
+                        @isset($discussion)
+                            <div class="chat-history">
+                                <ul class="m-b-0">
+                                        @foreach($discussion->messages as $message)
+                                            <li class="clearfix">
+                                                <div class="message-data {{ $message->user_id === 2 ? 'text-right' : '' }}">
+                                                    <span class="message-data-time">{{ $message->created_at->format('h:i A, M d') }}</span>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                                </div>
+                                                <div class="message {{ $message->user_id === 2 ? 'my-message' : 'other-message' }}">
+                                                    {{ $message->content }}
+                                                </div>
+                                            </li>
+                                        @endforeach
+
+                                </ul>
+                            </div>
+                            <div class="chat-message clearfix">
+                                <div class="input-group mb-0">
+                                    <form action="{{ route('messages.store') }}" method="POST">
+                                        <input type="text" placeholder="Enter text here...">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                        </div>
+                                        <input type="hidden" name="discussion_id" value="{{ $discussion->id }}">
+                                    </form>
                                 </div>
                             </div>
-                        </div>
+                        @endisset
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2"></script>
+    <script>
+        Alpine.start();
+    </script>
+
 @endsection
