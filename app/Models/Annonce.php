@@ -29,7 +29,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $append = ['files'];
+    protected $appends = ['files', 'format_price', 'image_pah'];
 
     public function payment(): BelongsTo
     {
@@ -60,6 +60,16 @@ class Annonce extends Model
     {
         $files = File::where('target_id', $this->id)->where('target_type', Annonce::class)->get();
         return $files;
+    }
+
+    function getFormatPriceAttribute()
+    {
+        return toMoney($this->price);
+    }
+
+    function getImagePahAttribute()
+    {
+        return url($this->image);
     }
 
     public function user(): BelongsTo

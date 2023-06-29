@@ -55,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::prefix('/discussion')->group(function () {
         Route::post('/{annonce}', [DiscussionController::class, 'store']);
+        Route::get('/{id}', [DiscussionController::class, 'ListDiscussion']);
     });
 });
 
@@ -63,6 +64,7 @@ Route::prefix('guest')->group(function () {
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'listAnnonces']);
         Route::get('/{annonce}', [AnnonceGuestController::class, 'detailsAnnonce']);
+        Route::post('signals/{id}', [SignalGuestController::class, 'signaleAnnonce']);
     });
     Route::get('region/', [RegionGuestController::class, 'listRegions']);
     Route::get('town/', [VilleGuestController::class, 'listVilles']);
