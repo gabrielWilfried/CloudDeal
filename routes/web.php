@@ -8,6 +8,7 @@ use App\Http\Controllers\Guest\ContactController;
 
 
 use App\Http\Controllers\Guest\AboutGuestController;
+use App\Http\Controllers\Authenticate\DiscussionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,3 +89,30 @@ Route::get('/chat', function () {
 })->name('chat');
 
 
+Route::get('/wishlist', function () {
+    return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
+})->name('wishlist');
+
+Route::get('/blog', function () {
+    return view('user.layouts.partials.blog.blog',  ['name' => 'Blog',  'head' => 'Blog']);
+})->name('blog');
+
+Route::get('/blog-details', function () {
+    return view('user.layouts.partials.blog.blog-details',  ['name' => 'Blog details',  'head' => 'Blog details']);
+})->name('blog-details');
+Route::get('/chat/2', function () {
+    return view('user.layouts.partials.chat');
+})->name('chat');
+
+
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/chat/{id}', [DiscussionController::class, 'ListDiscussion']);
+Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
+Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
+//Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
+//Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
+
+Route::post('/message', [MessageController::class, 'store'])->name('messages.store');

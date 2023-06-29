@@ -25,7 +25,7 @@
                     <li class="quantity cart-plus-minus">
                         <input type="text" value="1" />
                     </li>
-                    <li><a href="{{ route('chat') }}">Contact Seller</a></li>
+                    <li><a href="{{ route('chat',['id'=>2]) }}">Contact Seller</a></li>
                 </ul>
                 <ul class="cetagory">
                     <li>Categories:</li>
