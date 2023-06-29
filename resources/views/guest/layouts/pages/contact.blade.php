@@ -12,7 +12,7 @@
                 <div class="col-lg-8 col-12">
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
-                        <form action="{{ route('contact.store') }}" method="post" id="cf">
+                        <form action="{{ route('contact.store') }}" method="POST" id="cf">
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <input type="text" placeholder="Name" id="fname" name="fname">
@@ -27,7 +27,7 @@
                                     <textarea class="contact-textarea" placeholder="Message" id="msg" name="msg"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button id="submit" name="submit">SEND MESSAGE</button>
+                                    <button id="submit" name="submit" type="submit">SEND MESSAGE</button>
                                 </div>
                             </div>
                         </form>

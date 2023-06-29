@@ -303,26 +303,6 @@
     /*==================================
             LOAD MORE JQUERY
     ================================== */
-    var list1 = $(".moreload");
-    var numToShow1 = 4;
-    var button1 = $(".loadmore-btn");
-    var numInList1 = list1.length;
-
-    list1.hide();
-    if (numInList1 > numToShow1) {
-        button1.show();
-    }
-    list1.slice(0, numToShow1).show();
-    button1.on('click', function() {
-        var showing1 = list1.filter(':visible').length;
-        list1.slice(showing1 - 1, showing1 + numToShow1).fadeIn();
-        var nowShowing1 = list1.filter(':visible').length;
-        if (nowShowing1 >= numInList1) {
-            button1.hide();
-        }
-    });
-
-
 
     /*-----------------------
        cart-plus-minus-button

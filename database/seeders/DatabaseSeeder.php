@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Town::factory(10)->create();
         \App\Models\Annonce::factory(30)->create();
         // \App\Models\Discussion::factory(10)->create();
-        //  \App\Models\Boost::factory(10)->create();
+        \App\Models\Boost::factory(10)->create();
         // \App\Models\Comment::factory(10)->create();
         // \App\Models\Signal::factory(10)->create();
         // \App\Models\Payment::factory(10)->create();

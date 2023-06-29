@@ -28,6 +28,6 @@ class HomeController extends Controller
     {
         $perpage = $request->get('per_page', 8);
         $allAds = Annonce::where('is_blocked', false)->orderBy('level', 'DESC')->paginate($perpage);
-        return response()->json($allAds);
+        return response()->json(["allAds"=>$allAds]);
     }
 }

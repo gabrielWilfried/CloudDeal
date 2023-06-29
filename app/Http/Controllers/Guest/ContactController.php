@@ -11,12 +11,12 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('user.layouts.partials.contact');
+        return view('guest.layouts.pages.contact');
     }
 
     public function store(Request $request)
     {
-        
+
         $validatedData = $request->validate([
             'fname' => 'required',
             'email' => 'required|email',
@@ -26,8 +26,6 @@ class ContactController extends Controller
         dd($validatedData);
 
         Contact::create($validatedData);
-
-       
 
         return redirect()->back()->with('success', 'Message sent successfully!');
     }

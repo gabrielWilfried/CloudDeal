@@ -24,6 +24,7 @@ Route::prefix('clouddeal')->group(function () {
     //routes guest mode
     Route::get('/', [HomeController::class, "index"])->name('home');
     Route::post('/', [NewsLetterController::class, "store"])->name('home');
+    Route::get('/ads', [HomeController::class, "paginatedAds"]);
     Route::get('/wishlist', function () {
         return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
     })->name('wishlist');

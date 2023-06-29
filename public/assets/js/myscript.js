@@ -1,3 +1,4 @@
+
 $("document").ready(function () {
     $("form[name='newsletter-form']").validate({
         rules: {
