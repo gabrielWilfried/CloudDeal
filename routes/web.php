@@ -78,22 +78,11 @@ Route::get('/wishlist', function () {
     return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
 })->name('wishlist');
 
-Route::get('/blog', function () {
-    return view('user.layouts.partials.blog.blog',  ['name' => 'Blog',  'head' => 'Blog']);
-})->name('blog');
-
-Route::get('/blog-details', function () {
-    return view('user.layouts.partials.blog.blog-details',  ['name' => 'Blog details',  'head' => 'Blog details']);
-})->name('blog-details');
 
 Route::name('chat.')->prefix('chat')->group(function () {
     Route::get('/', [DiscussionController::class, 'index'])->name('index');
     Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
 });
-
-
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
 Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');

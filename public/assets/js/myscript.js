@@ -42,3 +42,35 @@ $("document").ready(function () {
         });
     });
 });
+
+function fetchAds(page) {
+    return fetch('/clouddeal/ads?page=' + page)
+      .then(response => response.json())
+      .then(data => {
+        return data.allAds.data;
+      })
+      .catch(error => {
+        console.error(error);
+        return [];
+      });
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const adsContainer = document.getElementById('ads-container');
+    const alpineData = {
+      ads: [],
+      page: 1,
+      totalPages: null,
+      loadAds: function() {
+        fetchAds(this.page)
+          .then(data => {
+            this.ads = this.ads.concat(data);
+            this.page++;
+            this.totalPages = data.total_pages;
+          });
+      }
+    };
+
+    Alpine.data('ads', alpineData);
+
+    Alpine.start();
+  });
