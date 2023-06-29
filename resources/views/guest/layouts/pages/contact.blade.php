@@ -13,6 +13,7 @@
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
                         <form action="{{ route('contact.store') }}" method="POST" id="cf">
+                            @csrf 
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <input type="text" placeholder="Name" id="fname" name="fname">
