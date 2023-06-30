@@ -77,3 +77,4 @@ class AnnonceGuestController extends Controller
         return response()->json($annonce);
     }
 
+}
