@@ -7,23 +7,7 @@
             </div>
         </div>
     </div>
-    <ul class="row" x-data="{
-        ads: [],
-        page: 1,
-        totalPages: 2,
-        loadAds: function loadAds() {
-            fetch('/clouddeal/ads?page=' + this.page).then(response => response.json())
-                .then(data => {
-                    this.ads = (this.ads || []).concat(data.allAds.data);
-                    this.page++;
-                    this.totalPages = data.allAds.last_page;
-                    console.log(this.ads);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
-    }" x-init="loadAds">
+    <ul class="row" x-data="ads" x-init="loadAds">
         <template x-if="ads">
             <template x-for="ad in ads">
                 <li class="col-xl-3 col-lg-4 col-sm-6 col-12">

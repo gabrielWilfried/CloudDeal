@@ -3,46 +3,6 @@
 @section('content')
     @include('guest.includes.navbanner')
 
-    <script>
-
-        window.addEventListener('alpine:init', () => {
-            Alpine.data('annonceList', (maxPrice) => ({
-                searchText: '',
-                priceFilter: '',
-                minPrice: 0,
-                maxPrice: maxPrice,
-                sortBy: '',
-                currentCategories: [],
-                search(){
-
-                },
-                sort(){
-
-                },
-                filterByCategories(){
-
-                },
-                filterByPrice(){
-
-                },
-                filter(){
-                    const checkboxValue = document.getElementById('{{$category->name }}').checked;
-                    fetch('/').then(response => {
-                        method: "POST",
-                        body: JSON.stringify({ sortBy: checkboxValue }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    }
-                        console.log(response);
-                    }).catch(error => concole.log(error));
-                }
-
-            }));
-        });
-
-    </script>
-
     <div class="product-area ptb-100 product-sidebar-area">
         <div class="container">
             <div class="row revarce-wrap">
@@ -76,8 +36,8 @@
                         <div class="widget widget_categories">
                             <h4 class="widget-title">Categories</h4>
                             <ul>
-                                    @foreach ($categories as $category)
-                                    <li><label for="{{$category->name }}">{{$category->name }}</label><input type="checkbox" id="{{$category->name }}" name="category" value="{{ $category->name }}" ></li>
+                                    @foreach ($allCategories as $category)
+                                        <li><label for="{{$category->name }}">{{$category->name }}</label><input type="checkbox" id="{{$category->name }}" name="category" value="{{ $category->name }}" ></li>
                                     @endforeach
                             </ul>
                         </div>
@@ -120,9 +80,9 @@
                         <div class="col-sm-4 col-12">
                             <select name="stor" class="select-style">
                                 <option disabled selected>Sort by Defalt</option>
-                                @foreach ($towns as $town)
+                                {{-- @foreach ($towns as $town)
                                     <option>{{ $town->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         <div class=" col-sm-5 col-12">
@@ -142,8 +102,8 @@
 
                     <div class="tab-content">
                         <div class="tab-pane active" id="grid">
-                            <ul class="row">
-                                @foreach ($annonces as $annonce)
+                            <ul class="row" x-data="adList" x-init='getAllAds'>
+                              <template x-for="ad as adList">
                                 <li class="col-lg-4 col-sm-6 col-12" x-show="filteredAnnonces.length > 0 " x-for="annonce in filteredAnnonces">
                                     <div class="product-wrap">
                                         <div class="product-img">
@@ -151,20 +111,20 @@
                                             <img src="{{ asset('assets/images/product/1.jpg') }}" alt="">
                                             <div class="product-icon flex-style">
                                                 <ul>
-                                                    <li><a href="{{ route('dashboard.singe-ad') }}"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
+                                                    <li><a :href="ad.url_detail"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
 
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="product-content">
-                                            <h3><a href="single-product.html">{{ $annonce->name }}</a></h3>
-                                            <p class="pull-left">{{ $annonce->price }}
+                                            <h3><a href="single-product.html" x-text="ad.name"></a></h3>
+                                            <p class="pull-left" x-text="ad.format_price">
                                             </p>
                                         </div>
                                     </div>
                                 </li>
-                                @endforeach
+                             </template>
                             </ul>
                             <div class="row">
                                 <div class="col-12">
@@ -184,7 +144,7 @@
                         </div>
                         <div class="tab-pane product-list" id="list">
                             <ul class="row">
-                                @foreach ($annonces as $annonce)
+                                {{-- @foreach ($annonces as $annonce)
                                 <li class="col-12">
                                     <div class="product-wrap">
                                         <div class="row">
@@ -220,7 +180,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                @endforeach
+                                @endforeach --}}
                             </ul>
                             <div class="row">
                                 <div class="col-12">
@@ -244,4 +204,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/js/search.js') }}"></script>
 @endsection

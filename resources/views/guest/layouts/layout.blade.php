@@ -21,6 +21,7 @@
     @yield('style')
 
     <title>Cloud Deal</title>
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -73,8 +74,8 @@
     <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/js/myscript.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="{{ asset('assets/custom/js/chat.js') }}"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.6.1/dist/cdn.min.js"></script>
+   
+    
     @yield('script')
 
 </body>

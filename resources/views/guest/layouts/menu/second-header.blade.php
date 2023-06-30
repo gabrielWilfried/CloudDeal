@@ -20,7 +20,7 @@
                         <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
                             @foreach ($allCategories as $all)
-                                <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
+                                <li><a id="category" href="{{ route('dashboard', ['category' => $all->name]) }}">{{ $all->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
