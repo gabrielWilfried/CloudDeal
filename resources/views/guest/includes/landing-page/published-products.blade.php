@@ -36,7 +36,7 @@
             <a class="loadmore-btn" x-on:click="loadAds">Load More</a>
         </li>
         <li x-show="page > totalPages" class="col-12 text-center" style="cursor: pointer">
-            <a class="loadmore-btn" href="{{ route('dashboard') }}">Go to product pages</a>
+            <a class="loadmore-btn" href="{{ route('dashboard.index') }}">Go to product pages</a>
         </li>
     </ul>
 </div>

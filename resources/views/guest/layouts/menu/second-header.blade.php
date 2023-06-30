@@ -14,13 +14,13 @@
                         <a href="{{ route('home') }}">Home</i></a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);">Best ads</i></a>
+                        <a href="{{ route('dashboard.index') }}">Best ads</i></a>
                     </li>
                     <li>
                         <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown_style">
                             @foreach ($allCategories as $all)
-                                <li><a id="category" href="{{ route('dashboard', ['category' => $all->name]) }}">{{ $all->name }}</a></li>
+                                <li><a id="category" href="{{ route('dashboard.index') }}">{{ $all->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -58,7 +58,7 @@
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Categories</a>
                         <ul aria-expanded="false">
                             @forelse ($allCategories as $all)
-                                <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
+                                <li><a href="{{ route('dashboard.index') }}">{{ $all->name }}</a></li>
                             @empty
                                 <p>No categorie</p>
                             @endforelse
