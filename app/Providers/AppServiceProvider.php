@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+
+use App\Models\Category;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (Schema::hasTable('categories')) {
+            $allCategories = Category::all();
+            view()->share('allCategories', $allCategories);
+        }
+
     }
 }

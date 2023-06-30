@@ -78,7 +78,7 @@ class AnnonceController extends Controller
     {
         if ($annonce->user_id != auth()->id()) abort(403);
         $annonce->load('payment', 'signals', 'comments', 'boosts', 'discussions', 'category', 'town');
-        return response()->json($annonce);
+        return response()->compact($annonce);
     }
 
     public function delete(Annonce $annonce)

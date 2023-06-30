@@ -21,10 +21,12 @@ class AnnonceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+
+            'name' => $this->faker->colorName,
+            'image' => $this->faker->text,
             'price' => $this->faker->randomFloat(),
             'description' => $this->faker->paragraph,
-            'level' => 1000000000,
+            'level' => random_int(1, 500),
             'town_id' => Town::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id

@@ -303,26 +303,6 @@
     /*==================================
             LOAD MORE JQUERY
     ================================== */
-    var list1 = $(".moreload");
-    var numToShow1 = 4;
-    var button1 = $(".loadmore-btn");
-    var numInList1 = list1.length;
-
-    list1.hide();
-    if (numInList1 > numToShow1) {
-        button1.show();
-    }
-    list1.slice(0, numToShow1).show();
-    button1.on('click', function() {
-        var showing1 = list1.filter(':visible').length;
-        list1.slice(showing1 - 1, showing1 + numToShow1).fadeIn();
-        var nowShowing1 = list1.filter(':visible').length;
-        if (nowShowing1 >= numInList1) {
-            button1.hide();
-        }
-    });
-
-
 
     /*-----------------------
        cart-plus-minus-button
@@ -401,16 +381,19 @@
 
         if (fname != '' && email != '' && msg != '') {
             var values = "fname=" + fname + "&subject=" + subject + "&email=" + email + " &msg=" + msg;
+            var csrfToken = $('input[name="_token"]').val();
             $.ajax({
                 type: "POST",
-                url: "mail.php",
+                url: "/clouddeal/contact",
                 data: values,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                  },
                 success: function() {
                     $('#fname').val('');
                     $('#subject').val('');
                     $('#email').val('');
                     $('#msg').val('');
-
                     $('.cf-msg').fadeIn().html('<div class="alert alert-success"><strong>Success!</strong> Email has been sent successfully.</div>');
                     setTimeout(function() {
                         $('.cf-msg').fadeOut('slow');
@@ -422,6 +405,7 @@
         }
         return false;
     });
+
 
     /*------------------------------------------
         = COUNTDOWN CLOCK

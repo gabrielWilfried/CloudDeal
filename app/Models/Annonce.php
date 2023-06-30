@@ -19,6 +19,7 @@ class Annonce extends Model
     protected $hidden = ['file_id', 'file_type', 'level'];
 
     protected $fillable = [
+        'image',
         'name',
         'price',
         'description',
@@ -28,7 +29,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $appends = ['files'];
+    protected $appends = ['files', 'format_price', 'image_path', 'url_detail'];
 
     public function payment(): BelongsTo
     {
@@ -60,6 +61,21 @@ class Annonce extends Model
         $files = File::where('target_id', $this->id)->where('target_type', Annonce::class)->get();
         return $files;
     }
+
+    function getFormatPriceAttribute()
+    {
+        return toMoney($this->price);
+    }
+
+    function getImagePathAttribute()
+    {
+        return url($this->image);
+    }
+    public function getUrlDetailAttribute()
+    {
+        return route('dashboard.singe-ad', $this->id);
+    }
+
 
     public function user(): BelongsTo
     {

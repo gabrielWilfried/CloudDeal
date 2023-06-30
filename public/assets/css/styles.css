@@ -733,6 +733,7 @@ header-area start
     border-bottom: 1px solid #ddd;
 }
 
+
 .responsive-menu-tigger a {
     display: block;
     overflow: hidden;
@@ -2120,9 +2121,24 @@ margin-left: 15px;
 
 .pagination-wrapper ul li:hover a,
 .pagination-wrapper ul li span {
+    border-color: #ef4836;
+}
+.pagination-wrapper ul li .page-numbers {
+    cursor: pointer;
+}
+.pagination-wrapper ul li .page-numbers:hover {
+    cursor: pointer;
     background: #ef4836;
     color: #fff;
-    border-color: #ef4836;
+}
+.pagination-wrapper ul li .disable {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.pagination-wrapper .active {
+    background: #ef4836;
+    color: #fff;
 }
 
 .product-list .product-text {
