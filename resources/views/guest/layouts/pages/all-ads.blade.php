@@ -78,8 +78,8 @@
             </div>
             <div class="col-lg-9 col-12">
                 <div class="row mb-30">
-                    <div class="col-sm-4 col-12">
-                        <select name="stor" class="select-style" >
+                    <div class="col-sm-4 col-12" style="cursor: pointer">
+                        <select name="stor" class="select-style" style="cursor: pointer">
                             <option disabled selected>Sort by Defalt</option>
                             <template x-for="town in data.towns">
                                 <option x-text="town.name"></option>
@@ -168,7 +168,6 @@
                                                             <li><a href="{{ route('chat.index') }}"><i
                                                                         class="fa fa-send"></i></a></li>
                                 </li>
-
                         </ul>
                     </div>
                 </div>
@@ -196,8 +195,7 @@
         <div class="col-12">
             <div class="pagination-wrapper text-center">
                 <ul class="page-numbers">
-                    <li ><a class="prev page-numbers"
-                            x-on:click="previousPage()" :class="true ? 'disable' : ''" :disabled="page === 1"><i
+                    <li ><a x-on:click="previousPage()" :class="data.annonces.current_page !== 1  ? 'prev page-numbers' : 'disable'"  :disabled="page === 1"><i
                                 class="fa fa-angle-left"></i></a></li>
                     <template
                         x-for="number in Array.from({ length: maxPageNumber - minPageNumber  + 1 }, (_, index) => minPageNumber + index)">
@@ -206,7 +204,7 @@
                                 x-on:click="currentPage(number)" x-text="number"></span></li>
 
                     </template>
-                    <li ><a class="next page-numbers" x-on:click="nextPage()" :class="data.annonces.current_page === totalPages ? 'disable' : ''"
+                    <li ><a :class="data.annonces.current_page !== totalPages  ? 'next page-numbers' : 'disable'"  x-on:click="nextPage()"
                             :disabled="page === totalPages"><i class="fa fa-angle-right"></i></a>
                     </li>
                 </ul>
