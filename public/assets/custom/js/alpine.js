@@ -1,18 +1,35 @@
 window.addEventListener('alpine:init', () => {
 
     Alpine.data('data', () => ({
-        category_id: null,
+        category_id: new URL(window.location.href).searchParams.get('category_id'),
         data: [],
         page: 1,
         totalPages: 2,
         maxPageNumber: 3,
         minPageNumber: 1,
+        displaySearchByCategores: false,
         getAllAds(){
-            fetch('/clouddeal/allAds/ads?page='+ this.page).then(response => response.json())
+            this.displaySearchByCategores = false
+            fetch('/clouddeal/allAds/ads?page='+this.page).then(response => response.json())
             .then(data => {
                 this.data = data;
                 this.totalPages = data.annonces.last_page;
                 console.log(this.data);
+                console.log(this.category_id);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        getAdsByCategory(){
+            this.displaySearchByCategores = true;
+            console.log(this.category_id);
+            fetch('/clouddeal/allAds/search?category_id='+this.category_id).then(response => response.json())
+            .then(data => {
+                this.data = data;
+                this.totalPages = data.annonces.last_page;
+                console.log(this.data);
+                console.log(this.category_id);
             })
             .catch(error => {
                 console.error(error);
@@ -52,4 +69,23 @@ window.addEventListener('alpine:init', () => {
                 console.error(error);
             });
         },
-    }))});
+    }));
+
+    Alpine.data('ads', () => ({
+        ads: [],
+        page: 1,
+        totalPages: 2,
+        loadAds: function loadAds() {
+            fetch('/clouddeal/ads?page=' + this.page).then(response => response.json())
+                .then(data => {
+                    this.ads = (this.ads || []).concat(data.allAds.data);
+                    this.page++;
+                    this.totalPages = data.allAds.last_page;
+                    console.log(this.ads);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+    }))
+});

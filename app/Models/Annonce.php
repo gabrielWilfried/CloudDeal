@@ -29,7 +29,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $appends = ['files', 'format_price', 'image_path', 'url_detail'];
+    protected $appends = ['files', 'format_price', 'image_path', 'url_to_ad_detail'];
 
     public function payment(): BelongsTo
     {
@@ -71,7 +71,7 @@ class Annonce extends Model
     {
         return url($this->image);
     }
-    public function getUrlDetailAttribute()
+    public function getUrlToAdDetailAttribute()
     {
         return route('dashboard.singe-ad', $this->id);
     }

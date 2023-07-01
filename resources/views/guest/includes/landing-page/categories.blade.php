@@ -8,16 +8,18 @@
         </div>
         <div class="col-12">
             <div class="featured-active2 owl-carousel next-prev-style">
-                @foreach ($categories as $category)
+                @forelse ($categories as $category)
                     <div class="featured-wrap">
                         <div class="featured-img">
                             <img src="assets/images/featured/6.jpg" alt="">
                             <div class="featured-content">
-                                <a href="{{ route('dashboard.index') }}">{{ $category->name }}</a>
+                                <a id="category-link" href="{{ route('dashboard.category', ['category_id' => $category->id]) }}" style="text-transform: capitalize">{{ $category->name }}</a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p>No Category</p>
+                @endforelse
             </div>
         </div>
     </div>

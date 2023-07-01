@@ -35,13 +35,8 @@ Route::prefix('clouddeal')->group(function () {
     Route::prefix('allAds')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
         Route::get('/ads', [AnnonceGuestController::class, 'paginatedAds'])->name('dashboard.ads');
+        Route::get('/search', [AnnonceGuestController::class, 'index'])->name('dashboard.category');
         Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
-        Route::get('/ad-list', function () {
-            return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
-        })->name('dashboard.ad-list');
-        Route::prefix('search')->group(function () {
-            Route::get('/{category_id}',[ AnnonceGuestController::class, 'search'])->name('search.category');
-        });
     });
 });
 

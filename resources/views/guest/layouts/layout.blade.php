@@ -72,10 +72,10 @@
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('assets/js/myscript.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/myscript.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-   
-    
+    <script src="{{ asset('assets/custom/js/alpine.js') }}"></script>
+
     @yield('script')
 
 </body>

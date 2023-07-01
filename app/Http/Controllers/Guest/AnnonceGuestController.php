@@ -40,25 +40,22 @@ class AnnonceGuestController extends Controller
         return view('guest.layouts.pages.ad-detail',  compact('name', 'head', 'ad', 'annonces'));
     }
 
-    public function search(Request $request, $category_id, $town_id){
+    public function searchByCategory($category_id){
+        $towns = Town::all();
+        $annonces = Annonce::where('category_id','=',$category_id)->where('is_blocked', false)->orderByDesc('level')->get();
+        return response()->json(['towns' => $towns, 'annonces' => $annonces]);
+    }
+
+    public function search(Request $request, $town_id){
 
         $towns = Town::all();
 
-        if (Route::current()->parameter('category_id')) {
-            $annonces = Annonce::where('category_id','=',$category_id)->where('is_blocked', false)->orderByDesc('level')->get();
-            return response()->json(['towns' => $towns, 'annonces' => $annonces]);
-        }
-
-        // Sort by town
-        // if ($request->has('town')) {
-        //     $annonces->whereHas('town', function($query) use($request) {
-        //         $query->where('name', 'like', '%'.$request->input('town').'%');
-        //     });
-        // }
-
-
-        // $annonces = $annonces->get();
-        // return response()->json($annonces);
+       if ($request->has('category_id')) {
+        $category_id = $request->input('category_id');
+        $annonces = Annonce::where('category_id','=',$category_id)->where('is_blocked', false)->orderByDesc('level')->get();
+        return response()->json(['towns' => $towns, 'annonces' => $annonces]);
+        //dd($annonces);
+    }
 
     }
     public function detailsAnnonce(Annonce  $annonce)
