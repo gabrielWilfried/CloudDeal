@@ -221,5 +221,5 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('assets/js/search.js') }}"></script>
+<script src="{{ asset('assets/custom/js/search.js') }}"></script>
 @endsection
