@@ -69,7 +69,6 @@ Route::prefix('auth')->group(function () {
     })->name("auth.verify-email");
 });
 
-<<<<<<< HEAD
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
@@ -83,8 +82,6 @@ Route::prefix('dashboard')->group(function () {
 Route::get('/contact', function () {
     return view('user.layouts.partials.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
 })->name('contact');
-=======
->>>>>>> main
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 

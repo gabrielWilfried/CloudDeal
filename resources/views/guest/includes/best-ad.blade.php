@@ -25,7 +25,7 @@
                                     <ul>
                                     <li><a href="{{ route('dashboard.singe-ad', ['id' => $ad->id]) }}"><i
                                             class="fa fa-eye"></i></a></li>
-                                     <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
+                                     <li><a href=""><i class="fa fa-send"></i></a></li>
                                     </ul>
                                 </div>
                             </div>

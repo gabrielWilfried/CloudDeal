@@ -33,11 +33,11 @@ class AnnonceGuestController extends Controller
 
     public function showAd($id)
     {
-        $name = "Ad Detail";
-        $head = "Dashboard";
+      
         $annonces = Annonce::orderBy('level', 'desc')->take(4)->get();
         $ad = Annonce::findorfail($id);
-        return view('guest.layouts.pages.ad-detail',  compact('name', 'head', 'ad', 'annonces'));
+        $ad->load('comments', 'category', 'town', 'user');
+        return view('guest.layouts.pages.ad-detail',  compact('ad','annonces'));
     }
 
     public function search(Request $request, $category_id, $town_id){

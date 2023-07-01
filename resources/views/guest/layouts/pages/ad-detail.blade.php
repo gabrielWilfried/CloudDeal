@@ -61,12 +61,13 @@
                         <p>{{ $ad->description }}</p>
                         <ul class="input-style">
 
-                            <li class="contact-seller"><a href="{{ route('chat') }}">Contact seller</a></li>
+                            <li class="contact-seller"><a href="">Contact seller</a></li>
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>
-                            <li><a href="#">Honey,</a></li>
-                            <li><a href="#">Olive</a></li>
+                            @foreach($ad->category as $category)
+                            
+                             @endforeach
                         </ul>
 
                         <ul class="socil-icon">
@@ -78,7 +79,7 @@
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                         
-                        @include('user.includes.commentlist')
+                        @include('guest.includes.commentlist')
                     </div>
                 </div>
             </div>

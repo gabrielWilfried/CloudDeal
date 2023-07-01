@@ -1,10 +1,10 @@
 
 <!-- Vue des commentaires du produit -->
 <h2 class="h2">Commentaires</h2>
-@if($comments->count() > 0)
+@if($ad->comments ->count() > 0)
   
     <ul class="ul">
-        @foreach($comments as $comment)
+        @foreach($ad->comments as $comment)
             <li class="li">
                 <p class="p"><strong>{{ $comment->user->name }}</strong></p>
                 <p class="p">{{ $comment->content }}</p>
