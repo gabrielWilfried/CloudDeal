@@ -42,4 +42,22 @@ $("document").ready(function () {
         });
     });
 });
-
+window.addEventListener('alpine:init', () => {
+    Alpine.data('ads', () => ({
+        ads: [],
+        page: 1,
+        totalPages: 2,
+        loadAds() {
+            fetch('/clouddeal/ads?page=' + this.page).then(response => response.json())
+                .then(data => {
+                    this.ads = (this.ads || []).concat(data.allAds.data);
+                    this.page++;
+                    this.totalPages = data.allAds.last_page;
+                    console.log(this.ads);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+    })
+)})
