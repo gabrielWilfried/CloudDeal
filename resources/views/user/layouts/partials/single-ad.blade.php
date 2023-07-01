@@ -61,7 +61,7 @@
                         <p>{{ $ad->description }}</p>
                         <ul class="input-style">
 
-                            <li><a href="{{ route('chat') }}">Contact seller</a></li>
+                            <li class="contact-seller"><a href="{{ route('chat') }}">Contact seller</a></li>
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>
@@ -77,6 +77,8 @@
                             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
+                        
+                        @include('user.includes.commentlist')
                     </div>
                 </div>
             </div>

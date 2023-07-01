@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-left">
-                    <h2>best Products</h2>
+                    <h2 class=".h2" style="text-align:center;">Best Products</h2>
                 </div>
             </div>
         </div>
@@ -23,8 +23,9 @@
                                 </div>
                                 <div class="col-5 text-right">
                                     <ul>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="cart.html"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('dashboard.singe-ad', ['id' => $ad->id]) }}"><i
+                                            class="fa fa-eye"></i></a></li>
+                                     <li><a href="{{ route('chat') }}"><i class="fa fa-send"></i></a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -1185,6 +1185,9 @@ header-area start
   padding: 100px 0;
 
 }
+.contact-seller {
+    text-align: left;
+}
 
 .section-title {
     text-align: center;
@@ -3250,7 +3253,7 @@ ol {
 }
 
 .input-style {
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
 .quantity input {

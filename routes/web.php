@@ -18,8 +18,9 @@ use App\Http\Controllers\Guest\AboutGuestController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
 
-Route::get('/ad-detail', [AnnonceGuestController::class, 'BestAnnonce'])->name('dashboard.singe-ad');
+
 
 Route::get('/admin', function () {
     return view('admin.authentication.admin-home');
@@ -52,8 +53,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
     })->name('dashboard');
-    Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
-
+   
     Route::get('/ad-list', function () {
         return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
     })->name('dashboard.ad-list');
