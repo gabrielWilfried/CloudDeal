@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
 use App\Models\Discussion;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -56,5 +57,13 @@ class DiscussionController extends Controller
 
     public function delete()
     {
+    }
+
+    public function getMessages(Request $request, $Id)
+    {
+        $discussion = Discussion::findOrFail($Id);
+        $messages = Message::where('discussion_id', $Id)->get();
+        dd($messages);
+        return response()->json($messages);
     }
 }
