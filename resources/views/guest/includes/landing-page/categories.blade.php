@@ -13,7 +13,7 @@
                         <div class="featured-img">
                             <img src="assets/images/featured/6.jpg" alt="">
                             <div class="featured-content">
-                                <a id="category-link" href="{{ route('dashboard.category', ['category_id' => $category->id]) }}" style="text-transform: capitalize">{{ $category->name }}</a>
+                                <a id="category-link" href="{{ route('dashboard.index', ['category_id' => $category->id]) }}" style="text-transform: capitalize">{{ $category->name }}</a>
                             </div>
                         </div>
                     </div>
