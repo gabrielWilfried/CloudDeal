@@ -88,5 +88,10 @@ class AnnonceController extends Controller
         return response()->noContent();
     }
 
-   
+    public function sortByName(Request $request)
+    {
+        $name = $request->input('name');
+        $annonces = Annonce::where('name' , 'like', "%$name%")->get();
+        return response()->json($annonces);
+    }
 }

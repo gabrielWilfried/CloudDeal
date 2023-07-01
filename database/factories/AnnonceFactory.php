@@ -21,6 +21,7 @@ class AnnonceFactory extends Factory
     public function definition(): array
     {
         return [
+
             'name' => $this->faker->colorName,
             'image' => $this->faker->text,
             'price' => $this->faker->randomFloat(),

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+
 use App\Models\Category;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
             $allCategories = Category::all();
             view()->share('allCategories', $allCategories);
         }
+
     }
 }

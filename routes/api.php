@@ -9,6 +9,7 @@ use App\Http\Controllers\Authenticate\RegionController;
 use App\Http\Controllers\Authenticate\VilleController;
 use App\Http\Controllers\Guest\RegionGuestController;
 use App\Http\Controllers\Guest\VilleGuestController;
+use App\Http\Controllers\Guest\ContactsGuestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceController::class, 'index']);
+        Route::get('/', [AnnonceController::class, 'sortByName']);
         Route::post('/', [AnnonceController::class, 'store']);
         Route::get('/{annonce}', [AnnonceController::class, 'view']);
         Route::put('/{annonce}', [AnnonceController::class, 'update']);
@@ -54,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::prefix('/discussion')->group(function () {
         Route::post('/{annonce}', [DiscussionController::class, 'store']);
+        Route::get('/{id}', [DiscussionController::class, 'ListDiscussion']);
     });
 });
 
@@ -62,7 +65,13 @@ Route::prefix('guest')->group(function () {
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'listAnnonces']);
         Route::get('/{annonce}', [AnnonceGuestController::class, 'detailsAnnonce']);
+        Route::get('/', [AnnonceGuestController::class, 'search']);
     });
     Route::get('region/', [RegionGuestController::class, 'listRegions']);
     Route::get('town/', [VilleGuestController::class, 'listVilles']);
+
+    Route::post('/contact', [ContactsController::class, 'store'])->name('contact.store');
+
 });
+
+
