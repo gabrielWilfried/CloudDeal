@@ -40,25 +40,40 @@ class AnnonceGuestController extends Controller
         return view('guest.layouts.pages.ad-detail',  compact('name', 'head', 'ad', 'annonces'));
     }
 
-    public function search(Request $request, $category_id, $town_id){
+    public function search(Request $request){
 
-        $towns = Town::all();
+        $annonces = Annonce::where('is_blocked', false)->with(['town', 'category'])->orderByDesc('level')->paginate(9);//
 
-        if (Route::current()->parameter('category_id')) {
-            $annonces = Annonce::where('category_id','=',$category_id)->where('is_blocked', false)->orderByDesc('level')->get();
-            return response()->json(['towns' => $towns, 'annonces' => $annonces]);
+        //Sort by name
+        if ($request->has('name')) {
+            $annonces->where('name', 'like', '%'.$request->input('name').'%');
         }
 
-        // Sort by town
-        // if ($request->has('town')) {
-        //     $annonces->whereHas('town', function($query) use($request) {
-        //         $query->where('name', 'like', '%'.$request->input('town').'%');
-        //     });
-        // }
+
+        //Sort by categories
+        if ($request->has('category ')) {
+            $annonces->whereHas('category', function($query) use($request) {
+                $query->where('name', 'like', '%'.$request->input('category').'%');
+            });
+        }
+
+        //Sort by town
+        if ($request->has('town')) {
+            $annonces->whereHas('town', function($query) use($request) {
+                $query->where('name', 'like', '%'.$request->input('town').'%');
+            });
+        }
+
+        //Sort by price in a given interval
+        if ($request()->has('price_min') && $request()->has('price_max')) {
+            $price_min = (int) $request('price_min');
+            $price_max = (int) $request('price_max');
+            $annonces->whereBetween('price', [$price_min, $price_max]);
+        }
 
 
-        // $annonces = $annonces->get();
-        // return response()->json($annonces);
+        $annonces = $annonces->get();
+        return response()->json($annonces);
 
     }
     public function detailsAnnonce(Annonce  $annonce)

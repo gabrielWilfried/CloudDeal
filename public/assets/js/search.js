@@ -1,6 +1,13 @@
 window.addEventListener('alpine:init', () => {
 
-    Alpine.data('data', () => ({
+    Alpine.data('data', (maxPrice) => ({
+        searchText: '',
+        priceFilter: '',
+        minPrice: 0,
+        maxPrice: maxPrice,
+        sortBy: '',
+        currentCategories: [],
+
         category_id: null,
         data: [],
         page: 1,
@@ -12,6 +19,17 @@ window.addEventListener('alpine:init', () => {
             .then(data => {
                 this.data = data;
                 this.totalPages = data.annonces.last_page;
+                console.log(this.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        },
+        // filter ads in all ads
+        filter(){
+            fetch('/clouddeal/allAds/search/sort').then(response => response.json())
+            .then(data => {
+                
                 console.log(this.data);
             })
             .catch(error => {
