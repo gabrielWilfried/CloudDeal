@@ -12,20 +12,19 @@ class AnnonceGuestController extends Controller
 {
     public function paginatedAds(Request $request)
     {
-        $name= "Dashboard";
-        $head = "Dashboard";
+        $search = '%' . $request->get('search', '') . '%';
         $limit = $request->get('limit', 9);
-        $annonces = Annonce::where('is_blocked', false)->orderByDesc('level')->paginate( $limit);
+        $annonces = Annonce::where('is_blocked', false)->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
         $towns = Town::all();
         return response()->json(['towns' => $towns, 'annonces' => $annonces]);
     }
 
     public function index(Request $request)
     {
-        $name= "Dashboard";
+        $name = "Dashboard";
         $head = "Dashboard";
         $limit = $request->get('limit', 9);
-        $annonces = Annonce::where('is_blocked', false)->orderByDesc('level')->paginate( $limit);
+        $annonces = Annonce::where('is_blocked', false)->orderByDesc('level')->paginate($limit);
         $towns = Town::all();
         return view('guest.layouts.pages.all-ads', compact('annonces', 'towns'));
     }
@@ -40,27 +39,28 @@ class AnnonceGuestController extends Controller
         return view('guest.layouts.pages.ad-detail',  compact('name', 'head', 'ad', 'annonces'));
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
-        $annonces = Annonce::where('is_blocked', false)->with(['town', 'category'])->orderByDesc('level')->paginate(9);//
+        $annonces = Annonce::where('is_blocked', false)->with(['town', 'category'])->orderByDesc('level')->paginate(9); //
 
         //Sort by name
         if ($request->has('name')) {
-            $annonces->where('name', 'like', '%'.$request->input('name').'%');
+            $annonces->where('name', 'like', '%' . $request->input('name') . '%');
         }
 
 
         //Sort by categories
         if ($request->has('category ')) {
-            $annonces->whereHas('category', function($query) use($request) {
-                $query->where('name', 'like', '%'.$request->input('category').'%');
+            $annonces->whereHas('category', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->input('category') . '%');
             });
         }
 
         //Sort by town
         if ($request->has('town')) {
-            $annonces->whereHas('town', function($query) use($request) {
-                $query->where('name', 'like', '%'.$request->input('town').'%');
+            $annonces->whereHas('town', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->input('town') . '%');
             });
         }
 
@@ -74,12 +74,10 @@ class AnnonceGuestController extends Controller
 
         $annonces = $annonces->get();
         return response()->json($annonces);
-
     }
     public function detailsAnnonce(Annonce  $annonce)
     {
         $annonce->load('comments', 'category', 'town');
         return response()->json($annonce);
     }
-
 }

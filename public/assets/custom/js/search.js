@@ -1,29 +1,38 @@
 window.addEventListener('alpine:init', () => {
 
-    Alpine.data('data', (maxPrice) => ({
+    Alpine.data('data', () => ({
         searchText: '',
         priceFilter: '',
         minPrice: 0,
-        maxPrice: maxPrice,
+        maxPrice: 0,
         sortBy: '',
         currentCategories: [],
-
+        isLoading: false,
         category_id: null,
         data: [],
         page: 1,
         totalPages: 2,
         maxPageNumber: 3,
         minPageNumber: 1,
-        getAllAds(){
-            fetch('/clouddeal/allAds/ads?page='+ this.page).then(response => response.json())
-            .then(data => {
-                this.data = data;
-                this.totalPages = data.annonces.last_page;
-                console.log(this.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        search() {
+            this.getAllAds();
+        },
+        filterPrice() {
+            console.log(this.minPrice);
+            console.log(this.maxPrice);
+        },
+        getAllAds() {
+            this.isLoading = true;
+            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText).then(response => response.json())
+                .then(data => {
+                    this.data = data;
+                    this.totalPages = data.annonces.last_page;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.isLoading = false;
+                });
         },
         nextPage() {
             if (this.page < this.totalPages) {
