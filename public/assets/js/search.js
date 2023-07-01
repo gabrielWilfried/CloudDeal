@@ -1,6 +1,13 @@
 window.addEventListener('alpine:init', () => {
 
-    Alpine.data('data', () => ({
+    Alpine.data('data', (maxPrice) => ({
+        searchText: '',
+        priceFilter: '',
+        minPrice: 0,
+        maxPrice: maxPrice,
+        sortBy: '',
+        currentCategories: [],
+
         category_id: null,
         data: [],
         page: 1,

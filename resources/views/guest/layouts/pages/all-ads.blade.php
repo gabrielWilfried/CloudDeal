@@ -11,8 +11,8 @@
                     <div class="widget widget_search">
                         <h4 class="widget-title">Search Product</h4>
                         <form action="{{route('dashboard.index') }}" class="searchform" method="get">
-                            <input type="text" name="search_text" placeholder="Search Product...">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <input type="text" id="search" name="search_text" placeholder="Search Product...">
+                            <button type="submit" x-on:click="filter()"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                     <div class="product-filter">
@@ -27,7 +27,7 @@
                                         </p>
                                     </div>
                                     <div class="col-5 text-right">
-                                        {{-- <button type="submit" x-onclick>filter</button> --}}
+                                        <button type="submit" x-onclick>filter</button>
                                     </div>
                                 </div>
                             </form>
