@@ -25,17 +25,6 @@ window.addEventListener('alpine:init', () => {
                 console.error(error);
             });
         },
-        // filter ads in all ads
-        filter(){
-            fetch('/clouddeal/allAds/search/sort').then(response => response.json())
-            .then(data => {
-                
-                console.log(this.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        },
         nextPage() {
             if (this.page < this.totalPages) {
                 this.page++;
