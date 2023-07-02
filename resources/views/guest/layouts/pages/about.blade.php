@@ -9,70 +9,54 @@
                     <div class="about-wrap text-center ">
 
                         <div class="container  p-5 m-4 text-center"
-                            style="box-shadow: 0.5em 0em 0.5em 0.5em ; border-radius: 10px;">
+                            style="font-size: 16px; box-shadow: 0.01em 0.5em 0.5em 0.01em ; border-radius: 10px;">
                             <h3>CLOUDEAL DESCRIPTION! </h3>
-                            <p class="text-justify" style=" font-size: 14px">
+                            <p class="text-justify" style=" font-size: 16px">
                                 <span style="font-weight: bolder; font-size: 25px">B</span>ienvenue sur
-                                <span style="font-weight: bolder; font-size: 25px">CloudDeal</span> , la
-                                plateforme en ligne qui facilite l'échange d'articles et de
-                                produits
-                                entre
-                                utilisateurs passionnés comme vous. Notre mission est
-                                de créer une communauté dynamique où chacun peut partager, échanger et découvrir des trésors
-                                inattendus.Chez CloudDeal, nous croyons fermement à l'idée que les biens que vous possédez
-                                peuvent trouver
-                                une nouvelle vie
-                                entre les mains de quelqu'un d'autre. Que vous souhaitiez échanger des vêtements, des
-                                appareils
-                                électroniques, ou tout autre article, notre plateforme intuitive vous permet d'être connecté
-                                avec d'autres membres partageant les mêmes intérêts
-
+                                <span style="font-weight: bolder; font-size: 25px">CloudDeal</span> , la plateforme en ligne
+                                d'échange d'articles entre passionnés. Notre mission :
+                                créer une communauté dynamique où chacun peut partager, échanger et découvrir des trésors
+                                inattendus. Chez CloudDeal, vos biens trouvent une nouvelle vie entre les mains d'autres
+                                membres partageant vos intérêts. Notre plateforme sécurisée et intuitive facilite les
+                                échanges, avec un système de vérification des utilisateurs et de validation des annonces
+                                pour garantir la confiance. Rejoignez-nous dès maintenant pour une expérience d'échange
+                                simple et agréable, où vous pouvez donner, recevoir et faire des échanges passionnants.
                             </p>
 
 
                             <p class="text-center">
-                                Nous avons conçu CloudDeal pour rendre l'échange simple, sécurisé et agréable. Notre système
-                                de
-                                vérification des utilisateurs et notre processus de validation des annonces assurent une
-                                expérience de confiance. Vous pouvez naviguer à travers les annonces, interagir avec
-                                d'autres
-                                membres, et conclure des échanges en toute sérénité. Chez CloudDeal, votre satisfaction est
-                                notre priorité. Notre équipe de support dévouée est là pour répondre à vos questions,
-                                résoudre
-                                les éventuels problèmes et vous assurer une expérience fluide et agréable tout au long de
-                                votre
-                                parcours sur notre plateforme.
-                                <br>
-                                Nous sommes ravis de vous accueillir dans notre communauté d'échangeurs enthousiastes.
-                                Rejoignez
-                                CloudDeal dès maintenant et découvrez un monde d'opportunités où vous pouvez donner,
-                                recevoir et
-                                faire des échanges passionnants.
-                                <br> <span style="font-weight: bolder; font-size: 25px; font-style: italic;">Ensemble, nous
-                                    pouvons
-                                    donner une nouvelle vie aux objets</span>
+                                <span style="font-weight: bolder; font-size: 25px">D</span>onnez une nouvelle
+                                vie aux objets sur <span style="font-weight: bolder; font-size: 25px">CloudDeal</span> Notre
+                                équipe de support dévouée est là
+                                pour répondre à vos questions et résoudre les problèmes, afin de vous assurer une expérience
+                                fluide et agréable. Rejoignez notre communauté d'échangeurs enthousiastes et découvrez un
+                                monde d'opportunités. Ensemble, donnons une nouvelle vie aux objets et embrassons une
+                                culture d'échange dynamique.
                             </p>
-                        </div>
-                        <div class="container  p-5 m-4" style="box-shadow: 0.5em 0em 0.5em 0.5em; border-radius: 10px;">
 
-                            <h3>OUR TEAM </h3>
+                            <h3 class="p-2 ">OUR TEAM </h3>
 
                             <div class="row">
                                 @for ($i = 0; $i < 11; $i++)
-                                    @if ($i % 4 === 0 && $i != 0)
+                                    @if ($i % 3 === 0 && $i != 0)
                             </div>
                             <div class="row">
                                 @endif
-                                <div class="col-md-3 p-2">
+                                <div class="col-md-4 p-2">
                                     <div class="card border-0 p-1">
-                                        <img src="{{ $images[$i] }}" class="card-img-top rounded-circle p-1 bg-secondary"
+                                        <img src="{{ $images[$i] }}" class="card-img-top rounded-circle p-1 bg-danger"
                                             alt="...">
                                         <div class="card-body text-left">
-                                            <h6>{{ $noms[$i] }}</h6>
-                                            <a class="card-text  d-block "
-                                                href="mailto:{{ $emails[$i] }}">{{ $emails[$i] }}</a>
-                                            <a class="card-text  d-block "
-                                                href="https:wa.me/237{{ $telephones[$i] }}">{{ $telephones[$i] }}</p>
+                                            <h6><span><i class="fa fa-user m-2 rounded"
+                                                        style="color:#ff0000;"></i></span>{{ $noms[$i] }}
+                                            </h6>
+                                            <a class="card-text  d-block " href="mailto:{{ $emails[$i] }}"><i
+                                                    class="fa fa-google m-2  rounded"
+                                                    style="color: #ff0000;"></i>{{ $emails[$i] }}</a>
+                                            <a class="card-text  d-block " href="https:wa.me/237{{ $telephones[$i] }}"><i <i
+                                                    class="fa fa-phone rounded m-2" style="color: #ff0000;"></i>
+
+                                                {{ $telephones[$i] }}</p>
                                         </div>
                                     </div>
                                 </div>
