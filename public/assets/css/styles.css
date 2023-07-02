@@ -1994,33 +1994,23 @@ margin-left: 15px;
     background: #333;
 }
 
-.widget_categories ul li {
-    margin-bottom: 15px;
+.widget_categories ul li label {
+    text-transform: capitalize;
+    font-size: 15px;
+    margin-right: 50px;
+    font-weight: 500;
+    transition: 0.5s all ease;
+    cursor: pointer;
 }
-
-.widget_categories ul li:last-child {
-    margin-bottom: 0;
-}
-
-.widget_categories ul li a {
-    position: relative;
-    color: #333;
-    display: block;
-}
-
-.widget_categories ul li a:hover {
-    color: #ef4836;
-}
-
-.widget_categories ul li a:before {
+.widget_categories ul li input {
     position: absolute;
     right: 0;
-    top: 0px;
-    font-family: fontawesome;
-    content: "\f178";
+    cursor: pointer;
 }
 
-.widget_categories ul li:hover a:before {
+.widget_categories ul li label:hover{
+    position: relative;
+    color: #ef4836;
     right: 5px;
 }
 
@@ -2121,9 +2111,24 @@ margin-left: 15px;
 
 .pagination-wrapper ul li:hover a,
 .pagination-wrapper ul li span {
+    border-color: #ef4836;
+}
+.pagination-wrapper ul li .page-numbers {
+    cursor: pointer;
+}
+.pagination-wrapper ul li .page-numbers:hover {
+    cursor: pointer;
     background: #ef4836;
     color: #fff;
-    border-color: #ef4836;
+}
+.pagination-wrapper ul li .disable {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.pagination-wrapper .active {
+    background: #ef4836;
+    color: #fff;
 }
 
 .product-list .product-text {

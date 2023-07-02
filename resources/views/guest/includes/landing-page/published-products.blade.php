@@ -7,22 +7,7 @@
             </div>
         </div>
     </div>
-    <ul class="row" x-data="{
-        ads: [],
-        page: 1,
-        totalPages: 2,
-        loadAds: function loadAds() {
-            fetch('/clouddeal/ads?page=' + this.page).then(response => response.json())
-                .then(data => {
-                    this.ads = (this.ads || []).concat(data.allAds.data);
-                    this.page++;
-                    this.totalPages = data.allAds.last_page;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
-    }" x-init="loadAds">
+    <ul class="row" x-data="ads" x-init="loadAds">
         <template x-if="ads">
             <template x-for="ad in ads">
                 <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
@@ -33,7 +18,7 @@
                             <div class="product-icon flex-style">
                                 <ul>
                                     <li>
-                                    <li><a href="@{{ route('dashboard.singe-ad', ['id' => ad.id]) }}"><i class="fa fa-eye"></i></a></li>
+                                    <li><a :href="ad.url_detail"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
                                 </ul>
                             </div>
@@ -47,11 +32,11 @@
                 </li>
             </template>
         </template>
-        <li x-show="page <= totalPages" class="col-12 text-center">
+        <li x-show="page <= totalPages" class="col-12 text-center" style="cursor: pointer">
             <a class="loadmore-btn" x-on:click="loadAds">Load More</a>
         </li>
-        <li x-show="page > totalPages" class="col-12 text-center">
-            <a class="loadmore-btn" href="{{ route('dashboard.ad-list') }}">Go to product pages</a>
+        <li x-show="page > totalPages" class="col-12 text-center" style="cursor: pointer">
+            <a class="loadmore-btn" href="{{ route('dashboard.index') }}">Go to product pages</a>
         </li>
     </ul>
 </div>
