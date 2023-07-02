@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Authenticate\AnnonceController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Guest\ContactController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
+use Faker\Guesser\Name;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +50,8 @@ Route::prefix('clouddeal')->group(function () {
 
 Route::get('/admin', function () {
     return view('admin.authentication.admin-home');
-});
+})->name('admin.home');
+Route::get('/admin/myads', [AnnonceController::class, 'index'])->name('admin.index');
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', function () {

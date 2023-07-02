@@ -1,0 +1,18 @@
+.box .box-header button{
+    position: absolute; 
+    right:0; 
+    margin-right: 20px
+}
+th td{
+    margin: 0;
+}
+.box-body tr th:last-child, .box-body tr td:last-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+}
+.box-body tr td button{
+    margin: 2px 2px;
+}

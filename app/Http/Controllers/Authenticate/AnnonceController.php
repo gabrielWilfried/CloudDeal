@@ -13,10 +13,11 @@ class AnnonceController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::user();
-        $limit = $request->get('limit', 15);
-        $annonces = Annonce::where('user_id', $user->id)->paginate($limit);
-        return response()->json($annonces);
+        ///$user = Auth::user();
+        //$limit = $request->get('limit', 15);
+        //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
+        $annonces = Annonce::where('is_blocked', false)->get();
+        return view('admin.authentication.layouts.pages.ads.show', compact('annonces'));
     }
 
     public function store(Request $request)

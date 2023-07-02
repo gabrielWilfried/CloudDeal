@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/components/c3/c3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/skin_color.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     @yield('style')
 </head>
 
