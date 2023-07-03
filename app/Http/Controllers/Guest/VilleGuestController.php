@@ -11,6 +11,6 @@ class VilleGuestController extends Controller
     public function listVilles()
     {
         $towns = Town::all();
-        return response()->json($towns);
+        return view('user.layouts.partials.dashboard', compact('towns'));
     }
 }

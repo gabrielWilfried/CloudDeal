@@ -1,5 +1,9 @@
 import './bootstrap';
-import axios from 'axios';
-import 'alpinejs/dist/cdn.js';
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 
 

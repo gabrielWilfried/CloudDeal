@@ -13,7 +13,7 @@
                         <div class="featured-img">
                             <img src="assets/images/featured/6.jpg" alt="">
                             <div class="featured-content">
-                                <a href="shop.html">{{ $category->name }}</a>
+                                <a href="{{ route('dashboard.index') }}">{{ $category->name }}</a>
                             </div>
                         </div>
                     </div>

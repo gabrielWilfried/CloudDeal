@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceController::class, 'index']);
+        Route::get('/', [AnnonceController::class, 'sortByName']);
         Route::post('/', [AnnonceController::class, 'store']);
         Route::get('/{annonce}', [AnnonceController::class, 'view']);
         Route::put('/{annonce}', [AnnonceController::class, 'update']);
@@ -64,7 +65,7 @@ Route::prefix('guest')->group(function () {
     Route::prefix('annonce')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'listAnnonces']);
         Route::get('/{annonce}', [AnnonceGuestController::class, 'detailsAnnonce']);
-        Route::post('signals/{id}', [SignalGuestController::class, 'signaleAnnonce']);
+        Route::get('/', [AnnonceGuestController::class, 'search']);
     });
     Route::get('region/', [RegionGuestController::class, 'listRegions']);
     Route::get('town/', [VilleGuestController::class, 'listVilles']);
