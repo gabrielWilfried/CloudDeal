@@ -47,11 +47,22 @@ Route::prefix('clouddeal')->group(function () {
         });
     });
 });
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('admin.authentication.admin-home');
+    })->name('home');
+    Route::prefix('myads')->name('ads.')->group(function () {
+        Route::get('/', [AnnonceController::class, 'index'])->name('index');
+        Route::get('/create', [AnnonceController::class, 'create'])->name('create');
+        Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
+        Route::post('/store', [AnnonceController::class, 'store'])->name('store');
+        Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
+        Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');  
+        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost'); 
+    });
+    
+});
 
-Route::get('/admin', function () {
-    return view('admin.authentication.admin-home');
-})->name('admin.home');
-Route::get('/admin/myads', [AnnonceController::class, 'index'])->name('admin.index');
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', function () {

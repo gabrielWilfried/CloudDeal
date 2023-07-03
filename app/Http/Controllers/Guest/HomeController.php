@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $boost = Boost::orderBy('score', 'DESC')->take(4)->pluck('annonce_id');
+        $boost = Boost::orderBy('score', 'DESC')->take(5)->pluck('annonce_id');
         $ads = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
         $categories = Category::inRandomOrder()->take(5)->get();
         return view('guest.home', compact('ads', 'categories'));

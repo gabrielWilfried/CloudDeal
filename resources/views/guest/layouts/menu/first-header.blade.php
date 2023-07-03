@@ -41,6 +41,18 @@
                         <li><a href="">Logout</a></li>
                     </ul>
                 </li>
+                <li>
+                    <form>
+                        <select id="lang-switch">
+                            <option value="en">
+                                <span class="fi fi-us"></span>
+                            </option>
+                            <option value="ko" selected>
+                                <span class="fi fi-fr"></span>
+                            </option>
+                        </select>
+                    </form>
+                </li>
                 <li><a href="{{ route('auth.login') }}"> Login/Register </a></li>
                 <div class="publish">
                     <a id="publish-button" href="">Publish</a>

@@ -7,6 +7,7 @@ use App\Models\Annonce;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class AnnonceController extends Controller
@@ -20,59 +21,58 @@ class AnnonceController extends Controller
         return view('admin.authentication.layouts.pages.ads.show', compact('annonces'));
     }
 
+    public function create(){
+        return view('admin.authentication.layouts.pages.ads.create');
+    }
+
+    public function edit(Annonce $annonce){
+
+        return view('admin.authentication.layouts.pages.ads.edit', compact('annonce'));
+    }
+
+    public function boost(Annonce $annonce){
+
+    }
+
     public function store(Request $request)
     {
-        $validateAnnonce = Validator::make(
-            $request->all(),
-            [
-                'name' => 'required|string|max:255',
-                'price' => 'required|numeric|min:0',
-                'description' => 'required',
-                'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
-                'category_id' => 'required|exists:categories,id',
-            ]
-        );
 
-        if ($validateAnnonce->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validateAnnonce->errors()
-            ], 400);
-        }
+            $request->validate(
+                [
+                    'name' => 'required|string|max:255',
+                    'price' => 'required|numeric|min:0',
+                    'description' => 'required',
+                    'town_id' => 'required|exists:towns,id',
+                    'user_id' => 'required|exists:users,id',
+                    'category_id' => 'required|exists:categories,id',
+                    'image' => 'required'
+                ]
+            );
 
-        $annonce = Annonce::create($request->only('name', 'price', 'description', 'town_id', 'user_id', 'category_id'));
+        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image', ));
+        //dd($annonce);
 
-        return response()->json($annonce, 201);
+        return Redirect::route('admin.ads.index');
     }
 
     public function update(Request $request, Annonce $annonce)
     {
-        if ($annonce->user_id != auth()->id()) abort(403);
-        $validateAnnonce = Validator::make(
-            $request->all(),
-            [
-                'name' => 'required|string|max:255',
-                'price' => 'required|numeric|min:0',
-                'description' => 'required',
-                'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
-                'category_id' => 'required|exists:categories,id',
-            ]
-        );
-
-        if ($validateAnnonce->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validateAnnonce->errors()
-            ], 400);
-        }
-
+        //if ($annonce->user_id != auth()->id()) abort(403);
+            $request->validate(
+                [
+                    'name' => 'required|string|max:255',
+                    'price' => 'required|numeric|min:0',
+                    'description' => 'required',
+                    'town_id' => 'required|exists:towns,id',
+                    'user_id' => 'required|exists:users,id',
+                    'category_id' => 'required|exists:categories,id',
+                ]
+            );
+            
+       
         $annonce->update($request->except('level', 'is_blocked'));
 
-        return response()->json($annonce);
+        return Redirect::route('admin.ads.index');
     }
 
     public function view(Annonce $annonce)
@@ -84,9 +84,9 @@ class AnnonceController extends Controller
 
     public function delete(Annonce $annonce)
     {
-        if ($annonce->user_id != auth()->id()) abort(403);
+        //if ($annonce->user_id != auth()->id()) abort(403);
         $annonce->delete();
-        return response()->noContent();
+        return Redirect::route('admin.ads.index');
     }
 
     public function sortByName(Request $request)

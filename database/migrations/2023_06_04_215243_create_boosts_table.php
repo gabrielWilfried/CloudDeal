@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('end_at');
             $table->boolean('is_finish')->default(false);
             $table->unsignedBigInteger('score')->comment('the number of level to add to annonce');
-            $table->foreignId('annonce_id')->constrained();
+            $table->foreignId('annonce_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
