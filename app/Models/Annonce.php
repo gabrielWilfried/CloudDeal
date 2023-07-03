@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Annonce extends Model
@@ -31,9 +32,9 @@ class Annonce extends Model
 
     protected $appends = ['files', 'format_price', 'image_path', 'url_detail'];
 
-    public function payment(): BelongsTo
+    public function payment(): HasOne
     {
-        return $this->belongsTo(Payment::class);
+        return $this->hasOne(Payment::class, 'annonce_id');
     }
 
     public function signals(): HasMany
@@ -48,7 +49,7 @@ class Annonce extends Model
 
     public function boosts(): HasMany
     {
-        return $this->hasMany(Boost::class);
+        return $this->hasMany(Boost::class, 'annonce_id');
     }
 
     public function discussions(): HasMany

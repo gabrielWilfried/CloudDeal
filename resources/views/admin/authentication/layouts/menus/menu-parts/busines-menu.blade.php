@@ -5,3 +5,9 @@
         <span>Mes annonces</span>
     </a>
 </li>
+<li>
+    <a href="{{ route('payment.index') }}">
+        <i class="ti-power-off"></i>
+        <span>Payments</span>
+    </a>
+</li>

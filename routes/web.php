@@ -9,6 +9,7 @@ use App\Http\Controllers\Guest\ContactController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
+use App\Http\Controllers\Authenticate\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::prefix('clouddeal')->group(function () {
             return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
         })->name('dashboard.ad-list');
         Route::prefix('search')->group(function () {
-             Route::get('/',[ AnnonceGuestController::class, 'search']);//->name('search.category')
+            Route::get('/', [AnnonceGuestController::class, 'search']); //->name('search.category')
         });
     });
 });
@@ -91,3 +92,10 @@ Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->
 //Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
 Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
+
+
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+});

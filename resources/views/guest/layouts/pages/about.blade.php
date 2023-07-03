@@ -9,7 +9,7 @@
                     <div class="about-wrap text-center ">
 
                         <div class="container  p-5 m-4 text-center"
-                            style="font-size: 16px; box-shadow: 0.01em 0.5em 0.5em 0.01em ; border-radius: 10px;">
+                            style="font-size: 16px; box-shadow: 0em 0em 0em 0em ; border-radius: 10px;">
                             <h3>CLOUDEAL DESCRIPTION! </h3>
                             <p class="text-justify" style=" font-size: 16px">
                                 <span style="font-weight: bolder; font-size: 25px">B</span>ienvenue sur
@@ -44,19 +44,28 @@
                                 @endif
                                 <div class="col-md-4 p-2">
                                     <div class="card border-0 p-1">
-                                        <img src="{{ $images[$i] }}" class="card-img-top rounded-circle p-1 bg-danger"
-                                            alt="...">
-                                        <div class="card-body text-left">
+
+                                        <img src="{{ $images[$i] }}"
+                                            class="card-img-top object-fit-cover rounded-circle p-1 bg-danger"
+                                            alt="">{{ $noms[$i] }}
+                                        <div class="card-body text-left text-center">
                                             <h6><span><i class="fa fa-user m-2 rounded"
                                                         style="color:#ff0000;"></i></span>{{ $noms[$i] }}
                                             </h6>
-                                            <a class="card-text  d-block " href="mailto:{{ $emails[$i] }}"><i
-                                                    class="fa fa-google m-2  rounded"
-                                                    style="color: #ff0000;"></i>{{ $emails[$i] }}</a>
-                                            <a class="card-text  d-block " href="https:wa.me/237{{ $telephones[$i] }}"><i <i
+
+                                            <a class="card-text d-block" href="mailto:{{ $emails[$i] }}">
+                                                <span>
+                                                    <i class="fa fa-google m-2  rounded" style="color: #ff0000;">
+                                                    </i>
+                                                </span>
+                                                {{ $emails[$i] }}
+                                            </a>
+
+
+                                            <a class="card-text  d-block " href="https:wa.me/237{{ $telephones[$i] }}"><i
                                                     class="fa fa-phone rounded m-2" style="color: #ff0000;"></i>
 
-                                                {{ $telephones[$i] }}</p>
+                                                {{ $telephones[$i] }}</a>
                                         </div>
                                     </div>
                                 </div>

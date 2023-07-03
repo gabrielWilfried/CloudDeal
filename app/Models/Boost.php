@@ -22,6 +22,6 @@ class Boost extends Model
 
     public function annonce(): BelongsTo
     {
-        return $this->belongsTo(Annonce::class);
+        return $this->belongsTo(Annonce::class, 'annonce_id');
     }
 }
