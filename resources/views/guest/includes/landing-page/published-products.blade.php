@@ -17,7 +17,6 @@
                             <img src="assets/images/product/15.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li>
                                     <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
                                 </ul>
