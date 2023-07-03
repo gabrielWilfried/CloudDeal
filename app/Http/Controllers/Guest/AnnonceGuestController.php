@@ -16,6 +16,5 @@ class AnnonceGuestController extends Controller
         $annonces = Annonce::orderBy('level', 'desc')->take(4)->get();
         $ad = Annonce::findorfail($id);
         return view('guest.layouts.pages.ad-detail',  compact('name', 'head', 'ad', 'annonces'));
-
     }
 }

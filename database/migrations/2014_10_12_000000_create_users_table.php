@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->enum('sex', enum_to_string_array(SexeEnum::cases()))->nullable();
             $table->boolean('is_admin')->default(false);
+            $table->boolean('is_online')->default(false);
             $table->json('location')->nullable();
             $table->softDeletes();
             $table->rememberToken();

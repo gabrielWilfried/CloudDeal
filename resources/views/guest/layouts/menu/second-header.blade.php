@@ -66,9 +66,11 @@
                     <li class="sidemenu-items">
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Categories</a>
                         <ul aria-expanded="false">
-                            @foreach ($allCategories as $all)
+                            @forelse ($allCategories as $all)
                                 <li><a href="{{ route('dashboard') }}">{{ $all->name }}</a></li>
-                            @endforeach
+                            @empty
+                                <p>No categorie</p>
+                            @endforelse
                         </ul>
                     </li>
                     <li><a href="{{ route('about') }}">About</a></li>

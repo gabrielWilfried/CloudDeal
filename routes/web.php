@@ -8,6 +8,7 @@ use App\Http\Controllers\Guest\ContactController;
 
 
 use App\Http\Controllers\Guest\AboutGuestController;
+use App\Http\Controllers\Authenticate\DiscussionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,17 +66,6 @@ Route::prefix('auth')->group(function () {
     })->name("auth.verify-email");
 });
 
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
-    })->name('dashboard');
-    Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
-
-    Route::get('/ad-list', function () {
-        return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
-    })->name('dashboard.ad-list');
-});
-
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 
@@ -83,8 +73,31 @@ Route::get('/payment', function () {
     return view('guest.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
 })->name('payment');
 
-Route::get('/chat', function () {
-    return view('guest.layouts.partials.chat',  ['name' => 'Chat',  'head' => 'Chat']);
-})->name('chat');
+
+Route::get('/wishlist', function () {
+    return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
+})->name('wishlist');
+
+Route::get('/blog', function () {
+    return view('user.layouts.partials.blog.blog',  ['name' => 'Blog',  'head' => 'Blog']);
+})->name('blog');
+
+Route::get('/blog-details', function () {
+    return view('user.layouts.partials.blog.blog-details',  ['name' => 'Blog details',  'head' => 'Blog details']);
+})->name('blog-details');
+
+Route::name('chat.')->prefix('chat')->group(function () {
+    Route::get('/', [DiscussionController::class, 'index'])->name('index');
+    Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
+});
 
 
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
+Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
+//Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
+//Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
+
+Route::post('/message', [MessageController::class, 'store'])->name('messages.store');

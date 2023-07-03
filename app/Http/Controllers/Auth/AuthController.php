@@ -76,6 +76,7 @@ class AuthController extends Controller
             }
 
             $user = User::where('email', $request->email)->first();
+            $user->update(['is_online' => true]);
 
             return response()->json([
                 'user_id' => $user->id,
@@ -88,4 +89,19 @@ class AuthController extends Controller
             ], 500);
         }
     }
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+
+        // Mise à jour de l'attribut is_online
+        $user->update(['is_online' => false]);
+
+        $user->tokens()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Successfully logged out.',
+        ], 200);
+    }
+
 }

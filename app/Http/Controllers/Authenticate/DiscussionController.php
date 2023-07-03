@@ -10,12 +10,22 @@ use Illuminate\Support\Str;
 
 class DiscussionController extends Controller
 {
-    public function index(Request $request)
+
+
+    public function index(Request $request, Annonce $annonce)
     {
+        return view('guest.layouts.pages.chat');
+    }
+
+    public function ListDiscussion(Request $request, Annonce $annonce)
+    {
+        $discussions = $annonce->discussions()->with('messages')->paginate(5);
+        return response()->json($discussions);
     }
 
     public function store(Request $request, Annonce $annonce)
     {
+        $userId = 2;
         do {
             $slug = Str::slug($annonce->name);
         } while (Discussion::where('slug', $slug)->first());
@@ -23,7 +33,7 @@ class DiscussionController extends Controller
         $discussion = Discussion::create([
             'slug' => $slug,
             'annonce_id' => $annonce->id,
-            'user_id' => auth()->id()
+            'user_id' => $userId
         ]);
 
         return response()->json($discussion, 200);
@@ -35,12 +45,14 @@ class DiscussionController extends Controller
 
     public function view(Discussion $discussion)
     {
-        if ($discussion->annonce->user_id != auth()->id() && $discussion->user_id != auth()->id())
+        $userId = 2;
+        if ($discussion->annonce->user_id != $userId && $discussion->user_id != $userId)
             abort(403);
 
         $discussion->load('messages');
         return response()->json($discussion, 200);
     }
+
 
     public function delete()
     {
