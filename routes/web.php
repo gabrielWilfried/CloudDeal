@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\NewsLetterController;
 use App\Http\Controllers\Guest\ContactController;
+use App\Http\Controllers\Authenticate\CommentaireController;
+use App\Http\Controllers\Guest\SignalGuestController;
 
 
 use App\Http\Controllers\Guest\AboutGuestController;
@@ -106,3 +108,6 @@ Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->
 //Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
 Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
+Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
+Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
+

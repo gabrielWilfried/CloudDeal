@@ -1,6 +1,7 @@
 
 <!-- Vue des commentaires du produit -->
-<h2 class="h2">Commentaires</h2>
+<div>
+<h2 class="h2">CommentS</h2>
 @if($ad->comments ->count() > 0)
   
     <ul class="ul">
@@ -12,9 +13,19 @@
         @endforeach
     </ul>
 @else
-    <p class="p">Aucun commentaire pour le moment.</p>
+    <p class="p">No comments at the moment.</p>
 @endif
-
+</div>
+<div class="comment-form">
+        <h5>Leave a comment</h5>
+        <form action="{{ route('comments.store', ['id' => $ad->id]) }}"  method="post">
+            @csrf
+            <div class="form-group">
+                <textarea name="comment" id="comment" rows="3" placeholder="Votre commentaire"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
 <style>
   
     .h2 {

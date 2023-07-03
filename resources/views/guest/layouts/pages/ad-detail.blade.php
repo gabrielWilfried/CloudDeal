@@ -60,15 +60,33 @@
                         </div>
                         <p>{{ $ad->description }}</p>
                         <ul class="input-style">
-
-                            <li class="contact-seller"><a href="">Contact seller</a></li>
+                            <li class="contact-seller"><a href="">Contact seller</a>  </li>
+                            <li class="contact-seller">
+                                <form action="{{route('annonces.signaler', $ad->id)}}"  method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                    <button type="button" id="btn-signaler" class="btn btn-primary">Signal</button>
+                                    </div>
+                                    <div id="zone-raison" style="display: none;">
+                                        <div class="form-group">
+                                            <textarea name="raison" id="raison" rows="3" placeholder="Veuillez entrer la raison" required = "required"></textarea>
+                                        </div>
+                                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                                    </div>
+                
+                                </form>
+                             </li>
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>
                             @foreach($ad->category as $category)
-                            
+
                              @endforeach
+                             <li>
+                                
+                             </li>
                         </ul>
+                       
 
                         <ul class="socil-icon">
                             <li>Share :</li>
@@ -87,6 +105,6 @@
         </div>
     </div>
     </div>
-
+    <script src="{{ asset('assets/js/signaler.js') }}"></script>
     @include('guest.includes.best-ad')
 @endsection

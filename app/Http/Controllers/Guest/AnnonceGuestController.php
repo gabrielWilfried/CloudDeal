@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
+use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Town;
 use Illuminate\Http\Request;
 
 
@@ -66,5 +68,7 @@ class AnnonceGuestController extends Controller
         $annonce->load('comments', 'category', 'town');
         return response()->json($annonce);
     }
+
+   
 
 }
