@@ -44,7 +44,7 @@ Route::prefix('clouddeal')->group(function () {
             return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
         })->name('dashboard.ad-list');
         Route::prefix('search')->group(function () {
-            Route::get('/{category_id}',[ AnnonceGuestController::class, 'search'])->name('search.category');
+             Route::get('/',[ AnnonceGuestController::class, 'search']);//->name('search.category')
         });
     });
 });
