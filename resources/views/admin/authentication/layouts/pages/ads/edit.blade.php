@@ -11,24 +11,20 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-12">
-                    <form method="POST" action="{{ route('admin.ads.update', ['annonce' => $annonce]) }}" name="create_ad">
-                        @method('PUT')
+                    <form method="POST" onsubmit="event.preventDefault()" name='edit-form'>
                         @csrf
                         <div class="row">
                             <div class="col-12" >
                                 <div class="form-group">
                                     <h5>Name <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="name" value="{{ $annonce->name }}" class="form-control" required
-                                            data-validation-required-message="This field is required">
+                                        <input type="text" name="name" value="{{ $annonce->name }}" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <h5>Price <span class="text-danger">*</span></h5>
                                     <div class="input-group"> <span class="input-group-addon">XAF</span>
-                                        <input type="text" value="{{ $annonce->price }}" name="price" class="form-control" required
-                                            data-validation-required-message="This field is required"> <span
-                                            class="input-group-addon">.00</span>
+                                        <input type="text" value="{{ $annonce->price }}" name="price" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -36,10 +32,10 @@
                                     <div class="controls">
                                         <select name="category_id" id="select" required class="form-control">
                                             @forelse ($allCategories as $category)
-                                                <option  
+                                                <option
                                                 @if ($category->id == $annonce->category_id)
                                                     selected
-                                                @endif 
+                                                @endif
                                                  value="{{ $category->id}}">{{ $category->name}}</option>
                                             @empty
                                                 <option>No category</option>
@@ -52,10 +48,10 @@
                                     <div class="controls">
                                         <select name="town_id" id="select" required class="form-control">
                                             @forelse ($allTowns as $town)
-                                                <option 
+                                                <option
                                                     @if ($town->id == $annonce->town_id)
                                                         selected
-                                                    @endif 
+                                                    @endif
                                                     value="{{ $town->id}}">
                                                     {{ $town->name}}
                                                 </option>
@@ -87,33 +83,34 @@
                                     <h5>Image <span class="text-danger">*</span></h5>
                                     <div class="row">
                                         <div class="col-md-3 p-2">
-                                            <div class="card border-0 p-1">
+                                            <div id="image1" class="card border-0 p-1">
                                                 <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                                <input type="file" name="image1" class="form-control"  style="display: none">
                                             </div>
+                                            <input type="file" id="imageInput1" name="image" class="form-control"  style="display: none">
                                         </div>
                                         <div class="col-md-3 p-2">
-                                            <div class="card border-0 p-1">
+                                            <div id="image2" class="card border-0 p-1">
                                                 <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                                <input type="file" name="image2" class="form-control" style="display: none" >
                                             </div>
+                                            <input type="file" id="imageInput2" name="image2" class="form-control" style="display: none" >
+                                        </div>
+                                        <div  class="col-md-3 p-2">
+                                            <div id="image3" class="card border-0 p-1">
+                                                <img src="{{ asset('assets/images/product/19.jpg') }}">
+                                            </div>
+                                            <input type="file" id="imageInput3" name="image3" class="form-control" style="display: none" >
                                         </div>
                                         <div class="col-md-3 p-2">
-                                            <div class="card border-0 p-1">
+                                            <div id="image4" class="card border-0 p-1" >
                                                 <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                                <input type="file" name="image3" class="form-control" style="display: none" >
                                             </div>
-                                        </div>
-                                        <div class="col-md-3 p-2">
-                                            <div class="card border-0 p-1">
-                                                <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                                <input type="file" name="image4" class="form-control" style="display: none" >
-                                            </div>
+                                            <input type="file" id="imageInput4" name="image4" class="form-control" style="display: none" >
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div data-ad-id={{ $annonce->id }} id="idContainer" style="display: none"></div>
                         <div class="text-left">
                             <input type="submit" class="btn btn-rounded btn-info" value="Submit">
                         </div>

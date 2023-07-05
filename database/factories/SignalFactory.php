@@ -19,7 +19,7 @@ class SignalFactory extends Factory
     public function definition(): array
     {
         return [
-            'count' => $this->faker->numberBetween(1, 100),
+            'count' => $this->faker->numberBetween(1, 4),
             'annonce_id' => Annonce::inRandomOrder()->first()->id,
             'reasons' => $this->faker->sentence(),
             'created_at' => now(),

@@ -1,4 +1,7 @@
 @extends('admin.authentication.layouts.layout-admin')
+@section('style')
+    <link href="{{ asset('admin-assets/components/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
+@endsection
 
 @section('body')
     <div class="container-full">
@@ -42,5 +45,8 @@
 
 @section('script')
     <script src="{{ asset('admin-assets/components/datatable/datatables.min.css') }}"></script>
-    <script src="{{ asset('admin-assets/js/pages/data-table.js') }}></script>
+    <script src="{{ asset('admin-assets/js/pages/data-table.js') }}"></script>
+    <script src="{{ asset('admin-assets/components/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/custom/js/alert.js') }}"></script>
 @endsection
+

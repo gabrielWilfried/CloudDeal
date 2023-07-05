@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Authenticate\AnnonceController;
+use App\Http\Controllers\Authenticate\BoostController;
+use App\Http\Controllers\Authenticate\CategoryController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\Guest\ContactController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
+use App\Http\Controllers\Authenticate\VilleController;
 use Faker\Guesser\Name;
 
 /*
@@ -53,14 +56,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('home');
     Route::prefix('myads')->name('ads.')->group(function () {
         Route::get('/', [AnnonceController::class, 'index'])->name('index');
+        Route::get('/ads', [AnnonceController::class, 'paginatedAds']);
         Route::get('/create', [AnnonceController::class, 'create'])->name('create');
         Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
         Route::post('/store', [AnnonceController::class, 'store'])->name('store');
         Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
-        Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');  
-        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost'); 
+        Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
+        Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
+        Route::put('/boost/{annonce}', [BoostController::class, 'store'])->name('boost');
     });
-    
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('/category', [CategoryController::class, 'categories']);
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
+        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
+    });
+    Route::prefix('town')->name('town.')->group(function () {
+        Route::get('/', [VilleController::class, 'index'])->name('index');
+        Route::get('/category', [VilleController::class, 'towns']);
+        Route::post('/store', [VilleController::class, 'store'])->name('store');
+        Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
+        Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
+    });
 });
 
 

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Request;
 
 class Annonce extends Model
 {
@@ -29,7 +30,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $appends = ['files', 'format_price', 'image_path', 'url_to_ad_detail'];
+    protected $appends = ['files', 'format_price', 'image_path','url_to_edit','url_to_ad_detail', 'category_name', 'town_name'];
 
     public function payment(): BelongsTo
     {
@@ -71,9 +72,27 @@ class Annonce extends Model
     {
         return url($this->image);
     }
+    function getCategoryNameAttribute()
+    {
+        $category = Category::where('id','=', $this->category_id)->pluck('name');
+        return $category[0];
+    }
+    function getTownNameAttribute()
+    {
+        $town = Town::where('id','=', $this->town_id)->pluck('name');
+        return $town[0];
+    }
     public function getUrlToAdDetailAttribute()
     {
-        return route('dashboard.singe-ad', $this->id);
+       if(str_contains(Request::path(), 'admin')){
+            return route('admin.ads.detail', $this->id);
+       }
+       return route('dashboard.singe-ad', $this->id);
+    }
+
+    public function getUrlToEditAttribute()
+    {
+        return route('admin.ads.edit', $this->id);
     }
 
 

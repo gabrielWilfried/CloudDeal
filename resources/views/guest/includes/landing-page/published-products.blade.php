@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a href="single-product.html" x-text="ad.name"></a></h3>
+                            <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
                             <p class="pull-left" x-text="ad.format_price">
                             </p>
                         </div>

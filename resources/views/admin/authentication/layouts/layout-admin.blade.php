@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cloud Deal</title>
+    @vite(['resources/js/app.js'])
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -15,8 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/components/c3/c3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/skin_color.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
+
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
     @yield('style')
 </head>
 
@@ -35,8 +37,6 @@
         @include('admin.authentication.layouts.menus.footer')
 
     </div>
-
-    @yield('script')
 
     <!-- js -->
     <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
@@ -59,10 +59,13 @@
     <script src="{{ asset('admin-assets/lib/4/themes/animated.js') }}"></script>
 
     <!-- CrmX Admin App -->
+    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('admin-assets/js/template.js') }}"></script>
     <script src="{{ asset('admin-assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
     <script src="{{ asset('admin-assets/custom/js/script.js') }}"></script>
+
+    @yield('script')
 </body>
 
 </html>
