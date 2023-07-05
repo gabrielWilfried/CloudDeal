@@ -30,39 +30,20 @@
                                     <td>{{ $annonce->town->name }}</td>
                                     <td>{{ $annonce->created_at }}</td>
                                     <td>
-                                        <form name="delete-ad-form" method="post"
-                                            action="{{ route('admin.ads.delete', ['annonce' => $annonce]) }}">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="button" class="btn btn-rounded btn-info mb-5" data-toggle="modal"
-                                                data-target="#modal-success">Boost <i class="fa fa-rocket"
-                                                    aria-hidden="true"></i></button>
-                                        </form>
-                                        <form method="get"
-                                            action="{{ route('admin.ads.edit', ['annonce' => $annonce]) }}">
-                                            <button type="submit" class="btn btn-rounded btn-warning mb-5">Edit <i
-                                                    class="fa fa-edit"></i></button>
-                                        </form>
-                                        <form name="delete-ad-form" method="post"
-                                            action="{{ route('admin.ads.delete', ['annonce' => $annonce]) }}">
-                                            @csrf
-                                            @method('')
-                                            <button type="submit" class="btn btn-rounded btn-danger mb-5">Delete <i
-                                                    class="fa fa-trash" aria-hidden="true"></i></button>
-                                        </form>
-                                        <form name="" method="get" action="">
-                                            @csrf
-                                            @if ($annonce->is_blocked == false)
-                                                <button type="button" class="btn btn-rounded btn-info mb-5"
-                                                    data-toggle="modal" data-target="#modal-success">Bloquer <i
-                                                        class="fa fa-rocket" aria-hidden="true"></i></button>
-                                            @else
-                                                <button type="button" class="btn btn-rounded btn-info mb-5"
-                                                    data-toggle="modal" data-target="#modal-success">Debloquer <i
-                                                        class="fa fa-rocket" aria-hidden="true"></i></button>
-                                            @endif
 
+                                        <form name="" method="post"
+                                            action="{{ route('admin.ads.block', ['annonce' => $annonce]) }}">
+                                            @csrf
+                                            @method('put')
+                                            @if ($annonce->is_blocked == false)
+                                                <button type="submit" class="btn btn-rounded btn-danger mb-5">Bloquer
+                                                    <i></i></button>
+                                            @else
+                                                <button type="submit" class="btn btn-rounded btn-success mb-5">Debloquer
+                                                    <i></i></button>
+                                            @endif
                                         </form>
+
 
 
                                     </td>

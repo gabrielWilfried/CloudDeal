@@ -72,6 +72,7 @@ class AnnonceController extends Controller
         );
 
 
+
         $annonce->update($request->except('level', 'is_blocked'));
 
         return Redirect::route('admin.ads.index');
@@ -96,5 +97,15 @@ class AnnonceController extends Controller
         $name = $request->input('name');
         $annonces = Annonce::where('name', 'like', "%$name%")->get();
         return response()->json($annonces);
+    }
+
+    public function block(Annonce $annonce)
+    {
+
+        $annonce->is_blocked = !($annonce->is_blocked);
+        $annonce->save();
+
+        return Redirect::route('admin.ads.index');
+        //return redirect()->back();
     }
 }
