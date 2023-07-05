@@ -29,13 +29,25 @@
                         </div>
                     </div>
                 </li>
-            </template>
-        </template>
-        <li x-show="page <= totalPages" class="col-12 text-center" style="cursor: pointer">
-            <a class="loadmore-btn" x-on:click="loadAds">Load More</a>
-        </li>
-        <li x-show="page > totalPages" class="col-12 text-center" style="cursor: pointer">
-            <a class="loadmore-btn" href="{{ route('dashboard.index') }}">Go to product pages</a>
-        </li>
+                <li><a :href="ad.url_detail"><i class="fa fa-eye"></i></a></li>
+                <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
     </ul>
+</div>
+</div>
+<div class="product-content">
+    <h3><a href="single-product.html" x-text="ad.name"></a></h3>
+    <p class="pull-left" x-text="ad.format_price">
+    </p>
+</div>
+</div>
+</li>
+</template>
+</template>
+<li x-show="page <= totalPages" class="col-12 text-center" style="cursor: pointer">
+    <a class="loadmore-btn" x-on:click="loadAds">Load More</a>
+</li>
+<li x-show="page > totalPages" class="col-12 text-center" style="cursor: pointer">
+    <a class="loadmore-btn" href="{{ route('dashboard.index') }}">Go to product pages</a>
+</li>
+</ul>
 </div>
