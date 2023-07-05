@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Authenticate\AnnonceController;
 use App\Http\Controllers\Guest\AnnonceGuestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
@@ -9,7 +10,11 @@ use App\Http\Controllers\Guest\ContactController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
+<<<<<<< HEAD
 use App\Http\Controllers\Authenticate\PaymentController;
+=======
+use Faker\Guesser\Name;
+>>>>>>> elgenio
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +41,7 @@ Route::prefix('clouddeal')->group(function () {
     Route::prefix('allAds')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
         Route::get('/ads', [AnnonceGuestController::class, 'paginatedAds'])->name('dashboard.ads');
+        Route::get('/search', [AnnonceGuestController::class, 'index'])->name('dashboard.category');
         Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
         Route::get('/ad-list', function () {
             return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
@@ -45,10 +51,24 @@ Route::prefix('clouddeal')->group(function () {
         });
     });
 });
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('admin.authentication.admin-home');
+    })->name('home');
+    Route::prefix('myads')->name('ads.')->group(function () {
+        Route::get('/', [AnnonceController::class, 'index'])->name('index');
+        Route::get('/create', [AnnonceController::class, 'create'])->name('create');
+        Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
+        Route::post('/store', [AnnonceController::class, 'store'])->name('store');
+        Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
+        Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
+        Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
+        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
+    });
 
-Route::get('/admin', function () {
-    return view('admin.authentication.admin-home');
+        Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
 });
+
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', function () {
@@ -88,14 +108,7 @@ Route::name('chat.')->prefix('chat')->group(function () {
 
 Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
 Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
-//Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
-//Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
+Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
+Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
 Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
-
-
-
-Route::prefix('admin')->group(function () {
-
-    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
-});

@@ -8,12 +8,15 @@
     <title>Cloud Deal</title>
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/bootstrap-daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/OwlCarousel2/dist/assets/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/components/OwlCarousel2/dist/assets/owl.theme.default.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/components/c3/c3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-assets/css/skin_color.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     @yield('style')
 </head>
 
@@ -36,9 +39,11 @@
     @yield('script')
 
     <!-- js -->
+    <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('admin-assets/components/jquery-3.3.1/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('admin-assets/components/screenfull/screenfull.js') }}"></script>
     <script src="{{ asset('admin-assets/components/popper/dist/popper.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin-assets/components/bootstrap/dist/js/bootstrap.js') }}"></script>
     <script src="{{ asset('admin-assets/components/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('admin-assets/components/fastclick/lib/fastclick.js') }}"></script>
@@ -57,6 +62,7 @@
     <script src="{{ asset('admin-assets/js/template.js') }}"></script>
     <script src="{{ asset('admin-assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
+    <script src="{{ asset('admin-assets/custom/js/script.js') }}"></script>
 </body>
 
 </html>
