@@ -10,15 +10,15 @@
                     <aside class="sidebar-area">
                         <div class="widget widget_search">
                             <h4 class="widget-title">Search Product</h4>
-                            <form action="javascript:void(0);" class="searchform" method="get">
+                            <form action="javascript:void(0);" class="searchform" >
                                 <input type="text" id="search" name="search_text" placeholder="Search Product..."
                                     x-model="searchText" @keyup="search()">
                             </form>
                         </div>
-                        <div class="product-filter">
+                        <div class="product-filter" x-data="data" x-init='getAllAds'>
                             <h4 class="widget-title">Filter by Price</h4>
                             <div class="filter-price">
-                                <form action="#" method="get">
+                                <form action="javascript:void(0)" method="get">
                                     <div id="slider-range"></div>
                                     <div class="row">
                                         <div class="col-7">
@@ -27,52 +27,36 @@
                                             </p>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <button type="submit" x-onclick>filter</button>
+                                            <button type="submit" x-on:click="filterPrice()">filter</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="widget widget_categories">
+                        <div class="widget widget_categories"  x-data="data" x-init='getAllAds'>
                             <h4 class="widget-title">Categories</h4>
                             <ul>
                                 @foreach ($allCategories as $category)
-                                    <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
-                                            type="checkbox" id="{{ $category->name }}" name="category"
-                                            value="{{ $category->name }}"></li>
+                                    <li><label for="{{ $category->id }}" >{{ $category->name }}</label><input
+                                            type="checkbox" id="{{ $category->id }}" name="category"
+                                            value="{{ $category->id }}" x-model="currentCategories" x-on:click="filterByCategories()"></li>
                                 @endforeach
                             </ul>
                         </div>
                         <div class="widget widget_recent_entries">
-                            <h4 class="widget-title">Related Product</h4>
+                            <h4 class="widget-title">Best Product</h4>
                             <ul>
-                                <li>
-                                    <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/1.jpg a') }}" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="shop.html">Mustard Oil</a>
-                                        <p>$478.56</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/2.jpg" a') }}" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="shop.html">Mustard Oil</a>
-                                        <p>$245.56</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/3.jpg" a') }}" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="shop.html">Mustard Oil</a>
-                                        <p>$219.56</p>
-                                    </div>
-                                </li>
+                                <template x-for="ad in data.BestAds">
+                                    <li>
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/images/post/1.jpg') }}" alt="">
+                                        </div>
+                                        <div class="post-content">
+                                            <a :href="ad.url_detail" x-text="ad.name"></a></h3>
+                                                <p  x-text="ad.format_price">
+                                        </div>
+                                    </li>
+                                </template>
                             </ul>
                         </div>
                     </aside>
@@ -235,5 +219,5 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('assets/js/search.js') }}"></script>
+<script src="{{ asset('assets/custom/js/search.js') }}"></script>
 @endsection

@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers\Guest;
 
-use App\Http\Controllers\Controller;
-use App\Models\Annonce;
 use App\Models\Town;
+use App\Models\Boost;
+use App\Models\Annonce;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 class AnnonceGuestController extends Controller
 {
     public function paginatedAds(Request $request)
     {
+
+        $priceFilter = $request->get('priceFilter', [0,0]);
         $search = '%' . $request->get('search', '') . '%';
         $limit = $request->get('limit', 9);
-        $annonces = Annonce::where('is_blocked', false)->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
+        $annonces = Annonce::where('is_blocked', false)->where('name', 'LIKE', $search)->whereBetween('price',  $priceFilter)->orderByDesc('level')->paginate($limit);
+        $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
+        $BestAds = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
         $towns = Town::all();
-        return response()->json(['towns' => $towns, 'annonces' => $annonces]);
+        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds]);
     }
 
     public function index(Request $request)

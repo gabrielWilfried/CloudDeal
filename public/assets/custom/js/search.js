@@ -2,9 +2,9 @@ window.addEventListener('alpine:init', () => {
 
     Alpine.data('data', () => ({
         searchText: '',
-        priceFilter: '',
         minPrice: 0,
         maxPrice: 0,
+        priceFilter: [],
         sortBy: '',
         currentCategories: [],
         isLoading: false,
@@ -18,12 +18,16 @@ window.addEventListener('alpine:init', () => {
             this.getAllAds();
         },
         filterPrice() {
-            console.log(this.minPrice);
-            console.log(this.maxPrice);
+
+            this.priceFilter = $("#slider-range").slider("values");
+            this.getAllAds();
+        },
+        filterByCategories() {
+            this.getAllAds();
         },
         getAllAds() {
             this.isLoading = true;
-            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText).then(response => response.json())
+            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText + '&filterCategories=' + this.currentCategories + '&filterPrice=' + this.priceFilter).then(response => response.json())
                 .then(data => {
                     this.data = data;
                     this.totalPages = data.annonces.last_page;
@@ -54,18 +58,19 @@ window.addEventListener('alpine:init', () => {
                 this.getAllAds();
             }
         },
-        currentPage(num){
+        currentPage(num) {
             this.page = num;
             this.getAllAds();
         },
-        serachByCat(){
-            fetch('/clouddeal/allAds/search/'+ this.category_id).then(response => response.json())
-            .then(data => {
-                this.data = data;
-                console.log(this.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        serachByCat() {
+            fetch('/clouddeal/allAds/search/' + this.category_id).then(response => response.json())
+                .then(data => {
+                    this.data = data;
+                    console.log(this.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         },
-    }))});
+    }))
+});
