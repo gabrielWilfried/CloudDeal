@@ -14,6 +14,7 @@ use App\Http\Controllers\Guest\SignalGuestController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
+use App\Http\Controllers\Authenticate\PaymentController;
 use App\Http\Controllers\Authenticate\VilleController;
 use Faker\Guesser\Name;
 
@@ -82,6 +83,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
         Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
+
+    Route::prefix('mypayments')->name('payments.')->group(function () {
+        Route::get('/', [PaymentController::class, 'index'])->name('index');
+        Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
+        Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
+    });
 });
 
 
@@ -140,8 +147,8 @@ Route::name('chat.')->prefix('chat')->group(function () {
 
 Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
 Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
-//Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
-//Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
+Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
+Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
 Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
 //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');

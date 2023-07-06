@@ -5,6 +5,10 @@
         <span>Mes annonces</span>
     </a>
 </li>
+<li>
+    <a href="{{ route('admin.payments.index') }}">
+        <i class="fa fa-money"></i>
+        <span>Payments</span>
 
 <li class="header nav-small-cap">Dashboard</li>
 <li>
