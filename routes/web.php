@@ -12,12 +12,9 @@ use App\Http\Controllers\Guest\ContactController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
-<<<<<<< HEAD
 use App\Http\Controllers\Authenticate\PaymentController;
-=======
 use App\Http\Controllers\Authenticate\VilleController;
 use Faker\Guesser\Name;
->>>>>>> 909c1d2a3deb5f449723b4ecb0616ca13f675749
 
 /*
 |--------------------------------------------------------------------------
