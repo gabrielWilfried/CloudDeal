@@ -66,10 +66,12 @@ img {
     overflow: hidden
 }
 .pull-left{
-    -webkit-text-fill-color: #ef4836;
-    font-size: 30px;
+color: none;
 }
-
+#pull-left{
+    -webkit-text-fill-color: #ef4836;
+    font-size: 22px;
+}
 p {
     margin: 0px;
 }
@@ -81,7 +83,7 @@ h4,
 h5,
 h6 {
     font-weight: bold;
-    
+
     margin-bottom: 10px;
     margin-top: 0px;
     font-family: 'Poppins', sans-serif;
@@ -3223,7 +3225,7 @@ ol {
 /*modal*/
 #btnform{
 
-   
+
     background: #ef4836;
     color: #fff;
     text-transform: uppercase;
@@ -3247,19 +3249,19 @@ ol {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
-}  
+}
 #comment:focus{
     outline: none;
     border-color: #ef4836;
     box-shadow: 0 0 5px #ef4836;
-} 
+}
 
 .modal-dialog-centered {
     background: #fff;
     padding: 50px;
 
-    
-    
+
+
 }
 
 .modal-body {
@@ -3351,7 +3353,7 @@ ol {
     background: #ef4836;
     color: #fff;
     display: block;
-    
+
 }
 
 .input-style li a:hover {

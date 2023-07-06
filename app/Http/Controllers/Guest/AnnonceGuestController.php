@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
-
 use App\Models\Boost;
+use App\Models\Category;
 use App\Models\Annonce;
 use App\Models\Town;
 use App\Http\Controllers\Controller;
