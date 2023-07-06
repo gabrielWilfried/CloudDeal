@@ -62,7 +62,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 
-    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+    Route::prefix('mypayments')->name('payments.')->group(function () {
+        Route::get('/', [PaymentController::class, 'index'])->name('index');
+        Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
+        Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
+    });
 });
 
 

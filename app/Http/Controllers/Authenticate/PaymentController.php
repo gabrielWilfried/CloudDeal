@@ -23,4 +23,24 @@ class PaymentController extends Controller
         $montantTotals = toMoney($montantTotals);
         return view('admin.authentication.layouts.pages.payment', compact('annonces', 'montantTotals'));
     }
+
+    public function approvePayment(Annonce $annonce)
+    {
+
+        // Mettre à jour le statut du paiement à APPROVED
+        $annonce->payment->status = 'APPROVED';
+        $annonce->payment->save();
+
+        return redirect()->back();
+    }
+
+    public function cancelPayment(Annonce $annonce)
+    {
+
+        // Mettre à jour le statut du paiement à CANCELLED
+        $annonce->payment->status = 'CANCELLED';
+        $annonce->payment->save();
+
+        return redirect()->back();
+    }
 }

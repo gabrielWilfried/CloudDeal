@@ -6,7 +6,7 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('admin.payment.index') }}">
+    <a href="{{ route('admin.payments.index') }}">
         <i class="ti-power-off"></i>
         <span>Payments</span>
     </a>
