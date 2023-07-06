@@ -22,9 +22,6 @@ use App\Http\Controllers\Authenticate\DiscussionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
-
-
 Route::prefix('clouddeal')->group(function () {
     //routes guest mode
     Route::get('/', [HomeController::class, "index"])->name('home');
@@ -82,7 +79,7 @@ Route::prefix('dashboard')->group(function () {
 });
 
 Route::get('/contact', function () {
-    return view('user.layouts.partials.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+  return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
 })->name('contact');
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
@@ -108,6 +105,9 @@ Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->
 //Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
 Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
-Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
+//Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
 Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
+Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
+Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+
 
