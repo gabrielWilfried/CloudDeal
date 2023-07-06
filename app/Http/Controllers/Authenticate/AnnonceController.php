@@ -75,7 +75,7 @@ class AnnonceController extends Controller
                 ]
             );
 
-        dd($request);
+
         $annonce->update($request->except('level', 'is_blocked'));
 
         return response()->json(['message', 'Updated successfully']);

@@ -37,16 +37,16 @@
                                     <td>{{ $annonce->created_at }}</td>
                                     <td>
 
-                                        <a href="{{ route('admin.ads.detail', ['annonce' => $annonce ]) }}" class="btn btn-rounded btn-dark mb-5 "><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('admin.ads.detail', ['annonce' => $annonce ]) }}" class="btn btn-rounded btn-sm btn-dark mb-5 "><i class="fa fa-eye"></i></a>
                                         <form name="" method="post"
                                             action="{{ route('admin.ads.block', ['annonce' => $annonce]) }}">
                                             @csrf
                                             @method('put')
-                                            @if ($annonce->is_blocked == false)
-                                                <button type="submit" class="btn btn-rounded btn-danger mb-5">
+                                            @if ($annonce->is_blocked == true)
+                                                <button type="submit" class="btn btn-rounded btn-danger btn-sm mb-5">
                                                     <i class="fa fa-lock"></i></button>
                                             @else
-                                                <button type="submit" class="btn btn-rounded btn-success mb-5">
+                                                <button type="submit" class="btn btn-rounded btn-success btn-sm mb-5">
                                                     <i class="fa fa-unlock"></i></button>
                                             @endif
                                         </form>

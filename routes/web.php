@@ -61,7 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/create', [AnnonceController::class, 'create'])->name('create');
         Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
         Route::post('/store', [AnnonceController::class, 'store'])->name('store');
-        Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
+        Route::post('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
         Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
         Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
         Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');

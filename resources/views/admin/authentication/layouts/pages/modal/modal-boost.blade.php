@@ -3,13 +3,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h3 class="text-center mb-3">Boost your Ad</h3>
                 <button type="button" class="close d-flex align-items-center justify-content-center"
                     data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="ion-ios-close"></span>
                 </button>
             </div>
             <div class="modal-body p-4 py-5 p-md-5">
-                <h3 class="text-center mb-3">Boost your Ad</h3>
+                <div class="text-success text-center"><i class="fa fa-rocket fa-5x"></i></div>
                 <form action="{{ route('admin.ads.boost', ['annonce' => $ad]) }}" method="post" class="signup-form"
                     style="padding: 20px">
                     @csrf
@@ -18,15 +19,17 @@
                         <label for="name">Enter your boost price</label>
                         <input type="text" name="price" class="form-control" placeholder="0XAF">
                     </div>
-                    <div class="form-group mb-2">
-                        <label for="name">Start date</label>
-                        <input type="date" name="start_at" class="form-control" placeholder="12/22/2023">
+                    <div class="input-group">
+                        <div class="form-group mb-2">
+                            <label for="name">Start date</label>
+                            <input type="date" name="start_at" class="form-control" placeholder="12/22/2023">
+                        </div>
+                        <div class="form-group mb-2" style="margin-left: 150px">
+                            <label for="name">End date</label>
+                            <input type="date" name="end_at" class="form-control" placeholder="12/22/2023">
+                        </div>
                     </div>
-                    <div class="form-group mb-2">
-                        <label for="name">End date</label>
-                        <input type="date" name="end_at" class="form-control" placeholder="12/22/2023">
-                    </div>
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2 mt-20" >
                         <button type="submit" class="form-control btn btn-success rounded submit px-3">Boost</button>
                     </div>
                 </form>

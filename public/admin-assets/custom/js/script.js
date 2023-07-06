@@ -67,21 +67,28 @@ $("document").ready(function () {
                 var id = $('#idContainer').attr('data-ad-id');
                 var csrfToken = $('input[name="_token"]').val();
                 if (isConfirm) {
-                    $.ajax({
+                    fetch("/admin/myads/update/"+id, {
                         url: "/admin/myads/update/"+id,
-                        method: 'PUT',
+                        method: 'POST',
                         headers: {
-                            'X-CSRF-TOKEN': csrfToken
+                            'X-CSRF-TOKEN': csrfToken,
+                            redirect: 'manual'
                         },
                         data: formData,
-                        success: function(response){
-                            swal("Deleted!", response.message, "success");
-                            window.location.href = "/admin/myads";
-                        },
-                        error: function(xhr, status, error){
-                            swal("Cancelled", error, "error");
-                        }
+                    }).then(response => {
+                        if (response.status === 302) {
+                            const redirectUrl = response.headers.get('Location');
+                            return response.json()
+                          }
                     })
+                    .then(data => {
+                        swal("Updated!", data.message, "success");
+                        window.location.href = "/admin/myads";
+                    })
+                    .catch(error => {
+                        swal("Cancelled", error, "error");
+                        console.error(error);
+                    });
                 } else {
                     swal("Cancelled", "No modification applied", "error");
                 }
