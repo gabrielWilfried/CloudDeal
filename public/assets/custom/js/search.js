@@ -6,14 +6,15 @@ window.addEventListener('alpine:init', () => {
         minPrice: 0,
         maxPrice: 0,
         sortBy: '',
-        currentCategories: [],
+        currentCategories:[],
         isLoading: false,
-        category_id: null,
+        town_id: 0,
         data: [],
         page: 1,
         totalPages: 2,
         maxPageNumber: 3,
         minPageNumber: 1,
+        mycat: [],
         search() {
             this.getAllAds();
         },
@@ -23,7 +24,7 @@ window.addEventListener('alpine:init', () => {
         },
         getAllAds() {
             this.isLoading = true;
-            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText).then(response => response.json())
+            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText+'&categories=' + this.currentCategories+'&town=' + this.selectedTown).then(response => response.json())
                 .then(data => {
                     this.data = data;
                     this.totalPages = data.annonces.last_page;
@@ -61,6 +62,20 @@ window.addEventListener('alpine:init', () => {
             this.page = num;
             this.getAllAds();
         },
-       
+        sortByCat(){
+
+            var selectedCategories = [];
+
+            $('.category-checkbox:checked').each(function() {
+                selectedCategories.push($(this).val());
+            });
+            this.currentCategories = selectedCategories;
+            this.getAllAds()
+        },
+        sortByTown(){
+
+            this.selectedTown = $('.town-select').val();
+            this.getAllAds()
+        }
     }))
 });

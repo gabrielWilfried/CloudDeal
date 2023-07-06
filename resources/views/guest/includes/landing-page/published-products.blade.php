@@ -17,16 +17,19 @@
                             <img src="assets/images/product/15.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li>
-                                        <<<<<<< HEAD <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a>
-                                    </li>
-                                    =======
-                                    <<<<<<< HEAD <li><a><i class="fa fa-eye"></i></a>
+                                    <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
+                            <p class="pull-left" x-text="ad.format_price">
+                            </p>
+                        </div>
+                    </div>
                 </li>
-                =======
                 <li><a :href="ad.url_detail"><i class="fa fa-eye"></i></a></li>
-                >>>>>>> f29029799c83db7cd5ea37bae0345cdb0b6b36c5
-                >>>>>>> main
                 <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
     </ul>
 </div>

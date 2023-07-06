@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
 use App\Http\Controllers\Signal;
+use App\Models\Signal as ModelsSignal;
 use Illuminate\Http\Request;
 
 class SignalGuestController extends Controller
@@ -18,7 +19,7 @@ class SignalGuestController extends Controller
         $annonce = Annonce::findOrFail($id);
 
         // Créer un nouveau signalement
-        $signal = new Signal();
+        $signal = new ModelsSignal();
         $signal->annonce_id = $annonce->id;
         $signal->reason = $request->input('reason');
         $signal->count = $annonce->signals()->count();

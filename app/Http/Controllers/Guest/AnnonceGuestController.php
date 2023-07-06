@@ -12,10 +12,23 @@ class AnnonceGuestController extends Controller
 {
     public function paginatedAds(Request $request)
     {
+        $towns = Town::all();
         $search = '%' . $request->get('search', '') . '%';
         $limit = $request->get('limit', 9);
-        $annonces = Annonce::where('is_blocked', false)->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
-        $towns = Town::all();
+        $annonces = Annonce::where('is_blocked', false)->where('name', 'LIKE', $search);
+
+        if ($request->has('categories') && !blank($request->input('categories'))) {
+            $categoryIds = array_map('intval', explode(',', $request->input('categories')));
+            $annonces = $annonces->whereIn('category_id',  $categoryIds);
+        }
+
+        if ($request->has('town') && ($request->input('town')!=='undefined')) {
+            $townId = $request->input('town');
+            $annonces = $annonces->where('town_id', '=', $townId);
+        }
+
+        $annonces = $annonces->orderByDesc('level')->paginate($limit);
+
         return response()->json(['towns' => $towns, 'annonces' => $annonces]);
     }
 
@@ -47,14 +60,14 @@ class AnnonceGuestController extends Controller
         //Sort by name
         if ($request->has('name')) {
             $annonces->where('name', 'like', '%' . $request->input('name') . '%');
+            $annonces->whereIn('category_id',  $request->categories);
         }
 
 
         //Sort by categories
-        if ($request->has('category ')) {
-            $annonces->whereHas('category', function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->input('category') . '%');
-            });
+        if ($request->has('categories')) {
+            $annonces->whereIn('category_id',  $request->categories);
+            dd($annonces);
         }
 
         //Sort by town
@@ -72,8 +85,8 @@ class AnnonceGuestController extends Controller
         }
 
 
-        $annonces = $annonces->get();
-        return response()->json($annonces);
+       $annonces = $annonces->get();
+       return response()->json($annonces);
     }
     public function detailsAnnonce(Annonce  $annonce)
     {

@@ -7,26 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\Annonce;
 use App\Models\Boost;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+
 
 class BoostController extends Controller
 {
     public function store(Request $request, Annonce $annonce)
     {
-
-        $validators = Validator::make($request->all(), [
+        $request->validate([
             'price' => 'required|numeric|min:0',
             'start_at' => 'required|date',
             'end_at' => 'required|date|after:start_at'
         ]);
-
-        if ($validators->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validators->errors()
-            ], 400);
-        }
 
         $price = $request->price;
         $startAt = Carbon::parse($request->start_at);
@@ -40,9 +32,9 @@ class BoostController extends Controller
             'score' => $score,
             'annonce_id' => $annonce->id,
         ]);
-
+       
         $annonce->level += $score;
         $annonce->save();
-        return response()->json($boost, 201);
+        return Redirect::route('admin.ads.index')->with('message', 'Boosted sucesfully');
     }
 }
