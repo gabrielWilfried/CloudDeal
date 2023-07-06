@@ -8,7 +8,7 @@
                 <a type="button" href="{{ route('admin.town.store') }}" class="btn btn-rounded btn-success mb-5">Add</a>
             </div>
             <!-- /.box-header -->
-            <div class="box-body"  x-data="data" x-init="loadAds">
+            <div class="box-body">
                 <div class="table-responsive">
 
                     <table id="example5" class="table table-bordered table-striped" style="width:70%">

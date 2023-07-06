@@ -14,6 +14,12 @@ $("document").ready(function () {
     });
     $("#alertbottomleft").addClass('disappear');
 
+    $("#toggle-create").on('click', function(){});
+
+    function openCreateCatModal(){
+        $('#categoryModal').addClass('modal-visible')
+    }
+
     $("form[name='edit-form']").validate({
         rules: {
             name: {

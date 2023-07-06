@@ -40,3 +40,10 @@ label.error{
 #image1,#image3,#image2,#image4{
     cursor: pointer;
 }
+
+.modal-invisible{
+    display: none;
+}
+.modal-visible{
+    display: block;
+}

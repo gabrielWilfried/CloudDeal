@@ -65,6 +65,10 @@ img {
 .fix {
     overflow: hidden
 }
+.pull-left{
+    -webkit-text-fill-color: #ef4836;
+    font-size: 30px;
+}
 
 p {
     margin: 0px;
@@ -76,6 +80,8 @@ h3,
 h4,
 h5,
 h6 {
+    font-weight: bold;
+    
     margin-bottom: 10px;
     margin-top: 0px;
     font-family: 'Poppins', sans-serif;
@@ -85,7 +91,15 @@ input:focus,
 select:focus {
     outline: none;
 }
-
+input-style li button {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 120px;
+    background: #ef4836;
+    color: #fff;
+    display: block;
+}
 input,
 button,
 img {
@@ -1185,6 +1199,9 @@ header-area start
 .product-area {
   padding: 100px 0;
 
+}
+.contact-seller {
+    text-align: left;
 }
 
 .section-title {
@@ -3204,12 +3221,45 @@ ol {
 
 
 /*modal*/
+#btnform{
+
+   
+    background: #ef4836;
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    width: 120px;
+    height: 35px;
+    text-align: center;
+}
+#btnform:hover {
+    background: #333;
+}
+
+#comment {
+
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}  
+#comment:focus{
+    outline: none;
+    border-color: #ef4836;
+    box-shadow: 0 0 5px #ef4836;
+} 
 
 .modal-dialog-centered {
     background: #fff;
     padding: 50px;
-    max-width: 1000px;
-    margin: 200px auto;
+
+    
+    
 }
 
 .modal-body {
@@ -3256,7 +3306,7 @@ ol {
 }
 
 .input-style {
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
 .quantity input {
@@ -3301,7 +3351,7 @@ ol {
     background: #ef4836;
     color: #fff;
     display: block;
-    margin-left: 30px;
+    
 }
 
 .input-style li a:hover {
@@ -3327,7 +3377,7 @@ ol {
     background: #ef4836;
 }
 
-.modal-content button {
+.modal-content .close {
     position: absolute;
     right: -48px;
     top: -48px;
