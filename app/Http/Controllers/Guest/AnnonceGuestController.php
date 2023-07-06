@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Guest;
 
-use App\Models\Town;
 use App\Models\Boost;
 use App\Models\Annonce;
 use App\Models\Town;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,7 +49,7 @@ class AnnonceGuestController extends Controller
 
     public function showAd($id)
     {
-      
+
         $annonces = Annonce::orderBy('level', 'desc')->take(4)->get();
         $ad = Annonce::findorfail($id);
         $ad->load('comments', 'category', 'town', 'user');
