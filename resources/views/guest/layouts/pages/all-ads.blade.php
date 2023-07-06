@@ -144,7 +144,7 @@
                         </div>
                         <div class="tab-pane product-list" id="list">
                             <ul class="row">
-                                <template x-for="ad in data.annonces">
+                                <template x-for="ad in data.annonces.data">
                                     <li class="col-12">
                                         <div class="product-wrap">
                                             <div class="row">

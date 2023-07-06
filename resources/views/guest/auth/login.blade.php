@@ -1,11 +1,12 @@
-@extends('user.auth.default-auth')
+@extends('guest.auth.default-auth')
 
 @section('auth')
     <div class="account-area ptb-100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
-                    <form method="GET" name="login" action="">
+                    <form method="POST" name="login" action="{{route('auth.login.auth')}}">
+                        @csrf
                         <div class="account-form form-style">
                             <p>Email Address *</p>
                             <input type="email" name="email">
@@ -22,10 +23,10 @@
                             </div>
                             <div class="socials">
                                 <div class="left">
-                                    @include('user.includes.google-auth')
+                                    @include('guest.includes.google-auth')
                                 </div>
                                 <div class="right">
-                                    @include('user.includes.facebook-auth')
+                                    @include('guest.includes.facebook-auth')
                                 </div>
                             </div>
                             <button type="submit">SIGN IN</button>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Authenticate\AnnonceController;
 use App\Http\Controllers\Authenticate\BoostController;
 use App\Http\Controllers\Authenticate\CategoryController;
@@ -92,22 +93,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-Route::prefix('auth')->group(function () {
-    Route::get('/login', function () {
-        return view("guest.auth.login", ['name' => 'Login', 'head' => 'Account']);
-    })->name("auth.login");
-    Route::get('/register', function () {
-        return view("guest.auth.register", ['name' => 'Register', 'head' => 'Account']);
-    })->name("auth.register");
+Route::name('auth.')->prefix('auth')->group(function () {
+    Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
+    Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
     Route::get('/forgot-password', function () {
         return view("guest.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
-    })->name("auth.forgot-password");
+    })->name("forgot-password");
     Route::get('/reset-password', function () {
         return view("guest.auth.reset-password", ['name' => 'Reset-password', 'head' => 'Account']);
-    })->name("auth.reset-password");
+    })->name("reset-password");
     Route::get('/verify-email', function () {
         return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
-    })->name("auth.verify-email");
+    })->name("verify-email");
+    Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
+    Route::post('/register', [AuthController::class, 'store'])->name('register');
+
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::controller(StripePaymentController::class)->group(function(){
         Route::get('/stripe', 'stripe');
         Route::post('/stripe', 'stripePost')->name('stripe.post');
@@ -143,14 +144,12 @@ Route::get('/wishlist', function () {
 Route::name('chat.')->prefix('chat')->group(function () {
     Route::get('/', [DiscussionController::class, 'index'])->name('index');
     Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
+    Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
+    Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
+
 });
 
-Route::post('/discussions/{annonce}', [DiscussionController::class, 'store'])->name('discussions.store');
-Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->name('discussions.view');
-Route::put('/discussions/{discussion}', [DiscussionController::class, 'update'])->name('discussions.update');
-Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
-Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
 //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
 Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
 Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
