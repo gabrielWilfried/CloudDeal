@@ -13,22 +13,27 @@ class AnnonceGuestController extends Controller
 {
     public function paginatedAds(Request $request)
     {
+        $limit = $request->get('limit', 9);
+        $towns = Town::all();
+        $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
+        $BestAds = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
         $search = '%' . $request->get('search', '') . '%';
-        $filterCategories = $request->get('filterCategories', []);
         $priceFilter = $request->get('filterPrice', '');
-
         $query = Annonce::where('is_blocked', false);
         if($priceFilter != '' && $priceFilter != '0,0'){
             $price = explode(',', $priceFilter);
             $query=$query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
         }
-        if($filterCategories != []){
-            $categoryId = explode(',', $filterCategories);
-            $query->whereIn('category_id', $categoryId);
+        if ($request->has('categories') && !blank($request->input('categories'))) {
+            $categoryIds = array_map('intval', explode(',', $request->input('categories')));
+            $query->whereIn('category_id',  $categoryIds);
         }
-        $limit = $request->get('limit', 9);
+        if ($request->has('town') && ($request->input('town')!=='undefined')) {
+            $townId = $request->input('town');
+            $query->where('town_id', '=', $townId);
+        }
         $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
-        return response()->json($annonces);
+        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds ]);
     }
 
     public function index(Request $request)
@@ -59,14 +64,14 @@ class AnnonceGuestController extends Controller
         //Sort by name
         if ($request->has('name')) {
             $annonces->where('name', 'like', '%' . $request->input('name') . '%');
+            $annonces->whereIn('category_id',  $request->categories);
         }
 
 
         //Sort by categories
-        if ($request->has('category ')) {
-            $annonces->whereHas('category', function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->input('category') . '%');
-            });
+        if ($request->has('categories')) {
+            $annonces->whereIn('category_id',  $request->categories);
+            dd($annonces);
         }
 
         //Sort by town
@@ -84,8 +89,8 @@ class AnnonceGuestController extends Controller
         }
 
 
-        $annonces = $annonces->get();
-        return response()->json($annonces);
+       $annonces = $annonces->get();
+       return response()->json($annonces);
     }
     public function detailsAnnonce(Annonce  $annonce)
     {

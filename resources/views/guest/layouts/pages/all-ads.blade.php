@@ -18,7 +18,7 @@
                         <div class="product-filter">
                             <h4 class="widget-title">Filter by Price</h4>
                             <div class="filter-price">
-                                <form class="price-form" method="get">
+                                <form action="javascript:void(0);" class="price-form" method="get">
                                     <div id="slider-range"></div>
                                     <div class="row">
                                         <div class="col-7">
@@ -37,9 +37,9 @@
                             <h4 class="widget-title">Categories</h4>
                             <ul>
                                 @foreach ($allCategories as $category)
-                                    <li><label for="{{ $category->id }}" >{{ $category->name }}</label><input
-                                            type="checkbox" id="{{ $category->id }}" name="category"
-                                            value="{{ $category->id }}" x-model="currentCategories" x-on:click="filterByCategories()"></li>
+                                <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
+                                        type="checkbox" x-on:click="filterByCategories()" class="category-checkbox" name="category"
+                                        value="{{ $category->id }}" id="{{ $category->name }}"></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -64,11 +64,11 @@
                 <div class="col-lg-9 col-12">
                     <div class="row mb-30">
                         <div class="col-sm-4 col-12" style="cursor: pointer">
-                            <select name="stor" class="select-style" style="cursor: pointer">
-                                <option disabled selected>Sort by Defalt</option>
-                                {{-- <template x-for="town in data.towns">
-                                    <option x-text="town.name"></option>
-                                </template> --}}
+                            <select @change="sortByTown()" name="stor" class="select-style town-select" style="cursor: pointer">
+                                <option :value=undefined selected>Sort by Default</option>
+                                <template x-for="town in data.towns">
+                                    <option :value="town.id" x-text="town.name"></option>
+                                </template>
                             </select>
                         </div>
                         <div class=" col-sm-5 col-12">
@@ -91,7 +91,7 @@
                     <div class="tab-content">
                         <div x-show="!isLoading" class="tab-pane active" id="grid">
                             <ul class="row">
-                                <template x-for="ad in datas">
+                                <template x-for="ad in data.annonces.data">
                                     <li class="col-lg-4 col-sm-6 col-12">
                                         <div class="product-wrap">
                                             <div class="product-img">

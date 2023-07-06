@@ -1,0 +1,42 @@
+
+
+
+.box .box-header a{
+    position: absolute;
+    right:0;
+    margin-right: 20px
+}
+
+th td{
+    margin: 0;
+}
+.box-body tr th:last-child, .box-body tr td:last-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+.box-body tr td button{
+    margin: 2px 2px;
+}
+
+.disappear {
+    animation: fadeOut 4s forwards;
+}
+@keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+}
+
+label.error{
+    color: red;
+}
+#image1,#image3,#image2,#image4{
+    cursor: pointer;
+}
