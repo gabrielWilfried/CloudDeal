@@ -76,7 +76,7 @@
 
                         <h3>{{ $ad->name }}</h3>
                         <div class="rating-wrap fix">
-                            <span class="pull-left">{{ toMoney($ad->price) }}</span>
+                            <span class="pull-left" id="pull-left">{{ toMoney($ad->price) }}</span>
                         </div>
                         <p>{{ $ad->description }}</p>
                         <ul class="input-style">
@@ -100,10 +100,10 @@
 
                              @endforeach
                              <li>
-                                
+
                              </li>
                         </ul>
-                       
+
 
                         <ul class="socil-icon">
                             <li>Share :</li>
@@ -113,7 +113,7 @@
                             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
-                        
+
                         @include('guest.includes.commentlist')
                     </div>
                 </div>
@@ -123,6 +123,6 @@
     </div>
     </div>
     <script src="{{ asset('assets/js/signaler.js') }}"></script>
-    
+
     @include('guest.includes.best-ad')
 @endsection
