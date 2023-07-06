@@ -1,7 +1,6 @@
 @extends('admin.authentication.layouts.pages.ads.default')
 
 @section('content')
-    @include("admin.authentication.layouts.pages.modal.form")
     <div class="col-12">
         <div class="box">
             <div class="box-header with-border">
@@ -28,7 +27,7 @@
                                     <td>{{ $category->description }}</td>
                                     <td>{{ $category->created_at }}</td>
                                     <td>
-                                        
+
                                         <form method="get" action="{{ route('admin.category.update', ['category' => $category]) }}" >
                                             <button type="submit" class="btn btn-rounded btn-warning mb-5"><i
                                                     class="fa fa-edit"></i></button>
@@ -51,24 +50,9 @@
                                 <th>Actions</th>
                         </tfoot>
                     </table>
-                    
+
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $('document').ready(function(){
-            console.log("helloooooooooooooooooooooo");
-            $('.close-modal').on('click' function(){
-                $('.modal-dialog').css('display', 'none');
-            })
-
-            $('.open-modal').on('click' function(){
-                $('.modal-dialog').css('display', 'block');
-            })
-        })
-    </script>
 @endsection

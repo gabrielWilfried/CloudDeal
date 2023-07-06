@@ -46,7 +46,8 @@ Route::prefix('clouddeal')->group(function () {
             return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
         })->name('dashboard.ad-list');
         Route::prefix('search')->group(function () {
-            Route::get('/', [AnnonceGuestController::class, 'search']); //->name('search.category')
+            Route::get('/', [AnnonceGuestController::class, 'search']);
+            Route::get('/category/{listId}', [AnnonceGuestController::class, 'search'])->name('search.category');
         });
     });
 });
@@ -63,6 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
         Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
         Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
+        Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
         Route::put('/boost/{annonce}', [BoostController::class, 'store'])->name('boost');
     });
     Route::prefix('category')->name('category.')->group(function () {
@@ -78,7 +80,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', [VilleController::class, 'store'])->name('store');
         Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
-        Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
         Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 });

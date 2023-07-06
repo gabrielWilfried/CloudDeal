@@ -13,7 +13,8 @@
                 <h3 class="box-title">List Ads</h3>
                 <a type="button" href="{{ route('admin.ads.create') }}" class="btn btn-rounded btn-success mb-5">Publish</a>
             </div>
-            <div class="box-body"  x-data="data" x-init="loadAds">
+            <!-- /.box-header -->
+            <div class="box-body">
                 <div class="table-responsive">
                     <table id="example5" class="table table-bordered table-striped" style="width:100%">
                         <thead>
@@ -36,20 +37,19 @@
                                     <td>{{ $annonce->created_at }}</td>
                                     <td>
 
+                                        <a href="{{ route('admin.ads.detail', ['annonce' => $annonce ]) }}" class="btn btn-rounded btn-dark mb-5 "><i class="fa fa-eye"></i></a>
                                         <form name="" method="post"
                                             action="{{ route('admin.ads.block', ['annonce' => $annonce]) }}">
                                             @csrf
                                             @method('put')
                                             @if ($annonce->is_blocked == false)
-                                                <button type="submit" class="btn btn-rounded btn-danger mb-5">Bloquer
-                                                    <i></i></button>
+                                                <button type="submit" class="btn btn-rounded btn-danger mb-5">
+                                                    <i class="fa fa-lock"></i></button>
                                             @else
-                                                <button type="submit" class="btn btn-rounded btn-success mb-5">Debloquer
-                                                    <i></i></button>
+                                                <button type="submit" class="btn btn-rounded btn-success mb-5">
+                                                    <i class="fa fa-unlock"></i></button>
                                             @endif
                                         </form>
-
-
 
                                     </td>
                                 </tr>

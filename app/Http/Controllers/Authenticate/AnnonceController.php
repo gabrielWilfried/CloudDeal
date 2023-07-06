@@ -23,7 +23,6 @@ class AnnonceController extends Controller
         return view('admin.authentication.layouts.pages.ads.show', compact('annonces'));
     }
 
-<<<<<<< HEAD
     public function paginatedAds(Request $request)
     {
         ///$user = Auth::user();
@@ -34,43 +33,30 @@ class AnnonceController extends Controller
     }
 
     public function create(){
-=======
-    public function create()
-    {
->>>>>>> 1921bb82327ec6b20f5ce400441c2f35f8bbbb9a
         return view('admin.authentication.layouts.pages.ads.create');
     }
 
-    public function edit(Annonce $annonce)
-    {
+    public function edit(Annonce $annonce){
 
         return view('admin.authentication.layouts.pages.ads.edit', compact('annonce'));
     }
 
-<<<<<<< HEAD
-=======
-    public function boost(Annonce $annonce)
-    {
-    }
-
->>>>>>> 1921bb82327ec6b20f5ce400441c2f35f8bbbb9a
     public function store(Request $request)
     {
 
-        $request->validate(
-            [
-                'name' => 'required|string|max:255',
-                'price' => 'required|numeric|min:0',
-                'description' => 'required',
-                'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
-                'category_id' => 'required|exists:categories,id',
-                'image' => 'required'
-            ]
-        );
+            $request->validate(
+                [
+                    'name' => 'required|string|max:255',
+                    'price' => 'required|numeric|min:0',
+                    'description' => 'required',
+                    'town_id' => 'required|exists:towns,id',
+                    'user_id' => 'required|exists:users,id',
+                    'category_id' => 'required|exists:categories,id',
+                    'image' => 'required'
+                ]
+            );
 
-        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image',));
-        //dd($annonce);
+        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image', ));
 
         return Redirect::route('admin.ads.index');
     }
@@ -78,7 +64,6 @@ class AnnonceController extends Controller
     public function update(Request $request, Annonce $annonce)
     {
         //if ($annonce->user_id != auth()->id()) abort(403);
-<<<<<<< HEAD
             $request->validate(
                 [
                     'name' => 'required|string|max:255',
@@ -91,21 +76,6 @@ class AnnonceController extends Controller
             );
 
         dd($request);
-=======
-        $request->validate(
-            [
-                'name' => 'required|string|max:255',
-                'price' => 'required|numeric|min:0',
-                'description' => 'required',
-                'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
-                'category_id' => 'required|exists:categories,id',
-            ]
-        );
-
-
-
->>>>>>> 1921bb82327ec6b20f5ce400441c2f35f8bbbb9a
         $annonce->update($request->except('level', 'is_blocked'));
 
         return response()->json(['message', 'Updated successfully']);
@@ -135,17 +105,12 @@ class AnnonceController extends Controller
     public function sortByName(Request $request)
     {
         $name = $request->input('name');
-        $annonces = Annonce::where('name', 'like', "%$name%")->get();
+        $annonces = Annonce::where('name' , 'like', "%$name%")->get();
         return response()->json($annonces);
     }
-
-    public function block(Annonce $annonce)
-    {
-
+    public function block(Request $request, Annonce $annonce){
         $annonce->is_blocked = !($annonce->is_blocked);
         $annonce->save();
-
-        return Redirect::route('admin.ads.index');
-        //return redirect()->back();
+        return redirect()->back();
     }
 }

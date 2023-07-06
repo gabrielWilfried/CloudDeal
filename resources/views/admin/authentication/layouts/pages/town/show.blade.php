@@ -52,7 +52,4 @@
             </div>
         </div>
     </div>
-    @include('admin.authentication.layouts.pages.ads.modal.modal-boost')
-    @include('admin.authentication.layouts.pages.ads.modal.modal-edit')
-    @include('admin.authentication.layouts.pages.ads.modal.modal-delete')
 @endsection

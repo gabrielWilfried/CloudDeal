@@ -37,9 +37,9 @@
                             <h4 class="widget-title">Categories</h4>
                             <ul>
                                 @foreach ($allCategories as $category)
-                                    <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
-                                            type="checkbox" id="{{ $category->name }}" name="category"
-                                            value="{{ $category->name }}"></li>
+                                <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
+                                        type="checkbox" x-on:click="sortByCat()" class="category-checkbox" name="category"
+                                        value="{{ $category->id }}" id="{{ $category->name }}"></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -48,7 +48,7 @@
                             <ul>
                                 <li>
                                     <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/1.jpg a') }}" alt="">
+                                        <img src="{{ asset('assets/images/post/1.jpg') }}" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="shop.html">Mustard Oil</a>
@@ -57,7 +57,7 @@
                                 </li>
                                 <li>
                                     <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/2.jpg" a') }}" alt="">
+                                        <img src="{{ asset('assets/images/post/1.jpg"') }}" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="shop.html">Mustard Oil</a>
@@ -66,7 +66,7 @@
                                 </li>
                                 <li>
                                     <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/3.jpg" a') }}" alt="">
+                                        <img src="{{ asset('assets/images/post/1.jpg"') }}" alt="">
                                     </div>
                                     <div class="post-content">
                                         <a href="shop.html">Mustard Oil</a>
@@ -80,10 +80,10 @@
                 <div class="col-lg-9 col-12">
                     <div class="row mb-30">
                         <div class="col-sm-4 col-12" style="cursor: pointer">
-                            <select name="stor" class="select-style" style="cursor: pointer">
-                                <option disabled selected>Sort by Defalt</option>
+                            <select @change="sortByTown()" name="stor" class="select-style town-select" style="cursor: pointer">
+                                <option :value=undefined selected>Sort by Default</option>
                                 <template x-for="town in data.towns">
-                                    <option x-text="town.name"></option>
+                                    <option :value="town.id" x-text="town.name"></option>
                                 </template>
                             </select>
                         </div>
