@@ -10,11 +10,7 @@ use App\Http\Controllers\Guest\ContactController;
 
 use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
-<<<<<<< HEAD
 use App\Http\Controllers\Authenticate\PaymentController;
-=======
-use Faker\Guesser\Name;
->>>>>>> elgenio
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 
-        Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
 });
 
 

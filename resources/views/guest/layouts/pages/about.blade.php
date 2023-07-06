@@ -47,7 +47,7 @@
 
                                         <img src="{{ $images[$i] }}"
                                             class="card-img-top object-fit-cover rounded-circle p-1 bg-danger"
-                                            alt="">{{ $noms[$i] }}
+                                            alt="{{ $noms[$i] }}">
                                         <div class="card-body text-left text-center">
                                             <h6><span><i class="fa fa-user m-2 rounded"
                                                         style="color:#ff0000;"></i></span>{{ $noms[$i] }}
