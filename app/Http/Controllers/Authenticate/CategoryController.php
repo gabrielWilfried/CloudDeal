@@ -12,26 +12,22 @@ class CategoryController extends Controller
 {
 
     public function index(Request $request)
-    {   
+    {
 
         $categories = Category::all();
         return view('admin.authentication.layouts.pages.category.show', compact('categories'));
     }
 
-    public function category(Request $request)
-    {   
-
-        $category = Category::paginate(5);
-        return response()->json(['category' => $category]);
-    }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
-
+        dd($request);
         $category = Category::create($request->all());
+
+        //return redirect()->route('admin.category.index');
     }
 
     public function update(Request $request, Category $category)

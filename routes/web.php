@@ -70,8 +70,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
-        Route::get('/category', [CategoryController::class, 'categories']);
-        Route::post('/store', [CategoryController::class, 'store'])->name('store');
+        Route::post('/', [CategoryController::class, 'store'])->name('store');
         Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
         Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
     });
@@ -112,7 +111,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
     })->name('dashboard');
-   
+
     Route::get('/ad-list', function () {
         return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
     })->name('dashboard.ad-list');

@@ -14,11 +14,14 @@ $("document").ready(function () {
     });
     $("#alertbottomleft").addClass('disappear');
 
-    $("#toggle-create").on('click', function(){});
-
-    function openCreateCatModal(){
+    $("#toggle-create").on('click', function(){
         $('#categoryModal').addClass('modal-visible')
-    }
+    });
+    $("#close-modal-button").on('click', function(){
+        console.log('hello');
+        $('#categoryModal').removeClass('modal-visible')
+        $('#categoryModal').addClass('modal-invisible')
+    });
 
     $("form[name='edit-form']").validate({
         rules: {
