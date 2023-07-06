@@ -16,16 +16,22 @@ $("document").ready(function () {
         submitHandler: function (form) {
             const formData = new FormData(form);
 
-            fetch("/", {
+            fetch("/clouddeal", {
                 method: "POST",
                 body: formData,
-            }).then((response) => {
-                if (response.ok) toastr.success("Email saved successfully!");
-                else
-                    toastr.error(
-                        "An error occurred while submitting the form."
-                    );
-            });
+            }).then(response => response.json())
+            .then((data) => {
+                if(data.status === 'success'){
+                    toastr.success("Email saved successfully")
+                }
+                else if(data.status === 'failed'){
+                    toastr.error("Email Already exists")
+                }
+
+
+            }).catch(error => {
+                toastr.error("An error occured")
+            });;
         },
     });
 
@@ -42,14 +48,12 @@ $("document").ready(function () {
         });
     });
 });
-
 window.addEventListener('alpine:init', () => {
-
     Alpine.data('ads', () => ({
         ads: [],
         page: 1,
         totalPages: 2,
-        loadAds: function loadAds() {
+        loadAds() {
             fetch('/clouddeal/ads?page=' + this.page).then(response => response.json())
                 .then(data => {
                     this.ads = (this.ads || []).concat(data.allAds.data);
@@ -61,4 +65,5 @@ window.addEventListener('alpine:init', () => {
                     console.error(error);
                 });
         },
-    }))});
+    })
+)})

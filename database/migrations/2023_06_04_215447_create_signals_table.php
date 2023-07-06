@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('signals', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('count')->default(0);
-            $table->foreignId('annonce_id')->constrained();
+            $table->foreignId('annonce_id')->constrained()->onDelete('cascade');
             $table->json('reasons');
             $table->timestamps();
         });

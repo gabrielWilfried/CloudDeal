@@ -74,10 +74,10 @@ class User extends Authenticatable
     }
 
 
-    public function getImageProfileAttribute(): MorphMany
-    {
+    public function getImageProfileAttribute() //: MorphMany
+    {/*
         $file = File::where('target_id', $this->id)->where('target_type', User::class)->first();
         $file->path = str_replace('public', 'storage', $file->path);
-        return $file;
+        return $file; */
     }
 }

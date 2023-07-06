@@ -22,7 +22,7 @@ class DiscussionFactory extends Factory
         return [
             'slug' => $this->faker->unique()->word,
             'is_open' => $this->faker->boolean,
-            'annonce_id' => 1,
+            'annonce_id' => Annonce::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id
         ];
     }

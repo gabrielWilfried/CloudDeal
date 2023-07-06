@@ -1,21 +1,23 @@
 <style>
-   .publish{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   }
-   .publish a{
+    .publish {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .publish a {
         text-align: center;
         width: 100%;
         height: 40px;
         font-size: 15px;
         background-color: #ef4836;
-        border:1px solid #ef4836;
-        color:white;
+        border: 1px solid #ef4836;
+        color: white;
         padding: 5px 10px;
         border-radius: 5px;
     }
-    .publish a:hover{
+
+    .publish a:hover {
         background-color: inherit;
         color: #ef4836;
     }
@@ -40,6 +42,18 @@
                         <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                         <li><a href="">Logout</a></li>
                     </ul>
+                </li>
+                <li>
+                    <form>
+                        <select id="lang-switch">
+                            <option value="en">
+                                <span class="fi fi-us"></span>
+                            </option>
+                            <option value="ko" selected>
+                                <span class="fi fi-fr"></span>
+                            </option>
+                        </select>
+                    </form>
                 </li>
                 <li><a href="{{ route('auth.login') }}"> Login/Register </a></li>
                 <div class="publish">
