@@ -2,36 +2,38 @@
 
 namespace App\Http\Controllers\Guest;
 
-use App\Http\Controllers\Controller;
+use App\Models\Town;
+use App\Models\Boost;
 use App\Models\Annonce;
-use App\Models\Category;
-use App\Models\Comment;
 use App\Models\Town;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
 
 class AnnonceGuestController extends Controller
 {
     public function paginatedAds(Request $request)
     {
-        $towns = Town::all();
-        $search = '%' . $request->get('search', '') . '%';
         $limit = $request->get('limit', 9);
-        $annonces = Annonce::where('is_blocked', false)->where('name', 'LIKE', $search);
-
+        $towns = Town::all();
+        $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
+        $BestAds = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
+        $search = '%' . $request->get('search', '') . '%';
+        $priceFilter = $request->get('filterPrice', '');
+        $query = Annonce::where('is_blocked', false);
+        if($priceFilter != '' && $priceFilter != '0,0'){
+            $price = explode(',', $priceFilter);
+            $query=$query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
+        }
         if ($request->has('categories') && !blank($request->input('categories'))) {
             $categoryIds = array_map('intval', explode(',', $request->input('categories')));
-            $annonces = $annonces->whereIn('category_id',  $categoryIds);
+            $query->whereIn('category_id',  $categoryIds);
         }
-
         if ($request->has('town') && ($request->input('town')!=='undefined')) {
             $townId = $request->input('town');
-            $annonces = $annonces->where('town_id', '=', $townId);
+            $query->where('town_id', '=', $townId);
         }
-
-        $annonces = $annonces->orderByDesc('level')->paginate($limit);
-
-        return response()->json(['towns' => $towns, 'annonces' => $annonces]);
+        $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
+        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds ]);
     }
 
     public function index(Request $request)
