@@ -9,23 +9,21 @@ use Illuminate\Support\Facades\Validator;
 
 class VilleController extends Controller
 {
+
+    public function index(Request $request)
+    {   
+
+        $towns = Town::all();
+        return view('admin.authentication.layouts.pages.town.show', compact('towns'));
+    }
+
     public function store(Request $request)
     {
-        $validateTown = Validator::make(
-            $request->all(),
-            [
-                'name' => 'required|string|max:255'
-            ]
-        );
-
-        if ($validateTown->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validateTown->errors()
-            ], 401);
-        }
-
+       
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+            
         $town = Town::create($request->all());
 
         return response()->json($town, 201);
@@ -33,20 +31,12 @@ class VilleController extends Controller
 
     public function update(Request $request, Town $town)
     {
-        $validateTown = Validator::make(
-            $request->all(),
+        $request->validate(
             [
                 'name' => 'required|string|max:255'
             ]
         );
-
-        if ($validateTown->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validateTown->errors()
-            ], 401);
-        }
+            
 
         $town->update($request->all());
 

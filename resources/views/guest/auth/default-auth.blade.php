@@ -11,5 +11,5 @@
 @endsection
 
 @section("script")
-    <script src="{{asset('assets/js/validation.js')}}"></script>
+    <script src="{{asset('assets/custom/js/validation.js')}}"></script>
 @endsection
