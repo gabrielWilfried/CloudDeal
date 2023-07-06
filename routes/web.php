@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\NewsLetterController;
 use App\Http\Controllers\Guest\ContactController;
+use App\Http\Controllers\Authenticate\CommentaireController;
+use App\Http\Controllers\Guest\SignalGuestController;
 
 
 use App\Http\Controllers\Guest\AboutGuestController;
@@ -25,7 +27,6 @@ use Faker\Guesser\Name;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::prefix('clouddeal')->group(function () {
     //routes guest mode
     Route::get('/', [HomeController::class, "index"])->name('home');
@@ -107,6 +108,19 @@ Route::prefix('auth')->group(function () {
     });
 });
 
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', function () {
+        return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
+    })->name('dashboard');
+   
+    Route::get('/ad-list', function () {
+        return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
+    })->name('dashboard.ad-list');
+});
+
+Route::get('/contact', function () {
+  return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+})->name('contact');
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 
@@ -131,3 +145,9 @@ Route::get('/discussions/{discussion}', [DiscussionController::class, 'view'])->
 //Route::delete('/discussions/{discussion}', [DiscussionController::class, 'delete'])->name('discussions.delete');
 
 Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
+//Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
+Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
+Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
+Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+
+
