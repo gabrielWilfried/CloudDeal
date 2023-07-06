@@ -1,11 +1,12 @@
 @extends('admin.authentication.layouts.pages.ads.default')
 
 @section('content')
+@include('admin.authentication.layouts.pages.modal.modal-category')
     <div class="col-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">List Categories</h3>
-                <button class="btn btn-rounded btn-success mb-5 open-modal">Add</button>
+                <a type="button" data-toggle="modal" data-target="#categoryModal" class="btn btn-rounded btn-success mb-5">Add</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body"  x-data="data" x-init="loadAds">
