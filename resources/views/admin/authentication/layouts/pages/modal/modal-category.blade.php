@@ -1,8 +1,8 @@
-<div class="modal" id="categoryModal">
+<div class="modal-invisible" id="categoryModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="text-center mb-3">Boost your Ad</h3>
+                <h3 class="text-center mb-3">Create Category</h3>
                 <button type="button" class="close d-flex align-items-center justify-content-center"
                     data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="ion-ios-close"></span>

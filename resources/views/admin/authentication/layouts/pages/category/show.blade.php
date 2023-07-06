@@ -6,7 +6,7 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">List Categories</h3>
-                <a type="button" data-toggle="modal" data-target="#categoryModal" class="btn btn-rounded btn-success mb-5">Add</a>
+                <a type="button" id="toggle-create" class="btn btn-rounded btn-success mb-5">Add</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body"  x-data="data" x-init="loadAds">
