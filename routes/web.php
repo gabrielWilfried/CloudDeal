@@ -101,10 +101,14 @@ Route::prefix('auth')->group(function () {
     Route::get('/verify-email', function () {
         return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
     })->name("auth.verify-email");
-    Route::controller(StripePaymentController::class)->group(function(){
-        Route::get('/stripe', 'stripe');
-        Route::post('/stripe', 'stripePost')->name('stripe.post');
+    Route::prefix('payment')->group(function(){
+        Route::get('/', [StripePaymentController::class,'index']);
+        Route::post('/stripe', [StripePaymentController::class,'store'])->name('stripe.post');
     });
+    // Route::controller(StripePaymentController::class)->group(function(){
+    //     Route::get('/stripe', 'stripe');
+    //     Route::post('/stripe', 'stripePost')->name('stripe.post');
+    // });
 });
 
 

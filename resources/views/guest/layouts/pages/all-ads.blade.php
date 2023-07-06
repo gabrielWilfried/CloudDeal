@@ -52,7 +52,7 @@
                                             <img src="{{ asset('assets/images/post/1.jpg') }}" alt="">
                                         </div>
                                         <div class="post-content">
-                                            <a :href="ad.url_detail" x-text="ad.name"></a></h3>
+                                           <h3><a :href="ad.url_detail" x-text="ad.name"></a></h3>
                                                 <p  x-text="ad.format_price">
                                         </div>
                                     </li>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="tab-pane product-list" id="list">
                             <ul class="row">
-                                <template x-for="ad in data.annonces">
+                                <template x-for="ad in data.annonces.data">
                                     <li class="col-12">
                                         <div class="product-wrap">
                                             <div class="row">
@@ -170,7 +170,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="product-content">
                                                         <div class="product-text fix">
-                                                            <h3><a :href="ad.url_detail" x-text="ad.name"></p></a></h3>
+                                                            <h3><a :href="ad.url_detail" x-text="ad.name"></a></h3>
                                                             <span class="pull-left" x-text="ad.format_price"></span>
 
                                                         </div>

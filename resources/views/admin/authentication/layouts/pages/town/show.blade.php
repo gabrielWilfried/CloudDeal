@@ -15,6 +15,7 @@
                         {{-- <thead class="bg-info"> --}}
                             <tr>
                                 <th>Name</th>
+                                <th>Description</th>
                                 <th>Date Created</th>
                                 <th>Actions</th>
                             </tr>
@@ -23,12 +24,14 @@
                             @forelse ($towns as $town)
                                 <tr>
                                     <td>{{ $town->name }}</td>
+                                    <td>{{ $town->description }}</td>
                                     <td>{{ $town->created_at }}</td>
                                     <td>
                                         <form method="get" :action="ad.url_to_edit" >
                                             <button type="submit" class="btn btn-rounded btn-warning mb-5"><i
                                                     class="fa fa-edit"></i></button>
                                         </form>
+
                                         <form method="POST" onsubmit="event.preventDefault()">
                                             @csrf
                                             <input type="hidden" x-model="selectedId" :value="ad.id">
@@ -43,6 +46,7 @@
                         <tfoot>
                             <tr>
                                 <th>Name</th>
+                                <th>Description</th>
                                 <th>Date Created</th>
                                 <th>Actions</th>
                             </tr>

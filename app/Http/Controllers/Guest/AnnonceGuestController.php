@@ -20,18 +20,22 @@ class AnnonceGuestController extends Controller
         $search = '%' . $request->get('search', '') . '%';
         $priceFilter = $request->get('filterPrice', '');
         $query = Annonce::where('is_blocked', false);
+
         if($priceFilter != '' && $priceFilter != '0,0'){
             $price = explode(',', $priceFilter);
             $query=$query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
         }
+
         if ($request->has('categories') && !blank($request->input('categories'))) {
             $categoryIds = array_map('intval', explode(',', $request->input('categories')));
             $query->whereIn('category_id',  $categoryIds);
         }
+
         if ($request->has('town') && ($request->input('town')!=='undefined')) {
             $townId = $request->input('town');
             $query->where('town_id', '=', $townId);
         }
+
         $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
         return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds ]);
     }

@@ -16,9 +16,6 @@ window.addEventListener('alpine:init', () => {
             this.getAllAds();
         },
         filterPrice() {
-            // const minPrice = $("#slider-range").slider("values", 0);
-            // const maxPrice = $("#slider-range").slider("values", 1);
-            // this.priceFilter = minPrice + ',' + maxPrice;pm
             this.priceFilter =$("#slider-range").slider("values");
             this.getAllAds();
         },

@@ -11,7 +11,7 @@ class VilleController extends Controller
 {
 
     public function index(Request $request)
-    {   
+    {
 
         $towns = Town::all();
         return view('admin.authentication.layouts.pages.town.show', compact('towns'));
@@ -19,11 +19,11 @@ class VilleController extends Controller
 
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
-            
+
         $town = Town::create($request->all());
 
         return response()->json($town, 201);
@@ -36,7 +36,7 @@ class VilleController extends Controller
                 'name' => 'required|string|max:255'
             ]
         );
-            
+
 
         $town->update($request->all());
 
