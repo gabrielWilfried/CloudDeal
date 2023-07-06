@@ -15,7 +15,7 @@ class PaymentController extends Controller
         $montantTotals = 0;
 
         foreach ($annonces as $annonce) {
-            if ($annonce->payment) {
+            if ($annonce->payment && $annonce->payment->status == 'APPROVED') {
 
                 $montantTotals  += $annonce->payment->amount;
             }

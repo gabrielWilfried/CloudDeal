@@ -7,7 +7,7 @@
 </li>
 <li>
     <a href="{{ route('admin.payments.index') }}">
-        <i class="ti-power-off"></i>
+        <i class="fa fa-money"></i>
         <span>Payments</span>
 
 <li class="header nav-small-cap">Dashboard</li>

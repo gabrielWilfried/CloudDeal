@@ -37,12 +37,12 @@
                                             action="{{ route('admin.ads.block', ['annonce' => $annonce]) }}">
                                             @csrf
                                             @method('put')
-                                            @if ($annonce->is_blocked == false)
-                                                <button type="submit" class="btn btn-rounded btn-danger mb-5">Bloquer
-                                                    <i></i></button>
+                                            @if ($annonce->is_blocked == true)
+                                                <button type="submit" class="btn btn-rounded btn-danger btn-sm mb-5">
+                                                    <i class="fa fa-lock"> </i></button>
                                             @else
-                                                <button type="submit" class="btn btn-rounded btn-success mb-5">Debloquer
-                                                    <i></i></button>
+                                                <button type="submit" class="btn btn-rounded btn-success btn-sm mb-5">
+                                                    <i class="fa fa-unlock"></i></button>
                                             @endif
                                         </form>
 
@@ -71,7 +71,4 @@
             </div>
         </div>
     </div>
-    @include('admin.authentication.layouts.pages.ads.modal.modal-boost')
-    @include('admin.authentication.layouts.pages.ads.modal.modal-edit')
-    @include('admin.authentication.layouts.pages.ads.modal.modal-delete')
 @endsection

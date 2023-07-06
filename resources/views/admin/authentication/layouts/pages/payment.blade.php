@@ -1,10 +1,11 @@
 @extends('admin.authentication.layouts.pages.ads.default')
 
-@section('body')
+@section('content')
     <div class="col-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">List Payments</h3>
+                <h3 class="text-right">TotalAmount: {{ $montantTotals }}</h3>
 
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -14,10 +15,10 @@
                                 <tr>
                                     <th>Nature</th>
                                     <th>Annonce</th>
-                                    <th>Utilisateur</th>
-                                    <th>Montant</th>
-                                    <th>Statut</th>
-                                    <th>Date et Heure</th>
+                                    <th>User</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Payment Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -27,9 +28,9 @@
                                         <tr>
                                             <td>
                                                 @if (count($annonce->boosts) > 0)
-                                                    <span class="text-success">&#10004;</span> {{ count($annonce->boosts) }}
+                                                    <span>boost</span>
                                                 @else
-                                                    <span class="text-danger">&#10006;</span>
+                                                    <span>taxe</span>
                                                 @endif
                                             </td>
                                             <td>{{ $annonce->name }}</td>
@@ -45,29 +46,30 @@
                                             @endif
                                             <td>{{ $annonce->created_at }}</td>
                                             <td>
-                                                <!-- Dropdown -->
+                                                <!-- Buttons -->
                                                 @if ($annonce->payment->status === 'PENDING')
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            Select
-                                                        </button>
-                                                        <div class="dropdown-menu text-center"
-                                                            aria-labelledby="dropdownMenuButton">
-                                                            <div class="dropdown-item mb-3">
-                                                                <a
-                                                                    href="{{ route('admin.payments.approve', ['annonce' => $annonce]) }}">APPROVE</a>
-                                                            </div>
-                                                            <div class="dropdown-item">
-                                                                <a
-                                                                    href="{{ route('admin.payments.cancel', ['annonce' => $annonce]) }}">CANCEL</a>
-                                                            </div>
-                                                        </div>
+                                                    <div class="d-flex justify-content-center">
+                                                        <form
+                                                            action="{{ route('admin.payments.approve', ['annonce' => $annonce]) }}"
+                                                            method="get">
+                                                            <button type="submit" class="btn btn-success mr-2 btn-sm"><i
+                                                                    class="fa fa-check "></i></button>
+
+
+
+                                                        </form>
+                                                        <form
+                                                            action="{{ route('admin.payments.cancel', ['annonce' => $annonce]) }}"
+                                                            method="get"><button class="btn btn-danger btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                            </button>
+                                                        </form>
+
+
                                                     </div>
                                                 @endif
-
                                             </td>
+
                                         </tr>
                                     @endif
                                 @endforeach
@@ -77,7 +79,4 @@
                 </div>
             </div>
         </div>
-        @include('admin.authentication.layouts.pages.ads.modal.modal-boost')
-        @include('admin.authentication.layouts.pages.ads.modal.modal-edit')
-        @include('admin.authentication.layouts.pages.ads.modal.modal-delete')
     @endsection
