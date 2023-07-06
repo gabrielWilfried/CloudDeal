@@ -44,8 +44,8 @@
                             <li>
                                 <i class="fa fa-phone"></i> Email address:
                                 <p>
-                                    <span>tegonguefolefackf@gmail.com</span>
-                                    <span>tegonguefolefackf@gmail.com </span>
+                                    <span><a href="mailto:tegonguefolefackf@gmail.com">tegonguefolefackf@gmail.com</a href></span>
+                                    <span><a href="mailto:sikounmosagesse@gmail.com">sikounmosagesse@gmail.com</a href></span>
                                 </p>
                             </li>
                             <li>
