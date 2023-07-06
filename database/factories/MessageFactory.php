@@ -22,7 +22,7 @@ class MessageFactory extends Factory
         $discussion = Discussion::find(1);
         return [
             'content' => $this->faker->paragraph,
-            'discussion_id' => 1,
+            'discussion_id' => Discussion::inRandomOrder()->first()->id,
             'seller_id' =>  $discussion->user_id,
             'customer_id' => User::inRandomOrder()->first()->id,
             'created_at' => now(),

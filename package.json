@@ -11,6 +11,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "alpinejs": "^3.12.2"
+        "alpinejs": "^3.12.2",
+        "flag-icons": "^6.7.0",
+        "flag-icons-svg": "^0.0.3"
     }
 }

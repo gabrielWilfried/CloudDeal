@@ -10,7 +10,7 @@
                     <aside class="sidebar-area">
                         <div class="widget widget_search">
                             <h4 class="widget-title">Search Product</h4>
-                            <form action="javascript:void(0);" class="searchform" method="get">
+                            <form action="javascript:void(0);" class="searchform" >
                                 <input type="text" id="search" name="search_text" placeholder="Search Product..."
                                     x-model="searchText" @keyup="search()">
                             </form>
@@ -18,7 +18,7 @@
                         <div class="product-filter">
                             <h4 class="widget-title">Filter by Price</h4>
                             <div class="filter-price">
-                                <form action="#" method="get">
+                                <form action="javascript:void(0);" class="price-form" method="get">
                                     <div id="slider-range"></div>
                                     <div class="row">
                                         <div class="col-7">
@@ -27,7 +27,7 @@
                                             </p>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <button type="submit" x-onclick>filter</button>
+                                            <button  x-on:click="filterPrice()">filter</button>
                                         </div>
                                     </div>
                                 </form>
@@ -37,42 +37,26 @@
                             <h4 class="widget-title">Categories</h4>
                             <ul>
                                 @foreach ($allCategories as $category)
-                                    <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
-                                            type="checkbox" id="{{ $category->name }}" name="category"
-                                            value="{{ $category->name }}"></li>
+                                <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
+                                        type="checkbox" x-on:click="filterByCategories()" class="category-checkbox" name="category"
+                                        value="{{ $category->id }}" id="{{ $category->name }}"></li>
                                 @endforeach
                             </ul>
                         </div>
                         <div class="widget widget_recent_entries">
-                            <h4 class="widget-title">Related Product</h4>
+                            <h4 class="widget-title">Best Product</h4>
                             <ul>
-                                <li>
-                                    <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/1.jpg a') }}" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="shop.html">Mustard Oil</a>
-                                        <p>$478.56</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/2.jpg" a') }}" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="shop.html">Mustard Oil</a>
-                                        <p>$245.56</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-img">
-                                        <img src="{{ asset('assets/images/post/3.jpg" a') }}" alt="">
-                                    </div>
-                                    <div class="post-content">
-                                        <a href="shop.html">Mustard Oil</a>
-                                        <p>$219.56</p>
-                                    </div>
-                                </li>
+                                <template x-for="ad in data.BestAds">
+                                    <li>
+                                        <div class="post-img">
+                                            <img src="{{ asset('assets/images/post/1.jpg') }}" alt="">
+                                        </div>
+                                        <div class="post-content">
+                                            <a :href="ad.url_detail" x-text="ad.name"></a></h3>
+                                                <p  x-text="ad.format_price">
+                                        </div>
+                                    </li>
+                                </template>
                             </ul>
                         </div>
                     </aside>
@@ -80,10 +64,10 @@
                 <div class="col-lg-9 col-12">
                     <div class="row mb-30">
                         <div class="col-sm-4 col-12" style="cursor: pointer">
-                            <select name="stor" class="select-style" style="cursor: pointer">
-                                <option disabled selected>Sort by Defalt</option>
+                            <select @change="sortByTown()" name="stor" class="select-style town-select" style="cursor: pointer">
+                                <option :value=undefined selected>Sort by Default</option>
                                 <template x-for="town in data.towns">
-                                    <option x-text="town.name"></option>
+                                    <option :value="town.id" x-text="town.name"></option>
                                 </template>
                             </select>
                         </div>
@@ -160,7 +144,7 @@
                         </div>
                         <div class="tab-pane product-list" id="list">
                             <ul class="row">
-                                <template x-for="ad in data.annonces.data">
+                                <template x-for="ad in data.annonces">
                                     <li class="col-12">
                                         <div class="product-wrap">
                                             <div class="row">
@@ -235,5 +219,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/custom/js/search.js') }}"></script>
+<script src="{{ asset('assets/custom/js/search.js') }}"></script>
 @endsection

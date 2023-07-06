@@ -5,9 +5,9 @@
 
         <div class="user-profile">
             <div class="ulogo">
-                <a href="index.html">
+                <a href="{{ route('admin.home') }}">
                     <!-- logo for regular state and mobile devices -->
-                    <h3><b>CrmX</b>Admin</h3>
+                    <h3><b>Cloud Deal</b>Admin</h3>
                 </a>
             </div>
             <div class="profile-pic">
