@@ -15,10 +15,10 @@
                                     x-model="searchText" @keyup="search()">
                             </form>
                         </div>
-                        <div class="product-filter" x-data="data" x-init='getAllAds'>
+                        <div class="product-filter">
                             <h4 class="widget-title">Filter by Price</h4>
                             <div class="filter-price">
-                                <form action="javascript:void(0)" method="get">
+                                <form class="price-form" method="get">
                                     <div id="slider-range"></div>
                                     <div class="row">
                                         <div class="col-7">
@@ -27,13 +27,13 @@
                                             </p>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <button type="submit" x-on:click="filterPrice()">filter</button>
+                                            <button  x-on:click="filterPrice()">filter</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="widget widget_categories"  x-data="data" x-init='getAllAds'>
+                        <div class="widget widget_categories">
                             <h4 class="widget-title">Categories</h4>
                             <ul>
                                 @foreach ($allCategories as $category)
@@ -66,9 +66,9 @@
                         <div class="col-sm-4 col-12" style="cursor: pointer">
                             <select name="stor" class="select-style" style="cursor: pointer">
                                 <option disabled selected>Sort by Defalt</option>
-                                <template x-for="town in data.towns">
+                                {{-- <template x-for="town in data.towns">
                                     <option x-text="town.name"></option>
-                                </template>
+                                </template> --}}
                             </select>
                         </div>
                         <div class=" col-sm-5 col-12">
@@ -91,7 +91,7 @@
                     <div class="tab-content">
                         <div x-show="!isLoading" class="tab-pane active" id="grid">
                             <ul class="row">
-                                <template x-for="ad in data.annonces.data">
+                                <template x-for="ad in datas">
                                     <li class="col-lg-4 col-sm-6 col-12">
                                         <div class="product-wrap">
                                             <div class="product-img">
@@ -144,7 +144,7 @@
                         </div>
                         <div class="tab-pane product-list" id="list">
                             <ul class="row">
-                                <template x-for="ad in data.annonces.data">
+                                <template x-for="ad in data.annonces">
                                     <li class="col-12">
                                         <div class="product-wrap">
                                             <div class="row">
