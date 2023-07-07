@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
-use App\Http\Controllers\Signal;
-use App\Models\Signal as ModelsSignal;
+use App\Models\Signal;
 use Illuminate\Http\Request;
 
 class SignalGuestController extends Controller
@@ -15,13 +14,15 @@ class SignalGuestController extends Controller
 
     public function signaleAnnonce(Request $request, $id)
     {
-        // Récupérer l'signal spécifié
+      
         $annonce = Annonce::findOrFail($id);
 
-        // Créer un nouveau signalement
-        $signal = new ModelsSignal();
+      
+
+        // gerer l'affichage avec les models : c'est une classe bootstrapp
+        $signal = new Signal();
         $signal->annonce_id = $annonce->id;
-        $signal->reason = $request->input('reason');
+        $signal->reasons = $request->input('raison');
         $signal->count = $annonce->signals()->count();
         $signal->count += 1;
         $signal->save();
@@ -29,14 +30,19 @@ class SignalGuestController extends Controller
         $signalMax = 3;
         $signalCount = $signal->count;
         if ($signalCount >= $signalMax) {
-            $annonce->update(['is_blocked' => true]);
+            $annonce->is_blocked = true;
+            $annonce->save();
 
-            return response()->json(['message' =>'Annonce Bloquée']);
+           // return back()->with('success','annonce bloque.');
 
+           return redirect()->route('home')->with('success', 'annonce bloque.');
+        
         }
 
         // Répondre avec un message de succès
-        return response()->json(['message' => 'Annonce signalé avec succès']);
+        return back()->with('successSignal', 'L\'annonce a été signalée avec succès.');
     }
+
+    
 
 }

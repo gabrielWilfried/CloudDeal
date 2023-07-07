@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
-
-use App\Models\Town;
 use App\Models\Boost;
+use App\Models\Category;
 use App\Models\Annonce;
-use Illuminate\Http\Request;
+use App\Models\Town;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 class AnnonceGuestController extends Controller
@@ -53,11 +53,11 @@ class AnnonceGuestController extends Controller
 
     public function showAd($id)
     {
-        $name = "Ad Detail";
-        $head = "Dashboard";
+
         $annonces = Annonce::orderBy('level', 'desc')->take(4)->get();
         $ad = Annonce::findorfail($id);
-        return view('guest.layouts.pages.ad-detail',  compact('name', 'head', 'ad', 'annonces'));
+        $ad->load('comments', 'category', 'town', 'user');
+        return view('guest.layouts.pages.ad-detail',  compact('ad','annonces'));
     }
 
     public function search(Request $request)

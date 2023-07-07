@@ -42,9 +42,6 @@
             @include('guest.layouts.menu.second-header')
         </div>
     </header>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1">
-        @include('guest.includes.modal')
-    </div>
     @yield('content')
 
     <section class="social-newsletter-section">
@@ -74,6 +71,7 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/custom/js/myscript.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/chat.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @yield('script')

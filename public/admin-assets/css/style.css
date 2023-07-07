@@ -54,7 +54,7 @@ body {
   font-weight: 400;
   font-family: "Nunito Sans", sans-serif;
   line-height: 1.5;
-  background-color: black; }
+  background-color: rgb(255, 253, 253); }
 
 /*---basic---*/
 a {
@@ -265,11 +265,11 @@ img {
 .code-preview {
   border: 1px solid #d5dfea;
   padding: 20px;
-  background-color: black; }
+  background-color: rgb(247, 240, 240); }
 
 code {
   border: 1px solid #d5dfea;
-  background-color: black;
+  background-color: rgb(245, 243, 243);
   border-radius: .25rem;
   padding: .2rem .4rem; }
 

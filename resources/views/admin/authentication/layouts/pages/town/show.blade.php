@@ -8,10 +8,10 @@
                 <a type="button" href="{{ route('admin.town.store') }}" class="btn btn-rounded btn-success mb-5">Add</a>
             </div>
             <!-- /.box-header -->
-            <div class="box-body"  x-data="data" x-init="loadAds">
+            <div class="box-body">
                 <div class="table-responsive">
 
-                    <table id="example5" class="table table-bordered table-striped" style="width:70%">
+                    <table id="example5" class="table table-bordered table-striped" style="width:100%">
                         {{-- <thead class="bg-info"> --}}
                             <tr>
                                 <th>Name</th>
@@ -28,14 +28,14 @@
                                     <td>{{ $town->created_at }}</td>
                                     <td>
                                         <form method="get" :action="ad.url_to_edit" >
-                                            <button type="submit" class="btn btn-rounded btn-warning mb-5"><i
+                                            <button type="submit" class="btn btn-sm btn-rounded btn-warning mb-5"><i
                                                     class="fa fa-edit"></i></button>
                                         </form>
 
                                         <form method="POST" onsubmit="event.preventDefault()">
                                             @csrf
                                             <input type="hidden" x-model="selectedId" :value="ad.id">
-                                            <button x-on:click="deleteAd" type="submit" class="btn btn-rounded btn-danger mb-5"><i
+                                            <button x-on:click="deleteAd" type="submit" class="btn btn-sm btn-rounded btn-danger mb-5"><i
                                                     class="fa fa-trash" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>

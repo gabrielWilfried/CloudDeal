@@ -4,10 +4,10 @@
     <div class="google-icon-wrapper">
         <img class="google-icon" src="{{ asset('assets/svg/facebook.png') }}" />
     </div>
-    @if ($name == "Login")
+    {{-- @if ($name == "Login")
         <p class="btn-text"><b>Login with facebook</b></p>
     @else
         <p class="btn-text"><b>Register with facebook</b></p>
-    @endif
+    @endif --}}
 
 </div>
