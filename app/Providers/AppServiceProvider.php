@@ -5,6 +5,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Town;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
             $allTowns = Town::all();
             view()->share('allTowns', $allTowns);
         }
-
+        if (Schema::hasTable('contacts')) {
+            $unreadMessageCount = Contact::where('is_read', false)->count();
+            view()->share('unreadMessageCount', $unreadMessageCount);
+        }
     }
 }

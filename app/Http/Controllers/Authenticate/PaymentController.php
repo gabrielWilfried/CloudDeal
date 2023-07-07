@@ -22,8 +22,7 @@ class PaymentController extends Controller
             }
         }
         $montantTotals = toMoney($montantTotals);
-        $unreadMessageCount = Contact::where('is_read', false)->count();
-        return view('admin.authentication.layouts.pages.payment', compact('unreadMessageCount', 'annonces', 'montantTotals'));
+        return view('admin.authentication.layouts.pages.payment', compact('annonces', 'montantTotals'));
     }
 
     public function approvePayment(Annonce $annonce)

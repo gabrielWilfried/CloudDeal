@@ -59,6 +59,7 @@ Route::prefix('clouddeal')->group(function () {
     });
 });
 Route::prefix('admin')->name('admin.')->group(function () {
+
     Route::get('/', [HomeAuthenticateController::class, 'index'])->name('home');
 
     Route::prefix('myads')->name('ads.')->group(function () {

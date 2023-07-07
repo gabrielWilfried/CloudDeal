@@ -12,8 +12,7 @@ class LetterController extends Controller
 {
     public function show()
     {
-        $unreadMessageCount = Contact::where('is_read', false)->count();
         $letters = Suscribed_email::get();
-        return view('admin.authentication.layouts.pages.letter', compact('letters', 'unreadMessageCount'));
+        return view('admin.authentication.layouts.pages.letter', compact('letters'));
     }
 }
