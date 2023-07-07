@@ -13,7 +13,7 @@ class StripePaymentController  extends Controller
 {
     public function index(): View
     {
-        return view('stripe');
+        return view('auth.payment.index');
     }
 
 
