@@ -45,6 +45,18 @@
                                 </ol>
                             </nav>
                         </div>
+                    @elseif (Str::contains(request()->url(), 'messages'))
+                        <h3 class="page-title">Messages</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item" aria-current="page">messages</li>
+                                    <li class="breadcrumb-item active" aria-current="page">My Messages</li>
+                                </ol>
+                            </nav>
+                        </div>
                     @else
                         <h3 class="page-title">Towns</h3>
                         <div class="d-inline-block align-items-center">

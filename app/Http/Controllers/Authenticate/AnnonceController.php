@@ -20,6 +20,7 @@ class AnnonceController extends Controller
         //$limit = $request->get('limit', 15);
         //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
         $annonces = Annonce::get();
+
         return view('admin.authentication.layouts.pages.ads.show', compact('annonces'));
     }
 
@@ -32,11 +33,13 @@ class AnnonceController extends Controller
         return response()->json(['annonces' => $annonces]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin.authentication.layouts.pages.ads.create');
     }
 
-    public function edit(Annonce $annonce){
+    public function edit(Annonce $annonce)
+    {
 
         return view('admin.authentication.layouts.pages.ads.edit', compact('annonce'));
     }
@@ -44,19 +47,19 @@ class AnnonceController extends Controller
     public function store(Request $request)
     {
 
-            $request->validate(
-                [
-                    'name' => 'required|string|max:255',
-                    'price' => 'required|numeric|min:0',
-                    'description' => 'required',
-                    'town_id' => 'required|exists:towns,id',
-                    'user_id' => 'required|exists:users,id',
-                    'category_id' => 'required|exists:categories,id',
-                    'image' => 'required'
-                ]
-            );
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric|min:0',
+                'description' => 'required',
+                'town_id' => 'required|exists:towns,id',
+                'user_id' => 'required|exists:users,id',
+                'category_id' => 'required|exists:categories,id',
+                'image' => 'required'
+            ]
+        );
 
-        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image', ));
+        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image',));
 
         return Redirect::route('admin.ads.index');
     }
@@ -64,16 +67,16 @@ class AnnonceController extends Controller
     public function update(Request $request, Annonce $annonce)
     {
         //if ($annonce->user_id != auth()->id()) abort(403);
-            $request->validate(
-                [
-                    'name' => 'required|string|max:255',
-                    'price' => 'required|numeric|min:0',
-                    'description' => 'required',
-                    'town_id' => 'required|exists:towns,id',
-                    'user_id' => 'required|exists:users,id',
-                    'category_id' => 'required|exists:categories,id',
-                ]
-            );
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric|min:0',
+                'description' => 'required',
+                'town_id' => 'required|exists:towns,id',
+                'user_id' => 'required|exists:users,id',
+                'category_id' => 'required|exists:categories,id',
+            ]
+        );
 
 
         $annonce->update($request->except('level', 'is_blocked'));
@@ -95,7 +98,8 @@ class AnnonceController extends Controller
         return response()->json(['message', 'Deleted successfully']);
     }
 
-    public function detail($annonce){
+    public function detail($annonce)
+    {
         $ad = Annonce::find($annonce);
         $comments = Comment::where('annonce_id', '=', $annonce)->get();
         $signals = Signal::where('annonce_id', '=', $annonce)->get();
@@ -105,10 +109,11 @@ class AnnonceController extends Controller
     public function sortByName(Request $request)
     {
         $name = $request->input('name');
-        $annonces = Annonce::where('name' , 'like', "%$name%")->get();
+        $annonces = Annonce::where('name', 'like', "%$name%")->get();
         return response()->json($annonces);
     }
-    public function block(Request $request, Annonce $annonce){
+    public function block(Request $request, Annonce $annonce)
+    {
         $annonce->is_blocked = !($annonce->is_blocked);
         $annonce->save();
         return redirect()->back();

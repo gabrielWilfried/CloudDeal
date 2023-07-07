@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authenticate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -21,7 +22,8 @@ class PaymentController extends Controller
             }
         }
         $montantTotals = toMoney($montantTotals);
-        return view('admin.authentication.layouts.pages.payment', compact('annonces', 'montantTotals'));
+        $unreadMessageCount = Contact::where('is_read', false)->count();
+        return view('admin.authentication.layouts.pages.payment', compact('unreadMessageCount', 'annonces', 'montantTotals'));
     }
 
     public function approvePayment(Annonce $annonce)
