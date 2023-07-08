@@ -1,6 +1,5 @@
 <ul class="sidebar-menu" data-widget="tree">
     @include('admin.authentication.layouts.menus.menu-parts.busines-menu')
-    {{-- @include('admin.authentication.layouts.menus.menu-parts.admin-menu') --}}
 
     <li>
         <a href="pages/auth_login.html">

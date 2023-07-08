@@ -11,28 +11,40 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentaireController extends Controller
 {
-    public function store(Request $request, Annonce $annonce){
 
-        $validators = validator::make($request->all(),[
-            'content' => 'required',
-            'user_id' => 'required|exists:users,id',
-        ]);
+        public function store(Request $request, $ad)
+        {
+            $request->validate([
+                'comment' => 'required',
+            ]);
+            
 
-        if ($validators->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'validation error',
-                'errors' => $validators->errors()
-            ], 400);
+            $ad = Annonce::findOrFail($ad);
+            
+            $comment = Comment::create([
+                'content' => $request->comment,
+
+                'user_id' => optional($request->user_id)->id ?? 1, 
+            // 'user_id' => auth()->user()->id, // Supposons que l'utilisateur est authentifié
+                'annonce_id' => $ad->id,
+            ]);
+            return back()->with('successCommentaire', 'Le commentaire à été ajouter avec succès.');
         }
 
-        $commentaires = Comment::create([
-            'content'=> $request->content,
-            'user_id' => $request->user_id,
-            'annonce_id'=> $annonce->id,
+  /*  public function listcomment($id)
+    {
+        $ad = Annonce::findOrFail($id);
+        $ad->load('comments');
+        return response()->json($ad->comments);
+    } */
+    public function listcomment($id)
+{
+    $ad = Annonce::findorfail($id);
+        $ad->load('comments');
+    return view('your-view', compact('ad', 'comments'));
+}
 
-        ]);
+  
 
-    }
-    //
+    
 }

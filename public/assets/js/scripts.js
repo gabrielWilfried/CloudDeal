@@ -287,12 +287,32 @@
     ------------------------------ */
     $("#slider-range").slider({
         range: true,
-        min: 12,
+        min: 0,
         max: 200,
-        values: [0, 100],
+        values: [0, 0],
         slide: function(event, ui) {
             $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
         }
+    });
+
+    $(function() {
+        var min = $("#min");
+        var max = $("#max");
+
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 200,
+            values: [0, 0],
+            slide: function(event, ui) {
+                min.val(ui.values[0]);
+                max.val(ui.values[1]);
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+
+        min.val($("#slider-range").slider("values", 0));
+        max.val($("#slider-range").slider("values", 1));
     });
 
 
@@ -361,50 +381,7 @@
     // Ajax Contact Form
     --------------------- */
 
-    $('.cf-msg').hide();
-    $('form#cf button#submit').on('click', function() {
-        var fname = $('#fname').val();
-        var subject = $('#subject').val();
-        var email = $('#email').val();
-        var msg = $('#msg').val();
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        if (!regex.test(email)) {
-            alert('Please enter valid email');
-            return false;
-        }
-
-        fname = $.trim(fname);
-        subject = $.trim(subject);
-        email = $.trim(email);
-        msg = $.trim(msg);
-
-        if (fname != '' && email != '' && msg != '') {
-            var values = "fname=" + fname + "&subject=" + subject + "&email=" + email + " &msg=" + msg;
-            var csrfToken = $('input[name="_token"]').val();
-            $.ajax({
-                type: "POST",
-                url: "/clouddeal/contact",
-                data: values,
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                  },
-                success: function() {
-                    $('#fname').val('');
-                    $('#subject').val('');
-                    $('#email').val('');
-                    $('#msg').val('');
-                    $('.cf-msg').fadeIn().html('<div class="alert alert-success"><strong>Success!</strong> Email has been sent successfully.</div>');
-                    setTimeout(function() {
-                        $('.cf-msg').fadeOut('slow');
-                    }, 4000);
-                }
-            });
-        } else {
-            $('.cf-msg').fadeIn().html('<div class="alert alert-danger"><strong>Warning!</strong> Please fillup the informations correctly.</div>')
-        }
-        return false;
-    });
 
 
     /*------------------------------------------

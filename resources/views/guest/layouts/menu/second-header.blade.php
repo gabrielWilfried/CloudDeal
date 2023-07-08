@@ -52,7 +52,7 @@
                         <a aria-expanded="false" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="sidemenu-items">
-                        <a  aria-expanded="false" href="javascript:void(0);">Best ads </a>
+                        <a  aria-expanded="false" href="{{ route('dashboard.index') }}">Best ads </a>
                     </li>
                     <li class="sidemenu-items">
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Categories</a>

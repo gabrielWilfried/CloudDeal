@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/mystyle.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
 
     @yield('style')
 
@@ -41,9 +42,6 @@
             @include('guest.layouts.menu.second-header')
         </div>
     </header>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1">
-        @include('guest.includes.modal')
-    </div>
     @yield('content')
 
     <section class="social-newsletter-section">
@@ -72,9 +70,9 @@
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('assets/js/myscript.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/myscript.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/chat.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 
     @yield('script')
 

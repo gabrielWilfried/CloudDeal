@@ -24,11 +24,7 @@ class AuthController extends Controller
             );
 
             if ($validateUser->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
+                return redirect()->route('auth.register');
             }
 
             $user = User::create([
@@ -37,15 +33,9 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
-            return response()->json([
-                'user_id' => $user->id,
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            return redirect()->route('auth.login');
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return redirect()->route('auth.register')->with(['message'=>"Une erreur s\'est produit lors de la connexion"]);
         }
     }
 
@@ -61,32 +51,20 @@ class AuthController extends Controller
             );
 
             if ($validateUser->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
+                return redirect()->route('auth.login')->with(['message'=>"Email ou password incorrecte"]);
             }
 
             if (!Auth::attempt($request->only(['email', 'password']))) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password does not match with our record.',
-                ], 401);
+                return redirect()->route('auth.login')->with(['message'=>"Email ou password incorrecte"]);
             }
 
             $user = User::where('email', $request->email)->first();
-            $user->update(['is_online' => true]);
 
-            return response()->json([
-                'user_id' => $user->id,
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            return redirect()->route('admin.home');
+
+            // return view('admin.authentication.admin-home');
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return redirect()->route('auth.login')->with(['message'=>"Une erreur s\'est produit lors de la connexion"]);
         }
     }
     public function logout(Request $request)
@@ -103,5 +81,10 @@ class AuthController extends Controller
             'message' => 'Successfully logged out.',
         ], 200);
     }
-
+    public function LoginView(Request $request){
+        return view('guest.auth.login');
+    }
+    public function RegisterView(Request $request){
+        return view('guest.auth.register');
+    }
 }

@@ -1,5 +1,4 @@
-@extends('guest.layouts.layout')
-
+@extends('guest.layouts.layout')    
 @section('content')
 
     @include('guest.includes.navbanner')
@@ -39,20 +38,20 @@
                         <ul>
                             <li>
                                 <i class="fa fa-home"></i> Address:
-                                <p>1234, Contrary to popular Sed ut perspiciatis unde 1234</p>
+                                <p>Dschang </p>
                             </li>
                             <li>
                                 <i class="fa fa-phone"></i> Email address:
                                 <p>
-                                    <span>info@yoursite.com </span>
-                                    <span>info@yoursite.com </span>
+                                    <span>tegonguefolefackf@gmail.com</span>
+                                    <span>tegonguefolefackf@gmail.com </span>
                                 </p>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i> phone number:
                                 <p>
-                                    <span>+0123456789</span>
-                                    <span>+1234567890</span>
+                                    <span>+237 672 044 430</span>
+                                    <span>+237 672 044 430</span>
                                 </p>
                             </li>
                         </ul>
@@ -62,3 +61,8 @@
         </div>
     </div>
 @endsection
+
+
+<!-- @section('script')
+    <script src="{{ asset('assets/js/contact.js') }}"></script>
+@endsection -->
