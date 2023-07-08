@@ -15,7 +15,7 @@
         <span>Payments</span></a>
 </li>
 <li>
-    <a href="{{ route('admin.messages.index') }}">404
+    <a href="{{ route('admin.messages.index') }}">
 
         <span class="badge-container">
             <i class="fa fa-envelope envelope-icon"></i>
@@ -46,7 +46,4 @@
         <i class="fas fa-file-alt"></i>
         <span>Letters</span>
     </a>
-    <a href="{{ route('admin.payments.index') }}">
-        <i class="fa fa-money"></i>
-        <span>Payments</span></a>
 </li>
