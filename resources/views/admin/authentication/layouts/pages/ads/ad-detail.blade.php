@@ -39,55 +39,78 @@
                             <div data-ad-id={{ $ad->id }} id="idContainer" style="display: none"></div>
                             <hr>
                             <div class="gap-items">
-                                <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success btn-rounded"><i class="fa fa-rocket"></i> Boost</button>
-                                <a href="{{ route('admin.ads.edit', ['annonce' =>$ad]) }}"  class="btn btn-warning btn-rounded"><i class="fa fa-edit"></i> Edit</a>
+                                <button data-toggle="modal" data-target="#exampleModalCenter"
+                                    class="btn btn-success btn-rounded"><i class="fa fa-rocket"></i> Boost</button>
+                                <a href="{{ route('admin.ads.edit', ['annonce' =>$ad]) }}"
+                                    class="btn btn-warning btn-rounded"><i class="fa fa-edit"></i> Edit</a>
                                 <form method="post" onsubmit="event.preventDefault()" style="display: inline">
                                     @csrf
-                                    <button type="submit" id="delete-alert" class="btn btn-danger btn-rounded"><i class="fa fa-trash"></i> Delete</button>
+                                    <button type="submit" id="delete-alert" class="btn btn-danger btn-rounded"><i
+                                            class="fa fa-trash"></i> Delete</button>
                                 </form>
+                                @if ($ad->is_verified == false)
+                                <form name="" method="post"  style="display: inline"
+                                            action="{{ route('admin.ads.verify', ['annonce' => $ad]) }}">
+                                            @csrf
+                                            @method('put')
+                                            <button type="submit" class="btn btn-rounded btn-info mb-5">Publish
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                        </form>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <h4 class="box-title mt-40">Comments</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        @forelse ($comments as $comment)
-                                        <tr>
-                                            <td width="390">{{ $comment->user->name }}</td>
-                                            <td>{{ $comment->content }}</td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td width="390">No comment</td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                            <h4 class="box-title mt-40 text-success">Comments</h4>
+                            <div class="row">
+                                @forelse ($comments as $comment)
+                                <div class="col-md-6 col-8">
+                                    <div class="box">
+                                        <div class="box-body">
+                                            <h4 class="box-title">{{ $comment->user->name }}</h4>
+                                            <p>{{ $comment->content }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                <div class="col-md-6 col-12">
+                                    <div class="box">
+                                        <div class="box-body">
+                                            <h4 class="box-title">No comment</h4>
+                                        </div>
+                                    </div>
+                                    @endforelse
+                                </div>
                             </div>
-                            <h4 class="box-title mt-40">Signals</h4>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        @forelse ($signals as $signal)
-                                        <tr>
-                                            <td>{{ $signal->reasons }}</td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td width="390">No signal</td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h4 class="box-title mt-40 text-danger">Signals</h4>
+                            <div class="row">
+                                @forelse ($signals as $signal)
+                                <div class="col-md-6 col-8">
+                                    <div class="box">
+                                        <div class="box-body">
+                                            <h4 class="box-title">{{ $signal->annonce->user->name }}</h4>
+                                            <p>{{ $signal->reasons }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                <div class="col-md-6 col-12">
+                                    <div class="box">
+                                        <div class="box-body">
+                                            <p>No signal</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    @include('admin.authentication.layouts.pages.modal.modal-boost')
+
 </section>
 @endsection
-
+@include('admin.authentication.layouts.pages.modal.modal-boost')

@@ -58,7 +58,7 @@ class AnnonceController extends Controller
 
         $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image', ));
 
-        return Redirect::route('admin.ads.index');
+        return response()->json(['message' => 'Created Successfully']);
     }
 
     public function update(Request $request, Annonce $annonce)
@@ -78,14 +78,14 @@ class AnnonceController extends Controller
 
         $annonce->update($request->except('level', 'is_blocked'));
 
-        return response()->json(['message', 'Updated successfully']);
+        return response()->json(['message' => 'Updated successfully']);
     }
 
-    public function view(Annonce $annonce)
+    public function verify(Annonce $annonce)
     {
-        if ($annonce->user_id != auth()->id()) abort(403);
-        $annonce->load('payment', 'signals', 'comments', 'boosts', 'discussions', 'category', 'town');
-        return response()->compact($annonce);
+        $annonce->is_verified = true;
+        $annonce->save();
+        return redirect()->route('admin.ads.index');
     }
 
     public function delete(Annonce $annonce)
@@ -102,12 +102,6 @@ class AnnonceController extends Controller
         return view('admin.authentication.layouts.pages.ads.ad-detail', compact('ad', 'comments', 'signals'));
     }
 
-    public function sortByName(Request $request)
-    {
-        $name = $request->input('name');
-        $annonces = Annonce::where('name' , 'like', "%$name%")->get();
-        return response()->json($annonces);
-    }
     public function block(Request $request, Annonce $annonce){
         $annonce->is_blocked = !($annonce->is_blocked);
         $annonce->save();

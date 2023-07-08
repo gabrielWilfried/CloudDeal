@@ -1,7 +1,5 @@
 
-
-
-.box .box-header a{
+.box .box-header a, .box .box-header button{
     position: absolute;
     right:0;
     margin-right: 20px

@@ -64,11 +64,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/create', [AnnonceController::class, 'create'])->name('create');
         Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
         Route::post('/store', [AnnonceController::class, 'store'])->name('store');
-        Route::post('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
+        Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
         Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
         Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
         Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
         Route::put('/boost/{annonce}', [BoostController::class, 'store'])->name('boost');
+        Route::put('/verify/{annonce}', [AnnonceController::class, 'verify'])->name('verify');
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
