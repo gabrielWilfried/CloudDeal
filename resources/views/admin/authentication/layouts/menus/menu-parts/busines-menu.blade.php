@@ -6,7 +6,7 @@
 <li>
     <a href="{{ route('admin.ads.index') }}">
         <i class="ti-layout-grid4"></i>
-        <span>Mes annonces</span>
+        <span>My Ads</span>
     </a>
 </li>
 <li>
@@ -15,7 +15,8 @@
         <span>Payments</span></a>
 </li>
 <li>
-    <a href="{{ route('admin.messages.index') }}">
+    <a href="{{ route('admin.messages.index') }}">404
+
         <span class="badge-container">
             <i class="fa fa-envelope envelope-icon"></i>
             @if ($unreadMessageCount > 0)
@@ -25,7 +26,8 @@
         <span class="messages-text">Messages</span>
     </a>
 </li>
-<li class="header nav-small-cap">Dashboard</li>
+
+<li class="header nav-small-cap">ADMINISTRATION</li>
 <li>
     <a href="{{ route('admin.category.index') }}">
         <i class="ti-layout-grid2"></i>
@@ -44,4 +46,7 @@
         <i class="fas fa-file-alt"></i>
         <span>Letters</span>
     </a>
+    <a href="{{ route('admin.payments.index') }}">
+        <i class="fa fa-money"></i>
+        <span>Payments</span></a>
 </li>
