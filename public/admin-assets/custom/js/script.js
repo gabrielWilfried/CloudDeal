@@ -69,7 +69,6 @@ $("document").ready(function () {
                 if (xhr.status == 200) {
                     var response = JSON.parse(xhr.responseText);
                     toastr.success(response.message)
-                    console.log(xhr);
                 }
                 else {
                     toastr.error('Request unsuccessfull');
@@ -77,6 +76,7 @@ $("document").ready(function () {
             }
             xhr.send(formData);
             form.reset();
+            $('#exampleModalCenter').attr('data-dismiss', 'modal')
         }
     });
     $("form[name='edit-form']").validate({

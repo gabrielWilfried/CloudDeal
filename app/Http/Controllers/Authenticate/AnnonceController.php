@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Annonce;
 use App\Models\Comment;
 use App\Models\Signal;
-use App\Models\User;
+use App\Models\Boost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
+
 
 class AnnonceController extends Controller
 {
@@ -20,8 +18,8 @@ class AnnonceController extends Controller
         //$limit = $request->get('limit', 15);
         //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
         $annonces = Annonce::get();
-
-        return view('admin.authentication.layouts.pages.ads.show', compact('annonces'));
+        $boosted_ads_id = Boost::pluck('annonce_id')->unique();
+        return view('admin.authentication.layouts.pages.ads.show', compact('annonces', 'boosted_ads_id'));
     }
 
     public function paginatedAds(Request $request)
@@ -100,10 +98,11 @@ class AnnonceController extends Controller
 
     public function detail($annonce)
     {
+        $boost = Boost::where('annonce_id', $annonce)->latest()->first();
         $ad = Annonce::find($annonce);
         $comments = Comment::where('annonce_id', '=', $annonce)->get();
         $signals = Signal::where('annonce_id', '=', $annonce)->get();
-        return view('admin.authentication.layouts.pages.ads.ad-detail', compact('ad', 'comments', 'signals'));
+        return view('admin.authentication.layouts.pages.ads.ad-detail', compact('ad', 'comments', 'signals', 'boost'));
     }
 
     public function block(Request $request, Annonce $annonce)
