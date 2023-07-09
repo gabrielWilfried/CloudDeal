@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('admin-assets/components/chartist-js-develop/chartist.css') }}">
 @endsection
 @section('body')
-    <div class="container-full">
+
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="d-flex align-items-center">
@@ -292,7 +292,6 @@
             </div>
         </section>
         <!-- /.content -->
-    </div>
 @endsection
 
 @section('script')
