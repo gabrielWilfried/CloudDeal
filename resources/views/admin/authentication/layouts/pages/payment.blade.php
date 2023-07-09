@@ -5,13 +5,13 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">List Payments</h3>
-            <h3 class="box-title text-right" style="position: absolute; right:0;">TotalAmount: {{ $montantTotals }}</h3>
+            <h3 class="box-title text-right mr-35" style="position: absolute; right: 0;">TotalAmount: {{ $montantTotals }}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <div class="table-responsive">
                 <table id="example6" class="table table-bordered table-striped">
-                    <thead>
+                    <thead class="bg-info">
                         <tr>
                             <th>Nature</th>
                             <th>Annonce</th>

@@ -95,13 +95,7 @@
                             </li>
                         </ul>
                         <ul class="cetagory">
-                            <li>Categories:</li>
-                            @foreach($ad->category as $category)
-
-                             @endforeach
-                             <li>
-
-                             </li>
+                            <li>Category: {{ $ad->category->name }}</li>
                         </ul>
 
 

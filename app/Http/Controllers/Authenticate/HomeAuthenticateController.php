@@ -12,13 +12,6 @@ class HomeAuthenticateController extends Controller
 {
     public function index()
     {
-        //$messages = Contact::all();
-        $unreadMessageCount = Contact::where('is_read', false)->count();
-        View::share('unreadMessageCount', $unreadMessageCount);
-
-        view()->share('unreadMessageCount', $unreadMessageCount);
-
-
         return view('admin.authentication.admin-home');
     }
 }

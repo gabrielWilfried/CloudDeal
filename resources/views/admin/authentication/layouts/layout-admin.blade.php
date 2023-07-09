@@ -26,7 +26,7 @@
 <body>
     @include('admin.authentication.layouts.menus.header')
 
-    <div class="wrapper" style="display: flex">
+    <div class="wrapper">
        <aside class="main-sidebar">
             @include('admin.authentication.layouts.menus.aside')
         </aside>
