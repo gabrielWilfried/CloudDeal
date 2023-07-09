@@ -72,6 +72,9 @@
     <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/custom/js/myscript.js') }}"></script>
     <script src="{{ asset('assets/custom/js/chat.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/signal.js') }}"></script>
+    <script src="{{ asset('assets/js/signaler.js') }}"></script>
+    <script src="path/to/toastify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @yield('script')

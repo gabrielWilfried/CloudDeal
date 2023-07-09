@@ -13,8 +13,9 @@
         "vite": "^4.3.9"
     },
     "dependencies": {
-        "alpinejs": "^3.12.2",
+        "alpinejs": "^3.12.3",
         "flag-icons": "^6.7.0",
-        "flag-icons-svg": "^0.0.3"
+        "flag-icons-svg": "^0.0.3",
+        "toastify-js": "^1.12.0"
     }
 }

@@ -12,12 +12,14 @@ window.addEventListener('alpine:init', () => {
         filteredDiscussions: [],
 
         fetchDiscussions() {
-            fetch(`/chat/${21}`)
+            fetch(`/chat/${1}`)
                 .then(response => response.json())
                 .then(data => {
 
                     this.discussions = data.data;
                     if (this.discussions.length > 0) {
+                        this.currentDiscussion = this.discussions[0].id;
+                        this.discussionSlug = this.discussions.find(discussion => discussion.id === this.currentDiscussion).slug;
                         this.searchDiscussions();
                         this.fetchMessages(this.currentDiscussion);
                         this.sendMessage(this.currentDiscussion);

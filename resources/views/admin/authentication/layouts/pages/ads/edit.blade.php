@@ -1,7 +1,7 @@
 @extends('admin.authentication.layouts.pages.ads.default')
 
 @section('content')
-<section class="content" style="width: 100%">
+<section class="content">
     <div class="box">
         <div class="box-header with-border">
             <h4 class="box-title">Edit</h4>
@@ -79,7 +79,7 @@
                                         </textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <h5>Cover Image <span class="text-danger">*</span></h5>
                                     <div class="col-lg-10">
                                         <div class="custom-file">
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <h5>Images</h5>
                                     <div class="col-lg-10">
                                         <div class="custom-file">

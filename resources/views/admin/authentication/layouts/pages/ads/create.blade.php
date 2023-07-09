@@ -70,7 +70,7 @@
                                                 placeholder="Brief description of your ad"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group">
                                         <h5>Cover Image <span class="text-danger">*</span></h5>
                                         <div class="col-lg-10">
                                             <div class="custom-file">
@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group">
                                         <h5>Images</h5>
                                         <div class="col-lg-10">
                                             <div class="custom-file">

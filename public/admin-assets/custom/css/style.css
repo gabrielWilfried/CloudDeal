@@ -1,8 +1,8 @@
 
-.box .box-header a, .box .box-header button{
+.box .box-header h3 + a, .box .box-header h3 + button, .box .box-header h3+div{
     position: absolute;
     right:0;
-    margin-right: 20px
+    margin-right: 33px
 }
 
 th td{

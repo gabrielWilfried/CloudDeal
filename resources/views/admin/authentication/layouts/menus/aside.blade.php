@@ -2,7 +2,7 @@
 
     <div class="user-profile">
         <div class="ulogo">
-            <a href="{{ route('admin.home') }}">
+            <a href="{{ route('dashboard.index') }}">
                 <!-- logo for regular state and mobile devices -->
                 <h3><b>Dashboard <br><small>Cloud deal</small></b></h3>
             </a>
