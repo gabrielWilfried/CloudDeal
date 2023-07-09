@@ -3240,22 +3240,15 @@ ol {
 
 #comment {
 
-    width: 100%;
     padding: 10px;
     font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-#comment:focus{
-    outline: none;
-    border-color: #ef4836;
-    box-shadow: 0 0 5px #ef4836;
 }
 
+#reason{
+
+    padding: 16px;
+
+}
 .modal-dialog-centered {
     background: #fff;
     padding: 50px;

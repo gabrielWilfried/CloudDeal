@@ -53,7 +53,8 @@ class AnnonceGuestController extends Controller
         $annonces = Annonce::orderBy('level', 'desc')->take(4)->get();
         $ad = Annonce::findorfail($id);
         $ad->load('comments', 'category', 'town', 'user');
-        return view('guest.layouts.pages.ad-detail',  compact('ad','annonces'));
+        $comments = $ad->comments()->latest()->take(4)->get();
+        return view('guest.layouts.pages.ad-detail',  compact('ad','annonces', 'comments'));
     }
 
     public function search(Request $request)

@@ -164,4 +164,6 @@ Route::name('chat.')->prefix('chat')->group(function () {
 //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
 Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
 Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
-Route::post('/comments/comment/{ad}', [CommentaireController::class, 'store'])->name('comments.store');
+Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+
+//laravel gate
