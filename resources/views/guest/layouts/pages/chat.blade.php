@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                    <img x-show="currentDiscussion == !null" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                    <img  src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                                 </a>
                                 <div class="chat-about">
 
@@ -92,7 +92,7 @@
                                 </template>
                             </div>
                             <div class="chat-message clearfix">
-                                <div class="input-group mb-0" x-show="currentDiscussion == !null">
+                                <div class="input-group mb-0">
                                     <input type="text" x-model="newMessage" class="message-input" placeholder="Enter text here...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-send" x-on:click="sendMessage(currentDiscussion)"></i></span>
