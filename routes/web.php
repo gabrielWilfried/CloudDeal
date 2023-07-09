@@ -155,4 +155,4 @@ Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAn
 Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
 Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
 
-
+//laravel gate
