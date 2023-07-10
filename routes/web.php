@@ -19,6 +19,7 @@ use App\Http\Controllers\Authenticate\PaymentController;
 use App\Http\Controllers\Authenticate\VilleController;
 use Faker\Guesser\Name;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -144,11 +145,16 @@ Route::get('/wishlist', function () {
 Route::name('chat.')->prefix('chat')->group(function () {
     Route::get('/', [DiscussionController::class, 'index'])->name('index');
     Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
-    Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
-    Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
+    Route::prefix('discussion')->group(function(){
+        Route::get('/messages/{discussionId}', [MessageController::class, 'getMessages']);
+        Route::post('/message', [MessageController::class, 'store'])->name('messages.store');
 
+    });
 });
 
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
 Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
