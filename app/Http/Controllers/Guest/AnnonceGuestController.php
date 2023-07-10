@@ -14,10 +14,10 @@ class AnnonceGuestController extends Controller
     public function paginatedAds(Request $request)
     {
         $limit = $request->get('limit', 9);
-        $towns = Town::all();
-        $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
-        $BestAds = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
+       // $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
+        $BestAds = Annonce::where('is_blocked', false)->orderByDesc('level')->take(3)->get();
         $search = '%' . $request->get('search', '') . '%';
+        $sort = $request->get('sort');
         $priceFilter = $request->get('filterPrice', '');
         $query = Annonce::where('is_blocked', false);
 
@@ -31,13 +31,24 @@ class AnnonceGuestController extends Controller
             $query->whereIn('category_id',  $categoryIds);
         }
 
-        if ($request->has('town') && ($request->input('town')!=='undefined')) {
-            $townId = $request->input('town');
-            $query->where('town_id', '=', $townId);
+        // Apply sorting base on the value of sort
+        switch($sort){
+            case 'name':
+                $query->orderBy('name');
+                break;
+            case 'price':
+                $query->orderBy('price');
+                break;
+            case 'best':
+                $query->orderByDesc('level');
+                break;
+            default:
+                $query->orderByDesc('level');
+                break;
         }
 
         $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
-        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds ]);
+        return response()->json([ 'annonces' => $annonces, 'BestAds' => $BestAds ]);
     }
 
     public function index(Request $request)

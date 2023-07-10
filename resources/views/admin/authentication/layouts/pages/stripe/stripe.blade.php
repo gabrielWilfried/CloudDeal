@@ -7,41 +7,48 @@
             <div class="p-30">
                 <div class="row">
                     <div class="col-lg-7 col-md-6 col-12">
-                        <form>
+                        @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session()->get('success') }}
+                            </div>
+                        @endif
+                        <form action="{{ route('stripe.store') }}" method="POST" id="card-form">
+                            @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail1">CARD NUMBER</label>
+                                <label for="card">CARD NUMBER</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
-                                    <input type="text" class="form-control" id="exampleInputuname"
+                                    <input type="text" class="form-control" id="card"
                                         placeholder="Card Number">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-7">
                                     <div class="form-group">
-                                        <label>EXPIRATION DATE</label>
+                                        <label for="card">EXPIRATION DATE</label>
                                         <input type="text" class="form-control" name="Expiry" placeholder="MM / YY"
-                                            required="">
+                                            required="" id="card">
                                     </div>
                                 </div>
                                 <div class="col-5 pull-right">
                                     <div class="form-group">
-                                        <label>CV CODE</label>
+                                        <label for="card">CV CODE</label>
                                         <input type="text" class="form-control" name="CVC" placeholder="CVC"
-                                            required="">
+                                            required="" id="card">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label>NAME OF CARD</label>
+                                        <label for="card-name">NAME OF CARD</label>
                                         <input type="text" class="form-control" name="nameCard"
-                                            placeholder="NAME AND SURNAME">
+                                            placeholder="NAME AND SURNAME" id="card-name">
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-rounded">Make Payment</button>
+                            <input type="hidden">
+                            <button type="submit"class="btn btn-success btn-rounded">Make Payment</button>
                         </form>
                     </div>
                     <div class="col-lg-5 col-md-6 col-12">
@@ -67,3 +74,40 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        let stripe = Stripe('{{ env("STRIPE_KEY") }}')
+        const elements = stripe.elements()
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px'
+                }
+            }
+        })
+        const cardForm = document.getElementById('card-form')
+        const cardName = document.getElementById('card-name')
+        cardElement.mount('#card')
+        cardForm.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            const { paymentMethod, error } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: {
+                    name: cardName.value
+                }
+            })
+            if (error) {
+                console.log(error)
+            } else {
+                let input = document.createElement('input')
+                input.setAttribute('type', 'hidden')
+                input.setAttribute('name', 'payment_method')
+                input.setAttribute('value', paymentMethod.id)
+                cardForm.appendChild(input)
+                cardForm.submit()
+            }
+        })
+    </script>
+@endpush

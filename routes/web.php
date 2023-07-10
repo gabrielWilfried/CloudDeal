@@ -90,6 +90,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
         Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
     });
+
+    Route::name('stripe.')->prefix('stripe')->group(function(){
+        Route::get('/', [StripePaymentController::class,'index'])->name('index');
+        Route::post('/payment', [StripePaymentController::class,'store'])->name('store');
+    });
 });
 
 
@@ -105,10 +110,7 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/verify-email', function () {
         return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
     })->name("auth.verify-email");
-    Route::prefix('payment')->group(function(){
-        Route::get('/', [StripePaymentController::class,'index']);
-        Route::post('/stripe', [StripePaymentController::class,'store'])->name('stripe.post');
-    });
+    
 });
 
 Route::prefix('dashboard')->group(function () {

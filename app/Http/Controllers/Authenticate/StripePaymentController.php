@@ -2,34 +2,40 @@
 
 namespace App\Http\Controllers\Authenticate;
 
-use App\Http\Controllers\Controller;
-use Illuminate\View\View;
-use Stripe;
+use Exception;
+use Stripe\StripeClient;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use Stripe\Exception\CardException;
+use App\Http\Controllers\Controller;
+
 
 
 class StripePaymentController  extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        return view('auth.payment.index');
+        return view('admin.authentication.layouts.pages.stripe.stripe');
     }
-
-
-
-    public function store(Request $request): RedirectResponse
+//create un service to manage the payment by stripe
+//stripe must generate a link for payment
+    public function store(Request $request)
     {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        try {
+            $stripe = new StripeClient(env('STRIPE_SECRET'));
 
-        Stripe\Charge::create ([
-                "amount" => 10 * 100,
-                "currency" => "usd",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from CloudDeal.com." //itsolutionstuff
-        ]);
+            $stripe->paymentIntents->create([
+                'amount' => 99 * 100,
+                'currency' => 'usd',
+                'payment_method' => $request->payment_method,//sscanf(),
+                'description' => 'Demo payment with stripe',
+                'confirm' => true,
+                'receipt_email' => $request->email
+            ]);
+        } catch (CardException $th) {
+            throw new Exception("There was a problem processing your payment", 1);
+        }
 
-        return back()->with('success', 'Payment successful!');
+        return back()->withSuccess('Payment done.');
     }
 
 }
