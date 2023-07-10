@@ -1,0 +1,25 @@
+        .badge-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .badge {
+            background-color: red;
+            color: white;
+            padding: 1px;
+            border-radius: 50%;
+            font-size: 10px;
+            position: absolute;
+            top: -14px;
+            right: -15px;
+            width: 10px;
+            height: 10px;
+        }
+
+        .envelope-icon {
+            margin-left: 10px;
+        }
+
+        .messages-text {
+            margin-left: 15px;
+        }

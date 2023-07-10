@@ -32,9 +32,9 @@ class BoostController extends Controller
             'score' => $score,
             'annonce_id' => $annonce->id,
         ]);
-       
+
         $annonce->level += $score;
         $annonce->save();
-        return Redirect::route('admin.ads.index')->with('message', 'Boosted sucesfully');
+        return response()->json(['message' => 'Boosted sucesfully']);
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedBigInteger('level')->default(1);
             $table->boolean('is_blocked')->default(false);
+            $table->boolean('is_verified')->default(false);
             $table->foreignId('town_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();

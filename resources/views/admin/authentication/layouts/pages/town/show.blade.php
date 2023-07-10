@@ -12,7 +12,7 @@
                 <div class="table-responsive">
 
                     <table id="example5" class="table table-bordered table-striped" style="width:100%">
-                        {{-- <thead class="bg-info"> --}}
+                        <thead class="bg-info">
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>

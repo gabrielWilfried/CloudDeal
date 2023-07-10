@@ -57,13 +57,13 @@
                             @csrf
                             <div class="form-group">
                                 <h5>Leave a comment</h5>
-                                <textarea name="comment" id="comment" cols="30" rows="5" placeholder="Votre commentaire"></textarea>
+                                <textarea class="contact-textarea" id="comment" name="comment" cols="30" rows="5" placeholder="Votre commentaire"></textarea>
                             </div>
                             <button type="submit" id="btnform" x-on:click="submitComment()">Soumettre</button>
                             @if(session('successCommentaire'))
-                                <div class="alert alert-success">
-                                    {{ session('successCommentaire') }}
-                                </div>
+                                <script>
+                                    toastr.success("{{ session('successCommentaire') }}");
+                                </script>
                             @endif
                         </form>
                     </div>
@@ -80,9 +80,9 @@
                         </div>
                         <p>{{ $ad->description }}</p>
                         <ul class="input-style">
-                            <li class="contact-seller"><a href="">Contact seller</a>  </li>
+                            <li class="contact-seller"><a href="{{ route('chat.index') }}">Contact seller</a>  </li>
                             <li class="signal-ad">
-                            <button type="button" id="btnform" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" @click="open = true" id="btnform" data-toggle="modal" data-target="#exampleModalCenter">
 							  signaler
 							</button>
                             </li>
@@ -95,13 +95,7 @@
                             </li>
                         </ul>
                         <ul class="cetagory">
-                            <li>Categories:</li>
-                            @foreach($ad->category as $category)
-
-                             @endforeach
-                             <li>
-
-                             </li>
+                            <li>Category: {{ $ad->category->name }}</li>
                         </ul>
 
 

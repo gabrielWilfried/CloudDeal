@@ -17,6 +17,9 @@ use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
 use App\Http\Controllers\Authenticate\PaymentController;
 use App\Http\Controllers\Authenticate\VilleController;
+use App\Http\Controllers\Authenticate\MessageController;
+use App\Http\Controllers\Authenticate\HomeAuthenticateController;
+use App\Http\Controllers\Authenticate\LetterController;
 use Faker\Guesser\Name;
 
 /*
@@ -29,6 +32,7 @@ use Faker\Guesser\Name;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::prefix('clouddeal')->group(function () {
     //routes guest mode
     Route::get('/', [HomeController::class, "index"])->name('home');
@@ -55,20 +59,21 @@ Route::prefix('clouddeal')->group(function () {
     });
 });
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return view('admin.authentication.admin-home');
-    })->name('home');
+
+    Route::get('/', [HomeAuthenticateController::class, 'index'])->name('home');
+
     Route::prefix('myads')->name('ads.')->group(function () {
         Route::get('/', [AnnonceController::class, 'index'])->name('index');
         Route::get('/ads', [AnnonceController::class, 'paginatedAds']);
         Route::get('/create', [AnnonceController::class, 'create'])->name('create');
         Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
         Route::post('/store', [AnnonceController::class, 'store'])->name('store');
-        Route::post('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
+        Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
         Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
         Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
         Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
         Route::put('/boost/{annonce}', [BoostController::class, 'store'])->name('boost');
+        Route::put('/verify/{annonce}', [AnnonceController::class, 'verify'])->name('verify');
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
@@ -95,9 +100,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [StripePaymentController::class,'index'])->name('index');
         Route::post('/payment', [StripePaymentController::class,'store'])->name('store');
     });
+    Route::prefix('mymessages')->name('messages.')->group(function () {
+        Route::get('/', [MessageController::class, 'index'])->name('index');
+        Route::get('/markAsRead/{id}', [MessageController::class, 'markAsRead'])->name('markAsRead');
+    });
+
+    Route::prefix('myletters')->name('letters.')->group(function () {
+        Route::get('/', [LetterController::class, 'show'])->name('show');
+    });
 });
-
-
 Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
     Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
@@ -110,7 +121,11 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/verify-email', function () {
         return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
     })->name("auth.verify-email");
-    
+
+    })->name("verify-email");
+    Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
+    Route::post('/register', [AuthController::class, 'store'])->name('register');
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -124,7 +139,7 @@ Route::prefix('dashboard')->group(function () {
 });
 
 Route::get('/contact', function () {
-  return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+    return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
 })->name('contact');
 
 Route::get('/about', [AboutGuestController::class, "index"])->name('about');
@@ -144,7 +159,6 @@ Route::name('chat.')->prefix('chat')->group(function () {
     Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
     Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
     Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
-
 });
 
 
@@ -153,4 +167,4 @@ Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAn
 Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
 Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
 
-
+//laravel gate
