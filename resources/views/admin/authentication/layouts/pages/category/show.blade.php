@@ -12,7 +12,7 @@
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table id="example5" class="table table-bordered table-striped">
+                        <table id="example6" class="table table-bordered table-striped">
                             <thead class="bg-info">
                                 <tr>
                                     <th>Name</th>
