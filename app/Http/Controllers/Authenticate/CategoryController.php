@@ -24,8 +24,11 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
-        dd($request);
-        $category = Category::create($request->all());
+
+        Category::create($request->all());
+        return redirect()->back();
+
+
 
         //return redirect()->route('admin.category.index');
     }
@@ -37,11 +40,12 @@ class CategoryController extends Controller
         ]);
 
         $category->update($request->all());
-
     }
 
     public function delete(Category $category)
     {
         $category->delete();
+
+        return redirect()->route('admin.category.index')->with('success', 'La catégorie a été supprimée avec succès.');
     }
 }
