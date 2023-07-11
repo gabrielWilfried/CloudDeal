@@ -80,17 +80,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
-        Route::post('/', [CategoryController::class, 'store'])->name('store');
-        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
     });
     Route::prefix('town')->name('town.')->group(function () {
         Route::get('/', [VilleController::class, 'index'])->name('index');
-        Route::get('/category', [VilleController::class, 'towns']);
         Route::post('/store', [VilleController::class, 'store'])->name('store');
-        Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
-        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 
     Route::prefix('mypayments')->name('payments.')->group(function () {

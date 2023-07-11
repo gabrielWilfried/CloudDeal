@@ -26,20 +26,8 @@ class CategoryController extends Controller
         ]);
 
         Category::create($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Category created successfully');
 
-
-
-        //return redirect()->route('admin.category.index');
-    }
-
-    public function update(Request $request, Category $category)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
-
-        $category->update($request->all());
     }
 
     public function delete(Category $category)

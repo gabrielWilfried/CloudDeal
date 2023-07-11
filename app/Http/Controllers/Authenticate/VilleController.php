@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Authenticate;
 
 use App\Http\Controllers\Controller;
+use App\Models\Region;
 use App\Models\Town;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,8 @@ class VilleController extends Controller
     {
 
         $towns = Town::all();
-        return view('admin.authentication.layouts.pages.town.show', compact('towns'));
+        $regions = Region::all();
+        return view('admin.authentication.layouts.pages.town.show', compact('towns', 'regions'));
     }
 
     public function store(Request $request)
@@ -25,20 +27,7 @@ class VilleController extends Controller
         ]);
 
         $town = Town::create($request->all());
-    }
-
-    public function update(Request $request, Town $town)
-    {
-        $request->validate(
-            [
-                'name' => 'required|string|max:255'
-            ]
-        );
-
-
-        $town->update($request->all());
-
-        return response()->json($town);
+        return redirect()->back()->with('message', 'Town created successfully');
     }
 
     public function delete(Town $town)

@@ -9,24 +9,12 @@
         </div>
     @endif
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Attends que le document soit prêt
-        $(document).ready(function() {
-            // Masque le message de succès après 30 secondes
-            setTimeout(function() {
-                $('#success-alert').fadeOut('slow');
-            }, 10000); // 30 secondes (en millisecondes)
-        });
-    </script>
-
     <div class="col-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">List Towns</h3>
                 <button type="button" id="toggle-create" class="btn btn-rounded btn-success mb-5">Add</button>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
                 <div class="table-responsive">
 
@@ -70,4 +58,16 @@
         </div>
     </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        // Attends que le document soit prêt
+        $(document).ready(function() {
+            // Masque le message de succès après 30 secondes
+            setTimeout(function() {
+                $('#success-alert').fadeOut('slow');
+            }, 10000); // 30 secondes (en millisecondes)
+        });
+    </script>
 @endsection

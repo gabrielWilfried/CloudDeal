@@ -8,7 +8,6 @@
                 <h3 class="box-title">List Ads</h3>
                 <a type="button" href="{{ route('admin.ads.create') }}" class="btn btn-rounded btn-success mb-5">Add</a>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
                 <div class="table-responsive">
                     <table id="example6" class="table table-bordered table-striped" style="width:100%">

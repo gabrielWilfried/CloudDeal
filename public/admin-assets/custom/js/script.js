@@ -79,6 +79,10 @@ $("document").ready(function () {
             $('#exampleModalCenter').attr('data-dismiss', 'modal')
         }
     });
+
+    $("form[name='create-category']").validate();
+    $("form[name='create-town']").validate();
+
     $("form[name='edit-form']").validate({
         rules: {
             name: {
