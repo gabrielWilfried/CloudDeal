@@ -5,10 +5,10 @@
     margin-right: 33px
 }
 
-th td{
-    margin: 0;
+.box-body tr td:last-child{
+   display: flex;
+   flex-direction: row;
 }
-
 .box-body tr td button{
     margin: 2px 2px;
 }
