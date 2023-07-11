@@ -42,7 +42,10 @@ Route::prefix('clouddeal')->group(function () {
         return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
     })->name('wishlist');
     Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+    Route::get('/contact', function () {
+        return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+    })->name('contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::prefix('allAds')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
@@ -121,10 +124,6 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'store'])->name('register');
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::controller(StripePaymentController::class)->group(function () {
-        Route::get('/stripe', 'stripe');
-        Route::post('/stripe', 'stripePost')->name('stripe.post');
-    });
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -137,11 +136,8 @@ Route::prefix('dashboard')->group(function () {
     })->name('dashboard.ad-list');
 });
 
-Route::get('/contact', function () {
-    return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
-})->name('contact');
 
-Route::get('/about', [AboutGuestController::class, "index"])->name('about');
+
 
 Route::get('/payment', function () {
     return view('guest.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
@@ -164,6 +160,6 @@ Route::name('chat.')->prefix('chat')->group(function () {
 //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
 Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
 Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
-Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+Route::post('/comments/comment/{ad}', [CommentaireController::class, 'store'])->name('comments.store');
 
 //laravel gate
