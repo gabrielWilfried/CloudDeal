@@ -32,6 +32,10 @@
                         </div>
                         <div class="col-md-8 col-sm-6">
                             <h2 class="box-title mt-0">{{ $ad->name }}</h2>
+                            @isset($boost)
+                                <p class="d-inline float-right w-95 fs-3">Boosted till   <span class="text-success">{{ $boost->format_date }}</span></p>
+                            @endisset
+
                             <h1 class="pro-price mb-0 mt-20">{{ $ad->format_price }}
                             </h1>
                             <hr>

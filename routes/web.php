@@ -42,7 +42,10 @@ Route::prefix('clouddeal')->group(function () {
         return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
     })->name('wishlist');
     Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+    Route::get('/contact', function () {
+        return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+    })->name('contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::prefix('allAds')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
@@ -77,17 +80,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
-        Route::post('/', [CategoryController::class, 'store'])->name('store');
-        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
     });
     Route::prefix('town')->name('town.')->group(function () {
         Route::get('/', [VilleController::class, 'index'])->name('index');
-        Route::get('/category', [VilleController::class, 'towns']);
         Route::post('/store', [VilleController::class, 'store'])->name('store');
-        Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
-        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 
     Route::prefix('mypayments')->name('payments.')->group(function () {
@@ -121,10 +120,6 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'store'])->name('register');
 
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::controller(StripePaymentController::class)->group(function () {
-        Route::get('/stripe', 'stripe');
-        Route::post('/stripe', 'stripePost')->name('stripe.post');
-    });
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -137,11 +132,8 @@ Route::prefix('dashboard')->group(function () {
     })->name('dashboard.ad-list');
 });
 
-Route::get('/contact', function () {
-    return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
-})->name('contact');
 
-Route::get('/about', [AboutGuestController::class, "index"])->name('about');
+
 
 Route::get('/payment', function () {
     return view('guest.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
@@ -164,6 +156,6 @@ Route::name('chat.')->prefix('chat')->group(function () {
 //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
 Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
 Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
-Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+Route::post('/comments/comment/{ad}', [CommentaireController::class, 'store'])->name('comments.store');
 
 //laravel gate

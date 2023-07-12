@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignIdFor(Annonce::class)->constrained();
+            $table->foreignIdFor(Annonce::class)->constrained()->onDelete('cascade');
             $table->unsignedDouble('amount');
             $table->enum('status', enum_to_string_array(PaymentStatusEnum::cases()))->default(PaymentStatusEnum::PENDING->value);
             $table->timestamps();

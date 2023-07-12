@@ -19,7 +19,7 @@
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{{ asset('admin-assets/components/jquery-toast-plugin-master/src/jquery.toast.css') }}">
     @yield('style')
 </head>
 
@@ -68,6 +68,9 @@
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
     <script src="{{ asset('admin-assets/custom/js/script.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('admin-assets/components/jquery-toast-plugin-master/src/jquery.toast.js') }}"></script>
+    <script src="{{ asset('admin-assets/js/pages/toastr.js') }}"></script>
+    <script src="{{ asset('admin-assets/js/pages/notification.js') }}"></script>
 
     @yield('script')
 </body>
