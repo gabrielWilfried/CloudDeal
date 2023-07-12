@@ -33,7 +33,7 @@
                 <div class="box-body p-40">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h2 class="my-0 font-weight-700">{{ $todayRevenue }}</h2>
+                            <h2 class="my-0 font-weight-700">{{ toMoney($todayRevenue) }}</h2>
                             <p class="text-fade mb-0">Revenue Today </p>
                         </div>
                         <div class="icon">

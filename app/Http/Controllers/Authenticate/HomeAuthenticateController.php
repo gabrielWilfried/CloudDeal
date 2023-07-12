@@ -12,9 +12,10 @@ class HomeAuthenticateController extends Controller
     public function index()
     {
         $totalUsers = User::count();
-        $todayRevenue = Payment::whereDate('created_at', Carbon::today())->count();
+        $todayRevenue = Payment::whereDate('created_at', Carbon::today())->sum('amount');
         $totalRevenue = Payment::sum('amount');
         $pendingOrders = Payment::where('status', 'PENDING')->count();
+
         return view('admin.authentication.admin-home',
                 compact('totalUsers', 'todayRevenue', 'totalRevenue', 'pendingOrders')
         );
