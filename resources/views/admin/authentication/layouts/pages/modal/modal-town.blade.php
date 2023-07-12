@@ -17,7 +17,7 @@
                         <input type="text" name="name" class="form-control" required placeholder="Enter name">
                     </div>
                     <div class="form-group">
-                        <h5>Region <span class="text-danger">*</span></h5>
+                        <h5>Region </h5>
                         <div class="controls">
                             <select name="region_id" id="select" required class="form-control">
                                 @forelse ($regions as $region)

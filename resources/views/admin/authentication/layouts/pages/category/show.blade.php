@@ -3,23 +3,6 @@
 @section('content')
     @include('admin.authentication.layouts.pages.modal.modal-category')
 
-    @if (session('success'))
-        <div id="success-alert" class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Attends que le document soit prêt
-        $(document).ready(function() {
-            // Masque le message de succès après 30 secondes
-            setTimeout(function() {
-                $('#success-alert').fadeOut('slow');
-            }, 10000); // 30 secondes (en millisecondes)
-        });
-    </script>
-
     <div class="row">
         <div class="col-12">
             <div class="box">
@@ -70,3 +53,4 @@
         </div>
     </div>
 @endsection
+
