@@ -1,11 +1,10 @@
 @extends('admin.authentication.layouts.layout-admin')
 @section('style')
     <link href="{{ asset('admin-assets/components/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/components/datatable/datatables.min.css') }}"/>
 @endsection
 
 @section('body')
-    <div class="container-full">
-
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
@@ -45,6 +44,18 @@
                                 </ol>
                             </nav>
                         </div>
+                    @elseif (Str::contains(request()->url(), 'messages'))
+                        <h3 class="page-title">Messages</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item" aria-current="page">messages</li>
+                                    <li class="breadcrumb-item active" aria-current="page">My Messages</li>
+                                </ol>
+                            </nav>
+                        </div>
                     @else
                         <h3 class="page-title">Towns</h3>
                         <div class="d-inline-block align-items-center">
@@ -78,15 +89,15 @@
         </div>
 
         <section class="content">
-            <div class="row">
-                @yield('content')
-            </div>
+            @yield('content')
         </section>
-    @endsection
+@endsection
 
-    @section('script')
-        <script src="{{ asset('admin-assets/components/datatable/datatables.min.css') }}"></script>
-        <script src="{{ asset('admin-assets/js/pages/data-table.js') }}"></script>
-        <script src="{{ asset('admin-assets/components/sweetalert/sweetalert.min.js') }}"></script>
-        <script src="{{ asset('admin-assets/custom/js/alert.js') }}"></script>
-    @endsection
+
+
+@section('script')
+    <script src="{{ asset('admin-assets/components/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/js/pages/data-table.js') }}"></script>
+    <script src="{{ asset('admin-assets/components/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/custom/js/alert.js') }}"></script>
+@endsection

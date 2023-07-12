@@ -19,27 +19,28 @@
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('style')
 </head>
 
 <body>
+    @include('admin.authentication.layouts.menus.header')
 
     <div class="wrapper">
+       <aside class="main-sidebar">
+            @include('admin.authentication.layouts.menus.aside')
+        </aside>
 
-        @include('admin.authentication.layouts.menus.header')
-        @include('admin.authentication.layouts.menus.aside')
-
-        <div class="content-wrapper">
-            @yield('body')
-        </div>
-
-
-        @include('admin.authentication.layouts.menus.footer')
+       <div class="content-wrapper">
+            <div class="container-full">
+                @yield('body')
+            </div>
+       </div>
 
     </div>
-
+    @include('admin.authentication.layouts.menus.footer')
     <!-- js -->
-    <script src="{{ asset('assets/js/vendor/jquery-2.2.4.min.js') }}"></script>
+
     <script src="{{ asset('admin-assets/components/jquery-3.3.1/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('admin-assets/components/screenfull/screenfull.js') }}"></script>
     <script src="{{ asset('admin-assets/components/popper/dist/popper.min.js') }}"></script>
@@ -57,6 +58,8 @@
     <script src="{{ asset('admin-assets/lib/4/geodata/worldLow.js') }}"></script>
     <script src="{{ asset('admin-assets/lib/4/themes/dataviz.js') }}"></script>
     <script src="{{ asset('admin-assets/lib/4/themes/animated.js') }}"></script>
+    <script src="{{ asset('admin-assets/components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+    <script src="{{ asset('admin-assets/components/apexcharts-bundle/data.js') }}"></script>
 
     <!-- CrmX Admin App -->
     <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
@@ -64,6 +67,7 @@
     <script src="{{ asset('admin-assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
     <script src="{{ asset('admin-assets/custom/js/script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @yield('script')
 </body>

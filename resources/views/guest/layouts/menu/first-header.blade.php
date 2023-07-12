@@ -37,17 +37,6 @@
         <div class="col-md-6 col-12">
             <ul class="d-flex account_login-area">
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
-                            class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown_style">
-                        <li><a href="{{ route('auth.login') }}">Login</a></li>
-                        <li><a href="{{ route('auth.register') }}">Register</a></li>
-                        <li><a href="">Profile</a></li>
-                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                        <li><a href="">Logout</a></li>
-                    </ul>
-                </li>
-                <li>
                     <form>
                         <select id="lang-switch">
                             <option value="en">
