@@ -1,22 +1,19 @@
 @extends('guest.auth.default-auth')
 
-@section("style")
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-    />
+@section('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 @endsection
 
 @section('auth')
-
     <div class="account-area ptb-100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
-                    <form method="POST" name="register" action="auth.register">
+                    <form method="POST" name="register" action="{{ route('auth.register.auth') }}">
+                        @csrf
                         <div class="account-form form-style">
                             <p>Name *</p>
-                            <input  type="text" name="name">
+                            <input type="text" name="name">
                             <P>Email Address * </P>
                             <input type="email" name="email">
                             <P>Sex </P>
@@ -59,10 +56,10 @@
         </div>
     </div>
 @endsection
-@section("script")
+@section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
     <script>
         var input = document.querySelector("#phone");
         window.intlTelInput(input);
-      </script>
+    </script>
 @endsection

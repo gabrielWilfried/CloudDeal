@@ -117,7 +117,7 @@ Route::name('auth.')->prefix('auth')->group(function () {
         return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
     })->name("verify-email");
     Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
-    Route::post('/register', [AuthController::class, 'store'])->name('register');
+    Route::post('/register', [AuthController::class, 'store'])->name('register.auth');
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

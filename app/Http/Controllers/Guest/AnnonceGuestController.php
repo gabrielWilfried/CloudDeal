@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
+
 use App\Models\Boost;
 use App\Models\Category;
 use App\Models\Annonce;
@@ -20,20 +21,20 @@ class AnnonceGuestController extends Controller
         $search = '%' . $request->get('search', '') . '%';
         $priceFilter = $request->get('filterPrice', '');
         $query = Annonce::where('is_blocked', false);
-        if($priceFilter != '' && $priceFilter != '0,0'){
+        if ($priceFilter != '' && $priceFilter != '0,0') {
             $price = explode(',', $priceFilter);
-            $query=$query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
+            $query = $query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
         }
         if ($request->has('categories') && !blank($request->input('categories'))) {
             $categoryIds = array_map('intval', explode(',', $request->input('categories')));
             $query->whereIn('category_id',  $categoryIds);
         }
-        if ($request->has('town') && ($request->input('town')!=='undefined')) {
+        if ($request->has('town') && ($request->input('town') !== 'undefined')) {
             $townId = $request->input('town');
             $query->where('town_id', '=', $townId);
         }
         $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
-        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds ]);
+        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds]);
     }
 
     public function index(Request $request)
@@ -54,7 +55,7 @@ class AnnonceGuestController extends Controller
         $ad = Annonce::findorfail($id);
         $ad->load('comments', 'category', 'town', 'user');
         $comments = $ad->comments()->latest()->take(4)->get();
-        return view('guest.layouts.pages.ad-detail',  compact('ad','annonces', 'comments'));
+        return view('guest.layouts.pages.ad-detail',  compact('ad', 'annonces', 'comments'));
     }
 
     public function search(Request $request)
@@ -90,8 +91,8 @@ class AnnonceGuestController extends Controller
         }
 
 
-       $annonces = $annonces->get();
-       return response()->json($annonces);
+        $annonces = $annonces->get();
+        return response()->json($annonces);
     }
     public function detailsAnnonce(Annonce  $annonce)
     {
