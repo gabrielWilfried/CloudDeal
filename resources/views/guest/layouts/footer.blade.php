@@ -11,26 +11,24 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-8 col-sm-12">
-            <div class="footer-content">
-                <p>Tchabet Kamaha Genie Ricken, Sikounmo II Sagesse, Tegongue Folefack Fideline Medarine, Tsofack Inesse Vanessa,
-                    Pigha Koffo Geovanni  Anderson, Meli Kuete Marianne, Yagaka Tagne Gabriel Wilfried, Dzikang Vanella Lidelle,
-                    Njike Njingang Kevin Jordan, Magni Dorine Lore, Tetiem Ndam Samiratou.
+            <div class="footer-content text-justify" >
+                <p>Simplifiez et améliorez vos transactions en ligne avec CloudDeal ! Publiez, promouvez et gérez vos annonces efficacement. Boostez votre visibilité en tant que vendeur et découvrez des annonces de qualité à des prix incroyables en tant qu'acheteur. Filtrage facile, chat en temps réel et expérience d'achat exceptionnelle vous attendent sur CloudDeal. Rejoignez-nous dès maintenant !
                 </p>
             </div>
         </div>
-        <div class="col-lg-3 col-md-8 col-sm-12">
+        <div class="col-lg-3 col-md-8 col-sm-12 ">
             <div class="footer-adress">
-                <ul>
-                    <li><a href="#"><span>Email:</span>tegonguefolefackf@gmail.com</a></li>
-                    <li><a href="#"><span>Tel:</span> +237 672 044 430</a></li>
-                    <li><a href="#"><span>Adress:</span> Dschang</a></li>
+                <ul class="text-justify">
+                    <li><a href="mailto :tegonguefolefackf@gmail.com"><span>Email:</span></br>tegonguefolefackf@gmail.com</a></li>
+                    <li><span>Tel:<a href="https://web.whatsapp.com/send?phone=237672044430">+237 672 044 430</a></span></li>
+                    <li><a href="#"><span>Address:</span> Dschang</a></li>
                 </ul>
             </div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12">
             <div class="footer-reserved">
                 <ul>
-                    <li>Copyright © 2023 Cloud Deal.</li>
+                    <li>Copyright © 2023 CloudDeal.</li>
                 </ul>
             </div>
         </div>
