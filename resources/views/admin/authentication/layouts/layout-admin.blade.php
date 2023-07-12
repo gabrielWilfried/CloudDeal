@@ -58,7 +58,6 @@
     <script src="{{ asset('admin-assets/lib/4/geodata/worldLow.js') }}"></script>
     <script src="{{ asset('admin-assets/lib/4/themes/dataviz.js') }}"></script>
     <script src="{{ asset('admin-assets/lib/4/themes/animated.js') }}"></script>
-    <script src="{{ asset('admin-assets/components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
     <script src="{{ asset('admin-assets/components/apexcharts-bundle/data.js') }}"></script>
 
     <!-- CrmX Admin App -->
