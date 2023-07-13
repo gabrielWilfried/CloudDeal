@@ -54,6 +54,7 @@ Route::prefix('clouddeal')->group(function () {
             Route::get('/category/{listId}', [AnnonceGuestController::class, 'search'])->name('search.category');
         });
     });
+});
     Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('/', function () {
             return view('admin.authentication.admin-home');
