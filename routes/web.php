@@ -1,58 +1,57 @@
-    <?php
+<?php
 
-    use App\Http\Controllers\Auth\AuthController;
-    use App\Http\Controllers\Authenticate\AnnonceController;
-    use App\Http\Controllers\Authenticate\BoostController;
-    use App\Http\Controllers\Authenticate\CategoryController;
-    use App\Http\Controllers\Guest\AnnonceGuestController;
-    use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\Guest\HomeController;
-    use App\Http\Controllers\Guest\NewsLetterController;
-    use App\Http\Controllers\Guest\ContactController;
-    use App\Http\Controllers\Authenticate\CommentaireController;
-    use App\Http\Controllers\Guest\SignalGuestController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Authenticate\AnnonceController;
+use App\Http\Controllers\Authenticate\BoostController;
+use App\Http\Controllers\Authenticate\CategoryController;
+use App\Http\Controllers\Guest\AnnonceGuestController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\NewsLetterController;
+use App\Http\Controllers\Guest\ContactController;
+use App\Http\Controllers\Authenticate\CommentaireController;
+use App\Http\Controllers\Guest\SignalGuestController;
 
 
-    use App\Http\Controllers\Guest\AboutGuestController;
-    use App\Http\Controllers\Authenticate\DiscussionController;
-    use App\Http\Controllers\Authenticate\PaymentController;
-    use App\Http\Controllers\Authenticate\VilleController;
-    use Faker\Guesser\Name;
+use App\Http\Controllers\Guest\AboutGuestController;
+use App\Http\Controllers\Authenticate\DiscussionController;
+use App\Http\Controllers\Authenticate\PaymentController;
+use App\Http\Controllers\Authenticate\VilleController;
+use Faker\Guesser\Name;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Web Routes
-    |--------------------------------------------------------------------------
-    |
-    | Here is where you can register web routes for your application. These
-    | routes are loaded by the RouteServiceProvider and all of them will
-    | be assigned to the "web" middleware group. Make something great!
-    |
-    */
-    Route::prefix('clouddeal')->group(function () {
-        //routes guest mode
-        Route::get('/', [HomeController::class, "index"])->name('home');
-        Route::post('/', [NewsLetterController::class, "store"])->name('home');
-        Route::get('/ads', [HomeController::class, "paginatedAds"]);
-        Route::get('/wishlist', function () {
-            return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
-        })->name('wishlist');
-        Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-        Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-        Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-        Route::prefix('allAds')->group(function () {
-            Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
-            Route::get('/ads', [AnnonceGuestController::class, 'paginatedAds'])->name('dashboard.ads');
-            Route::get('/search', [AnnonceGuestController::class, 'index'])->name('dashboard.category');
-            Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->middleware('auth')->name('dashboard.singe-ad');
 
-            Route::get('/ad-list', function () {
-                return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
-            })->name('dashboard.ad-list');
-            Route::prefix('search')->group(function () {
-                Route::get('/', [AnnonceGuestController::class, 'search']);
-                Route::get('/category/{listId}', [AnnonceGuestController::class, 'search'])->name('search.category');
-            });
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+Route::prefix('clouddeal')->group(function () {
+    //routes guest mode
+    Route::get('/', [HomeController::class, "index"])->name('home');
+    Route::post('/', [NewsLetterController::class, "store"])->name('home');
+    Route::get('/ads', [HomeController::class, "paginatedAds"]);
+    Route::get('/wishlist', function () {
+        return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
+    })->name('wishlist');
+    Route::get('/about', [AboutGuestController::class, "index"])->name('about');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::prefix('allAds')->group(function () {
+        Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
+        Route::get('/ads', [AnnonceGuestController::class, 'paginatedAds'])->name('dashboard.ads');
+        Route::get('/search', [AnnonceGuestController::class, 'index'])->name('dashboard.category');
+        Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
+        Route::get('/ad-list', function () {
+            return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
+        })->name('dashboard.ad-list');
+        Route::prefix('search')->group(function () {
+            Route::get('/', [AnnonceGuestController::class, 'search']);
+            Route::get('/category/{listId}', [AnnonceGuestController::class, 'search'])->name('search.category');
         });
     });
     Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
