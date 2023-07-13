@@ -5,14 +5,34 @@ window.addEventListener('alpine:init', () => {
         selectedDiscussion:"" ,
 
         fetchDiscussions() {
-            fetch(`/chat/${2}`)
+            fetch(`/chat/${1}`)
                 .then(response => response.json())
                 .then(data => {
 
                     this.discussions = data.data;
-                    this.messages = this.discussions.find(messages =>discussion.id === 2);
-
-                    console.log(this.discussions);
+                    if (this.discussions.length > 0) {
+                        this.currentDiscussion = this.discussions[0].id;
+                        this.discussionSlug = this.discussions.find(discussion => discussion.id === this.currentDiscussion).slug;
+                        this.searchDiscussions();
+                        this.fetchMessages(this.currentDiscussion);
+                        this.sendMessage(this.currentDiscussion);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        fetchMessages(currentDiscussion) {
+            fetch(`/chat/messages/` + currentDiscussion)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors de la récupération des messages.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    this.messages = data;
                     console.log(this.messages);
                 })
                 .catch(error => {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authenticate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller

@@ -1,7 +1,7 @@
 @extends('admin.authentication.layouts.pages.ads.default')
 
 @section('content')
-<section class="content" style="width: 100%">
+<section class="content">
     <div class="box">
         <div class="box-header with-border">
             <h4 class="box-title">Edit</h4>
@@ -80,37 +80,26 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <h5>Image <span class="text-danger">*</span></h5>
-                                    <div class="row">
-                                        <div class="col-md-3 p-2">
-                                            <div id="image1" class="card border-0 p-1">
-                                                <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                            </div>
-                                            <input type="file" id="imageInput1" name="image" class="form-control"  style="display: none">
+                                    <h5>Cover Image <span class="text-danger">*</span></h5>
+                                    <div class="col-lg-10">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name='image' id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
-                                        <div class="col-md-3 p-2">
-                                            <div id="image2" class="card border-0 p-1">
-                                                <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                            </div>
-                                            <input type="file" id="imageInput2" name="image2" class="form-control" style="display: none" >
-                                        </div>
-                                        <div  class="col-md-3 p-2">
-                                            <div id="image3" class="card border-0 p-1">
-                                                <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                            </div>
-                                            <input type="file" id="imageInput3" name="image3" class="form-control" style="display: none" >
-                                        </div>
-                                        <div class="col-md-3 p-2">
-                                            <div id="image4" class="card border-0 p-1" >
-                                                <img src="{{ asset('assets/images/product/19.jpg') }}">
-                                            </div>
-                                            <input type="file" id="imageInput4" name="image4" class="form-control" style="display: none" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Images</h5>
+                                    <div class="col-lg-10">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile" multiple>
+                                            <label class="custom-file-label" for="customFile">Choose files</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div data-ad-id={{ $annonce->id }} id="idContainer" style="display: none"></div>
+                        <div data-ad-id={{ $annonce->id }} id="idContainer" class="d-none"></div>
                         <div class="text-left">
                             <input type="submit" class="btn btn-rounded btn-info" value="Submit">
                         </div>

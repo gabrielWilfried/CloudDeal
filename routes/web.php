@@ -17,6 +17,9 @@ use App\Http\Controllers\Guest\AboutGuestController;
 use App\Http\Controllers\Authenticate\DiscussionController;
 use App\Http\Controllers\Authenticate\PaymentController;
 use App\Http\Controllers\Authenticate\VilleController;
+use App\Http\Controllers\Authenticate\MessageController;
+use App\Http\Controllers\Authenticate\HomeAuthenticateController;
+use App\Http\Controllers\Authenticate\LetterController;
 use Faker\Guesser\Name;
 
 
@@ -30,6 +33,7 @@ use Faker\Guesser\Name;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::prefix('clouddeal')->group(function () {
     //routes guest mode
     Route::get('/', [HomeController::class, "index"])->name('home');
@@ -55,36 +59,37 @@ Route::prefix('clouddeal')->group(function () {
         });
     });
 });
-    Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-        Route::get('/', function () {
-            return view('admin.authentication.admin-home');
-        })->name('home');
-        Route::prefix('myads')->name('ads.')->group(function () {
-            Route::get('/', [AnnonceController::class, 'index'])->name('index');
-            Route::get('/ads', [AnnonceController::class, 'paginatedAds']);
-            Route::get('/create', [AnnonceController::class, 'create'])->name('create');
-            Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
-            Route::post('/store', [AnnonceController::class, 'store'])->name('store');
-            Route::post('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
-            Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
-            Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
-            Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
-            Route::put('/boost/{annonce}', [BoostController::class, 'store'])->name('boost');
-        });
-        Route::prefix('category')->name('category.')->group(function () {
-            Route::get('/', [CategoryController::class, 'index'])->name('index');
-            Route::post('/', [CategoryController::class, 'store'])->name('store');
-            Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
-            Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
-        });
-        Route::prefix('town')->name('town.')->group(function () {
-            Route::get('/', [VilleController::class, 'index'])->name('index');
-            Route::get('/category', [VilleController::class, 'towns']);
-            Route::post('/store', [VilleController::class, 'store'])->name('store');
-            Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
-            Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
-            Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
-        });
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/', [HomeAuthenticateController::class, 'index'])->name('home');
+
+    Route::prefix('myads')->name('ads.')->group(function () {
+        Route::get('/', [AnnonceController::class, 'index'])->name('index');
+        Route::get('/ads', [AnnonceController::class, 'paginatedAds']);
+        Route::get('/create', [AnnonceController::class, 'create'])->name('create');
+        Route::get('/edit/{annonce}', [AnnonceController::class, 'edit'])->name('edit');
+        Route::post('/store', [AnnonceController::class, 'store'])->name('store');
+        Route::put('/update/{annonce}', [AnnonceController::class, 'update'])->name('update');
+        Route::delete('/delete/{annonce}', [AnnonceController::class, 'delete'])->name('delete');
+        Route::get('/{annonce}/detail', [AnnonceController::class, 'detail'])->name('detail');
+        Route::put('/block/{annonce}', [AnnonceController::class, 'block'])->name('block');
+        Route::put('/boost/{annonce}', [BoostController::class, 'store'])->name('boost');
+        Route::put('/verify/{annonce}', [AnnonceController::class, 'verify'])->name('verify');
+    });
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::post('/', [CategoryController::class, 'store'])->name('store');
+        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
+    });
+    Route::prefix('town')->name('town.')->group(function () {
+        Route::get('/', [VilleController::class, 'index'])->name('index');
+        Route::get('/category', [VilleController::class, 'towns']);
+        Route::post('/store', [VilleController::class, 'store'])->name('store');
+        Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
+        Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
+        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
+    });
 
         Route::prefix('mypayments')->name('payments.')->middleware('auth')->group(function () {
             Route::get('/', [PaymentController::class, 'index'])->name('index');
@@ -93,6 +98,10 @@ Route::prefix('clouddeal')->group(function () {
         });
     });
 
+    Route::prefix('mymessages')->name('messages.')->group(function () {
+        Route::get('/', [MessageController::class, 'index'])->name('index');
+        Route::get('/markAsRead/{id}', [MessageController::class, 'markAsRead'])->name('markAsRead');
+    });
 
     Route::name('auth.')->prefix('auth')->group(function () {
         Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
@@ -134,9 +143,9 @@ Route::prefix('clouddeal')->group(function () {
         })->name('dashboard.ad-list');
     });
 
-    Route::get('/contact', function () {
+Route::get('/contact', function () {
     return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
-    })->name('contact');
+})->name('contact');
 
     Route::get('/about', [AboutGuestController::class, "index"])->name('about');
 

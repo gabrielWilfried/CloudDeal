@@ -104,6 +104,23 @@
                                     </div>
                                 </div>
 
+
+                        </div>
+                    </ul>
+                </div>
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img  src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                </a>
+                                <div class="chat-about">
+
+                                    <small>
+                                        <span x-text="discussionSlug"></span>
+                                    </small>
+                                </div>
                             </div>
 
                         </div>
@@ -161,14 +178,10 @@
                             </div>
                             <div class="chat-message clearfix">
                                 <div class="input-group mb-0">
-                                    <form action="{{ route('messages.store') }}" method="POST">
-
-                                        <div class="input-group-prepend">
-                                            <input type="text" placeholder="Enter text here...">
-                                            <span class="input-group-text"><i class="fa fa-send"></i></span>
-                                        </div>
-                                        <input type="hidden" name="discussion_id" value="Entrez votre texte">
-                                    </form>
+                                    <input type="text" x-model="newMessage" class="message-input" placeholder="Enter text here...">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-send" x-on:click="sendMessage(currentDiscussion)"></i></span>
+                                    </div>
                                 </div>
                             </div>
 
