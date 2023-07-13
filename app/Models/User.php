@@ -73,6 +73,15 @@ class User extends Authenticatable
         return $this->hasMany(Discussion::class);
     }
 
+    public function signals(): HasMany
+{
+    return $this->hasMany(Signal::class);
+}
+public function hasSignaled(Annonce $annonce): bool
+{
+    return $this->signals()->where('user_id', Auth::user())->exists();
+}
+
 
     public function getImageProfileAttribute() //: MorphMany
     {/*

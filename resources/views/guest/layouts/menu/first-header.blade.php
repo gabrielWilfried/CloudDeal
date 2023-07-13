@@ -32,33 +32,29 @@
         </div>
         <div class="col-md-6 col-12">
             <ul class="d-flex account_login-area">
+                @guest
+                <li><a href="{{ route('auth.login') }}">Login/Register</a></li>
                 <li>
-                    <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
-                            class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown_style">
-                        <li><a href="{{ route('auth.login') }}">Login</a></li>
-                        <li><a href="{{ route('auth.register') }}">Register</a></li>
-                        <li><a href="">Profile</a></li>
-                        <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
-                        <li><a href="">Logout</a></li>
-                    </ul>
+                    <div class="publish">
+                        <a id="publish-button" href="">Publish</a>
+                    </div>
+                </li>
+                @endguest
+                @auth
+                <li>
+                    <div class="publish">
+                        <a id="publish-button" href="">Dashboard</a>
+                    </div>
                 </li>
                 <li>
-                    <form>
-                        <select id="lang-switch">
-                            <option value="en">
-                                <span class="fi fi-us"></span>
-                            </option>
-                            <option value="ko" selected>
-                                <span class="fi fi-fr"></span>
-                            </option>
-                        </select>
-                    </form>
+                    <div class="publish">
+                        <form action="{{ route('auth.logout') }}" method="POST">
+                            @csrf
+                            <button id="publish-button" type="submit">logout</button>
+                        </form>
+                    </div>
                 </li>
-                <li><a href="{{ route('auth.login') }}"> Login/Register </a></li>
-                <div class="publish">
-                    <a id="publish-button" href="">Publish</a>
-                </div>
+                @endauth
             </ul>
         </div>
     </div>
