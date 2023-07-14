@@ -47,6 +47,15 @@ $("document").ready(function () {
             window.location.hash = target;
         });
     });
+    $("#login").on("click", function () {
+        $("#loginModal").addClass("modal-visible");
+    });
+    $("#close-modal-login").on("click", function () {
+        console.log("hello");
+        $("#loginModal").removeClass("modal-visible");
+        $("#loginModal").addClass("modal-invisible");
+    });
+
 });
 window.addEventListener('alpine:init', () => {
     Alpine.data('ads', () => ({

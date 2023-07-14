@@ -96,7 +96,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
             Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
         });
-    });
+
 
     Route::prefix('mymessages')->name('messages.')->group(function () {
         Route::get('/', [MessageController::class, 'index'])->name('index');
@@ -114,8 +114,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         //Route::get('/editpasswdform', [ProfileController::class, 'editPasswdForm'])->name('editPasswdForm');
     });
 });
+
 Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
     Route::get('/forgot-password', function () {
         return view("guest.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
@@ -129,8 +131,13 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
     Route::post('/register', [AuthController::class, 'store'])->name('register.auth');
 
-    Route::post('/logout', [AuthController::class, 'logout']);
-});
+    // Redirection vers l'authentification Google
+    Route::get('/google', [AuthController::class, 'redirectToGoogle'])->name('google');
+
+    // Callback après l'authentification Google
+    Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
+    });
+
 
     Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/', function () {

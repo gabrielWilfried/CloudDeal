@@ -1,127 +1,41 @@
 
-<script>
-    // Fonction pour afficher le modal de connexion
-function showLoginModal() {
-    $('#loginModal').modal('show');
-}
-
-// Fonction pour cacher le modal de connexion
-function hideLoginModal() {
-    $('#loginModal').modal('hide');
-}
-
-// Écouteur d'événement pour le formulaire de connexion
-$(document).ready(function() {
-    $('#loginForm').submit(function(e) {
-        e.preventDefault();
-
-        // Récupérer les données du formulaire
-        var email = $('#email').val();
-        var password = $('#password').val();
-
-        // Faire la validation et la vérification de l'authentification
-        // ...
-
-        // Rediriger vers la page souhaitée après l'authentification
-        var redirectUrl = window.location.href; // Obtenir l'URL actuelle
-        window.location.href = redirectUrl; // Rediriger vers l'URL
-    });
-});
-
-</script>
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+<div class="modal-invisible" id="loginModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="width: 500px">
+            <div style="background-color: #87ceeb" class="modal-header">
+                <h3 class="text-center mb-3"><span style="color: green" class="fa fa-th-large"></span>
+                    Change password</h3>
+                <button type="button" id="close-modal-login"
+                    class="close d-flex align-items-center justify-content-center" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form method="POST" action="{{ route('auth.login') }}">
+            <div class="modal-body p-4 py-5 p-md-5">
+                <form method="post" action="{{ route('admin.profile.editPasswd') }}" style="padding: 20px"
+                    name="create-category">
                     @csrf
-                    <input type="hidden" name="redirect_url" value="{{ Request::url() }}">
-                    <!-- Ajoutez d'autres champs de formulaire ici, par exemple l'adresse e-mail et le mot de passe -->
-                    <div class="form-group">
-                        <label for="email">Adresse e-mail</label>
-                        <input type="email" name="email" class="form-control" id="email" required>
+                    <div class="form-group mb-2">
+                        <h5>Current Password <span class="text-danger">*</span></h5>
+                        <input type="password" name="currentPass" class="form-control"
+                            placeholder="Enter current password" required>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" name="password" class="form-control" id="password" required>
+                    <div class="form-group mb-2">
+                        <h5>New Password <span class="text-danger">*</span></h5>
+                        <input type="password" name="newPass" class="form-control" placeholder="Enter new password"
+                            required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                    <div class="form-group mb-2">
+                        <h5>Confirm Password <span class="text-danger">*</span></h5>
+                        <input type="password" name="confirmPass" class="form-control"
+                            placeholder="Confirm new password" required>
+                    </div>
+                    <div class="form-group mb-2 mt-20">
+                        <button style="background-color: #87ceeb; " type="submit"
+                            class="form-control btn  rounded submit px-3">Save</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<style>
-
-
-/* Style pour le formulaire de connexion */
-.modal-content {
-    border-radius: 0;
-}
-
-.modal-header {
-    background-color: #f8f9fa;
-    border-bottom: none;
-}
-
-.modal-title {
-    color: #333;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.modal-body {
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    font-weight: bold;
-}
-
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: #0069d9;
-}
-
-/* Style pour le bouton "Se connecter" */
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background-color: #0069d9;
-}
-</style>

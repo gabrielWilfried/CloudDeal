@@ -23,6 +23,7 @@ $("document").ready(function () {
         $("#profileModal").addClass("modal-visible");
     });
 
+
     $("#close-modal-button").on("click", function () {
         console.log("hello");
         $("#categoryModal").removeClass("modal-visible");
@@ -38,6 +39,7 @@ $("document").ready(function () {
         $("#profileModal").removeClass("modal-visible");
         $("#profileModal").addClass("modal-invisible");
     });
+    
 
     $.validator.addMethod(
         "greaterThan",
