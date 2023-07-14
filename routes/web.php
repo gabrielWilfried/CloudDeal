@@ -20,6 +20,7 @@ use App\Http\Controllers\Authenticate\VilleController;
 use App\Http\Controllers\Authenticate\MessageController;
 use App\Http\Controllers\Authenticate\HomeAuthenticateController;
 use App\Http\Controllers\Authenticate\LetterController;
+use App\Http\Controllers\Authenticate\ProfileController;
 use Faker\Guesser\Name;
 
 /*
@@ -102,6 +103,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('myletters')->name('letters.')->group(function () {
         Route::get('/', [LetterController::class, 'show'])->name('show');
+    });
+
+    Route::prefix('myprofile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'show'])->name('show');
+        Route::post('/editpassword', [ProfileController::class, 'editPasswd'])->name('editPasswd');
+        Route::post('/editprofile', [ProfileController::class, 'editProfile'])->name('editProfile');
+        //Route::get('/editpasswdform', [ProfileController::class, 'editPasswdForm'])->name('editPasswdForm');
     });
 });
 Route::name('auth.')->prefix('auth')->group(function () {

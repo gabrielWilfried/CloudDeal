@@ -33,6 +33,11 @@
                             <span>
                                 <li><a href="#">Chat</a></li>
                             </span>
+                        @elseif (Request::is('auth/login'))
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <span>
+                                <li><a href="#">login</a></li>
+                            </span>
                         @endif
 
                         {{-- <li>
