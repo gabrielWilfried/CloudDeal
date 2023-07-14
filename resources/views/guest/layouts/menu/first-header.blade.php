@@ -32,22 +32,29 @@
         </div>
         <div class="col-md-6 col-12">
             <ul class="d-flex account_login-area">
+                @guest
+                <li><a href="{{ route('auth.login') }}">Login/Register</a></li>
                 <li>
-                    <form>
-                        <select id="lang-switch">
-                            <option value="en">
-                                <span class="fi fi-us"></span>
-                            </option>
-                            <option value="ko" selected>
-                                <span class="fi fi-fr"></span>
-                            </option>
-                        </select>
-                    </form>
+                    <div class="publish">
+                        <a id="publish-button" href="">Publish</a>
+                    </div>
                 </li>
-                <li><a href="{{ route('auth.login') }}"> Login/Register </a></li>
-                <div class="publish">
-                    <a id="publish-button" href="">Publish</a>
-                </div>
+                @endguest
+                @auth
+                <li>
+                    <div class="publish">
+                        <a id="publish-button" href="">Dashboard</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="publish">
+                        <form action="{{ route('auth.logout') }}" method="POST">
+                            @csrf
+                            <button id="publish-button" type="submit">logout</button>
+                        </form>
+                    </div>
+                </li>
+                @endauth
             </ul>
         </div>
     </div>

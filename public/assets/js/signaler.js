@@ -19,8 +19,8 @@ document.addEventListener('alpine:init', () => {
                 console.log(data.message);
                 this.open = true;
                 toastr.success("annonce signaler avec success")
-                if(data.status == 403){
-                    window.location.href = "{{ route('guest.layouts.pages.all-ads') }}";
+                if(data.status === 403){
+                    window.location.href = "{{ route('home') }}";
                 }
 
             })

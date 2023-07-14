@@ -9,6 +9,7 @@ use App\Models\Town;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class AnnonceGuestController extends Controller
 {
@@ -55,7 +56,13 @@ class AnnonceGuestController extends Controller
         $ad = Annonce::findorfail($id);
         $ad->load('comments', 'category', 'town', 'user');
         $comments = $ad->comments()->latest()->take(4)->get();
-        return view('guest.layouts.pages.ad-detail',  compact('ad', 'annonces', 'comments'));
+
+       if (!Auth::check()) {
+            // Rediriger vers la page de connexion
+            return view('guest.auth.login-modal');
+        }
+
+        return view('guest.layouts.pages.ad-detail',  compact('ad','annonces', 'comments'));
     }
 
     public function search(Request $request)

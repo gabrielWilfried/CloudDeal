@@ -60,27 +60,11 @@ class DiscussionController extends Controller
     {
     }
 
-    public function getMessages(Request $request, Discussion $discussion)
+    public function getMessages(Request $request, $Id)
     {
-
-        $messages = $discussion->messages;
-        //dd($messages);
+        $discussion = Discussion::findOrFail($Id);
+        $messages = Message::where('discussion_id', $Id)->get();
+        dd($messages);
         return response()->json($messages);
-    }
-
-    public function createMessage(Request $request, Discussion $discussion)
-    {
-        $userId = 1;
-        $annonce = $discussion->annonce;
-        $message = new Message();
-        $message->content = $request->input('content');
-        $message->discussion_id = $discussion->id;
-        if ($userId == $annonce->user_id) {
-            $message->seller_id = $discussion->id;
-        }else{
-            $message->customer_id = $discussion->id;
-        }
-        $message->save();
-        return response()->json(['message' => $message], 200);
     }
 }

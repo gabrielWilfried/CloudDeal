@@ -1,3 +1,5 @@
+
+
 <div class="fluid-container">
     <div class="row">
         <div class="col-12">
@@ -17,7 +19,13 @@
                             <img src="assets/images/product/15.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
+
+                                    <button style="background-color: #3366cc; color:white" type="button" id="loginModal" class="btn btn-rounded  mb-5">
+                                        <i class="fa fa-eye"></i>
+                                      </button>
+
+                                        @include('guest.auth.login-modal')
+
                                     <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
                                 </ul>
                             </div>
