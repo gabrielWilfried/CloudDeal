@@ -46,16 +46,18 @@ $("document").ready(function () {
             window.location.hash = target;
         });
     });
-    $("#login").on("click", function () {
+    $("#login-modal").on("click", function () {
+        console.log("hello");
         $("#loginModal").addClass("modal-visible");
     });
     $("#close-modal-login").on("click", function () {
-        console.log("hello");
         $("#loginModal").removeClass("modal-visible");
         $("#loginModal").addClass("modal-invisible");
     });
 
 });
+
+
 window.addEventListener('alpine:init', () => {
     Alpine.data('ads', () => ({
         ads: [],
@@ -67,11 +69,14 @@ window.addEventListener('alpine:init', () => {
                     this.ads = (this.ads || []).concat(data.allAds.data);
                     this.page++;
                     this.totalPages = data.allAds.last_page;
-                    console.log(this.ads);
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
+        openLoginModal(){
+            console.log("hello");
+            $("#loginModal").addClass("modal-visible");
+        }
     })
 )})

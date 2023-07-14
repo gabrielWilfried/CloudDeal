@@ -1,6 +1,6 @@
 
 <div class="modal-invisible" id="loginModal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div>
         <div class="modal-content" style="width: 500px">
             <div style="background-color: #87ceeb" class="modal-header">
                 <h3 class="text-center mb-3"><span style="color: green" class="fa fa-th-large"></span>
