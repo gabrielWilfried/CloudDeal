@@ -56,10 +56,10 @@ class AnnonceGuestController extends Controller
         $ad->load('comments', 'category', 'town', 'user');
         $comments = $ad->comments()->latest()->take(4)->get();
 
-        if (!Auth::check()) {
+      /*  if (!Auth::check()) {
             // Rediriger vers la page de connexion
-            return view('guest.layouts.pages.all-ads');
-        }
+            return view('guest.auth.login-modal');
+        } */
 
         return view('guest.layouts.pages.ad-detail',  compact('ad','annonces', 'comments'));
     }

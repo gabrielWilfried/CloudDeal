@@ -49,7 +49,7 @@ Route::prefix('clouddeal')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
         Route::get('/ads', [AnnonceGuestController::class, 'paginatedAds'])->name('dashboard.ads');
         Route::get('/search', [AnnonceGuestController::class, 'index'])->name('dashboard.category');
-        Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
+        Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->middleware('auth')->name('dashboard.singe-ad');
         Route::get('/ad-list', function () {
             return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
         })->name('dashboard.ad-list');
@@ -59,7 +59,7 @@ Route::prefix('clouddeal')->group(function () {
         });
     });
 });
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('/', [HomeAuthenticateController::class, 'index'])->name('home');
 
