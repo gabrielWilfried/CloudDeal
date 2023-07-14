@@ -27,8 +27,7 @@ $("document").ready(function () {
                 else if(data.status === 'failed'){
                     toastr.error("Email Already exists")
                 }
-
-
+                form.reset();
             }).catch(error => {
                 toastr.error("An error occured")
             });;
