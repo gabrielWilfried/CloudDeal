@@ -12,7 +12,7 @@ window.addEventListener('alpine:init', () => {
         filteredDiscussions: [],
 
         fetchDiscussions() {
-            fetch(`/chat/${1}`)
+            fetch(`/chat/${20}`)
                 .then(response => response.json())
                 .then(data => {
 
