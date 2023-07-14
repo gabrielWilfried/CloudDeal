@@ -5,6 +5,9 @@
 @endsection
 
 @section('body')
+    @if (session('message'))
+        @include('admin.authentication.layouts.pages.notification.success-notifiation')
+    @endif
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
@@ -87,7 +90,6 @@
                 </div>
             </div>
         </div>
-
         <section class="content">
             @yield('content')
         </section>

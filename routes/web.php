@@ -20,6 +20,7 @@ use App\Http\Controllers\Authenticate\VilleController;
 use App\Http\Controllers\Authenticate\MessageController;
 use App\Http\Controllers\Authenticate\HomeAuthenticateController;
 use App\Http\Controllers\Authenticate\LetterController;
+use App\Http\Controllers\Authenticate\ProfileController;
 use Faker\Guesser\Name;
 
 
@@ -43,7 +44,10 @@ Route::prefix('clouddeal')->group(function () {
         return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
     })->name('wishlist');
     Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+    Route::get('/contact', function () {
+        return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+    })->name('contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::prefix('allAds')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
@@ -78,17 +82,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
-        Route::post('/', [CategoryController::class, 'store'])->name('store');
-        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
     });
     Route::prefix('town')->name('town.')->group(function () {
         Route::get('/', [VilleController::class, 'index'])->name('index');
-        Route::get('/category', [VilleController::class, 'towns']);
         Route::post('/store', [VilleController::class, 'store'])->name('store');
-        Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
-        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 
         Route::prefix('mypayments')->name('payments.')->middleware('auth')->group(function () {
@@ -103,35 +103,34 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('/markAsRead/{id}', [MessageController::class, 'markAsRead'])->name('markAsRead');
     });
 
-    Route::name('auth.')->prefix('auth')->group(function () {
-        Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-        Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
-        Route::get('/forgot-password', function () {
-            return view("guest.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
-        })->name("forgot-password");
-        Route::get('/reset-password', function () {
-            return view("guest.auth.reset-password", ['name' => 'Reset-password', 'head' => 'Account']);
-        })->name("reset-password");
-        Route::get('/verify-email', function () {
-            return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
-        })->name("verify-email");
-        Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
-        Route::post('/register', [AuthController::class, 'store'])->name('register');
-
-        // Redirection vers l'authentification Google
-        Route::get('/google', [AuthController::class, 'redirectToGoogle'])->name('google');
-
-        // Callback après l'authentification Google
-        Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
-
-
-
-        Route::controller(StripePaymentController::class)->group(function(){
-            Route::get('/stripe', 'stripe');
-            Route::post('/stripe', 'stripePost')->name('stripe.post');
-        });
+    Route::prefix('myletters')->name('letters.')->group(function () {
+        Route::get('/', [LetterController::class, 'show'])->name('show');
     });
+
+    Route::prefix('myprofile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'show'])->name('show');
+        Route::post('/editpassword', [ProfileController::class, 'editPasswd'])->name('editPasswd');
+        Route::post('/editprofile', [ProfileController::class, 'editProfile'])->name('editProfile');
+        //Route::get('/editpasswdform', [ProfileController::class, 'editPasswdForm'])->name('editPasswdForm');
+    });
+});
+Route::name('auth.')->prefix('auth')->group(function () {
+    Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
+    Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
+    Route::get('/forgot-password', function () {
+        return view("guest.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
+    })->name("forgot-password");
+    Route::get('/reset-password', function () {
+        return view("guest.auth.reset-password", ['name' => 'Reset-password', 'head' => 'Account']);
+    })->name("reset-password");
+    Route::get('/verify-email', function () {
+        return view("guest.auth.email-verification", ['name' => 'Verify-Email', 'head' => 'Account']);
+    })->name("verify-email");
+    Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
+    Route::post('/register', [AuthController::class, 'store'])->name('register.auth');
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
 
     Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/', function () {
@@ -143,15 +142,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         })->name('dashboard.ad-list');
     });
 
-Route::get('/contact', function () {
-    return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
-})->name('contact');
 
-    Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-
-    Route::get('/payment', function () {
-        return view('guest.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
-    })->name('payment');
 
 
     Route::get('/wishlist', function () {
