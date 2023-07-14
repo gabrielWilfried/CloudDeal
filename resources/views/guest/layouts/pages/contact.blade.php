@@ -46,13 +46,21 @@
                                 <p>
                                     <span><a href="mailto:tegonguefolefackf@gmail.com">tegonguefolefackf@gmail.com</a href></span>
                                     <span><a href="mailto:sikounmosagesse@gmail.com">sikounmosagesse@gmail.com</a href></span>
+                                    <span><a href="mailto:sikounmosagesse@gmail.com">kuetemariane544@gmail.com</a href></span>
+                                    <span><a href="mailto:sikounmosagesse@gmail.com">gabrielwilfried0808@gmail.com</a href></span>
+                                    <span><a href="mailto:sikounmosagesse@gmail.com">pighageovanni@gmail.com</a href></span>
+                                    <span><a href="mailto:sikounmosagesse@gmail.com">inestsof@gmail.com</a href></span>
                                 </p>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i> phone number:
                                 <p>
-                                    <span>+237 672 044 430</span>
-                                    <span>+237 672 044 430</span>
+                                    <span>+237 652 085 204</span>
+                                    <span>+237 697 003 060</span>
+                                    <span>+237 674 707 344</span>
+                                    <span>+237 681 916 790</span>
+                                    <span>+237 691 586 487</span>
+                                    <span>+237 676 757 299</span>
                                 </p>
                             </li>
                         </ul>
