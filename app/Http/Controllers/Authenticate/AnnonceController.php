@@ -7,6 +7,8 @@ use App\Models\Annonce;
 use App\Models\Comment;
 use App\Models\Signal;
 use App\Models\Boost;
+use App\Models\Enums\PathFileEnum;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 
@@ -53,11 +55,18 @@ class AnnonceController extends Controller
                 'town_id' => 'required|exists:towns,id',
                 'user_id' => 'required|exists:users,id',
                 'category_id' => 'required|exists:categories,id',
-                'image' => 'required'
+                'image' => 'required|file',
+                'images' => 'nullable',
             ]
         );
 
-        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image',));
+        $datas = $request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id');
+
+        $datas['image'] = FileUploadService::uploadPath($request->file('image'), PathFileEnum::ANNONCE_PATH);
+        $annonce = Annonce::create($datas);
+        if ($request->hasFile('images')) {
+            FileUploadService::uploadMultipleFiles($request->files('images'), $annonce, PathFileEnum::ANNONCE_PATH);
+        }
 
         return response()->json(['message' => 'Created Successfully']);
     }

@@ -58,19 +58,21 @@
                     <h4 class="text-white mb-20">Users</h4>
                     <div class="d-flex justify-content-between align-items-end">
                         <div class="d-flex">
-                            <div class="icon">
+                            <div class="icon col-md-4 d-flex justify-content-center">
                                 <i class="fa fa-trophy"></i>
                             </div>
-                            <div>
-                                <h3 class="font-weight-600 text-white mb-0 mt-0">{{ $totalUsers }}</h3>
-                                <p class="text-white-50">Total Users</p>
-                                <h5 class="text-white">+34040 <span class="ml-40"><i
-                                            class="fa fa-angle-down mr-10"></i><span
-                                            class="text-white-50">0.036%</span></span> </h5>
+                            <div class="col-md-4 d-flex justify-content-center flex-column">
+                                <h3 class="font-weight-600 text-white ml-4  mb-0 mt-0">{{ $totalUsers }}</h3>
+                                <p class="text-white-50 font-weight-700" >Total Users</p>
                             </div>
-                        </div>
-                        <div>
-                            <div class="mx-50"></div>
+                            <div class="col-md-4 d-flex justify-content-center flex-column">
+                                <h3 class="font-weight-600 text-white ml-3 mb-0 mt-0">{{ $totalUsers  -  $numOfSellers }}</h3>
+                                <p class="text-white-50 font-weight-700" >Clients</p>
+                            </div>
+                            <div class="col-md-4 d-flex justify-content-center flex-column">
+                                <h3 class="font-weight-600 text-white ml-3 mb-0 mt-0">{{ $numOfSellers }}</h3>
+                                <p class="text-white-50 font-weight-700" >Sellers</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +96,7 @@
                             </div>
                         </div>
                         <div>
-                            <div id="apexChart2" class="mx-50"></div>
+                            <div class="mx-50"></div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +120,7 @@
                             </div>
                         </div>
                         <div>
-                            <div id="apexChart2" class="mx-50"></div>
+                            <div class="mx-50"></div>
                         </div>
                     </div>
                 </div>
