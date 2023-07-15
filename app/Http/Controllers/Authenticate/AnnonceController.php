@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Authenticate;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Signal;
 use App\Models\Annonce;
 use App\Models\Comment;
-use App\Models\Signal;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
+use App\Services\StripePaymentService;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -104,6 +106,12 @@ class AnnonceController extends Controller
         $comments = Comment::where('annonce_id', '=', $annonce)->get();
         $signals = Signal::where('annonce_id', '=', $annonce)->get();
         return view('admin.authentication.layouts.pages.ads.ad-detail', compact('ad', 'comments', 'signals'));
+    }
+
+    public function checkout(Annonce $annonce, Payment $price){
+        $stripePaymentService = new StripePaymentService();
+        return $stripePaymentService->generatePaymentUrl($price, $annonce);
+
     }
 
     public function block(Request $request, Annonce $annonce)

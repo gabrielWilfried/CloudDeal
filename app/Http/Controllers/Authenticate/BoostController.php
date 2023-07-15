@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Authenticate;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Annonce;
-use App\Models\Boost;
 use Carbon\Carbon;
+use App\Models\Boost;
+use App\Models\Annonce;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\StripePaymentService;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -32,7 +33,6 @@ class BoostController extends Controller
             'score' => $score,
             'annonce_id' => $annonce->id,
         ]);
-
         $annonce->level += $score;
         $annonce->save();
         return response()->json(['message' => 'Boosted sucesfully']);

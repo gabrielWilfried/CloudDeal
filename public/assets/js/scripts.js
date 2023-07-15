@@ -288,36 +288,36 @@
     $("#slider-range").slider({
         range: true,
         min: 0,
-        max: 200,
+        max: 5000,
         values: [0, 0],
         slide: function(event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            $("#amount").val(ui.values[0] + " - " + ui.values[1]);
         }
     });
 
-    $(function() {
-        var min = $("#min");
-        var max = $("#max");
+    // $(function() {
+    //     var min = $("#min");
+    //     var max = $("#max");
 
-        $("#slider-range").slider({
-            range: true,
-            min: 0,
-            max: 200,
-            values: [0, 0],
-            slide: function(event, ui) {
-                min.val(ui.values[0]);
-                max.val(ui.values[1]);
-                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            }
-        });
+    //     $("#slider-range").slider({
+    //         range: true,
+    //         min: 0,
+    //         max: 200,
+    //         values: [0, 0],
+    //         slide: function(event, ui) {
+    //             min.val(ui.values[0]);
+    //             max.val(ui.values[1]);
+    //             $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+    //         }
+    //     });
 
-        min.val($("#slider-range").slider("values", 0));
-        max.val($("#slider-range").slider("values", 1));
-    });
+    //     min.val($("#slider-range").slider("values", 0));
+    //     max.val($("#slider-range").slider("values", 1));
+    // });
 
 
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-        " - $" + $("#slider-range").slider("values", 1));
+    $("#amount").val($("#slider-range").slider("values", 0) +
+        " - " + $("#slider-range").slider("values", 1));
     /*-- price range End --*/
 
     /*==================================

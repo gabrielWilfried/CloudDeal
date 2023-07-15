@@ -14,8 +14,7 @@ class AnnonceGuestController extends Controller
     public function paginatedAds(Request $request)
     {
         $limit = $request->get('limit', 9);
-       // $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
-        $BestAds = Annonce::where('is_blocked', false)->orderByDesc('level')->take(3)->get();
+        $BestAds = Annonce::where('is_blocked', false)->where('is_verified', true)->orderByDesc('level')->take(3)->get();
         $search = '%' . $request->get('search', '') . '%';
         $sort = $request->get('sort');
         $priceFilter = $request->get('filterPrice', '');
@@ -47,7 +46,7 @@ class AnnonceGuestController extends Controller
                 break;
         }
 
-        $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
+        $annonces = $query->where('name', 'LIKE', $search)->where('is_blocked', false)->where('is_verified', false)->orderByDesc('level')->paginate($limit);
         return response()->json([ 'annonces' => $annonces, 'BestAds' => $BestAds ]);
     }
 

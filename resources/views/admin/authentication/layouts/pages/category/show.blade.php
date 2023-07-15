@@ -33,7 +33,7 @@
                                                 <button type="submit" class="btn btn-rounded btn-sm btn-warning mb-5"><i
                                                         class="fa fa-edit"></i></button>
                                             </form>
-                                            <form method="POST" onsubmit="event.preventDefault()">
+                                            <form method="POST" @onsubmit="event.preventDefault()">
                                                 @csrf
                                                 <input type="hidden" x-model="selectedId" :value="ad.id">
                                                 <button x-on:click="deleteAd" type="submit" class="btn btn-sm btn-rounded btn-danger mb-5"><i
