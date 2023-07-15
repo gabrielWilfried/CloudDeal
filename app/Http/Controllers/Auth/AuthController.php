@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\Str;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -45,6 +46,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        Session::start();
         try {
             $validateUser = Validator::make(
                 $request->all(),
@@ -62,6 +64,7 @@ class AuthController extends Controller
                 return redirect()->route('auth.login')->with(['message'=>"Email ou password incorrecte"]);
             }
 
+
             $user = User::where('email', $request->email)->first();
 
             return redirect()->route('admin.home');
@@ -70,18 +73,7 @@ class AuthController extends Controller
             return redirect()->route('auth.login')->with(['message'=>"Une erreur s\'est produit lors de la connexion"]);
         }
     }
-  /*  public function logout(Request $request)
-    {
-        $user = $request->user();
 
-        // Mise à jour de l'attribut is_online
-       // $user->update(['is_online' => false]);
-
-        $user->tokens()->delete();
-
-        return view('guest.layouts.pages.all-ads');
-    }
-    */
 
     public function logout(Request $request)
     {

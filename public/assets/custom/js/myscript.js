@@ -46,10 +46,7 @@ $("document").ready(function () {
             window.location.hash = target;
         });
     });
-    $("#login-modal").on("click", function () {
-        console.log("hello");
-        $("#loginModal").addClass("modal-visible");
-    });
+
     $("#close-modal-login").on("click", function () {
         $("#loginModal").removeClass("modal-visible");
         $("#loginModal").addClass("modal-invisible");
@@ -74,9 +71,34 @@ window.addEventListener('alpine:init', () => {
                     console.error(error);
                 });
         },
-        openLoginModal(){
-            console.log("hello");
+        openLoginModal(href){
+            console.log(href);
+
+             // Enregistrer l'URL dans la session
+            sessionStorage.setItem('redirectUrl', href);
+
             $("#loginModal").addClass("modal-visible");
+
+            fetch('/login?url='+href, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ redirectUrl: href }),
+            })
+            .then(response => {
+                // Gérer la réponse du contrôleur
+                if (response.ok) {
+                    // Rediriger l'utilisateur vers l'URL précédemment enregistrée
+                    window.location.href = href;
+                } else {
+                    console.error('Une erreur s\'est produite lors de la redirection');
+                }
+            })
+            .catch(error => {
+                console.error('Une erreur s\'est produite lors de la requête fetch', error);
+            });
+
         }
     })
 )})
