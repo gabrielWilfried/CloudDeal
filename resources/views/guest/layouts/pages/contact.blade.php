@@ -1,4 +1,4 @@
-@extends('guest.layouts.layout')    
+@extends('guest.layouts.layout')
 @section('content')
 
     @include('guest.includes.navbanner')
@@ -12,7 +12,7 @@
                     <div class="contact-form form-style">
                         <div class="cf-msg"></div>
                         <form action="{{ route('contact.store') }}" method="POST" id="cf">
-                            @csrf 
+                            @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <input type="text" placeholder="Name" id="fname" name="fname">
@@ -43,16 +43,26 @@
                             <li>
                                 <i class="fa fa-phone"></i> Email address:
                                 <p>
-                                    <span>tegonguefolefackf@gmail.com</span>
-                                    <span>tegonguefolefackf@gmail.com </span>
+                                    <span><a href="mailto:tegonguefolefackf@gmail.com">tegonguefolefackf@gmail.com</a href></span>
+                                    <span><a href="mailto:gabrielwilfried0808@gmail.com">gabrielwilfried0808@gmail.com</a href> </span>
+                                     <span><a href="mailto:geniekamaha@gmail.com">geniekamaha@gmail.com"</a href> </span>
+
+
+
+
                                 </p>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i> phone number:
-                                <p>
-                                    <span>+237 672 044 430</span>
-                                    <span>+237 672 044 430</span>
-                                </p>
+
+                               <p>
+                                    <span><a href="https://web.whatsapp.com/send?phone=237672044430">+237 672 044 430</a></span>
+                                    <span><a href="https://web.whatsapp.com/send?phone=237652249235">+237 652 249 235</a></span>
+                                    <span><a href="https://web.whatsapp.com/send?phone=237681916790">+237 681 916 790</a></span>
+                                    <span><a href="https://web.whatsapp.com/send?phone=237674707344">+237 674 707 344</a></span>
+                                    <span><a href="https://web.whatsapp.com/send?phone=237677896268">+237 677 896 268</a></span>
+
+
                             </li>
                         </ul>
                     </div>
