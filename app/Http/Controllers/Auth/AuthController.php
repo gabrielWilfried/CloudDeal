@@ -67,7 +67,7 @@ class AuthController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            return redirect()->route('admin.home');
+            return  view('guest.layouts.pages.all-ads');
             // return view('admin.authentication.admin-home');
         } catch (\Throwable $th) {
             return redirect()->route('auth.login')->with(['message'=>"Une erreur s\'est produit lors de la connexion"]);
@@ -81,7 +81,7 @@ class AuthController extends Controller
 
         Auth::logout(); // Déconnexion de l'utilisateur en cours
 
-        return  view('guest.layouts.pages.all-ads'  ); // Redirection vers la page d'accueil ou une autre page appropriée après la déconnexion
+        return  view('guest.layouts.pages.all-ads'); // Redirection vers la page d'accueil ou une autre page appropriée après la déconnexion
     }
 
     public function LoginView(Request $request){

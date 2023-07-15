@@ -1,5 +1,7 @@
 @extends('guest.layouts.layout')
 
+@include('guest.auth.login-modal')
+
 @section('content')
     @include('guest.includes.navbanner')
 
@@ -10,7 +12,7 @@
                     <aside class="sidebar-area">
                         <div class="widget widget_search">
                             <h4 class="widget-title">Search Product</h4>
-                            <form action="javascript:void(0);" class="searchform" >
+                            <form action="javascript:void(0);" class="searchform">
                                 <input type="text" id="search" name="search_text" placeholder="Search Product..."
                                     x-model="searchText" @keyup="search()">
                             </form>
@@ -27,7 +29,7 @@
                                             </p>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <button  x-on:click="filterPrice()">filter</button>
+                                            <button x-on:click="filterPrice()">filter</button>
                                         </div>
                                     </div>
                                 </form>
@@ -37,9 +39,9 @@
                             <h4 class="widget-title">Categories</h4>
                             <ul>
                                 @foreach ($allCategories as $category)
-                                <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
-                                        type="checkbox" x-on:click="filterByCategories()" class="category-checkbox" name="category"
-                                        value="{{ $category->id }}" id="{{ $category->name }}"></li>
+                                    <li><label for="{{ $category->name }}">{{ $category->name }}</label><input
+                                            type="checkbox" x-on:click="filterByCategories()" class="category-checkbox"
+                                            name="category" value="{{ $category->id }}" id="{{ $category->name }}"></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -53,7 +55,7 @@
                                         </div>
                                         <div class="post-content">
                                             <a :href="ad.url_detail" x-text="ad.name"></a></h3>
-                                                <p  x-text="ad.format_price">
+                                            <p x-text="ad.format_price">
                                         </div>
                                     </li>
                                 </template>
@@ -64,7 +66,8 @@
                 <div class="col-lg-9 col-12">
                     <div class="row mb-30">
                         <div class="col-sm-4 col-12" style="cursor: pointer">
-                            <select @change="sortByTown()" name="stor" class="select-style town-select" style="cursor: pointer">
+                            <select @change="sortByTown()" name="stor" class="select-style town-select"
+                                style="cursor: pointer">
                                 <option :value=undefined selected>Sort by Default</option>
                                 <template x-for="town in data.towns">
                                     <option :value="town.id" x-text="town.name"></option>
@@ -99,9 +102,16 @@
                                                 <img src="{{ asset('assets/images/product/1.jpg') }}" alt="">
                                                 <div class="product-icon flex-style">
                                                     <ul>
-                                                        <li><a :href="ad.url_detail"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a href="{{ route('chat.index') }}"><i
-                                                                    class="fa fa-send"></i></a></li>
+                                                    @guest
+                                                        <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
+                                                        <li><a x-on:click="openLoginModal()"><i class="fa fa-send"></i></a></li>
+                                                    @endguest
+                                                    @auth
+                                                    <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
+                                                    <li><a href="{{ route('chat.index') }}"><i
+                                                                class="fa fa-send"></i></a></li>
+
+                                                    @endauth
 
                                                     </ul>
                                                 </div>
@@ -155,14 +165,17 @@
                                                             alt="">
                                                         <div class="product-icon flex-style">
                                                             <ul>
-                                                                <li>
-                                                                    <a :href="ad.url_detail"><i class="fa fa-eye"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="{{ route('chat.index') }}">
-                                                                        <i class="fa fa-send"></i>
-                                                                    </a>
-                                                                </li>
+
+                                                            @guest
+                                                                <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
+                                                                <li><a x-on:click="openLoginModal()"><i class="fa fa-send"></i></a></li>
+                                                            @endguest
+                                                            @auth
+                                                                <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
+                                                                <li><a href="{{ route('chat.index') }}"><i
+                                                                            class="fa fa-send"></i></a></li>
+
+                                                            @endauth
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -176,7 +189,13 @@
                                                         </div>
                                                         <p x-text="ad.description"></p>
                                                         <ul class="cart-btn">
-                                                            <li><a href="{{ route('chat.index') }}">Contact Seller</a>
+                                                            @auth
+                                                                 <li><a href="{{ route('chat.index') }}">Contact Seller</a>
+                                                            @endauth
+                                                            @guest
+                                                            <li><a x-on:click="openLoginModal()">Contact Seller</i></a></li>
+                                                            @endguest
+
                                                             </li>
                                                             <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                         </ul>
@@ -219,5 +238,6 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('assets/custom/js/search.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/css/mystyle.css') }}">
+    <script src="{{ asset('assets/custom/js/search.js') }}"></script>
 @endsection
