@@ -36,4 +36,9 @@ class FileUploadService
             FileUploadService::upload($file, $object, $filePath);
         }
     }
+
+    public static function uploadPath(UploadedFile $file,  PathFileEnum $filePath = PathFileEnum::DEFAULT_PATH)
+    {
+        return Storage::putFile('public/' . $filePath->value, $file);
+    }
 }

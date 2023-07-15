@@ -10,11 +10,11 @@
         <div class="col-lg-9 d-none d-lg-block">
             <nav class="mainmenu">
                 <ul class="d-flex">
-                    <li class="active">
-                        <a href="{{ route('home') }}">Home</i></a>
+                    <li class="{{ Request::is('clouddeal') ? 'active' : '' }}">
+                        <a href="{{ route('home') }}">Home</a>
                     </li>
-                    <li>
-                        <a href="{{ route('dashboard.index') }}">Best ads</i></a>
+                    <li class="{{ Request::is('clouddeal/allAds') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard.index') }}">Best Ads</a>
                     </li>
                     <li>
                         <a href="javascript:void(0);">Categories <i class="fa fa-angle-down"></i></a>
@@ -24,8 +24,10 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                    <li class="{{ Request::is('clouddeal/about') ? 'active' : '' }}"><a
+                            href="{{ route('about') }}">About</a></li>
+                    <li class="{{ Request::is('clouddeal/contact') ? 'active' : '' }}"><a
+                            href="{{ route('contact') }}">Contact</a></li>
                     <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
                 </ul>
             </nav>
@@ -42,17 +44,18 @@
         </div>
     </div>
 </div>
+
 <!-- responsive-menu area start -->
 <div class="responsive-menu-area">
     <div class="container">
         <div class="row">
             <div class="col-12 d-block d-lg-none">
                 <ul class="metismenu">
-                    <li class="sidemenu-items">
+                    <li class="sidemenu-items active">
                         <a aria-expanded="false" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="sidemenu-items">
-                        <a  aria-expanded="false" href="{{ route('dashboard.index') }}">Best ads </a>
+                    <li class="sidemenu-items {{ Request::is('dashboard') ? 'active' : '' }}">
+                        <a aria-expanded="false" href="{{ route('dashboard.index') }}">Best Ads</a>
                     </li>
                     <li class="sidemenu-items">
                         <a class="has-arrow" aria-expanded="false" href="javascript:void(0);">Categories</a>
@@ -75,3 +78,13 @@
 @section('script')
 <script src="{{ asset('assets/custom/js/search.js') }}"></script>
 @endsection
+<!-- CSS -->
+<style>
+    .mainmenu .active a {
+        color: red;
+    }
+
+    .mainmenu a {
+        color: black;
+    }
+</style>

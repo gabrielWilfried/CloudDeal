@@ -7,7 +7,29 @@
 $(function () {
 
   'use strict';
-	
+    function getMonthAbbreviations(monthsArray) {
+        const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+
+        return monthsArray.map(month => {
+        if (month >= 1 && month <= 12) {
+            return months[month - 1];
+        } else {
+            return "";
+        }
+        });
+    }
+    var adCount = JSON.parse($("#get-ads-table").attr("ad-count"));
+    var months = getMonthAbbreviations(JSON.parse(
+        $("#get-ads-table").attr("months")
+    ));
+    var revenue = JSON.parse($("#get-revenue-table").attr("revenue"));
+    var months2 = getMonthAbbreviations(JSON.parse(
+        $("#get-revenue-table").attr("months2")
+    ));
+
 	var options = {
 	  chart: {
 		  height: 340,
@@ -31,24 +53,21 @@ $(function () {
 		  width: 2,
 		  colors: ['transparent']
 	  },
-	  colors: ["#2444e8", "#c6cffb"],
+	  colors: ["#2444e8"],
 	  series: [{
-		  name: 'New Visitors',
-		  data: [70, 45, 51, 58, 59, 58, 61, 65, 60, 69]
-	  }, {
-		  name: 'Unique Visitors',
-		  data: [55, 71, 80, 100, 89, 98, 110, 95, 116, 90]
+		  name: 'Ads Created',
+		  data: adCount
 	  },],
 	  xaxis: {
-		  categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+		  categories: months,
 		  axisBorder: {
 			show: true,
 			color: '#bec7e0',
-		  },  
+		  },
 		  axisTicks: {
 			show: true,
 			color: '#bec7e0',
-		  },    
+		  },
 	  },
 	  legend: {
           position: 'top',
@@ -56,7 +75,7 @@ $(function () {
         },
 	  yaxis: {
 		  title: {
-			  text: 'Visitors'
+			  text: 'Ads'
 		  }
 	  },
 	  fill: {
@@ -76,7 +95,7 @@ $(function () {
 	  tooltip: {
 		  y: {
 			  formatter: function (val) {
-				  return "" + val + "k"
+				  return "" + val + " ads"
 			  }
 		  }
 	  }
@@ -88,9 +107,9 @@ $(function () {
 	);
 
 	chart.render();
-	
-	
-	
+
+
+
 	var myConfig = {
         "type": "line",
 		"utc": true,
@@ -104,7 +123,7 @@ $(function () {
           "margin": "10px 25px 70px 46px"
         },
         "scale-y": {
-          "values": "0:100:25",
+          "values": "0:50000:500",
           "line-color": "none",
           "guide": {
             "line-style": "solid",
@@ -125,7 +144,7 @@ $(function () {
         "scale-x": {
           "line-color": "#d2dae2",
           "line-width": "2px",
-          "values": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          "values": months2,
           "tick": {
             "line-color": "#d2dae2",
             "line-width": "1px"
@@ -188,8 +207,8 @@ $(function () {
           "visible": false
         },
         "series": [{
-          "values": [69, 68, 54, 48, 70, 74, 98, 70, 72, 68, 49, 69],
-          "text": "Kenmore",
+          "values": revenue,
+          "text": "Amount",
           "line-color": "#389f99",
           "line-width": "2px",
           "shadow": 0,
@@ -201,50 +220,6 @@ $(function () {
             "shadow": 0
           },
           "palette": 0
-        }, {
-          "values": [51, 53, 47, 60, 48, 52, 75, 52, 55, 47, 60, 48],
-          "text": "Craftsman",
-          "line-width": "2px",
-          "line-color": "#38649f",
-          "shadow": 0,
-          "marker": {
-            "background-color": "#fff",
-            "size": 3,
-            "border-width": 1,
-            "border-color": "#38649f",
-            "shadow": 0
-          },
-          "palette": 1,
-          "visible": 1
-        }, {
-          "values": [42, 43, 30, 50, 31, 48, 55, 46, 48, 32, 50, 38],
-          "text": "DieHard",
-          "line-color": "#ee1044",
-          "line-width": "2px",
-          "shadow": 0,
-          "marker": {
-            "background-color": "#fff",
-            "size": 3,
-            "border-width": 1,
-            "border-color": "#ee1044",
-            "shadow": 0
-          },
-          "palette": 2,
-          "visible": 1
-        }, {
-          "values": [25, 15, 26, 21, 24, 26, 33, 25, 15, 25, 22, 24],
-          "text": "Land's End",
-          "line-color": "#ff8f00",
-          "line-width": "2px",
-          "shadow": 0,
-          "marker": {
-            "background-color": "#fff",
-            "size": 3,
-            "border-width": 1,
-            "border-color": "#ff8f00",
-            "shadow": 0
-          },
-          "palette": 3
         }]
       };
 
@@ -254,9 +229,9 @@ $(function () {
       height: 305,
       width: '100%'
     });
-	
-	
-	
+
+
+
 	var options = {
     chart: {
       type: 'radialBar',
@@ -271,7 +246,7 @@ $(function () {
           margin: 5,
           size: '50%',
           background: 'transparent',
-  
+
         },
         track: {
           show: false,
@@ -283,7 +258,7 @@ $(function () {
           value: {
               fontSize: '16px',
               color: '#50649c',
-          },          
+          },
         }
       },
     },
@@ -313,16 +288,16 @@ $(function () {
         }
     }]
   }
-  
-  
+
+
   var chart = new ApexCharts(
     document.querySelector("#email-campaign"),
     options
   );
-  
+
   chart.render();
-	
-  
+
+
 	var options1 = {
         series: [{
           data: [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]
@@ -339,7 +314,7 @@ $(function () {
           curve: 'smooth',
 			 width: 3,
         },
-		 
+
 		markers: {
 			size: 0,
 		},
@@ -365,8 +340,8 @@ $(function () {
 
       var chart1 = new ApexCharts(document.querySelector("#visitors-char"), options1);
       chart1.render();
-	
-	
+
+
 	// Apex  start
   if($('#apexChart2').length) {
     var options2 = {
@@ -414,11 +389,11 @@ $(function () {
     new ApexCharts(document.querySelector("#apexChart2"),options2).render();
   }
   // Apex  end
-	
-	
-	
-	
-	
+
+
+
+
+
 	var ts2 = 1484418600000;
 			var dates = [];
 			var spikes = [5, -5, 3, -3, 8, -8]
@@ -470,12 +445,12 @@ $(function () {
 				  },
 				},
 			  },
-				
+
 			  xaxis: {
 				type: 'datetime',
 			  },
-				
-				
+
+
 			  tooltip: {
 				shared: false,
 				y: {
@@ -492,10 +467,10 @@ $(function () {
 			);
 
 			chart.render();
-	
-	
-	
-	
+
+
+
+
 	am4core.ready(function() {
 
 	// Themes begin
@@ -706,8 +681,8 @@ $(function () {
 	}
 
 	}); // end am4core.ready()
-	
-	
+
+
 }); // End of use strict
 
 
@@ -716,7 +691,7 @@ $(function () {
   'use strict';
 
 	//dashboard_daterangepicker
-	
+
 	if(0!==$("#dashboard_daterangepicker").length) {
 		var n=$("#dashboard_daterangepicker"),
 		e=moment(),

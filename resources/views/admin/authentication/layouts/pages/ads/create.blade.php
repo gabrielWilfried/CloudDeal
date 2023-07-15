@@ -54,16 +54,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>User_id <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <select name="user_id" id="select" required class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <h5>Description <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <textarea name="description" id="textarea" class="form-control" required
@@ -72,7 +62,7 @@
                                     </div>
                                     <div class="form-group">
                                         <h5>Cover Image <span class="text-danger">*</span></h5>
-                                        <div class="col-lg-10">
+                                        <div class="controls">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name='image' id="customFile">
                                                 <label class="custom-file-label" for="customFile">Choose file</label>
@@ -81,7 +71,7 @@
                                     </div>
                                     <div class="form-group">
                                         <h5>Images</h5>
-                                        <div class="col-lg-10">
+                                        <div class="controls">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="customFile" multiple>
                                                 <label class="custom-file-label" for="customFile">Choose files</label>

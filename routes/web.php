@@ -20,7 +20,9 @@ use App\Http\Controllers\Authenticate\VilleController;
 use App\Http\Controllers\Authenticate\MessageController;
 use App\Http\Controllers\Authenticate\HomeAuthenticateController;
 use App\Http\Controllers\Authenticate\LetterController;
+use App\Http\Controllers\Authenticate\ProfileController;
 use Faker\Guesser\Name;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +44,16 @@ Route::prefix('clouddeal')->group(function () {
         return view('guest.layouts.pages.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
     })->name('wishlist');
     Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+    Route::get('/contact', function () {
+        return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
+    })->name('contact');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::prefix('allAds')->group(function () {
         Route::get('/', [AnnonceGuestController::class, 'index'])->name('dashboard.index');
         Route::get('/ads', [AnnonceGuestController::class, 'paginatedAds'])->name('dashboard.ads');
         Route::get('/search', [AnnonceGuestController::class, 'index'])->name('dashboard.category');
-        Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->name('dashboard.singe-ad');
+        Route::get('/ad-detail/{id}', [AnnonceGuestController::class, 'showAd'])->middleware('auth')->name('dashboard.singe-ad');
         Route::get('/ad-list', function () {
             return view('guest.layouts.pages.ad',  ['name' => 'Ad List',  'head' => 'Dashboard']);
         })->name('dashboard.ad-list');
@@ -58,7 +63,7 @@ Route::prefix('clouddeal')->group(function () {
         });
     });
 });
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('/', [HomeAuthenticateController::class, 'index'])->name('home');
 
@@ -78,24 +83,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
-        Route::post('/', [CategoryController::class, 'store'])->name('store');
-        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
         Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('delete');
     });
     Route::prefix('town')->name('town.')->group(function () {
         Route::get('/', [VilleController::class, 'index'])->name('index');
-        Route::get('/category', [VilleController::class, 'towns']);
         Route::post('/store', [VilleController::class, 'store'])->name('store');
-        Route::put('/update/{town}', [VilleController::class, 'update'])->name('update');
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
-        Route::put('/boost', [AnnonceController::class, 'boost'])->name('boost');
     });
 
-    Route::prefix('mypayments')->name('payments.')->group(function () {
-        Route::get('/', [PaymentController::class, 'index'])->name('index');
-        Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
-        Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
-    });
+        Route::prefix('mypayments')->name('payments.')->middleware('auth')->group(function () {
+            Route::get('/', [PaymentController::class, 'index'])->name('index');
+            Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
+            Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
+        });
+
 
     Route::name('stripe.')->prefix('stripe')->group(function(){
         Route::get('/', [StripePaymentController::class,'index'])->name('index');
@@ -111,9 +113,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('myletters')->name('letters.')->group(function () {
         Route::get('/', [LetterController::class, 'show'])->name('show');
     });
+
+    Route::prefix('myprofile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'show'])->name('show');
+        Route::post('/editpassword', [ProfileController::class, 'editPasswd'])->name('editPasswd');
+        Route::post('/editprofile', [ProfileController::class, 'editProfile'])->name('editProfile');
+        //Route::get('/editpasswdform', [ProfileController::class, 'editPasswdForm'])->name('editPasswdForm');
+    });
 });
+
 Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
     Route::get('/forgot-password', function () {
         return view("guest.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
@@ -126,47 +137,46 @@ Route::name('auth.')->prefix('auth')->group(function () {
     })->name("auth.verify-email");
 
     Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
-    Route::post('/register', [AuthController::class, 'store'])->name('register');
-    Route::post('/logout', [AuthController::class, 'logout']);
-});
+    Route::post('/register', [AuthController::class, 'store'])->name('register.auth');
 
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
-    })->name('dashboard');
+    // Redirection vers l'authentification Google
+    Route::get('/google', [AuthController::class, 'redirectToGoogle'])->name('google');
 
-    Route::get('/ad-list', function () {
-        return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
-    })->name('dashboard.ad-list');
-});
-
-Route::get('/contact', function () {
-    return view('guest.layouts.pages.contact',  ['name' => 'Contact',  'head' => 'Contact Us']);
-})->name('contact');
-
-Route::get('/about', [AboutGuestController::class, "index"])->name('about');
-
-Route::get('/payment', function () {
-    return view('guest.layouts.partials.payment',  ['name' => 'Payment',  'head' => 'Payment']);
-})->name('payment');
+    // Callback après l'authentification Google
+    Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
+    });
 
 
-Route::get('/wishlist', function () {
-    return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
-})->name('wishlist');
+    Route::prefix('dashboard')->middleware('auth')->group(function () {
+        Route::get('/', function () {
+            return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
+        })->name('dashboard');
+
+        Route::get('/ad-list', function () {
+            return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
+        })->name('dashboard.ad-list');
+    });
 
 
-Route::name('chat.')->prefix('chat')->group(function () {
-    Route::get('/', [DiscussionController::class, 'index'])->name('index');
-    Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
-    Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
-    Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
-});
 
 
-//Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
-Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->name('annonces.signaler');
-Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
-Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+    Route::get('/wishlist', function () {
+        return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
+    })->name('wishlist');
 
-//laravel gate
+
+    Route::name('chat.')->prefix('chat')->middleware('auth')->group(function () {
+        Route::get('/', [DiscussionController::class, 'index'])->name('index');
+        Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
+        Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
+        Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
+
+    });
+
+
+    //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
+    Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->middleware('auth')->name('annonces.signaler');
+    Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
+    Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+
+    //laravel gate

@@ -10,18 +10,17 @@
             </div>
             <div class="modal-body p-4 py-5 p-md-5">
                 <form method="post" action="{{ route('admin.category.store') }}"
-                    style="padding: 20px">
+                    style="padding: 20px" name="create-category">
                     @csrf
                     <div class="form-group mb-2">
-                        <label for="name">Enter name</label>
-                        <input type="text" name="price" class="form-control" placeholder="Enter name">
+                        <h5>Name <span class="text-danger">*</span></h5>
+                        <input type="text" name="name" class="form-control" placeholder="Enter name" required>
                     </div>
                     <div class="form-group">
                         <h5>Description <span class="text-danger">*</span></h5>
                         <div class="controls">
                             <textarea name="description" id="textarea" class="form-control"
-                                placeholder="Brief description of your ad">
-                            </textarea>
+                                placeholder="Brief description of your Category" required></textarea>
                         </div>
                     </div>
                     <div class="form-group mb-2 mt-20" >

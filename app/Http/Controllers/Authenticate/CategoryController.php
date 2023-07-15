@@ -24,24 +24,16 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
-        dd($request);
-        $category = Category::create($request->all());
 
-        //return redirect()->route('admin.category.index');
-    }
-
-    public function update(Request $request, Category $category)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
-
-        $category->update($request->all());
+        Category::create($request->all());
+        return redirect()->back()->with('message', 'Category created successfully');
 
     }
 
     public function delete(Category $category)
     {
         $category->delete();
+
+        return redirect()->route('admin.category.index')->with('success', 'La catégorie a été supprimée avec succès.');
     }
 }

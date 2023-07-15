@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Carbon\Carbon;
 
 class Boost extends Model
 {
@@ -14,6 +15,7 @@ class Boost extends Model
 
     protected $fillable = ['price', 'start_at', 'end_at', 'score', 'annonce_id'];
 
+    protected $appends = ['format_date'];
 
     public function files(): MorphMany
     {
@@ -23,5 +25,10 @@ class Boost extends Model
     public function annonce(): BelongsTo
     {
         return $this->belongsTo(Annonce::class, 'annonce_id');
+    }
+    public function getFormatDateAttribute()
+    {
+        $date = Carbon::createFromFormat('Y-m-d',  $this->end_at);
+        return $date->format('l, j F Y');
     }
 }

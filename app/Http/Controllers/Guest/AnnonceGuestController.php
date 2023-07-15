@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
-use App\Models\Boost;
-use App\Models\Category;
+
 use App\Models\Annonce;
 use App\Models\Town;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class AnnonceGuestController extends Controller
 {
@@ -20,9 +20,9 @@ class AnnonceGuestController extends Controller
         $priceFilter = $request->get('filterPrice', '');
         $query = Annonce::where('is_blocked', false);
 
-        if($priceFilter != '' && $priceFilter != '0,0'){
+        if ($priceFilter != '' && $priceFilter != '0,0') {
             $price = explode(',', $priceFilter);
-            $query=$query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
+            $query = $query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
         }
 
         if ($request->has('categories') && !blank($request->input('categories'))) {
@@ -68,6 +68,12 @@ class AnnonceGuestController extends Controller
         $ad = Annonce::findorfail($id);
         $ad->load('comments', 'category', 'town', 'user');
         $comments = $ad->comments()->latest()->take(4)->get();
+
+       if (!Auth::check()) {
+            // Rediriger vers la page de connexion
+            return view('guest.auth.login-modal');
+        }
+
         return view('guest.layouts.pages.ad-detail',  compact('ad','annonces', 'comments'));
     }
 
@@ -104,8 +110,8 @@ class AnnonceGuestController extends Controller
         }
 
 
-       $annonces = $annonces->get();
-       return response()->json($annonces);
+        $annonces = $annonces->get();
+        return response()->json($annonces);
     }
     public function detailsAnnonce(Annonce  $annonce)
     {
