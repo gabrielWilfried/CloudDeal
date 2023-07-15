@@ -99,7 +99,7 @@
                                         <div class="product-wrap">
                                             <div class="product-img">
                                                 <span>New</span>
-                                                <img src="{{ asset('assets/images/product/1.jpg') }}" alt="">
+                                                <img :src="ad.image_path" alt="">
                                                 <div class="product-icon flex-style">
                                                     <ul>
                                                     @guest
@@ -161,7 +161,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="product-img">
                                                         <span>New</span>
-                                                        <img src="{{ asset('assets/images/product/19.jpg') }}"
+                                                        <img :src="ad.image_path"
                                                             alt="">
                                                         <div class="product-icon flex-style">
                                                             <ul>

@@ -1,7 +1,6 @@
-@extends('user.auth.default-auth')
+@extends('guest.auth.default-auth')
 
 @section('auth')
-
     <div class="account-area ptb-100">
 
         <div class="container">

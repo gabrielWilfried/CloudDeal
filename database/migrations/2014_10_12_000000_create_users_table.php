@@ -19,12 +19,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('pseudo');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->enum('sex', enum_to_string_array(SexeEnum::cases()))->nullable();
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_online')->default(false);
             $table->json('location')->nullable();
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
