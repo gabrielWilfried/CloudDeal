@@ -64,7 +64,7 @@
                                         <h5>Cover Image <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name='image' id="customFile">
+                                                <input type="file" class="custom-file-input" name='image' accept="image/jpeg image/png image/jpg">
                                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                                         <h5>Images</h5>
                                         <div class="controls">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile" multiple>
+                                                <input type="file" class="custom-file-input" name='images[]' id="customFile" multiple>
                                                 <label class="custom-file-label" for="customFile">Choose files</label>
                                             </div>
                                         </div>

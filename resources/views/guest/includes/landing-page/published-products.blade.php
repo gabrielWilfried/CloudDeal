@@ -16,7 +16,7 @@
                     <div class="product-wrap">
                         <div class="product-img">
                             <span>Sale</span>
-                            <img src="assets/images/product/15.jpg" alt="">
+                            <img :src="ad.image_path" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
                                     <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
