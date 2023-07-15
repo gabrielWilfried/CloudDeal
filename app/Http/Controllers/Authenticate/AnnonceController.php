@@ -10,27 +10,17 @@ use App\Models\Boost;
 use App\Models\Enums\PathFileEnum;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class AnnonceController extends Controller
 {
     public function index(Request $request)
     {
-        ///$user = Auth::user();
-        //$limit = $request->get('limit', 15);
-        //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
+        $user = Auth::user();
+        $annonces = Annonce::where('user_id', $user->id)->get();
         $annonces = Annonce::get();
         $boosted_ads_id = Boost::pluck('annonce_id')->unique();
         return view('admin.authentication.layouts.pages.ads.show', compact('annonces', 'boosted_ads_id'));
-    }
-
-    public function paginatedAds(Request $request)
-    {
-        ///$user = Auth::user();
-        //$limit = $request->get('limit', 15);
-        //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
-        $annonces = Annonce::where('is_blocked', false)->paginate(7);
-        return response()->json(['annonces' => $annonces]);
     }
 
     public function create()
@@ -53,7 +43,7 @@ class AnnonceController extends Controller
                 'price' => 'required|numeric|min:0',
                 'description' => 'required',
                 'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
+                'user_id' => Auth::user()->id,
                 'category_id' => 'required|exists:categories,id',
                 'image' => 'required|file',
                 'images' => 'nullable',
@@ -73,7 +63,7 @@ class AnnonceController extends Controller
 
     public function update(Request $request, Annonce $annonce)
     {
-        //if ($annonce->user_id != auth()->id()) abort(403);
+        if ($annonce->user_id != auth()->id()) abort(403);
         $request->validate(
             [
                 'name' => 'required|string|max:255',
@@ -100,7 +90,7 @@ class AnnonceController extends Controller
 
     public function delete(Annonce $annonce)
     {
-        //if ($annonce->user_id != auth()->id()) abort(403);
+        if ($annonce->user_id != auth()->id()) abort(403);
         $annonce->delete();
         return response()->json(['message', 'Deleted successfully']);
     }
