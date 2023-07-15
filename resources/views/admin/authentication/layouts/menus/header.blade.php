@@ -5,18 +5,27 @@
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
         <div>
+
+            <a href="{{ route('home') }}">
+                <i class="fas fa-arrow-left fa-3x"></i>
+            </a>
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <i class="ti-align-left"></i>
             </a>
+
 
             <a href="#" data-provide="fullscreen" class="sidebar-toggle" title="Full Screen">
                 <i class="mdi mdi-crop-free"></i>
             </a>
 
+
+
+
         </div>
 
         <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
+
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="User">
@@ -30,8 +39,11 @@
                                 <img src='{{ asset('assets/images/Apropos/vane1.jpg') }}'
                                     class="float-left rounded-circle" alt="User Image">
                                 <h4 class="user-name align-self-center">
-                                    <span>Vanella Dzikang</span>
-                                    <small>vanelladzikang1@gmail.com</small>
+
+                                    <span>{{ $user->name }}</span>
+                                    <small>{{ $user->email }}</small>
+
+
                                 </h4>
                             </div>
                         </li>
@@ -44,11 +56,8 @@
                     </ul>
                 </li>
                 <!-- full Screen -->
-                <li class="search-bar">
-                    <div class="lookup lookup-circle lookup-right">
-                        <input type="text" name="s">
-                    </div>
-                </li>
+
+
                 <!-- Messages -->
                 {{-- @include('admin.authentication.layouts.menus.pop-up.message')
                 <!-- Notifications -->

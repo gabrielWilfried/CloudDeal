@@ -11,7 +11,7 @@
             <img src='{{ asset('assets/images/Apropos/vane1.jpg') }}' class="rounded-circle" alt="user">
 
             <div class="profile-info">
-                <h4>vanella dzikang</h4>
+                <h4>{{ $user->name }}</h4>
                 <div>
                     <span>Online</span>
                 </div>

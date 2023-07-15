@@ -39,7 +39,6 @@ $("document").ready(function () {
         $("#profileModal").addClass("modal-invisible");
     });
 
-
     $.validator.addMethod(
         "greaterThan",
         function (value, element, param) {
@@ -100,6 +99,40 @@ $("document").ready(function () {
 
     $("form[name='create-category']").validate();
     $("form[name='create-town']").validate();
+
+    $("form[name='edit-profile']").validate({
+        rules: {
+            name: {
+                required: true,
+            },
+            email: {
+                required: true,
+            },
+            pseudo: {
+                required: true,
+            },
+            phone: {
+                required: false,
+            },
+            address: {
+                required: false,
+            },
+        },
+        messages: {
+            name: {
+                required: "The field is required",
+            },
+            email: {
+                required: "The field is required",
+            },
+            pseudo: {
+                required: "The field is required",
+            },
+        },
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    });
 
     $("form[name='edit-form']").validate({
         rules: {

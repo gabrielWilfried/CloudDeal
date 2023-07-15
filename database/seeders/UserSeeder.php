@@ -18,30 +18,33 @@ class UserSeeder extends Seeder
             'name' => "Gabriel",
             'email' => "gabrielwilfried0808@gmail.com",
             'email_verified_at' => now(),
-            'password' => bcrypt('password'),
+            'password' => 'password',
             'sex' => SexeEnum::Male->value,
             'is_admin' => true,
-            'location' => null
+            'location' => null,
+            'pseudo' => "GW",
         ]);
 
         User::create([
             'name' => "Sagesse",
             'email' => "sikounmosagesse@gmail.com",
             'email_verified_at' => now(),
-            'password' => bcrypt('password'),
+            'password' => 'password',
             'sex' => SexeEnum::Male->value,
             'is_admin' => true,
-            'location' => null
+            'location' => null,
+            'pseudo' => "SS",
         ]);
 
         User::create([
             'name' => "Lidelle",
             'email' => "vanelladzikang1@gmail.com",
             'email_verified_at' => now(),
-            'password' => bcrypt('password'),
+            'password' => 'password',
             'sex' => SexeEnum::Femele->value,
             'is_admin' => true,
-            'location' => null
+            'location' => null,
+            'pseudo' => "dvl",
         ]);
     }
 }

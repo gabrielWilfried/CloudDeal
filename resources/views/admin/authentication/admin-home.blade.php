@@ -1,29 +1,28 @@
 @extends('admin.authentication.layouts.layout-admin')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('admin-assets/components/chartist-js-develop/chartist.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin-assets/components/chartist-js-develop/chartist.css') }}">
 @endsection
 @section('body')
-
-<!-- Content Header (Page header) -->
-<div class="content-header">
-    <div class="d-flex align-items-center">
-        <div class="mr-auto">
-            <h3 class="page-title br-0">Dashboard</h3>
-        </div>
-        <div class="right-title w-170">
-            <span class="subheader_daterange font-weight-600" id="dashboard_daterangepicker">
-                <span class="subheader_daterange-label">
-                    <span class="subheader_daterange-title"></span>
-                    <span class="subheader_daterange-date text-primary"></span>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="page-title br-0">Dashboard</h3>
+            </div>
+            <div class="right-title w-170">
+                <span class="subheader_daterange font-weight-600" id="dashboard_daterangepicker">
+                    <span class="subheader_daterange-label">
+                        <span class="subheader_daterange-title"></span>
+                        <span class="subheader_daterange-date text-primary"></span>
+                    </span>
+                    <a href="#" class="btn btn-rounded btn-sm btn-primary">
+                        <i class="fa fa-angle-down"></i>
+                    </a>
                 </span>
-                <a href="#" class="btn btn-rounded btn-sm btn-primary">
-                    <i class="fa fa-angle-down"></i>
-                </a>
-            </span>
+            </div>
         </div>
     </div>
-</div>
 
 <!-- Main content -->
 <section class="content">

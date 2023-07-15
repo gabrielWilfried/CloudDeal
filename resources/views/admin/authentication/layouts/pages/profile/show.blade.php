@@ -142,20 +142,20 @@
                         <div class="col-md-6">
                             <div class="profile-head">
                                 <h5>
-                                    vanella Dzikang
+                                    {{ $user->name }}
                                 </h5>
                                 <h6>
                                     online
                                 </h6>
-                                <p class="proile-rating">pseudo : <span>vane</span></p>
+                                <p class="proile-rating">pseudo : <span>{{ $user->pseudo }}</span></p>
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
                                             role="tab" aria-controls="home" aria-selected="true">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                            role="tab" aria-controls="profile" aria-selected="false">Orders</a>
+                                        <a class="nav-link" id="proGWfile-tab" data-toggle="tab" href="#profile"
+                                            role="tab" aria-controls="profile" aria-selected="false">Others</a>
                                     </li>
                                 </ul>
                             </div>
@@ -188,7 +188,7 @@
                                             <label class="tabContent-label">User Id</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>123</p>
+                                            <p>{{ $user->id }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -196,7 +196,7 @@
                                             <label class="tabContent-label">Name</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>Dzikang vanella</p>
+                                            <p>{{ $user->name }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -204,31 +204,23 @@
                                             <label class="tabContent-label">Email</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>vanelladzikang1@gmail.com</p>
+                                            <p>{{ $user->email }}</p>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <label class="tabContent-label">Password</label>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <p>password</p>
-                                        </div>
-                                    </div>
+
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <label class="tabContent-label">Phone</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>681916790</p>
-                                        </div>
+                                            {{ $user->phone }} </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <label class="tabContent-label">Address</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>Dschang</p>
+                                            <p>{{ $user->address }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -237,7 +229,7 @@
                                                 Gender</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>F</p>
+                                            <p>{{ $user->sex }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -245,7 +237,12 @@
                                             <label class="tabContent-label">Status</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>Administrator</p>
+                                            @if ($user->is_admin)
+                                                <p>Administrator</p>
+                                            @else
+                                                <p>User</p>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
