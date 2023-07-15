@@ -23,7 +23,6 @@ $("document").ready(function () {
         $("#profileModal").addClass("modal-visible");
     });
 
-
     $("#close-modal-button").on("click", function () {
         console.log("hello");
         $("#categoryModal").removeClass("modal-visible");
@@ -39,7 +38,6 @@ $("document").ready(function () {
         $("#profileModal").removeClass("modal-visible");
         $("#profileModal").addClass("modal-invisible");
     });
-    
 
     $.validator.addMethod(
         "greaterThan",
@@ -102,6 +100,40 @@ $("document").ready(function () {
 
     $("form[name='create-category']").validate();
     $("form[name='create-town']").validate();
+
+    $("form[name='edit-profile']").validate({
+        rules: {
+            name: {
+                required: true,
+            },
+            email: {
+                required: true,
+            },
+            pseudo: {
+                required: true,
+            },
+            phone: {
+                required: false,
+            },
+            address: {
+                required: false,
+            },
+        },
+        messages: {
+            name: {
+                required: "The field is required",
+            },
+            email: {
+                required: "The field is required",
+            },
+            pseudo: {
+                required: "The field is required",
+            },
+        },
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    });
 
     $("form[name='edit-form']").validate({
         rules: {
