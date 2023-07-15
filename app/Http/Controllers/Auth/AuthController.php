@@ -12,7 +12,6 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
 
-
 class AuthController extends Controller
 {
     public function store(Request $request)
@@ -45,7 +44,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        Session::start();
+
         try {
             $validateUser = Validator::make(
                 $request->all(),
