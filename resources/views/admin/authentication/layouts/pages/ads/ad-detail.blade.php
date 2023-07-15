@@ -11,22 +11,21 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-6">
                                 <div class="box box-body b-1 text-center no-shadow">
-                                    <img src="{{ asset('assets/images/featured/3.jpg') }}" id="product-image"
+                                    <img src="{{ $ad->image_path }}" id="product-image"
                                         class="img-fluid" alt="">
                                 </div>
                                 <div class="pro-photos">
-                                    <div class="photos-item item-active">
-                                        <img src="{{ asset('assets/images/featured/3.jpg') }}" alt="">
-                                    </div>
-                                    <div class="photos-item">
-                                        <img src="{{ asset('assets/images/featured/3.jpg') }}" alt="">
-                                    </div>
-                                    <div class="photos-item">
-                                        <img src="{{ asset('assets/images/featured/3.jpg') }}" alt="">
-                                    </div>
-                                    <div class="photos-item">
-                                        <img src="{{ asset('assets/images/featured/3.jpg') }}" alt="">
-                                    </div>
+                                    @forelse ($ad->files_path as $files)
+                                        <div class="photos-item item-active">
+                                            <img src="{{ $files->path }}" alt="">
+                                        </div>
+                                    @empty
+                                        <div class="box box-body b-1 text-center no-shadow">
+                                            <img src="{{ $ad->image_path }}" id="product-image"
+                                                class="img-fluid" alt="">
+                                        </div>
+                                    @endforelse
+
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -119,3 +118,7 @@
     </section>
 @endsection
 @include('admin.authentication.layouts.pages.modal.modal-boost')
+
+@section('script')
+    <script src="{{ asset('admin-assets/js/pages/ecommerce_details.js') }}"></script>
+@endsection
