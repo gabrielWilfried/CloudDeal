@@ -36,29 +36,28 @@ class AnnonceController extends Controller
 
     public function store(Request $request)
     {
-
+        //dd($request->all());
         $request->validate(
             [
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
                 'description' => 'required',
                 'town_id' => 'required|exists:towns,id',
-                'user_id' => Auth::user()->id,
                 'category_id' => 'required|exists:categories,id',
                 'image' => 'required|file',
                 'images' => 'nullable',
             ]
         );
 
-        $datas = $request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id');
-
+        $datas = $request->only('name', 'price', 'description', 'town_id', 'category_id');
+        $datas['user_id'] = Auth::user()->id;
         $datas['image'] = FileUploadService::uploadPath($request->file('image'), PathFileEnum::ANNONCE_PATH);
         $annonce = Annonce::create($datas);
         if ($request->hasFile('images')) {
-            FileUploadService::uploadMultipleFiles($request->files('images'), $annonce, PathFileEnum::ANNONCE_PATH);
+            FileUploadService::uploadMultipleFiles($request->file('images'), $annonce, PathFileEnum::ANNONCE_PATH);
         }
 
-        return response()->json(['message' => 'Created Successfully']);
+        return redirect()->route('admin.ads.index')->with('message', 'Ad created successfully');
     }
 
     public function update(Request $request, Annonce $annonce)

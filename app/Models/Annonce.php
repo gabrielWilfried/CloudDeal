@@ -61,6 +61,9 @@ class Annonce extends Model
     public function getFilesAttribute()
     {
         $files = File::where('target_id', $this->id)->where('target_type', Annonce::class)->get();
+        foreach ($files as $file) {
+            $file->path = url(str_replace('public', 'storage',$file->path));
+        }
         return $files;
     }
 
@@ -71,7 +74,7 @@ class Annonce extends Model
 
     function getImagePathAttribute()
     {
-        return url($this->image);
+        return url(str_replace('public', 'storage',$this->image));
     }
     function getCategoryNameAttribute()
     {
