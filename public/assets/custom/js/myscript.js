@@ -46,10 +46,6 @@ $("document").ready(function () {
             window.location.hash = target;
         });
     });
-    $("#login-modal").on("click", function () {
-        console.log("hello");
-        $("#loginModal").addClass("modal-visible");
-    });
     $("#close-modal-login").on("click", function () {
         $("#loginModal").removeClass("modal-visible");
         $("#loginModal").addClass("modal-invisible");

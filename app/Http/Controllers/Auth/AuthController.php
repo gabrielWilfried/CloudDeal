@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\Auth\Str;
+use Illuminate\Support\Str;
 
 
 
@@ -123,7 +123,7 @@ public function handleGoogleCallback()
         $newUser = User::create([
             'name' => $user->name,
             'email' => $user->email,
-            'password' => Hash::make(Str::random(16)) // Générez un mot de passe aléatoire
+            'password' => Hash::make(Str::random(16)),// Générez un mot de passe aléatoire
         ]);
 
         // Connectez le nouvel utilisateur
