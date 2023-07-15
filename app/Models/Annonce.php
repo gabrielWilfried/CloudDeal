@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\File;
 
-use App\Models\Signal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Request;
 
 class Annonce extends Model
@@ -31,7 +28,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $appends = ['files', 'format_price', 'image_path','url_to_edit','url_to_ad_detail', 'category_name', 'town_name'];
+    protected $appends = ['files_path', 'format_price', 'image_path','url_to_edit','url_to_ad_detail', 'category_name', 'town_name'];
 
     public function payment(): HasOne
     {
@@ -58,7 +55,7 @@ class Annonce extends Model
         return $this->hasMany(Discussion::class);
     }
 
-    public function getFilesAttribute()
+    public function getFilesPathAttribute()
     {
         $files = File::where('target_id', $this->id)->where('target_type', Annonce::class)->get();
         foreach ($files as $file) {
