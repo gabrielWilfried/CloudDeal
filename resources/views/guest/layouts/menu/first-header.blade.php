@@ -43,7 +43,8 @@
                 @auth
                     <li>
                         <div class="publish">
-                            <a id="publish-button" href="{{ route('admin.home') }}">Dashboard</a>
+                            <a id="publish-button" href="{{ route('admin.home') }}"
+                                onclick="event.preventDefault(); history.back();">Dashboard</a>
                         </div>
                     </li>
                     <li>

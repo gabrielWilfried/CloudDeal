@@ -28,12 +28,12 @@
             position: relative;
             overflow: hidden;
             margin-top: -20%;
-            width: 60%;
+            width: 70%;
             border: none;
             border-radius: 50%;
             font-size: 15px;
             background: #212529b8;
-            color: #0062cc
+            color: #0062cc;
         }
 
         .profile-img .file input {
@@ -74,7 +74,6 @@
         .proile-rating span {
             color: #818182;
             font-size: 15px;
-
         }
 
         .profile-head .nav-tabs {
@@ -100,8 +99,6 @@
             margin-top: 20%;
         }
 
-
-
         .profile-actions ul {
             list-style: none;
         }
@@ -124,29 +121,26 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">My Profile</h3>
-                <!------ Include the above in your HEAD tag ---------->
             </div>
             <div class="container emp-profile">
                 <form method="get">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="profile-img">
-                                <img src='{{ asset('assets/images/Apropos/vane1.jpg') }}' alt="" />
-                                <div class="file btn btn-lg btn-primary">
+                                <img src="{{ asset('assets/images/Apropos/vane1.jpg') }}" alt="" />
+                                <div class="file btn  btn-primary">
                                     Change Photo
                                     <input type="file" name="file" />
                                 </div>
-
                             </div>
                         </div>
-                        <div class="col-md-6">
+
+
+
+                        <div class="col-md-8">
                             <div class="profile-head">
-                                <h5>
-                                    {{ $user->name }}
-                                </h5>
-                                <h6>
-                                    online
-                                </h6>
+                                <h5>{{ $user->name }}</h5>
+                                <h6>online</h6>
                                 <p class="proile-rating">pseudo : <span>{{ $user->pseudo }}</span></p>
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
@@ -160,37 +154,24 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-2">
-
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="profile-actions">
                                 <p>
                                     <button style="background-color: #3366cc; color:white" type="button" id="changeProfile"
-                                        class="btn btn-rounded  mb-5">Edit Profil</button>
-
+                                        class="btn btn-rounded mb-5">Edit Profil</button>
                                 </p>
                                 <p>
                                     <button style="background-color: #3366cc; color:white" type="button" id="changePasswd"
-                                        class="btn btn-rounded  mb-5">Edit Password</button>
+                                        class="btn btn-rounded mb-5">Edit Password</button>
                                 </p>
-
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="tab-content profile-tab" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                                     aria-labelledby="home-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="tabContent-label">User Id</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>{{ $user->id }}</p>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <label class="tabContent-label">Name</label>
@@ -207,13 +188,13 @@
                                             <p>{{ $user->email }}</p>
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <label class="tabContent-label">Phone</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            {{ $user->phone }} </div>
+                                            {{ $user->phone }}
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
@@ -225,8 +206,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <label class="tabContent-label">
-                                                Gender</label>
+                                            <label class="tabContent-label">Gender</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <p>{{ $user->sex }}</p>
@@ -242,7 +222,6 @@
                                             @else
                                                 <p>User</p>
                                             @endif
-
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +231,7 @@
                                             <label class="tabContent-label">Registration Date</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p> 2023-07-11 10:15:12</p>
+                                            <p>{{ $user->created_at }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -268,12 +247,13 @@
                                             <label class="tabContent-label">Last Update</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <p>2023-07-11 10:15:12</p>
+                                            <p>{{ $user->updated_at }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
