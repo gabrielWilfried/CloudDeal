@@ -7,6 +7,7 @@ use App\Models\Boost;
 use App\Models\Annonce;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use App\Services\StripePaymentService;
 use Illuminate\Support\Facades\Redirect;
 
@@ -33,8 +34,8 @@ class BoostController extends Controller
             'score' => $score,
             'annonce_id' => $annonce->id,
         ]);
-        $annonce->level += $score;
-        $annonce->save();
-        return response()->json(['message' => 'Boosted sucesfully']);
+        $payment = Payment::create(['target_id' => $boost->id, 'target_type' => Boost::class, 'amount' => $price]);
+        $stripeService = new StripePaymentService($payment);
+        return response()->json($stripeService->generatePaymentUrl()->url);
     }
 }

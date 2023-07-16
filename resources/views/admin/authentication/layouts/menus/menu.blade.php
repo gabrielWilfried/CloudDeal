@@ -1,5 +1,9 @@
 <ul class="sidebar-menu" data-widget="tree">
-    @include('admin.authentication.layouts.menus.menu-parts.busines-menu')
+    @if (auth()->user()->is_admin)
+        @include('admin.authentication.layouts.menus.menu-parts.admin-menu')
+    @else
+        @include('admin.authentication.layouts.menus.menu-parts.busines-menu')
+    @endif
 
     <li>
         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

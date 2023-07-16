@@ -13,7 +13,9 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-
+        if (!auth()->user()->is_admin) {
+            return back();
+        }
         $categories = Category::all();
         return view('admin.authentication.layouts.pages.category.show', compact('categories'));
     }
@@ -21,17 +23,22 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        if (!auth()->user()->is_admin) {
+            return back();
+        }
         $request->validate([
             'name' => 'required|string|max:255'
         ]);
 
         Category::create($request->all());
         return redirect()->back()->with('message', 'Category created successfully');
-
     }
 
     public function delete(Category $category)
     {
+        if (!auth()->user()->is_admin) {
+            return back();
+        }
         $category->delete();
 
         return redirect()->route('admin.category.index')->with('success', 'La catégorie a été supprimée avec succès.');

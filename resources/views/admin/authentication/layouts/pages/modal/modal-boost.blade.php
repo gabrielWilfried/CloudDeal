@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h3 class="text-center mb-3">Boost your Ad</h3>
                 <button type="button" class="close d-flex align-items-center justify-content-center"
-                    data-dismiss="modal" aria-label="Close">
+                    data-dismiss="modal" aria-label="Close" id="closed-boost-modal">
                     <span aria-hidden="true" class="ion-ios-close"></span>
                 </button>
             </div>

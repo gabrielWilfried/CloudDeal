@@ -14,7 +14,7 @@
                     <table id="example6" class="table table-bordered table-striped">
                         <thead class="bg-info">
                             <tr>
-                                <th>Nature annonces</th>
+                                <th>Nature du paiement</th>
                                 <th>Annonce</th>
                                 <th>User</th>
                                 <th>Amount</th>
@@ -26,50 +26,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($annonces as $annonce)
-                                @if ($annonce->payment)
-                                    <tr>
+                            @foreach ($payments as $payment)
+                                <tr>
+                                    <td>
+                                        @if ($payment->target_type == App\Models\Boost::class)
+                                            <span>Boost</span>
+                                        @else
+                                            <span>Taxe</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $payment->target->name ?? $payment->target->annonce->name }}</td>
+                                    <td>{{ $payment->user->name }}</td>
+
+                                    <td>{{ toMoney($payment->amount) }}</td>
+                                    @if ($payment->status === 'PENDING')
+                                        <td class="text-info text-bold">{{ $payment->status }}</td>
+                                    @elseif ($payment->status === 'APPROVED')
+                                        <td class="text-success text-bold">{{ $payment->status }}</td>
+                                    @else
+                                        <td class="text-danger  text-bold">{{ $payment->status }}</td>
+                                    @endif
+                                    <td>{{ $payment->created_at }}</td>
+                                    @if (auth()->user()->is_admin)
                                         <td>
-                                            @if (count($annonce->boosts) > 0)
-                                                <span>Boost</span>
-                                            @else
-                                                <span>Taxe</span>
+                                            <!-- Buttons -->
+                                            @if ($payment->status === 'PENDING')
+                                                <form action="{{ route('admin.payments.approve', $payment->id) }}"
+                                                    method="get">
+                                                    <button type="submit" class="btn btn-success btn-sm mb-5"><i
+                                                            class="fa fa-check "></i></button>
+
+                                                </form>
+                                                <form action="{{ route('admin.payments.cancel', $payment->id) }}"
+                                                    method="get"><button class="btn btn-danger btn-sm  mb-5">
+                                                        <i class="fa fa-times "></i>
+                                                    </button>
+                                                </form>
                                             @endif
                                         </td>
-                                        <td>{{ $annonce->name }}</td>
-                                        <td>{{ $annonce->user->name }}</td>
-
-                                        <td>{{ toMoney($annonce->payment->amount) }}</td>
-                                        @if ($annonce->payment->status === 'PENDING')
-                                            <td class="text-info text-bold">{{ $annonce->payment->status }}</td>
-                                        @elseif ($annonce->payment->status === 'APPROVED')
-                                            <td class="text-success text-bold">{{ $annonce->payment->status }}</td>
-                                        @else
-                                            <td class="text-danger  text-bold">{{ $annonce->payment->status }}</td>
-                                        @endif
-                                        <td>{{ $annonce->created_at }}</td>
-                                        @if (auth()->user()->is_admin)
-                                            <td>
-                                                <!-- Buttons -->
-                                                @if ($annonce->payment->status === 'PENDING')
-                                                    <form
-                                                        action="{{ route('admin.payments.approve', ['annonce' => $annonce]) }}"
-                                                        method="get">
-                                                        <button type="submit" class="btn btn-success btn-sm mb-5"><i
-                                                                class="fa fa-check "></i></button>
-
-                                                    </form>
-                                                    <form
-                                                        action="{{ route('admin.payments.cancel', ['annonce' => $annonce]) }}"
-                                                        method="get"><button class="btn btn-danger btn-sm  mb-5">
-                                                            <i class="fa fa-times "></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                        @endif
-                                    </tr>
-                                @endif
+                                    @endif
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

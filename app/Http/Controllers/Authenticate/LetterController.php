@@ -12,6 +12,9 @@ class LetterController extends Controller
 {
     public function show()
     {
+        if (!auth()->user()->is_admin) {
+            return back();
+        }
         $letters = Suscribed_email::get();
         return view('admin.authentication.layouts.pages.letter', compact('letters'));
     }

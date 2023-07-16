@@ -74,13 +74,13 @@ class User extends Authenticatable
     }
 
     public function signals(): HasMany
-{
-    return $this->hasMany(Signal::class);
-}
-public function hasSignaled(Annonce $annonce): bool
-{
-    return $this->signals()->where('user_id', Auth::user())->exists();
-}
+    {
+        return $this->hasMany(Signal::class);
+    }
+    public function hasSignaled(Annonce $annonce): bool
+    {
+        return $this->signals()->where('user_id', Auth::user())->exists();
+    }
 
 
     public function getImageProfileAttribute() //: MorphMany
@@ -88,5 +88,10 @@ public function hasSignaled(Annonce $annonce): bool
         $file = File::where('target_id', $this->id)->where('target_type', User::class)->first();
         $file->path = str_replace('public', 'storage', $file->path);
         return $file; */
+    }
+
+    function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
     }
 }

@@ -54,12 +54,8 @@
                                             <img src="{{ asset('assets/images/post/1.jpg') }}" alt="">
                                         </div>
                                         <div class="post-content">
-                                            <<<<<<< HEAD <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
-                                                <p x-text="ad.format_price">
-                                                    =======
-                                                    <a :href="ad.url_detail" x-text="ad.name"></a></h3>
-                                                <p x-text="ad.format_price">
-                                                    >>>>>>> d28d0406eb05875009c902061631940ae8caf186
+                                            <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
+                                            <p x-text="ad.format_price">
                                         </div>
                                     </li>
                                 </template>
@@ -70,17 +66,13 @@
                 <div class="col-lg-9 col-12">
                     <div class="row mb-30">
                         <div class="col-sm-4 col-12" style="cursor: pointer">
-                            <<<<<<< HEAD <select @change="sort()" name="stor" class="select-style sort-select"
+                            <select @change="sort()" name="stor" class="select-style sort-select"
                                 style="cursor: pointer">
-                                =======
-                                <select @change="sortByTown()" name="stor" class="select-style town-select"
-                                    style="cursor: pointer">
-                                    >>>>>>> d28d0406eb05875009c902061631940ae8caf186
-                                    <option :value=undefined selected>Sort by Default</option>
-                                    <option value="name">Sort by Name</option>
-                                    <option value="price">Sort by Price</option>
-                                    <option value="best">Sort by BestDeal</option>
-                                </select>
+                                <option :value=undefined selected>Sort by Default</option>
+                                <option value="name">Sort by Name</option>
+                                <option value="price">Sort by Price</option>
+                                <option value="best">Sort by BestDeal</option>
+                            </select>
                         </div>
                         <div class=" col-sm-5 col-12">
                             <p class="total-product"
@@ -175,80 +167,74 @@
                                                         <img :src="ad.image_path" alt="">
                                                         <div class="product-icon flex-style">
                                                             <ul>
-                                                                <<<<<<< HEAD <li>
-                                                                    <a :href="ad.url_to_ad_detail"><i
-                                                                            class="fa fa-eye"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('chat.index') }}">
-                                            <i class="fa fa-send"></i>
-                                        </a>
-                                    </li>
-                                    =======
+                                                                @guest
+                                                                    <li><a x-on:click="openLoginModal()"><i
+                                                                                class="fa fa-eye"></i></a></li>
+                                                                    <li><a x-on:click="openLoginModal()"><i
+                                                                                class="fa fa-send"></i></a></li>
+                                                                @endguest
+                                                                @auth
+                                                                    <li><a :href="ad.url_to_ad_detail"><i
+                                                                                class="fa fa-eye"></i></a></li>
+                                                                    <li><a href="{{ route('chat.index') }}"><i
+                                                                                class="fa fa-send"></i></a></li>
 
-                                    @guest
-                                        <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
-                                        <li><a x-on:click="openLoginModal()"><i class="fa fa-send"></i></a></li>
-                                    @endguest
-                                    @auth
-                                        <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
+                                                                @endauth
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="product-content">
+                                                        <div class="product-text fix">
+                                                            <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
+                                                            <span class="pull-left" x-text="ad.format_price"></span>
 
-                                    @endauth
-                                    >>>>>>> d28d0406eb05875009c902061631940ae8caf186
+                                                        </div>
+                                                        <p x-text="ad.description"></p>
+                                                        <ul class="cart-btn">
+                                                            @auth
+                                                                <li><a href="{{ route('chat.index') }}">Contact Seller</a>
+                                                                @endauth
+                                                                @guest
+                                                                <li><a x-on:click="openLoginModal()">Contact Seller</i></a>
+                                                                </li>
+                                                            @endguest
+
+                                    </li>
+                                    {{-- <li><a href="{{ route('wishlist') }}">Wishlist</a></li> --}}
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-12">
-                    <div class="product-content">
-                        <div class="product-text fix">
-                            <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
-                            <span class="pull-left" x-text="ad.format_price"></span>
+            </div>
+            </li>
+            </template>
+            </ul>
+            <div class="row">
+                <div class="col-12">
+                    <div class="pagination-wrapper text-center">
+                        <ul class="page-numbers">
+                            <li><a x-on:click="previousPage()"
+                                    :class="data.annonces.current_page !== 1 ? 'prev page-numbers' : 'disable'"
+                                    :disabled="page === 1"><i class="fa fa-angle-left"></i></a></li>
+                            <template
+                                x-for="number in Array.from({ length: maxPageNumber - minPageNumber  + 1 }, (_, index) => minPageNumber + index)">
 
-                        </div>
-                        <p x-text="ad.description"></p>
-                        <ul class="cart-btn">
-                            @auth
-                                <li><a href="{{ route('chat.index') }}">Contact Seller</a>
-                                @endauth
-                                @guest
-                                <li><a x-on:click="openLoginModal()">Contact Seller</i></a></li>
-                            @endguest
+                                <li><span class="page-numbers"
+                                        :class="data.annonces.current_page === number ? 'active' : ''"
+                                        x-on:click="currentPage(number)" x-text="number"></span></li>
 
+                            </template>
+                            <li><a :class="data.annonces.current_page !== totalPages ? 'next page-numbers' : 'disable'"
+                                    x-on:click="nextPage()" :disabled="page === totalPages"><i
+                                        class="fa fa-angle-right"></i></a>
                             </li>
-                            {{-- <li><a href="{{ route('wishlist') }}">Wishlist</a></li> --}}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        </li>
-        </template>
-        </ul>
-        <div class="row">
-            <div class="col-12">
-                <div class="pagination-wrapper text-center">
-                    <ul class="page-numbers">
-                        <li><a x-on:click="previousPage()"
-                                :class="data.annonces.current_page !== 1 ? 'prev page-numbers' : 'disable'"
-                                :disabled="page === 1"><i class="fa fa-angle-left"></i></a></li>
-                        <template
-                            x-for="number in Array.from({ length: maxPageNumber - minPageNumber  + 1 }, (_, index) => minPageNumber + index)">
-
-                            <li><span class="page-numbers" :class="data.annonces.current_page === number ? 'active' : ''"
-                                    x-on:click="currentPage(number)" x-text="number"></span></li>
-
-                        </template>
-                        <li><a :class="data.annonces.current_page !== totalPages ? 'next page-numbers' : 'disable'"
-                                x-on:click="nextPage()" :disabled="page === totalPages"><i
-                                    class="fa fa-angle-right"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     </div>
     </div>

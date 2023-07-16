@@ -87,8 +87,9 @@ $("document").ready(function () {
             xhr.onload = function () {
                 if (xhr.status == 200) {
                     var response = JSON.parse(xhr.responseText);
-                    toastr.success(response.message)
-                    console.log(response.message);
+                    toastr.success("Your boost has been created, please finish payment to upgrade your product");
+                    window.open(response, '_blank');
+                    $('#closed-boost-modal').click();
                 }
             };
             xhr.send(formData);

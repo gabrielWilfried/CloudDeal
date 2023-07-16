@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-6">
                                 <div class="box box-body b-1 text-center no-shadow">
-                                    <img src="{{ $annonce->image_path }}" id="product-image" class="img-fluid" alt="">
+                                    <img src="{{ $annonce->image_path }}" class="img-fluid" alt="">
                                 </div>
                                 <div class="pro-photos">
                                     @forelse ($annonce->files_path as $files)
@@ -20,8 +20,7 @@
                                         </div>
                                     @empty
                                         <div class="box box-body b-1 text-center no-shadow">
-                                            <img src="{{ $annonce->image_path }}" id="product-image" class="img-fluid"
-                                                alt="">
+                                            <img src="{{ $annonce->image_path }}" class="img-fluid" alt="">
                                         </div>
                                     @endforelse
 

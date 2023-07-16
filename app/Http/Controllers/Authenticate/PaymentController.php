@@ -10,16 +10,16 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-        $payments = Payment::with('annonce.user', 'annonce.boosts')->get();
-
-
-
+        if (auth()->user()->is_admin) {
+            $payments = Payment::all();
+        } else {
+            $user = auth()->user();
+            $payments = $user->payments;
+        }
 
         $montantTotals = 0;
-
         foreach ($payments as $payment) {
             if ($payment->status == 'APPROVED') {
                 $montantTotals += $payment->amount;
@@ -29,22 +29,18 @@ class PaymentController extends Controller
         return view('admin.authentication.layouts.pages.payment', compact('payments', 'montantTotals'));
     }
 
-    public function approvePayment(Annonce $annonce)
+    public function approvePayment(Payment $payment)
     {
-
-        // Mettre à jour le statut du paiement à APPROVED
-        $annonce->payment->status = 'APPROVED';
-        $annonce->payment->save();
+        $payment->status = 'APPROVED';
+        $payment->save();
 
         return redirect()->back();
     }
 
-    public function cancelPayment(Annonce $annonce)
+    public function cancelPayment(Payment $payment)
     {
-
-        // Mettre à jour le statut du paiement à CANCELLED
-        $annonce->payment->status = 'CANCELLED';
-        $annonce->payment->save();
+        $payment->status = 'CANCELLED';
+        $payment->save();
 
         return redirect()->back();
     }

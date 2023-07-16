@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid();
             $table->morphs('target');
             $table->unsignedDouble('amount');
+            $table->foreignId('user_id')->constrained();
             $table->enum('status', enum_to_string_array(PaymentStatusEnum::cases()))->default(PaymentStatusEnum::PENDING->value);
             $table->timestamps();
         });

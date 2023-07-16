@@ -21,6 +21,7 @@ use App\Http\Controllers\Authenticate\MessageController;
 use App\Http\Controllers\Authenticate\HomeAuthenticateController;
 use App\Http\Controllers\Authenticate\LetterController;
 use App\Http\Controllers\Authenticate\ProfileController;
+use App\Http\Controllers\Authenticate\StripePaymentController;
 use Faker\Guesser\Name;
 
 
@@ -92,19 +93,18 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::delete('/delete/{town}', [VilleController::class, 'delete'])->name('delete');
     });
 
-        Route::prefix('mypayments')->name('payments.')->middleware('auth')->group(function () {
-            Route::get('/', [PaymentController::class, 'index'])->name('index');
-            Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
-            Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
-        });
-
-
-    Route::name('stripe.')->prefix('stripe')->group(function(){
-        Route::get('/', [StripePaymentController::class,'index'])->name('index');
-        Route::post('/checkout', [StripePaymentController::class,'store'])->name('checkout');
-        Route::get('/success/{annonce}', [StripePaymentController::class,'success'])->name('checkout.success');
-        Route::get('/cancel/{annonce}', [StripePaymentController::class,'cancel'])->name('checkout.cancel');
+    Route::prefix('mypayments')->name('payments.')->middleware('auth')->group(function () {
+        Route::get('/', [PaymentController::class, 'index'])->name('index');
+        Route::get('/approvePayment/{annonce}', [PaymentController::class, 'approvePayment'])->name('approve');
+        Route::get('/cancelPayment/{annonce}', [PaymentController::class, 'cancelPayment'])->name('cancel');
     });
+
+
+    Route::name('stripe.')->prefix('stripe')->group(function () {
+        Route::get('/success/{uuid}', [StripePaymentController::class, 'success'])->name('checkout.success');
+        Route::get('/cancel/{uuid}', [StripePaymentController::class, 'cancel'])->name('checkout.cancel');
+    });
+
     Route::prefix('mymessages')->name('messages.')->group(function () {
         Route::get('/', [MessageController::class, 'index'])->name('index');
         Route::get('/markAsRead/{id}', [MessageController::class, 'markAsRead'])->name('markAsRead');
@@ -145,39 +145,38 @@ Route::name('auth.')->prefix('auth')->group(function () {
 
     // Callback après l'authentification Google
     Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
-    });
+});
 
 
-    Route::prefix('dashboard')->middleware('auth')->group(function () {
-        Route::get('/', function () {
-            return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
-        })->name('dashboard');
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('user.layouts.partials.dashboard',  ['name' => 'Dashboard',  'head' => 'Dashboard']);
+    })->name('dashboard');
 
-        Route::get('/ad-list', function () {
-            return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
-        })->name('dashboard.ad-list');
-    });
-
-
+    Route::get('/ad-list', function () {
+        return view('user.layouts.partials.ad-list',  ['name' => 'Ad List',  'head' => 'Dashboard']);
+    })->name('dashboard.ad-list');
+});
 
 
-    Route::get('/wishlist', function () {
-        return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
-    })->name('wishlist');
 
 
-    Route::name('chat.')->prefix('chat')->middleware('auth')->group(function () {
-        Route::get('/', [DiscussionController::class, 'index'])->name('index');
-        Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
-        Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
-        Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
-
-    });
+Route::get('/wishlist', function () {
+    return view('user.layouts.partials.wishlist',  ['name' => 'Wishlist',  'head' => 'Wishlist']);
+})->name('wishlist');
 
 
-    //Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
-    Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->middleware('auth')->name('annonces.signaler');
-    Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
-    Route::post('/comments/comment/{ad}',[CommentaireController::class, 'store'])->name('comments.store');
+Route::name('chat.')->prefix('chat')->middleware('auth')->group(function () {
+    Route::get('/', [DiscussionController::class, 'index'])->name('index');
+    Route::get('{annonce}', [DiscussionController::class, 'ListDiscussion']);
+    Route::get('/messages/{discussion}', [DiscussionController::class, 'getMessages']);
+    Route::post('/messages/send/{discussion}', [DiscussionController::class, 'createMessage']);
+});
+
+
+//Route::post('/comments/annonces/{id}',[CommentaireController::class, 'store'] )->name('comments.store');
+Route::post('/annonces/{id}/signaler', [SignalGuestController::class, 'signaleAnnonce'])->middleware('auth')->name('annonces.signaler');
+Route::get('/comments/{id}', [CommentaireController::class, 'listcomment']);
+Route::post('/comments/comment/{ad}', [CommentaireController::class, 'store'])->name('comments.store');
 
     //laravel gate

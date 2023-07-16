@@ -98,14 +98,14 @@ class AnnonceController extends Controller
 
     public function delete(Annonce $annonce)
     {
-        if ($annonce->user_id != auth()->id()) abort(403);
+        if ($annonce->user_id != auth()->id() && !auth()->user()->is_admin) abort(403);
         $annonce->delete();
         return response()->json(['message', 'Deleted successfully']);
     }
 
     public function detail(Annonce $annonce)
     {
-        if (auth()->id() != $annonce->user_id) {
+        if (auth()->id() != $annonce->user_id && !auth()->user()->is_admin) {
             return back();
         }
         $boost = $annonce->boosts()->first();
