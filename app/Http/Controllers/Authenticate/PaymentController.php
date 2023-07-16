@@ -15,19 +15,7 @@ class PaymentController extends Controller
 
         $payments = Payment::with('annonce.user', 'annonce.boosts')->get();
 
-        $data = [];
-        foreach ($payments as $payment) {
-            $annonce = $payment->annonce;
-            $user = $annonce->user;
-            $boosts = $annonce->boosts;
 
-            $data[] = [
-                'annonce' => $annonce->name,
-                'user' => $user->name,
-                'amount' => $payment->amount,
-                'status' => $payment->status,
-            ];
-        }
 
 
         $montantTotals = 0;
@@ -38,7 +26,7 @@ class PaymentController extends Controller
             }
         }
         $montantTotals = toMoney($montantTotals);
-        return view('admin.authentication.layouts.pages.payment', compact('data', 'payments', 'montantTotals'));
+        return view('admin.authentication.layouts.pages.payment', compact('payments', 'montantTotals'));
     }
 
     public function approvePayment(Annonce $annonce)
