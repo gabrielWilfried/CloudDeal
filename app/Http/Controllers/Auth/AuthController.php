@@ -12,7 +12,6 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
 
-
 class AuthController extends Controller
 {
     public function store(Request $request)
@@ -45,6 +44,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         try {
             $validateUser = Validator::make(
                 $request->all(),
@@ -62,9 +62,10 @@ class AuthController extends Controller
                 return redirect()->route('auth.login')->with(['message' => "Email ou password incorrecte"]);
             }
 
+
             $user = User::where('email', $request->email)->first();
 
-            return redirect()->route('admin.home');
+            return  view('guest.layouts.pages.all-ads');
             // return view('admin.authentication.admin-home');
         } catch (\Throwable $th) {
             return redirect()->route('auth.login')->with(['message' => "Une erreur s\'est produit lors de la connexion"]);
@@ -78,7 +79,7 @@ class AuthController extends Controller
 
         Auth::logout(); // Déconnexion de l'utilisateur en cours
 
-        return redirect()->route('home');  // Redirection vers la page d'accueil ou une autre page appropriée après la déconnexion
+        return  view('guest.layouts.pages.all-ads'); // Redirection vers la page d'accueil ou une autre page appropriée après la déconnexion
     }
 
     public function LoginView(Request $request)

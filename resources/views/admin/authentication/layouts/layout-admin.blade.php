@@ -67,6 +67,7 @@
     <script src="{{ asset('admin-assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
     <script src="{{ asset('admin-assets/custom/js/script.js') }}"></script>
+    <script src="{{ asset('admin-assets/custom/js/myscript.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="{{ asset('admin-assets/js/pages/notification.js') }}"></script>

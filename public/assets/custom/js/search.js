@@ -73,6 +73,12 @@ window.addEventListener('alpine:init', () => {
         currentPage(num) {
             this.page = num;
             this.getAllAds();
+        },
+        openLoginModal(){
+
+            $("#loginModal").addClass("modal-visible");
+
+
         }
     }))
 });

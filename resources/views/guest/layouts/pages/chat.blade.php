@@ -162,16 +162,7 @@
                                             </div>
                                         </li> --}}
 
-                                        </div>
-                                        <div class="message-data text-left">
-                                            <img x-show="message.sender === !currentUser" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                            <span x-show="message.sender === !currentUser" class="message-data-time">12:15</span>
-                                        </div>
-                                        <div class="message other-messages text-right">
-                                            <span x-text="message.content">
-                                            </span>
-                                        </div>
-                                    </li>
+
 {{-- Chat reactive Comment le faire  --}}
 
                                 </template>
