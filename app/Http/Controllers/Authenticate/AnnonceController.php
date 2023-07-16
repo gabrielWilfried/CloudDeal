@@ -75,7 +75,6 @@ class AnnonceController extends Controller
                 'price' => 'required|numeric|min:0',
                 'description' => 'required',
                 'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
                 'category_id' => 'required|exists:categories,id',
             ]
         );

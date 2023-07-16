@@ -27,7 +27,8 @@
                                     <tr>
                                         <td>{{ $annonce->name }}
                                             @if (count($annonce->boosts) > 0)
-                                                <br><small class="badge-success">Boosted</small>
+                                                <br><small class="badge-success"
+                                                    style="border-radius: 5px; padding: 4px;">Boosted</small>
                                             @endif
                                         </td>
                                         <td>{{ $annonce->format_price }}</td>
