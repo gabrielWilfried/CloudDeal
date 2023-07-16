@@ -87,15 +87,14 @@ $("document").ready(function () {
             xhr.onload = function () {
                 if (xhr.status == 200) {
                     var response = JSON.parse(xhr.responseText);
-                    toastr.success(response.message);
-                } else {
-                    toastr.error("Request unsuccessfull");
+                    toastr.success(response.message)
+                    console.log(response.message);
                 }
             };
             xhr.send(formData);
             form.reset();
-            $("#exampleModalCenter").attr("data-dismiss", "modal");
-        },
+            //$('#exampleModalCenter').attr('data-dismiss', 'modal')
+        }
     });
 
     $("form[name='create-category']").validate();
@@ -260,38 +259,39 @@ $("document").ready(function () {
             error.insertAfter(element);
         },
         submitHandler: function (form) {
-            event.preventDefault();
-            var formData = new FormData(form);
-            var id = $("#idContainer").attr("data-ad-id");
-            var csrfToken = $('input[name="_token"]').val();
+            // event.preventDefault();
+            // var formData = new FormData(form);
+            // var id = $("#idContainer").attr("data-ad-id");
+            // var csrfToken = $('input[name="_token"]').val();
 
-            fetch("/admin/myads/store/", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": csrfToken,
-                },
-                body: formData,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    swal(
-                        {
-                            title: "Created!",
-                            text: data.message,
-                            type: "success",
-                            showCancelButton: false,
-                            confirmButtonColor: "#006BDD",
-                            confirmButtonText: "OK",
-                        },
-                        function (isConfirm) {
-                            window.location.href = "/admin/myads";
-                        }
-                    );
-                })
-                .catch((error) => {
-                    swal("Cancelled", error, "error");
-                    console.error(error);
-                });
+            // fetch("/admin/myads/store/", {
+            //     method: "POST",
+            //     headers: {
+            //         "X-CSRF-TOKEN": csrfToken,
+            //     },
+            //     body: formData,
+            // })
+            //     .then((response) => response.json())
+            //     .then((data) => {
+            //         swal(
+            //             {
+            //                 title: "Created!",
+            //                 text: data.message,
+            //                 type: "success",
+            //                 showCancelButton: false,
+            //                 confirmButtonColor: "#006BDD",
+            //                 confirmButtonText: "OK",
+            //             },
+            //             function (isConfirm) {
+            //                 window.location.href = "/admin/myads";
+            //             }
+            //         );
+            //     })
+            //     .catch((error) => {
+            //         swal("Cancelled", error, "error");
+            //         console.error(error);
+            //     });
+            form.submit()
         },
     });
 });

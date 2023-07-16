@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\Auth\Str;
+use Illuminate\Support\Str;
 
 
 
@@ -70,18 +70,7 @@ class AuthController extends Controller
             return redirect()->route('auth.login')->with(['message' => "Une erreur s\'est produit lors de la connexion"]);
         }
     }
-    /*  public function logout(Request $request)
-    {
-        $user = $request->user();
 
-        // Mise à jour de l'attribut is_online
-       // $user->update(['is_online' => false]);
-
-        $user->tokens()->delete();
-
-        return view('guest.layouts.pages.all-ads');
-    }
-    */
 
     public function logout(Request $request)
     {
@@ -109,6 +98,9 @@ class AuthController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+
+
+    //
 
     public function handleGoogleCallback()
     {
