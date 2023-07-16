@@ -39,7 +39,6 @@ class AppServiceProvider extends ServiceProvider
             view()->share('unreadMessageCount', $unreadMessageCount);
         }
         if (Schema::hasTable('users')) {
-
             view()->composer('*', function ($view) {
                 $user = Auth::user();
                 $view->with('user', $user);

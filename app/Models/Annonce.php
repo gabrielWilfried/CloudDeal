@@ -28,7 +28,7 @@ class Annonce extends Model
         'category_id'
     ];
 
-    protected $appends = ['files_path', 'format_price', 'image_path','url_to_edit','url_to_ad_detail', 'category_name', 'town_name'];
+    protected $appends = ['files_path', 'format_price', 'image_path', 'url_to_edit', 'url_to_ad_detail', 'category_name', 'town_name'];
 
     public function payment(): HasOne
     {
@@ -47,7 +47,7 @@ class Annonce extends Model
 
     public function boosts(): HasMany
     {
-        return $this->hasMany(Boost::class, 'annonce_id');
+        return $this->hasMany(Boost::class);
     }
 
     public function discussions(): HasMany
@@ -59,7 +59,7 @@ class Annonce extends Model
     {
         $files = File::where('target_id', $this->id)->where('target_type', Annonce::class)->get();
         foreach ($files as $file) {
-            $file->path = url(str_replace('public', 'storage',$file->path));
+            $file->path = url(str_replace('public', 'storage', $file->path));
         }
         return $files;
     }
@@ -71,24 +71,28 @@ class Annonce extends Model
 
     function getImagePathAttribute()
     {
-        return url(str_replace('public', 'storage',$this->image));
+        return url(str_replace('public', 'storage', $this->image));
     }
+
     function getCategoryNameAttribute()
     {
-        $category = Category::where('id','=', $this->category_id)->pluck('name');
-        return $category[0];
+        $category = Category::where('id', '=', $this->category_id)->first();
+
+        return isset($category) ? $category->name : '';
     }
+
     function getTownNameAttribute()
     {
-        $town = Town::where('id','=', $this->town_id)->pluck('name');
+        $town = Town::where('id', '=', $this->town_id)->pluck('name');
         return $town[0];
     }
+
     public function getUrlToAdDetailAttribute()
     {
-       if(str_contains(Request::path(), 'admin')){
+        if (str_contains(Request::path(), 'admin')) {
             return route('admin.ads.detail', $this->id);
-       }
-       return route('dashboard.singe-ad', $this->id);
+        }
+        return route('dashboard.singe-ad', $this->id);
     }
 
     public function getUrlToEditAttribute()

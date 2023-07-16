@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body p-4 py-5 p-md-5">
                 <div class="text-success text-center"><i class="fa fa-rocket fa-5x"></i></div>
-                <form id="boost-form" action="{{ route('admin.ads.boost', ['annonce' => $ad]) }}" method="post"
+                <form id="boost-form" action="{{ route('admin.ads.boost', $annonce->id) }}" method="post"
                     class="signup-form" style="padding: 20px">
                     @csrf
                     @method('PUT')
