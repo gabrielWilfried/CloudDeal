@@ -27,11 +27,13 @@
         <div class="col-md-6 col-12">
             <ul class="d-flex header-contact">
 
-           
 
-                <li><i class="fa fa-phone">Tel:<a href="https://web.whatsapp.com/send?phone=237672044430">+237 672 044 430</a href></i></li>
 
-                <li><i class="fa fa-envelope"><a href="mailto:tegonguefolefackf@gmail.com">tegonguefolefackf@gmail.com</a href></i></li>
+                <li><i class="fa fa-phone">Tel:<a href="https://web.whatsapp.com/send?phone=237672044430">+237 672 044
+                            430</a href></i></li>
+
+                <li><i class="fa fa-envelope"><a href="mailto:tegonguefolefackf@gmail.com">tegonguefolefackf@gmail.com</a
+                            href></i></li>
             </ul>
         </div>
         <div class="col-md-6 col-12">
@@ -47,8 +49,8 @@
                 @auth
                     <li>
                         <div class="publish">
-                            <a id="publish-button" href="{{ route('admin.home') }}"
-                                onclick="event.preventDefault(); history.back();">Dashboard</a>
+                            <a id="publish-button" href="{{ route('admin.home') }}">Dashboard</a>
+                            {{-- onclick="event.preventDefault(); history.back();" --}}
                         </div>
                     </li>
                     <li>
