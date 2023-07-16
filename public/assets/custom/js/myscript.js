@@ -27,8 +27,7 @@ $("document").ready(function () {
                 else if(data.status === 'failed'){
                     toastr.error("Email Already exists")
                 }
-
-
+                form.reset();
             }).catch(error => {
                 toastr.error("An error occured")
             });;
@@ -47,7 +46,14 @@ $("document").ready(function () {
             window.location.hash = target;
         });
     });
+    $("#close-modal-login").on("click", function () {
+        $("#loginModal").removeClass("modal-visible");
+        $("#loginModal").addClass("modal-invisible");
+    });
+
 });
+
+
 window.addEventListener('alpine:init', () => {
     Alpine.data('ads', () => ({
         ads: [],
@@ -59,11 +65,14 @@ window.addEventListener('alpine:init', () => {
                     this.ads = (this.ads || []).concat(data.allAds.data);
                     this.page++;
                     this.totalPages = data.allAds.last_page;
-                    console.log(this.ads);
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
+        openLoginModal(){
+            console.log("hello");
+            $("#loginModal").addClass("modal-visible");
+        }
     })
 )})

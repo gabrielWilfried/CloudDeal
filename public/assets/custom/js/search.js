@@ -5,6 +5,7 @@ window.addEventListener('alpine:init', () => {
         priceFilter: [],
         sortBy: '',
         currentCategories:[],
+        currentCategory: '',
         isLoading: false,
         town_id: 0,
         data: [],
@@ -16,9 +17,6 @@ window.addEventListener('alpine:init', () => {
             this.getAllAds();
         },
         filterPrice() {
-            // const minPrice = $("#slider-range").slider("values", 0);
-            // const maxPrice = $("#slider-range").slider("values", 1);
-            // this.priceFilter = minPrice + ',' + maxPrice;pm
             this.priceFilter =$("#slider-range").slider("values");
             this.getAllAds();
         },
@@ -30,13 +28,13 @@ window.addEventListener('alpine:init', () => {
             this.currentCategories = selectedCategories;
             this.getAllAds();
         },
-        sortByTown(){
-            this.selectedTown = $('.town-select').val();
+        sort(){
+            this.sortBy = event.target.value;
             this.getAllAds();
         },
         getAllAds() {
             this.isLoading = true;
-            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText + '&categories=' + this.currentCategories + '&filterPrice=' + this.priceFilter+'&town=' + this.selectedTown).then(response => response.json())
+            fetch('/clouddeal/allAds/ads?page=' + this.page + '&search=' + this.searchText + '&categories=' + this.currentCategories + '&filterPrice=' + this.priceFilter+'&sort=' + this.sortBy).then(response => response.json())
                 .then(data => {
                     this.data = data;
                     this.totalPages = data.annonces.last_page;

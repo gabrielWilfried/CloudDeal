@@ -26,28 +26,39 @@
     <div class="row">
         <div class="col-md-6 col-12">
             <ul class="d-flex header-contact">
-                <li><i class="fa fa-phone"></i> +237 672 044 430</li>
-                <li><i class="fa fa-envelope"></i> tegonguefolefackf@gmail.com</li>
+
+           
+
+                <li><i class="fa fa-phone">Tel:<a href="https://web.whatsapp.com/send?phone=237672044430">+237 672 044 430</a href></i></li>
+
+                <li><i class="fa fa-envelope"><a href="mailto:tegonguefolefackf@gmail.com">tegonguefolefackf@gmail.com</a href></i></li>
             </ul>
         </div>
         <div class="col-md-6 col-12">
             <ul class="d-flex account_login-area">
-                <li>
-                    <form>
-                        <select id="lang-switch">
-                            <option value="en">
-                                <span class="fi fi-us"></span>
-                            </option>
-                            <option value="ko" selected>
-                                <span class="fi fi-fr"></span>
-                            </option>
-                        </select>
-                    </form>
-                </li>
-                <li><a href="{{ route('auth.login') }}"> Login/Register </a></li>
-                <div class="publish">
-                    <a id="publish-button" href="">Publish</a>
-                </div>
+                @guest
+                    <li><a href="{{ route('auth.login') }}">Login/Register</a></li>
+                    <li>
+                        <div class="publish">
+                            <a id="publish-button" href="">Publish</a>
+                        </div>
+                    </li>
+                @endguest
+                @auth
+                    <li>
+                        <div class="publish">
+                            <a id="publish-button" href="{{ route('admin.home') }}">Dashboard</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="publish">
+                            <form action="{{ route('auth.logout') }}" method="POST">
+                                @csrf
+                                <button id="publish-button" type="submit">logout</button>
+                            </form>
+                        </div>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

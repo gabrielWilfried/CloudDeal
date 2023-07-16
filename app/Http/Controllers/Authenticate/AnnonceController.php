@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Authenticate;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Signal;
 use App\Models\Annonce;
 use App\Models\Comment;
-use App\Models\Signal;
-use App\Models\User;
+use App\Models\Boost;
+use App\Models\Enums\PathFileEnum;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
+use App\Services\StripePaymentService;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,21 +21,11 @@ class AnnonceController extends Controller
 {
     public function index(Request $request)
     {
-        ///$user = Auth::user();
-        //$limit = $request->get('limit', 15);
-        //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
+        $user = Auth::user();
+        $annonces = Annonce::where('user_id', $user->id)->get();
         $annonces = Annonce::get();
-
-        return view('admin.authentication.layouts.pages.ads.show', compact('annonces'));
-    }
-
-    public function paginatedAds(Request $request)
-    {
-        ///$user = Auth::user();
-        //$limit = $request->get('limit', 15);
-        //$annonces = Annonce::where('user_id', $user->id)->paginate($limit);
-        $annonces = Annonce::where('is_blocked', false)->paginate(7);
-        return response()->json(['annonces' => $annonces]);
+        $boosted_ads_id = Boost::pluck('annonce_id')->unique();
+        return view('admin.authentication.layouts.pages.ads.show', compact('annonces', 'boosted_ads_id'));
     }
 
     public function create()
@@ -46,27 +41,33 @@ class AnnonceController extends Controller
 
     public function store(Request $request)
     {
-
+        //dd($request->all());
         $request->validate(
             [
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
                 'description' => 'required',
                 'town_id' => 'required|exists:towns,id',
-                'user_id' => 'required|exists:users,id',
                 'category_id' => 'required|exists:categories,id',
-                'image' => 'required'
+                'image' => 'required|file',
+                'images' => 'nullable',
             ]
         );
 
-        $annonce = Annonce::create($request->only('name', 'price', 'description', 'user_id', 'town_id', 'category_id', 'image',));
+        $datas = $request->only('name', 'price', 'description', 'town_id', 'category_id');
+        $datas['user_id'] = Auth::user()->id;
+        $datas['image'] = FileUploadService::uploadPath($request->file('image'), PathFileEnum::ANNONCE_PATH);
+        $annonce = Annonce::create($datas);
+        if ($request->hasFile('images')) {
+            FileUploadService::uploadMultipleFiles($request->file('images'), $annonce, PathFileEnum::ANNONCE_PATH);
+        }
 
-        return response()->json(['message' => 'Created Successfully']);
+        return redirect()->route('admin.ads.index')->with('message', 'Ad created successfully');
     }
 
     public function update(Request $request, Annonce $annonce)
     {
-        //if ($annonce->user_id != auth()->id()) abort(403);
+        if ($annonce->user_id != auth()->id()) abort(403);
         $request->validate(
             [
                 'name' => 'required|string|max:255',
@@ -93,17 +94,24 @@ class AnnonceController extends Controller
 
     public function delete(Annonce $annonce)
     {
-        //if ($annonce->user_id != auth()->id()) abort(403);
+        if ($annonce->user_id != auth()->id()) abort(403);
         $annonce->delete();
         return response()->json(['message', 'Deleted successfully']);
     }
 
     public function detail($annonce)
     {
+        $boost = Boost::where('annonce_id', $annonce)->latest()->first();
         $ad = Annonce::find($annonce);
         $comments = Comment::where('annonce_id', '=', $annonce)->get();
         $signals = Signal::where('annonce_id', '=', $annonce)->get();
-        return view('admin.authentication.layouts.pages.ads.ad-detail', compact('ad', 'comments', 'signals'));
+        return view('admin.authentication.layouts.pages.ads.ad-detail', compact('ad', 'comments', 'signals', 'boost'));
+    }
+
+    public function checkout(Annonce $annonce, Payment $price){
+        $stripePaymentService = new StripePaymentService();
+        return $stripePaymentService->generatePaymentUrl($price, $annonce);
+
     }
 
     public function block(Request $request, Annonce $annonce)

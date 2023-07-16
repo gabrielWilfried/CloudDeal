@@ -52,7 +52,7 @@
                                             <img src="{{ asset('assets/images/post/1.jpg') }}" alt="">
                                         </div>
                                         <div class="post-content">
-                                            <a :href="ad.url_detail" x-text="ad.name"></a></h3>
+                                           <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
                                                 <p  x-text="ad.format_price">
                                         </div>
                                     </li>
@@ -64,11 +64,11 @@
                 <div class="col-lg-9 col-12">
                     <div class="row mb-30">
                         <div class="col-sm-4 col-12" style="cursor: pointer">
-                            <select @change="sortByTown()" name="stor" class="select-style town-select" style="cursor: pointer">
+                            <select @change="sort()" name="stor" class="select-style sort-select" style="cursor: pointer">
                                 <option :value=undefined selected>Sort by Default</option>
-                                <template x-for="town in data.towns">
-                                    <option :value="town.id" x-text="town.name"></option>
-                                </template>
+                                    <option value="name">Sort by Name</option>
+                                    <option value="price">Sort by Price</option>
+                                    <option value="best">Sort by BestDeal</option>
                             </select>
                         </div>
                         <div class=" col-sm-5 col-12">
@@ -96,10 +96,10 @@
                                         <div class="product-wrap">
                                             <div class="product-img">
                                                 <span>New</span>
-                                                <img src="{{ asset('assets/images/product/1.jpg') }}" alt="">
+                                                <img :src="ad.image_path" alt="">
                                                 <div class="product-icon flex-style">
                                                     <ul>
-                                                        <li><a :href="ad.url_detail"><i class="fa fa-eye"></i></a></li>
+                                                        <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
                                                         <li><a href="{{ route('chat.index') }}"><i
                                                                     class="fa fa-send"></i></a></li>
 
@@ -107,7 +107,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a :href="ad.url_detail" x-text="ad.name"></a></h3>
+                                                <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
                                                 <p class="pull-left" x-text="ad.format_price">
                                                 </p>
                                             </div>
@@ -151,12 +151,12 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="product-img">
                                                         <span>New</span>
-                                                        <img src="{{ asset('assets/images/product/19.jpg') }}"
+                                                        <img :src="ad.image_path"
                                                             alt="">
                                                         <div class="product-icon flex-style">
                                                             <ul>
                                                                 <li>
-                                                                    <a :href="ad.url_detail"><i class="fa fa-eye"></i></a>
+                                                                    <a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a>
                                                                 </li>
                                                                 <li>
                                                                     <a href="{{ route('chat.index') }}">
@@ -170,7 +170,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="product-content">
                                                         <div class="product-text fix">
-                                                            <h3><a :href="ad.url_detail" x-text="ad.name"></p></a></h3>
+                                                            <h3><a :href="ad.url_to_ad_detail" x-text="ad.name"></a></h3>
                                                             <span class="pull-left" x-text="ad.format_price"></span>
 
                                                         </div>
@@ -178,7 +178,7 @@
                                                         <ul class="cart-btn">
                                                             <li><a href="{{ route('chat.index') }}">Contact Seller</a>
                                                             </li>
-                                                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                                                            {{-- <li><a href="{{ route('wishlist') }}">Wishlist</a></li> --}}
                                                         </ul>
                                                     </div>
                                                 </div>

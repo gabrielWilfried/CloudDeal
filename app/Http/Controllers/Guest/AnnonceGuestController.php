@@ -1,39 +1,53 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
-use App\Models\Boost;
-use App\Models\Category;
+
 use App\Models\Annonce;
 use App\Models\Town;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class AnnonceGuestController extends Controller
 {
     public function paginatedAds(Request $request)
     {
         $limit = $request->get('limit', 9);
-        $towns = Town::all();
-        $boost = Boost::orderBy('score', 'DESC')->take(3)->pluck('annonce_id');
-        $BestAds = Annonce::where('is_blocked', false)->whereIn('id', $boost)->get();
+        $BestAds = Annonce::where('is_blocked', false)->where('is_verified', true)->orderByDesc('level')->take(3)->get();
         $search = '%' . $request->get('search', '') . '%';
+        $sort = $request->get('sort');
         $priceFilter = $request->get('filterPrice', '');
         $query = Annonce::where('is_blocked', false);
-        if($priceFilter != '' && $priceFilter != '0,0'){
+
+        if ($priceFilter != '' && $priceFilter != '0,0') {
             $price = explode(',', $priceFilter);
-            $query=$query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
+            $query = $query->whereBetween('price', [floatval($price[0]), floatval($price[1])]);
         }
+
         if ($request->has('categories') && !blank($request->input('categories'))) {
             $categoryIds = array_map('intval', explode(',', $request->input('categories')));
             $query->whereIn('category_id',  $categoryIds);
         }
-        if ($request->has('town') && ($request->input('town')!=='undefined')) {
-            $townId = $request->input('town');
-            $query->where('town_id', '=', $townId);
+
+        // Apply sorting base on the value of sort
+        switch($sort){
+            case 'name':
+                $query->orderBy('name');
+                break;
+            case 'price':
+                $query->orderBy('price');
+                break;
+            case 'best':
+                $query->orderByDesc('level');
+                break;
+            default:
+                $query->orderByDesc('level');
+                break;
         }
-        $annonces = $query->where('name', 'LIKE', $search)->orderByDesc('level')->paginate($limit);
-        return response()->json(['towns' => $towns, 'annonces' => $annonces, 'BestAds' => $BestAds ]);
+
+        $annonces = $query->where('name', 'LIKE', $search)->where('is_blocked', false)->where('is_verified', false)->orderByDesc('level')->paginate($limit);
+        return response()->json([ 'annonces' => $annonces, 'BestAds' => $BestAds ]);
     }
 
     public function index(Request $request)
@@ -54,6 +68,12 @@ class AnnonceGuestController extends Controller
         $ad = Annonce::findorfail($id);
         $ad->load('comments', 'category', 'town', 'user');
         $comments = $ad->comments()->latest()->take(4)->get();
+
+       if (!Auth::check()) {
+            // Rediriger vers la page de connexion
+            return view('guest.auth.login-modal');
+        }
+
         return view('guest.layouts.pages.ad-detail',  compact('ad','annonces', 'comments'));
     }
 
@@ -90,8 +110,8 @@ class AnnonceGuestController extends Controller
         }
 
 
-       $annonces = $annonces->get();
-       return response()->json($annonces);
+        $annonces = $annonces->get();
+        return response()->json($annonces);
     }
     public function detailsAnnonce(Annonce  $annonce)
     {

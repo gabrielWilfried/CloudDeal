@@ -13,7 +13,7 @@
             <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div class="product-wrap">
                     <div class="product-img">
-                        <img src="assets/images/product/1.jpg" alt="">
+                        <img src="{{ $ad->image_path }}" alt="">
                         <div class="product-icon flex-style">
                             <ul>
                                 <li>

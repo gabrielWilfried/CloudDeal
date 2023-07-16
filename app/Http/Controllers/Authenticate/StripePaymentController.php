@@ -2,34 +2,30 @@
 
 namespace App\Http\Controllers\Authenticate;
 
-use App\Http\Controllers\Controller;
-use Illuminate\View\View;
-use Stripe;
+
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use App\Services\StripePaymentService;
+use App\Http\Controllers\Controller;
+
 
 
 class StripePaymentController  extends Controller
 {
-    public function stripe(): View
+    protected $stripePaymentService;
+
+    public function __construct(StripePaymentService $stripePaymentService)
     {
-        return view('stripe');
+        $this->stripePaymentService = $stripePaymentService;
     }
 
-
-
-    public function stripePost(Request $request): RedirectResponse
+    public function index()
     {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        return view('admin.authentication.layouts.pages.stripe.stripe');
+    }
 
-        Stripe\Charge::create ([
-                "amount" => 10 * 100,
-                "currency" => "usd",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from itsolutionstuff.com."
-        ]);
+    public function store()
+    {
 
-        return back()->with('success', 'Payment successful!');
     }
 
 }

@@ -6,8 +6,10 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Town;
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +37,13 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('contacts') && Schema::hasColumn('contacts', 'is_read')) {
             $unreadMessageCount = Contact::where('is_read', false)->count();
             view()->share('unreadMessageCount', $unreadMessageCount);
+        }
+        if (Schema::hasTable('users')) {
+
+            view()->composer('*', function ($view) {
+                $user = Auth::user();
+                $view->with('user', $user);
+            });
         }
     }
 }
