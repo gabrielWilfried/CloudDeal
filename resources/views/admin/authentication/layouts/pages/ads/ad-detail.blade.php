@@ -62,24 +62,13 @@
                                                 <i class="fa fa-check"></i>
                                             </button>
                                         </form>
-                                @endif
-                                <form action="{{ route('admin.ads.checkout', ['annonce' => $ad]) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-rounded btn-info mb-5">checkout</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <h4 class="box-title mt-40 text-success">Comments</h4>
-                            <div class="row">
-                                @forelse ($comments as $comment)
-                                <div class="col-md-6 col-8">
-                                    <div class="box">
-                                        <div class="box-body">
-                                            <h4 class="box-title">{{ $comment->user->name }}</h4>
-                                            <p>{{ $comment->content }}</p>
-                                        </div>
-                                    </div>
+                                    @endif
+                                    <form action="{{ route('admin.ads.checkout', ['annonce' => $ad]) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="btn btn-rounded btn-info mb-5">checkout
+                                            <i class="fa fa-checkout"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12">

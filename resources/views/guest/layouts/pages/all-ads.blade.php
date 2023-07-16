@@ -178,7 +178,7 @@
                                                         <ul class="cart-btn">
                                                             <li><a href="{{ route('chat.index') }}">Contact Seller</a>
                                                             </li>
-                                                            <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                                                            {{-- <li><a href="{{ route('wishlist') }}">Wishlist</a></li> --}}
                                                         </ul>
                                                     </div>
                                                 </div>

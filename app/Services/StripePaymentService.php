@@ -42,11 +42,11 @@ class StripePaymentService
             'mode'        => 'payment',
             'success_url' => route('admin.ads.detail', ['annonce' => $ad], [], true) . '?session_id={CHECKOUT_SESSION_ID}',
 
-            'cancel_url'  => route('admin.ads.detail', ['annonce' => $ad], [], true) . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url'  => route('admin.ads.detail', ['annonce' => $ad->id], [], true) . '?session_id={CHECKOUT_SESSION_ID}',
         ]);
 
         // $payment = new Payment();
-        // $payment->status = 'PENDING';
+        // // $payment->status = 'PENDING';
         // $payment->uuid = $checkoutSession->id;
 
         return redirect($checkoutSession->url,  303);
