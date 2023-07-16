@@ -14,7 +14,7 @@
                     <table id="example6" class="table table-bordered table-striped">
                         <thead class="bg-info">
                             <tr>
-                                <th>Nature</th>
+                                <th>Nature annonces</th>
                                 <th>Annonce</th>
                                 <th>User</th>
                                 <th>Amount</th>

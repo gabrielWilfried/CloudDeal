@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-left">
-                    <h2 class ="h2">Best Products</h2>
+                    <h2 class="h2">Best Products</h2>
                 </div>
             </div>
         </div>
@@ -23,9 +23,17 @@
                                 </div>
                                 <div class="col-5 text-right">
                                     <ul>
-                                    <li><a href="{{ route('dashboard.singe-ad', ['id' => $annonce->id]) }}"><i
-                                            class="fa fa-eye"></i></a></li>
-                                     <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
+                                        @guest
+                                            <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
+                                            <li><a x-on:click="openLoginModal()"><i class="fa fa-send"></i></a></li>
+                                        @endguest
+                                        @auth
+                                            <li><a href="{{ route('dashboard.singe-ad', ['id' => $annonce->id]) }}"><i
+                                                        class="fa fa-eye"></i></a></li>
+                                            <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
+
+                                        @endauth
+
                                     </ul>
                                 </div>
                             </div>

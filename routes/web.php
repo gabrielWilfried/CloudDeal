@@ -126,6 +126,7 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, 'LoginView'])->name('login');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthController::class, 'RegisterView'])->name('register');
+    Route::get('/login/modal', [AuthController::class, 'showLoginModal'])->name('login.modal');
     Route::get('/forgot-password', function () {
         return view("guest.auth.forgot-password", ['name' => 'Forgot-password', 'head' => 'Account']);
     })->name("forgot-password");

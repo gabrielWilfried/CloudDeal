@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authenticate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
+use App\Models\Payment;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -12,17 +13,20 @@ class PaymentController extends Controller
     public function index()
     {
 
-        $annonces = Annonce::with('user', 'payment', 'boosts')->get();
+        $payments = Payment::with('annonce.user', 'annonce.boosts')->get();
+
+
+
+
         $montantTotals = 0;
 
-        foreach ($annonces as $annonce) {
-            if ($annonce->payment && $annonce->payment->status == 'APPROVED') {
-
-                $montantTotals  += $annonce->payment->amount;
+        foreach ($payments as $payment) {
+            if ($payment->status == 'APPROVED') {
+                $montantTotals += $payment->amount;
             }
         }
         $montantTotals = toMoney($montantTotals);
-        return view('admin.authentication.layouts.pages.payment', compact('annonces', 'montantTotals'));
+        return view('admin.authentication.layouts.pages.payment', compact('payments', 'montantTotals'));
     }
 
     public function approvePayment(Annonce $annonce)

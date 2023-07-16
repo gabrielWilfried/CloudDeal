@@ -1,41 +1,10 @@
 @extends('admin.authentication.layouts.pages.ads.default')
 
-@section('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <style>
-        .bold {
-            font-weight: bold;
-        }
 
-        .large {
-            font-size: 20px;
-        }
+<link rel="stylesheet" href="{{ asset('admin-assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css') }}" />
+<script src="{{ asset('admin-assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
 
-        .normal {
-            font-size: 14px;
-        }
-
-        .italic {
-            font-style: italic;
-        }
-
-        .underline {
-            text-decoration: underline;
-        }
-
-        .small {
-            font-size: 12px;
-        }
-
-        .select-buttons {
-            margin-top: 10px;
-        }
-
-        .submit-button {
-            float: right;
-        }
-    </style>
 
 @section('content')
     <div class="row">
@@ -46,9 +15,13 @@
 
                 </div>
                 <div class="box-body">
+                    <form>
+                        <textarea class="textarea" placeholder="Place some text here"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
 @endsection

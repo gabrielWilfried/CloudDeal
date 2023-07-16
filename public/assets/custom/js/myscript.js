@@ -46,6 +46,7 @@ $("document").ready(function () {
             window.location.hash = target;
         });
     });
+
     $("#close-modal-login").on("click", function () {
         $("#loginModal").removeClass("modal-visible");
         $("#loginModal").addClass("modal-invisible");
@@ -69,10 +70,15 @@ window.addEventListener('alpine:init', () => {
                 .catch(error => {
                     console.error(error);
                 });
+
+
         },
         openLoginModal(){
-            console.log("hello");
+
             $("#loginModal").addClass("modal-visible");
+
+
         }
+
     })
 )})

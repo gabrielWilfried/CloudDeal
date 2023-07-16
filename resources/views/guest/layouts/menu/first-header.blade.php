@@ -52,6 +52,7 @@
                     <li>
                         <div class="publish">
                             <a id="publish-button" href="{{ route('admin.home') }}">Dashboard</a>
+                            {{-- onclick="event.preventDefault(); history.back();" --}}
                         </div>
                     </li>
                     <li>

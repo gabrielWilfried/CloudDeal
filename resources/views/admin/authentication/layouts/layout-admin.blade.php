@@ -19,7 +19,8 @@
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('admin-assets/custom/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin-assets/components/jquery-toast-plugin-master/src/jquery.toast.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin-assets/components/jquery-toast-plugin-master/src/jquery.toast.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('style')
 </head>
@@ -28,15 +29,15 @@
     @include('admin.authentication.layouts.menus.header')
 
     <div class="wrapper">
-       <aside class="main-sidebar">
+        <aside class="main-sidebar">
             @include('admin.authentication.layouts.menus.aside')
         </aside>
 
-       <div class="content-wrapper">
+        <div class="content-wrapper">
             <div class="container-full">
                 @yield('body')
             </div>
-       </div>
+        </div>
 
     </div>
     @include('admin.authentication.layouts.menus.footer')
@@ -67,9 +68,15 @@
     <script src="{{ asset('admin-assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('admin-assets/js/demo.js') }}"></script>
     <script src="{{ asset('admin-assets/custom/js/script.js') }}"></script>
+    <script src="{{ asset('admin-assets/custom/js/myscript.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="{{ asset('admin-assets/js/pages/notification.js') }}"></script>
+
+
+    <script src="{{ asset('admin-assets/components/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('admin-assets/js/pages/editor.js') }}"></script>
+
 
     @yield('script')
 </body>

@@ -19,8 +19,16 @@
                             <img :src="ad.image_path" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
+                                    @guest
+                                        <li><a x-on:click="openLoginModal()"><i class="fa fa-eye"></i></a></li>
+                                        <li><a x-on:click="openLoginModal()"><i class="fa fa-send"></i></a></li>
+                                    @endguest
+                                    @auth
+                                        <li><a :href="ad.url_to_ad_detail"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('chat.index') }}"><i class="fa fa-send"></i></a></li>
+
+                                    @endauth
+
                                 </ul>
                             </div>
                         </div>
