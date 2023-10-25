@@ -112,11 +112,6 @@ class AnnonceController extends Controller
         return view('admin.authentication.layouts.pages.ads.ad-detail', compact('annonce', 'boost'));
     }
 
-    public function checkout(Annonce $annonce, Payment $price)
-    {
-        $stripePaymentService = new StripePaymentService();
-        return $stripePaymentService->generatePaymentUrl($price, $annonce);
-    }
 
     public function block(Annonce $annonce)
     {
